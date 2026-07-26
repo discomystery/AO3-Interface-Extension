@@ -11,6 +11,14 @@
       ],
       "css": ["dist/styles.css"],
       "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/works/*",
+        "https://www.archiveofourown.org/works/*"
+      ],
+      "js": ["src/js/collapse-double-breaks.js"],
+      "run_at": "document_idle"
     }
   ]
 }
