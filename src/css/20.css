@@ -1,0 +1,875 @@
+/*
+ * AO3 Advanced Marker — Module 20
+ */
+
+/* ============================================================
+   NATIVE AO3 UI SHELL
+   ============================================================ */
+
+/* Header and global navigation */
+#header {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0.7rem clamp(0.8rem, 2vw, 1.5rem) !important;
+
+  background:
+    linear-gradient(122deg, rgba(var(--m-card), 0.96), rgba(var(--m-card), 0.82)) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  box-shadow: 0 1px 18px rgba(0, 0, 0, 0.055) !important;
+
+  color: var(--m-text) !important;
+
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+
+#header .heading,
+#header .primary,
+#header .secondary,
+#header .navigation,
+#header .menu,
+#header #greeting {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--m-text) !important;
+  text-shadow: none !important;
+}
+
+#header h1 {
+  margin: 0 !important;
+}
+
+#header .logo {
+  opacity: 0.88 !important;
+  filter: grayscale(1) contrast(1.05) !important;
+}
+
+#header a,
+#header a:link,
+#header a:visited {
+  color: var(--m-text-2) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#header a:is(:hover, :focus),
+#header .current {
+  color: var(--m-link) !important;
+}
+
+#header .primary > li > a,
+#header #greeting > ul > li > a,
+#header #greeting .dropdown-toggle {
+  padding: 0.38rem 0.58rem !important;
+  border-radius: 9px !important;
+  transition:
+    background-color 140ms ease,
+    color 140ms ease !important;
+}
+
+#header .primary > li > a:is(:hover, :focus),
+#header #greeting > ul > li > a:is(:hover, :focus),
+#header #greeting .dropdown-toggle:is(:hover, :focus) {
+  background: var(--m-chip) !important;
+  color: var(--m-link) !important;
+}
+
+#header .menu.dropdown-menu,
+#header .dropdown-menu,
+#header .menu {
+  min-width: 12rem !important;
+  padding: 0.4rem !important;
+
+  background: rgba(var(--m-card), 0.96) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 13px !important;
+  box-shadow: var(--m-shadow-hover) !important;
+
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+
+#header .menu li,
+#header .dropdown-menu li {
+  margin: 0 !important;
+  border: 0 !important;
+}
+
+#header .menu li a,
+#header .dropdown-menu li a {
+  display: block !important;
+  padding: 0.48rem 0.58rem !important;
+  border-radius: 8px !important;
+}
+
+#header .menu li a:is(:hover, :focus),
+#header .dropdown-menu li a:is(:hover, :focus) {
+  background: var(--m-chip) !important;
+  color: var(--m-link) !important;
+}
+
+#header .search input[type="text"],
+#header .search input[type="search"] {
+  min-height: 2rem !important;
+  padding: 0.38rem 0.65rem !important;
+  background: var(--m-chip) !important;
+  border: 1px solid transparent !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  color: var(--m-text) !important;
+}
+
+#header .search input[type="submit"],
+#header .search button {
+  min-height: 2rem !important;
+  padding: 0.38rem 0.68rem !important;
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+  text-shadow: none !important;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#header .search input[type="submit"]:is(:hover, :focus),
+#header .search button:is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link-hover) !important;
+}
+
+/* Dashboard/sidebar */
+#dashboard,
+.dashboard .navigation {
+  background:
+    linear-gradient(122deg, rgba(var(--m-card), 0.82), var(--m-surface)) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+#dashboard a,
+.dashboard .navigation a {
+  color: var(--m-text-2) !important;
+  text-shadow: none !important;
+}
+
+#dashboard a:is(:hover, :focus),
+#dashboard .current,
+.dashboard .navigation a:is(:hover, :focus),
+.dashboard .navigation .current {
+  background: var(--m-chip) !important;
+  color: var(--m-link) !important;
+}
+
+/* Page-level navigation and pagination */
+#main > .navigation.actions,
+#main > ul.navigation.actions,
+#main > ol.navigation.actions,
+.pagination.actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  margin: 0.75rem 0 1rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#main > .navigation.actions li,
+#main > ul.navigation.actions li,
+#main > ol.navigation.actions li,
+.pagination.actions li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main > .navigation.actions :is(a, .current, .disabled),
+#main > ul.navigation.actions :is(a, .current, .disabled),
+#main > ol.navigation.actions :is(a, .current, .disabled),
+.pagination.actions :is(a, .current, .disabled, .gap) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2rem !important;
+  padding: 0.36rem 0.68rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#main > .navigation.actions a:is(:hover, :focus),
+#main > ul.navigation.actions a:is(:hover, :focus),
+#main > ol.navigation.actions a:is(:hover, :focus),
+.pagination.actions a:is(:hover, :focus) {
+  background: var(--m-chip-strong) !important;
+  border-color: var(--m-line) !important;
+  color: var(--m-link) !important;
+}
+
+#main > .navigation.actions .current,
+#main > ul.navigation.actions .current,
+#main > ol.navigation.actions .current,
+.pagination.actions .current {
+  background: var(--m-control-active) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+  box-shadow: inset 0 0 0 1px var(--m-line-soft) !important;
+}
+
+#main > .navigation.actions .disabled,
+#main > ul.navigation.actions .disabled,
+#main > ol.navigation.actions .disabled,
+.pagination.actions .disabled {
+  opacity: 0.48 !important;
+}
+
+/* Forms, filters, and fields */
+#main :is(.filters, .toggled form, .dynamic form),
+#main > form:not(.ajax-remove),
+#main fieldset {
+  box-sizing: border-box !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main :is(.filters, .toggled form, .dynamic form),
+#main > form:not(.ajax-remove) {
+  padding: 0.9rem !important;
+}
+
+#main fieldset {
+  margin: 0.75rem 0 !important;
+  padding: 0.85rem !important;
+}
+
+#main legend,
+#main label {
+  color: var(--m-text-2) !important;
+  font-weight: 600 !important;
+  text-shadow: none !important;
+}
+
+#main :is(
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea
+) {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  padding: 0.55rem 0.68rem !important;
+
+  background: var(--m-surface-solid) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.035) !important;
+
+  color: var(--m-text) !important;
+  text-shadow: none !important;
+}
+
+#main :is(
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="url"],
+  input[type="number"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea
+):focus {
+  border-color: var(--m-link) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 3px var(--m-focus-ring) !important;
+}
+
+#main :is(.filters, .toggled form, .dynamic form, form:not(.ajax-remove))
+  :is(input[type="submit"], input[type="button"], button),
+.marker-data-sync-container .action {
+  min-height: 2rem !important;
+  padding: 0.42rem 0.72rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 999px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.035) !important;
+
+  color: var(--m-link) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease,
+    box-shadow 140ms ease !important;
+}
+
+#main :is(.filters, .toggled form, .dynamic form, form:not(.ajax-remove))
+  :is(input[type="submit"], input[type="button"], button):is(:hover, :focus),
+.marker-data-sync-container .action:is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link-hover) !important;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07) !important;
+}
+
+#main input:is([type="checkbox"], [type="radio"]) {
+  accent-color: var(--m-link) !important;
+}
+
+/* Generic AO3 actions: match the translucent work-card controls. */
+#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2rem !important;
+  padding: 0.36rem 0.68rem !important;
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+/* Keep selected/current controls visible without using inverse black fills. */
+#main :is(.actions, .navigation) :is(.current, [aria-current="page"]) {
+  background: var(--m-control-active) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+/* Notices, system messages, and validation */
+.flash,
+.notice,
+.caution,
+.error,
+.alert,
+.comment_error,
+.required.notice {
+  box-sizing: border-box !important;
+  margin: 0.75rem 0 !important;
+  padding: 0.72rem 0.85rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  text-shadow: none !important;
+}
+
+.flash.notice,
+.notice.success,
+.success {
+  border-color: rgba(var(--m-read-rgb), 0.35) !important;
+}
+
+.caution,
+.warning {
+  border-color: rgba(var(--m-updated-rgb), 0.42) !important;
+}
+
+.error,
+.alert,
+.comment_error {
+  border-color: rgba(var(--m-dnr-rgb), 0.42) !important;
+}
+
+/* Tables and list modules */
+#main table {
+  width: 100% !important;
+  overflow: hidden !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main table :is(th, td) {
+  padding: 0.62rem 0.7rem !important;
+  background: transparent !important;
+  border-color: var(--m-line-soft) !important;
+  color: inherit !important;
+  text-shadow: none !important;
+}
+
+#main table th {
+  background: var(--m-chip) !important;
+  color: var(--m-text) !important;
+  font-weight: 650 !important;
+}
+
+#main table tr:nth-child(even) td {
+  background: rgba(var(--m-card), 0.24) !important;
+}
+
+/* Modal, autocomplete, and generic floating panels */
+.ui-dialog,
+.modal,
+.autocomplete,
+.autocomplete.dropdown,
+.tooltip,
+.tip {
+  background: rgba(var(--m-card), 0.97) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow-hover) !important;
+  color: var(--m-text-2) !important;
+  text-shadow: none !important;
+
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+
+/* Footer */
+#footer {
+  margin-top: 2rem !important;
+  padding: 1.2rem clamp(0.8rem, 2vw, 1.5rem) !important;
+  background: rgba(var(--m-card), 0.72) !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  box-shadow: none !important;
+  color: var(--m-text-3) !important;
+}
+
+#footer a,
+#footer a:visited {
+  color: var(--m-text-2) !important;
+  text-shadow: none !important;
+}
+
+#footer a:is(:hover, :focus) {
+  color: var(--m-link) !important;
+}
+
+hr {
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #header .logo {
+    filter: grayscale(1) brightness(2.2) contrast(0.9) !important;
+  }
+
+  #main :is(
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="search"],
+    input[type="url"],
+    input[type="number"],
+    input[type="date"],
+    input[type="time"],
+    select,
+    textarea
+  ):focus {
+    box-shadow: 0 0 0 3px var(--m-focus-ring) !important;
+  }
+}
+
+body:is(.reversi, .dark) #header .logo {
+  filter: grayscale(1) brightness(2.2) contrast(0.9) !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet / compact desktop — 1024px and below */
+@media only screen and (max-width: 64rem) {
+  #inner.wrapper {
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+
+  ol:is(.work, .reading, .bookmark).index {
+    gap: 0.85rem !important;
+  }
+
+  li:is(.work, .reading, .bookmark).blurb {
+    padding: 0.95rem 1rem 0.85rem !important;
+    border-radius: 16px !important;
+  }
+
+  .blurb .header.module {
+    column-gap: 0.65rem !important;
+    padding-right: 8.7rem !important;
+  }
+
+  .blurb h4.heading > a:first-child {
+    font-size: 1.08rem !important;
+  }
+
+  .blurb .user.module.group {
+    margin-right: -1rem !important;
+    margin-left: -1rem !important;
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+  }
+}
+
+/* Phone / portrait tablet — 768px and below */
+@media only screen and (max-width: 48rem) {
+  #inner.wrapper {
+    padding-right: 0.7rem !important;
+    padding-left: 0.7rem !important;
+  }
+
+  #main > h2.heading {
+    font-size: 1.45rem !important;
+  }
+
+  ol:is(.work, .reading, .bookmark).index {
+    gap: 0.75rem !important;
+  }
+
+  li:is(.work, .reading, .bookmark).blurb {
+    padding: 0.85rem 0.85rem 0.75rem !important;
+    border-radius: 14px !important;
+  }
+
+  li:is(.work, .reading, .bookmark).blurb:hover {
+    transform: none !important;
+  }
+
+  .blurb .header.module {
+    grid-template-columns: 3.2rem minmax(0, 1fr) !important;
+    grid-template-areas:
+      "icons title"
+      "icons fandom"
+      "badges badges"
+      "controls controls" !important;
+    min-height: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .blurb .datetime {
+    position: relative !important;
+    grid-area: controls !important;
+    top: auto !important;
+    right: auto !important;
+    justify-self: start !important;
+    justify-items: start !important;
+    margin-top: 0.35rem !important;
+    text-align: left !important;
+  }
+
+  .blurb .datetime .ao3-star-rating {
+    justify-self: start !important;
+  }
+
+  /* Sibling-rating fallback: occupy the same controls row, beneath
+     the date/check-X cluster without changing desktop positioning. */
+  .blurb .header.module > .ao3-star-rating {
+    position: relative !important;
+    grid-area: controls !important;
+    top: auto !important;
+    right: auto !important;
+    justify-self: start !important;
+    margin-top: 1.7rem !important;
+  }
+
+  .blurb .marker-button-box,
+  .blurb .ao3-star-rating {
+    justify-content: flex-start !important;
+  }
+
+  .blurb h4.heading > a:first-child {
+    font-size: 1.04rem !important;
+  }
+
+  .blurb ul.tags {
+    gap: 0.25rem !important;
+    margin: 0.6rem 0 !important;
+  }
+
+  .blurb ul.tags a.tag {
+    padding: 0.21rem 0.42rem !important;
+    font-size: 0.69rem !important;
+  }
+
+  .blurb blockquote.userstuff.summary {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+    padding: 0.72rem 0.82rem !important;
+    font-size: 0.82rem !important;
+  }
+
+  .blurb dl.stats {
+    gap: 0.2rem 0.45rem !important;
+    font-size: 0.66rem !important;
+  }
+
+  .blurb .user.module.group {
+    margin-right: -0.85rem !important;
+    margin-left: -0.85rem !important;
+    padding-right: 0.85rem !important;
+    padding-left: 0.85rem !important;
+    border-radius: 0 0 13px 13px !important;
+  }
+
+  .blurb .user.module.group h4.viewed.heading {
+    width: 100% !important;
+  }
+
+  .blurb .user.module.group ul.actions {
+    margin-left: 0 !important;
+  }
+}
+
+/* Small phone — 480px and below */
+@media only screen and (max-width: 30rem) {
+  #inner.wrapper {
+    padding-right: 0.45rem !important;
+    padding-left: 0.45rem !important;
+  }
+
+  ol:is(.work, .reading, .bookmark).index {
+    gap: 0.62rem !important;
+  }
+
+  li:is(.work, .reading, .bookmark).blurb {
+    padding: 0.76rem 0.72rem 0.68rem !important;
+    border-radius: 12px !important;
+  }
+
+  .blurb .header.module {
+    grid-template-columns: 2.85rem minmax(0, 1fr) !important;
+    column-gap: 0.55rem !important;
+    margin-bottom: 0.52rem !important;
+  }
+
+  .blurb ul.required-tags {
+    grid-template-columns: repeat(2, 1.25rem) !important;
+    grid-auto-rows: 1.25rem !important;
+  }
+
+  .blurb h4.heading > a:first-child {
+    font-size: 0.98rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .blurb .header h5.fandoms {
+    font-size: 0.71rem !important;
+  }
+
+  .blurb .datetime {
+    grid-template-rows: 22px 20px !important;
+    height: 43px !important;
+    min-height: 43px !important;
+    font-size: 9.5px !important;
+    line-height: 22px !important;
+  }
+
+  .blurb .marker-button-box {
+    height: 22px !important;
+  }
+
+  .blurb :is(
+    .marker-action-read,
+    .marker-action-do-not-read,
+    .marker-action-wtr,
+    .marker-button-box button
+  ) {
+    flex-basis: 22px !important;
+    width: 22px !important;
+    min-width: 22px !important;
+    max-width: 22px !important;
+    height: 22px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    font-size: 9px !important;
+  }
+
+  .blurb .header.module > .ao3-star-rating {
+    margin-top: 2rem !important;
+  }
+
+  .blurb .ao3-star-rating,
+  .blurb .ao3-star-rating.compact {
+    height: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+  }
+
+  .blurb .ao3-star-rating .ao3-star,
+  .blurb .ao3-star-rating.compact .ao3-star {
+    flex-basis: 18px !important;
+    width: 18px !important;
+    min-width: 18px !important;
+    max-width: 18px !important;
+    height: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+    padding: 0 1.5px !important;
+    font-size: 15px !important;
+    line-height: 20px !important;
+  }
+
+  .blurb .ao3-clear-rating {
+    height: 20px !important;
+    min-height: 20px !important;
+    max-height: 20px !important;
+    line-height: 20px !important;
+  }
+
+  .blurb ul.tags a.tag {
+    padding: 0.2rem 0.38rem !important;
+    font-size: 0.66rem !important;
+  }
+
+  .blurb blockquote.userstuff.summary {
+    margin: 0.58rem 0 !important;
+    padding: 0.68rem 0.72rem !important;
+    border-radius: 10px !important;
+  }
+
+  #header {
+    padding: 0.55rem 0.58rem !important;
+  }
+
+  #main > .navigation.actions,
+  #main > ul.navigation.actions,
+  #main > ol.navigation.actions,
+  .pagination.actions {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.2rem !important;
+    scrollbar-width: none !important;
+  }
+
+  #main > .navigation.actions::-webkit-scrollbar,
+  #main > ul.navigation.actions::-webkit-scrollbar,
+  #main > ol.navigation.actions::-webkit-scrollbar,
+  .pagination.actions::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #main :is(.filters, .toggled form, .dynamic form),
+  #main > form:not(.ajax-remove),
+  #main fieldset {
+    border-radius: 12px !important;
+  }
+
+  #main table {
+    display: block !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+
+  .blurb .user.module.group ul.actions {
+    width: 100% !important;
+  }
+}
+
+/* Very small phone — 360px and below */
+@media only screen and (max-width: 22.5rem) {
+  .blurb .header.module {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "title"
+      "fandom"
+      "icons"
+      "badges"
+      "controls" !important;
+  }
+
+  .blurb ul.required-tags {
+    margin-top: 0.2rem !important;
+  }
+
+  .blurb .datetime,
+  .blurb .header.module > .ao3-star-rating {
+    justify-self: start !important;
+    text-align: left !important;
+  }
+
+  .blurb .datetime {
+    justify-items: start !important;
+  }
+
+  .blurb .marker-button-box,
+  .blurb .ao3-star-rating {
+    justify-content: flex-start !important;
+  }
+
+  .blurb blockquote.userstuff.summary {
+    padding-right: 0.64rem !important;
+    padding-left: 0.64rem !important;
+  }
+
+  .blurb dl.stats {
+    display: grid !important;
+    grid-template-columns: max-content 1fr !important;
+    align-items: baseline !important;
+  }
+
+  .blurb dl.stats dd {
+    margin-right: 0 !important;
+  }
+}

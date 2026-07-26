@@ -1,0 +1,975 @@
+/*
+ * AO3 Advanced Marker — Module 53
+ */
+
+/* ============================================================
+   INBOX PAGE LAYOUT
+   Place after 52-dashboard-profile-layout-v2.css.
+
+   - Matches dashboard/history card language
+   - Compact, rectangular bulk-action toolbars
+   - Uniform comment cards with full-width action footers
+   - Clear unread/replied states
+   - Compact, theme-compliant inbox filters
+   - Responsive desktop/tablet/mobile layout
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   PAGE SHELL
+   ------------------------------------------------------------ */
+
+#main.inbox-show {
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  color: var(--m-text) !important;
+}
+
+#main.inbox-show > h2.heading {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 0 0.9rem !important;
+  padding: 0 !important;
+  color: var(--m-text) !important;
+  font-size: clamp(1.45rem, 2.4vw, 1.9rem) !important;
+  font-weight: 760 !important;
+  line-height: 1.18 !important;
+  letter-spacing: -0.035em !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+#main.inbox-show > ol.pagination.actions {
+  float: none !important;
+  clear: none !important;
+  width: auto !important;
+  margin: 0 0 0.9rem !important;
+}
+
+/* ------------------------------------------------------------
+   TWO-COLUMN DESKTOP LAYOUT
+   ------------------------------------------------------------ */
+
+#main.inbox-show #inbox-form {
+  float: left !important;
+  clear: none !important;
+  box-sizing: border-box !important;
+  width: calc(100% - 18.5rem) !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 1rem 0 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.inbox-show #inbox-filters {
+  position: sticky !important;
+  top: 0.75rem !important;
+  float: right !important;
+  clear: right !important;
+  box-sizing: border-box !important;
+  width: 17.5rem !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.82) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+/* ------------------------------------------------------------
+   BULK-ACTION TOOLBARS
+   ------------------------------------------------------------ */
+
+#main.inbox-show #inbox-form > fieldset.actions {
+  position: static !important;
+  float: none !important;
+  clear: both !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 0 0.85rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.82) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions:last-of-type {
+  margin: 0.85rem 0 0 !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions > legend {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions:first-of-type::before {
+  content: "Mass Edit Options" !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.62rem 0.78rem !important;
+
+  background: var(--m-chip-strong) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  color: var(--m-text) !important;
+  font-size: 0.76rem !important;
+  font-weight: 740 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.01em !important;
+  text-align: left !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions > ul {
+  float: none !important;
+  clear: both !important;
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.42rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.62rem 0.7rem !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions > ul > li {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions a,
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 2rem !important;
+  margin: 0 !important;
+  padding: 0.4rem 0.68rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.7rem !important;
+  font-weight: 620 !important;
+  line-height: 1.1 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions a:hover,
+#main.inbox-show #inbox-form > fieldset.actions a:focus,
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:hover,
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:focus {
+  transform: none !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"] {
+  color: var(--m-dnr) !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:hover,
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:focus {
+  background: rgba(var(--m-dnr-rgb), 0.1) !important;
+  border-color: rgba(var(--m-dnr-rgb), 0.42) !important;
+  color: var(--m-dnr) !important;
+}
+
+/* ------------------------------------------------------------
+   COMMENT LIST
+   ------------------------------------------------------------ */
+
+#main.inbox-show #inbox-form > fieldset.comments {
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.inbox-show #inbox-form > fieldset.comments > legend {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form ol.comment.index {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 1rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main.inbox-show #inbox-form li.comment.group {
+  position: relative !important;
+  float: none !important;
+  clear: both !important;
+  display: grid !important;
+  grid-template-columns: 3.25rem minmax(0, 1fr) !important;
+  grid-template-areas:
+    "avatar byline"
+    "avatar message"
+    "actions actions" !important;
+  column-gap: 0.85rem !important;
+  row-gap: 0 !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.inbox-show #inbox-form li.comment.group:hover {
+  border-color: rgba(0, 102, 204, 0.24) !important;
+  box-shadow: var(--m-shadow) !important;
+}
+
+#main.inbox-show #inbox-form li.comment.unread {
+  background:
+    linear-gradient(112deg, rgba(0, 102, 204, 0.09), rgba(var(--m-card), 0.9) 44%) !important;
+  border-color: rgba(0, 102, 204, 0.34) !important;
+  box-shadow:
+    inset 3px 0 0 var(--m-link),
+    var(--m-shadow-soft) !important;
+}
+
+/* Avatar */
+#main.inbox-show #inbox-form li.comment .icon {
+  grid-area: avatar !important;
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+  align-self: start !important;
+  box-sizing: border-box !important;
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  margin: 0.85rem 0 0 0.85rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.inbox-show #inbox-form li.comment .icon a {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form li.comment .icon img {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Byline and date */
+#main.inbox-show #inbox-form li.comment h4.byline {
+  grid-area: byline !important;
+  position: static !important;
+  float: none !important;
+  clear: none !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0.82rem 0.9rem 0.42rem 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.79rem !important;
+  font-weight: 480 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+#main.inbox-show #inbox-form li.comment h4.byline a,
+#main.inbox-show #inbox-form li.comment h4.byline a:visited {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#main.inbox-show #inbox-form li.comment h4.byline a:first-child {
+  color: var(--m-text) !important;
+  font-weight: 740 !important;
+}
+
+#main.inbox-show #inbox-form li.comment h4.byline a:hover,
+#main.inbox-show #inbox-form li.comment h4.byline a:focus {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+#main.inbox-show #inbox-form li.comment .posted.datetime {
+  position: static !important;
+  inset: auto !important;
+  float: right !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 0.2rem 0.6rem !important;
+  padding: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 560 !important;
+  line-height: 1.5 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+/* Comment body */
+#main.inbox-show #inbox-form li.comment blockquote.userstuff {
+  grid-area: message !important;
+  float: none !important;
+  clear: none !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 0.9rem 0.8rem 0 !important;
+  padding: 0.7rem 0.82rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere !important;
+}
+
+#main.inbox-show #inbox-form li.comment blockquote.userstuff p {
+  color: inherit !important;
+}
+
+#main.inbox-show #inbox-form li.comment blockquote.userstuff p:first-child {
+  margin-top: 0 !important;
+}
+
+#main.inbox-show #inbox-form li.comment blockquote.userstuff p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a,
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:visited {
+  color: var(--m-link) !important;
+}
+
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:hover,
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:focus {
+  color: var(--m-link-hover) !important;
+}
+
+/* Full-width action footer */
+#main.inbox-show #inbox-form li.comment > ul.actions {
+  grid-area: actions !important;
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+  clear: both !important;
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.34rem !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.55rem 0.72rem !important;
+  background: var(--m-surface) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions > li {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions a,
+#main.inbox-show #inbox-form li.comment > ul.actions label,
+#main.inbox-show #inbox-form li.comment > ul.actions span.unread,
+#main.inbox-show #inbox-form li.comment > ul.actions span.replied {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  min-height: 1.8rem !important;
+  margin: 0 !important;
+  padding: 0.32rem 0.56rem !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.66rem !important;
+  font-weight: 620 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions a:hover,
+#main.inbox-show #inbox-form li.comment > ul.actions a:focus,
+#main.inbox-show #inbox-form li.comment > ul.actions label:hover,
+#main.inbox-show #inbox-form li.comment > ul.actions label:focus-within {
+  transform: none !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions label {
+  gap: 0.34rem !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions input[type="checkbox"] {
+  width: 0.9rem !important;
+  height: 0.9rem !important;
+  margin: 0 !important;
+  accent-color: var(--m-link) !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions span.unread {
+  background: var(--m-control-active) !important;
+  border-color: rgba(0, 102, 204, 0.32) !important;
+  color: var(--m-link) !important;
+  cursor: default !important;
+}
+
+#main.inbox-show #inbox-form li.comment > ul.actions span.replied {
+  background: rgba(var(--m-read-rgb), 0.1) !important;
+  border-color: rgba(var(--m-read-rgb), 0.3) !important;
+  color: var(--m-read) !important;
+  cursor: default !important;
+}
+
+/* ------------------------------------------------------------
+   FILTER PANEL
+   ------------------------------------------------------------ */
+
+#main.inbox-show #inbox-filters > h3.landmark.heading {
+  position: static !important;
+  clip: auto !important;
+  clip-path: none !important;
+  float: none !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.68rem 0.78rem !important;
+  overflow: visible !important;
+
+  background: var(--m-chip-strong) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  border-radius: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.8rem !important;
+  font-weight: 740 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-align: left !important;
+  text-transform: none !important;
+  text-shadow: none !important;
+  white-space: normal !important;
+}
+
+#main.inbox-show #inbox-filters > fieldset {
+  float: none !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.72rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.inbox-show #inbox-filters dl,
+#main.inbox-show #inbox-filters dt,
+#main.inbox-show #inbox-filters dd {
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+}
+
+#main.inbox-show #inbox-filters dl {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main.inbox-show #inbox-filters dt {
+  margin: 0.72rem 0 0.28rem !important;
+  padding: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.66rem !important;
+  font-weight: 730 !important;
+  line-height: 1.25 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+}
+
+#main.inbox-show #inbox-filters dt:first-child {
+  margin-top: 0 !important;
+}
+
+#main.inbox-show #inbox-filters dd {
+  margin: 0 !important;
+  padding: 0.24rem !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 7px !important;
+}
+
+#main.inbox-show #inbox-filters dd > ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-filters dd > ul > li {
+  float: none !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.inbox-show #inbox-filters label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.42rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 1.9rem !important;
+  margin: 0 !important;
+  padding: 0.36rem 0.42rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 5px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.7rem !important;
+  font-weight: 470 !important;
+  line-height: 1.3 !important;
+  cursor: pointer !important;
+}
+
+#main.inbox-show #inbox-filters label:hover,
+#main.inbox-show #inbox-filters label:focus-within {
+  background: var(--m-surface) !important;
+  color: var(--m-text) !important;
+}
+
+#main.inbox-show #inbox-filters label > span:last-child {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+#main.inbox-show #inbox-filters input[type="radio"] + .indicator::before {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  width: 0.95rem !important;
+  height: 0.95rem !important;
+  margin: 0 !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+  content: "" !important;
+}
+
+#main.inbox-show #inbox-filters input[type="radio"]:checked + .indicator::before {
+  background: var(--m-link) !important;
+  border-color: var(--m-link) !important;
+  box-shadow: inset 0 0 0 3px var(--m-surface-solid) !important;
+}
+
+#main.inbox-show #inbox-filters input[type="radio"]:focus + .indicator::before {
+  outline: 0 !important;
+  box-shadow:
+    inset 0 0 0 3px var(--m-surface-solid),
+    0 0 0 3px var(--m-focus-ring) !important;
+}
+
+#main.inbox-show #inbox-filters input[type="radio"]:checked + .indicator + span {
+  color: var(--m-text) !important;
+  font-weight: 640 !important;
+}
+
+#main.inbox-show #inbox-filters dd.submit {
+  margin: 0.72rem 0 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}
+
+#main.inbox-show #inbox-filters dd.submit input[type="submit"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 2.1rem !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.66rem !important;
+
+  background: var(--m-link) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-link) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  text-shadow: none !important;
+}
+
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:hover,
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:focus {
+  transform: none !important;
+  background: var(--m-link-hover) !important;
+  border-color: var(--m-link-hover) !important;
+  color: #ffffff !important;
+}
+
+/* ------------------------------------------------------------
+   REPLY FORM / DYNAMIC CONTENT
+   ------------------------------------------------------------ */
+
+#main.inbox-show #reply-to-comment:not(.hidden) {
+  float: none !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+  width: calc(100% - 18.5rem) !important;
+  margin: 1rem 0 !important;
+  padding-right: 1rem !important;
+}
+
+#main.inbox-show #reply-to-comment form {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.85rem !important;
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+}
+
+/* ------------------------------------------------------------
+   DARK MODE REINFORCEMENT
+   ------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  #main.inbox-show #inbox-form li.comment.unread {
+    background:
+      linear-gradient(112deg, rgba(41, 151, 255, 0.13), rgba(var(--m-card), 0.9) 48%) !important;
+    border-color: rgba(77, 163, 255, 0.38) !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment.group:hover {
+    border-color: rgba(77, 163, 255, 0.32) !important;
+  }
+}
+
+body.reversi #main.inbox-show #inbox-form li.comment.unread,
+body.dark #main.inbox-show #inbox-form li.comment.unread {
+  background:
+    linear-gradient(112deg, rgba(41, 151, 255, 0.13), rgba(var(--m-card), 0.9) 48%) !important;
+  border-color: rgba(77, 163, 255, 0.38) !important;
+}
+
+body.reversi #main.inbox-show #inbox-form li.comment.group:hover,
+body.dark #main.inbox-show #inbox-form li.comment.group:hover {
+  border-color: rgba(77, 163, 255, 0.32) !important;
+}
+
+/* ------------------------------------------------------------
+   TABLET
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 62rem) {
+  #main.inbox-show #inbox-form {
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  #main.inbox-show #inbox-filters {
+    position: static !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin: 1rem 0 0 !important;
+  }
+
+  #main.inbox-show #inbox-filters > fieldset > dl {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    grid-template-rows: auto auto auto !important;
+    gap: 0.28rem 0.65rem !important;
+  }
+
+  #main.inbox-show #inbox-filters dt {
+    align-self: end !important;
+    margin-top: 0 !important;
+  }
+
+  #main.inbox-show #inbox-filters dt:nth-of-type(1) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  #main.inbox-show #inbox-filters dd:nth-of-type(1) {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+  }
+
+  #main.inbox-show #inbox-filters dt:nth-of-type(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  #main.inbox-show #inbox-filters dd:nth-of-type(2) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  #main.inbox-show #inbox-filters dt:nth-of-type(3) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }
+
+  #main.inbox-show #inbox-filters dd:nth-of-type(3) {
+    grid-column: 3 !important;
+    grid-row: 2 !important;
+  }
+
+  #main.inbox-show #inbox-filters dt.landmark {
+    display: none !important;
+  }
+
+  #main.inbox-show #inbox-filters dd.submit {
+    grid-column: 1 / -1 !important;
+    grid-row: 3 !important;
+  }
+
+  #main.inbox-show #reply-to-comment:not(.hidden) {
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 42rem) {
+  #main.inbox-show > h2.heading {
+    margin-bottom: 0.72rem !important;
+    font-size: 1.42rem !important;
+  }
+
+  #main.inbox-show #inbox-form ol.comment.index {
+    gap: 0.78rem !important;
+  }
+
+  #main.inbox-show #inbox-form > fieldset.actions > ul {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.38rem !important;
+  }
+
+  #main.inbox-show #inbox-form > fieldset.actions > ul > li,
+  #main.inbox-show #inbox-form > fieldset.actions a,
+  #main.inbox-show #inbox-form > fieldset.actions input[type="submit"] {
+    width: 100% !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment.group {
+    grid-template-columns: 2.7rem minmax(0, 1fr) !important;
+    column-gap: 0.68rem !important;
+    border-radius: 13px !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment .icon {
+    width: 2.7rem !important;
+    height: 2.7rem !important;
+    margin: 0.72rem 0 0 0.72rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment .icon img {
+    width: 2.7rem !important;
+    height: 2.7rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment h4.byline {
+    padding: 0.7rem 0.72rem 0.36rem 0 !important;
+    font-size: 0.75rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment .posted.datetime {
+    float: none !important;
+    display: block !important;
+    width: 100% !important;
+    margin: 0.18rem 0 0 !important;
+    text-align: left !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment blockquote.userstuff {
+    margin: 0 0.72rem 0.72rem 0 !important;
+    padding: 0.62rem 0.7rem !important;
+    font-size: 0.79rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment > ul.actions {
+    justify-content: flex-start !important;
+    padding: 0.5rem 0.62rem !important;
+  }
+
+  #main.inbox-show #inbox-filters > fieldset > dl {
+    display: block !important;
+  }
+
+  #main.inbox-show #inbox-filters dt {
+    margin-top: 0.68rem !important;
+  }
+
+  #main.inbox-show #inbox-filters dt:first-child {
+    margin-top: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  #main.inbox-show #inbox-form > fieldset.actions > ul {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment.group {
+    grid-template-columns: 2.35rem minmax(0, 1fr) !important;
+    column-gap: 0.58rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment .icon {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+    margin: 0.66rem 0 0 0.62rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment .icon img {
+    width: 2.35rem !important;
+    height: 2.35rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment h4.byline {
+    padding-right: 0.62rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  #main.inbox-show #inbox-form li.comment blockquote.userstuff {
+    margin-right: 0.62rem !important;
+    font-size: 0.77rem !important;
+  }
+}

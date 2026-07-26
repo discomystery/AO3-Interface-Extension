@@ -1,0 +1,1029 @@
+/*
+ * AO3 Advanced Marker — Module 50
+ */
+
+/* ============================================================
+   AUTHORITATIVE PAGE COMPONENTS
+   Dashboard, statistics, bookmarks and individual work pages
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   SHARED COMPACT ACTION CONTROLS
+   ------------------------------------------------------------ */
+
+#main ul.actions,
+#main ol.actions,
+#main p.actions,
+#main fieldset.actions,
+#main .navigation.actions {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  gap: 0.38rem !important;
+}
+
+#main .actions > li {
+  display: inline-flex !important;
+  float: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main .actions a,
+#main .actions a:link,
+#main .actions a:visited,
+#main .actions button,
+#main .actions input[type="button"],
+#main .actions input[type="submit"],
+#main a.action,
+#main button.action,
+#main input.action {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 1.72rem !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.25rem 0.54rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-family: var(--m-font-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif) !important;
+  font-size: 0.7rem !important;
+  font-weight: 650 !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+  cursor: pointer !important;
+}
+
+#main .actions a:hover,
+#main .actions a:focus,
+#main .actions button:hover,
+#main .actions button:focus,
+#main .actions input[type="button"]:hover,
+#main .actions input[type="button"]:focus,
+#main .actions input[type="submit"]:hover,
+#main .actions input[type="submit"]:focus,
+#main a.action:hover,
+#main a.action:focus,
+#main button.action:hover,
+#main button.action:focus,
+#main input.action:hover,
+#main input.action:focus {
+  background: var(--m-control-hover) !important;
+  border-color: rgba(0, 102, 204, 0.3) !important;
+  color: var(--m-link) !important;
+}
+
+#main .actions .current,
+#main .actions a.current,
+#main .actions [aria-current="page"] {
+  background: var(--m-control-active) !important;
+  border-color: rgba(0, 102, 204, 0.3) !important;
+  color: var(--m-link) !important;
+  font-weight: 720 !important;
+}
+
+#main .actions a[data-method="delete"],
+#main .actions a[href*="confirm_delete"],
+#main .actions input[value*="Delete"],
+#main .actions input[value*="Clear"] {
+  color: var(--m-dnr) !important;
+}
+
+#main .actions a[data-method="delete"]:hover,
+#main .actions a[href*="confirm_delete"]:hover,
+#main .actions input[value*="Delete"]:hover,
+#main .actions input[value*="Clear"]:hover {
+  background: rgba(var(--m-dnr-rgb), 0.11) !important;
+  border-color: rgba(var(--m-dnr-rgb), 0.35) !important;
+  color: var(--m-dnr) !important;
+}
+
+/* Filter forms keep one strong full-width submit. */
+#work-filters dd.submit input,
+#bookmark-filters dd.submit input,
+#inbox-filters dd.submit input {
+  width: 100% !important;
+  min-height: 2rem !important;
+  padding: 0.38rem 0.62rem !important;
+  background: var(--m-link) !important;
+  border-color: var(--m-link) !important;
+  color: #fff !important;
+}
+
+#work-filters dd.submit input:hover,
+#work-filters dd.submit input:focus,
+#bookmark-filters dd.submit input:hover,
+#bookmark-filters dd.submit input:focus,
+#inbox-filters dd.submit input:hover,
+#inbox-filters dd.submit input:focus {
+  background: var(--m-link-hover) !important;
+  border-color: var(--m-link-hover) !important;
+  color: #fff !important;
+}
+
+/* Restore the dashboard sidebar treatment used before the unified button
+   pass. Dashboard links are navigation rows, not standalone buttons. */
+#dashboard {
+  box-sizing: border-box !important;
+  min-width: 12rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#dashboard .navigation,
+.dashboard .navigation {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: linear-gradient(
+    122deg,
+    rgba(var(--m-card), 0.78),
+    var(--m-surface)
+  ) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 13px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+}
+
+#dashboard .navigation li,
+.dashboard .navigation li {
+  display: block !important;
+  float: none !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+#dashboard .navigation li:last-child,
+.dashboard .navigation li:last-child {
+  border-bottom: 0 !important;
+}
+
+#dashboard .navigation a,
+#dashboard .navigation .current,
+.dashboard .navigation a,
+.dashboard .navigation .current {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 31px !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.55rem !important;
+
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 550 !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+#dashboard .navigation a:hover,
+#dashboard .navigation a:focus,
+.dashboard .navigation a:hover,
+.dashboard .navigation a:focus {
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  color: var(--m-link) !important;
+  box-shadow: none !important;
+}
+
+#dashboard .navigation .current,
+.dashboard .navigation .current {
+  background: var(--m-control-active) !important;
+  border: 0 !important;
+  color: var(--m-link) !important;
+  font-weight: 700 !important;
+}
+
+/* Theme the complete work-listing region and neutralize native AO3 state
+   backgrounds that can otherwise remain pale in dark mode. */
+#main.dashboard > ol.work.index,
+#main.dashboard > ol.reading.index,
+#main.dashboard > ol.bookmark.index,
+#main.dashboard > ul.work.index,
+#main.dashboard > ul.reading.index,
+#main.dashboard > ul.bookmark.index,
+#main.dashboard.filtered > ol.index,
+#main.dashboard.filtered > ul.index {
+  box-sizing: border-box !important;
+  background: rgba(var(--m-card), 0.72) !important;
+  border: 1px solid var(--m-line) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.dashboard li.work.blurb,
+#main.dashboard li.reading.blurb,
+#main.dashboard li.bookmark.blurb {
+  color: var(--m-text) !important;
+}
+
+#main.dashboard li.work.blurb > .header.module,
+#main.dashboard li.reading.blurb > .header.module,
+#main.dashboard li.bookmark.blurb > .header.module,
+#main.dashboard li.work.blurb > dl.stats,
+#main.dashboard li.reading.blurb > dl.stats,
+#main.dashboard li.bookmark.blurb > dl.stats,
+#main.dashboard li.work.blurb > ul.actions,
+#main.dashboard li.reading.blurb > ul.actions,
+#main.dashboard li.bookmark.blurb > ul.actions {
+  background-color: transparent !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.dashboard li.work.blurb blockquote.userstuff.summary,
+#main.dashboard li.reading.blurb blockquote.userstuff.summary,
+#main.dashboard li.bookmark.blurb blockquote.userstuff.summary {
+  background: var(--m-surface) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.dashboard li.work.blurb .heading,
+#main.dashboard li.reading.blurb .heading,
+#main.dashboard li.bookmark.blurb .heading,
+#main.dashboard li.work.blurb p,
+#main.dashboard li.reading.blurb p,
+#main.dashboard li.bookmark.blurb p,
+#main.dashboard li.work.blurb dt,
+#main.dashboard li.reading.blurb dt,
+#main.dashboard li.bookmark.blurb dt {
+  color: var(--m-text-2) !important;
+}
+
+#main.dashboard li.work.blurb h4.heading a,
+#main.dashboard li.reading.blurb h4.heading a,
+#main.dashboard li.bookmark.blurb h4.heading a,
+#main.dashboard li.work.blurb h5.fandoms a,
+#main.dashboard li.reading.blurb h5.fandoms a,
+#main.dashboard li.bookmark.blurb h5.fandoms a,
+#main.dashboard li.work.blurb dl.stats a,
+#main.dashboard li.reading.blurb dl.stats a,
+#main.dashboard li.bookmark.blurb dl.stats a {
+  color: var(--m-link) !important;
+}
+
+#main.dashboard li.work.blurb dd,
+#main.dashboard li.reading.blurb dd,
+#main.dashboard li.bookmark.blurb dd {
+  color: var(--m-text) !important;
+}
+
+/* ------------------------------------------------------------
+   DASHBOARD HOME SECTIONS
+   ------------------------------------------------------------ */
+
+#main.users-show .user.home > .listbox {
+  box-sizing: border-box !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: rgba(var(--m-card), 0.78) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.users-show .user.home > .listbox > h3.heading {
+  margin: 0 !important;
+  padding: 0.75rem 0.85rem !important;
+  background: var(--m-chip-strong) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  color: var(--m-text) !important;
+  font-size: 0.88rem !important;
+  font-weight: 750 !important;
+  text-shadow: none !important;
+}
+
+#main.users-show .user.home > .listbox > .index,
+#main.users-show .user.home > .listbox > ol.index,
+#main.users-show .user.home > .listbox > ul.index {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.7rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+}
+
+#user-fandoms > ol.index > li {
+  margin: 0 !important;
+  padding: 0.62rem 0.72rem !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  color: var(--m-text-2) !important;
+}
+
+#user-fandoms > ol.index > li a {
+  color: var(--m-link) !important;
+  font-weight: 700 !important;
+}
+
+#user-works > ul.index > li,
+#user-bookmarks > ol.index > li {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+#main.users-show .user.home > .listbox > ul.actions {
+  margin: 0 !important;
+  padding: 0 0.7rem 0.7rem !important;
+  background: transparent !important;
+}
+
+/* Neutralize AO3's native white listbox/index surfaces. */
+#main.users-show .listbox,
+#main.users-show .listbox .index,
+#main.users-show .listbox .index > li,
+#main.users-show .listbox .index > li:nth-child(even) {
+  color: var(--m-text-2) !important;
+}
+
+/* ------------------------------------------------------------
+   STATISTICS PAGE
+   ------------------------------------------------------------ */
+
+.stats-index > h2.heading,
+.stats-index > h3.heading,
+.stats-index h4.heading,
+.stats-index h5.heading {
+  color: var(--m-text) !important;
+  text-shadow: none !important;
+}
+
+.stats-index > .wrapper {
+  margin: 0.55rem 0 1rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* AO3 outputs alternating dt/dd nodes. Let each adjacent pair form one
+   connected horizontal card: label on the left, value on the right. */
+.stats-index dl.statistics.meta {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto !important;
+  grid-auto-flow: row !important;
+  gap: 0.55rem 0 !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.stats-index dl.statistics.meta dt,
+.stats-index dl.statistics.meta dd {
+  float: none !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 3rem !important;
+  margin: 0 !important;
+  padding: 0.68rem 0.75rem !important;
+  background: rgba(var(--m-card), 0.84) !important;
+  border: 1px solid var(--m-line) !important;
+  box-shadow: none !important;
+}
+
+.stats-index dl.statistics.meta dt {
+  display: flex !important;
+  align-items: center !important;
+  border-right: 0 !important;
+  border-radius: 13px 0 0 13px !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.025em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase !important;
+}
+
+.stats-index dl.statistics.meta dd {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  border-left: 0 !important;
+  border-radius: 0 13px 13px 0 !important;
+  color: var(--m-text) !important;
+  font-size: 1.18rem !important;
+  font-weight: 760 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+/* Create the space between the two cards without separating either pair. */
+.stats-index dl.statistics.meta dt:nth-of-type(even) {
+  margin-left: 0.55rem !important;
+}
+
+.stats-index .statistics.chart {
+  box-sizing: border-box !important;
+  min-height: 18rem !important;
+  margin: 0.85rem 0 1rem !important;
+  padding: 0.8rem !important;
+  overflow: hidden !important;
+  background: rgba(var(--m-card), 0.84) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+.stats-index .statistics.chart svg > rect:first-child,
+.stats-index .statistics.chart svg rect[fill="#ffffff"],
+.stats-index .statistics.chart svg rect[fill="white"] {
+  fill: transparent !important;
+}
+
+.stats-index .statistics.chart svg text {
+  fill: var(--m-text-2) !important;
+}
+
+.stats-index > .actions.module {
+  background: rgba(var(--m-card), 0.78) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 13px !important;
+  color: var(--m-text-2) !important;
+}
+
+.stats-index ul.statistics.index {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox {
+  box-sizing: border-box !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: rgba(var(--m-card), 0.84) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > h5.heading {
+  margin: 0 !important;
+  padding: 0.78rem 0.9rem !important;
+  background: var(--m-chip-strong) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  color: var(--m-text) !important;
+  font-size: 0.9rem !important;
+  font-weight: 760 !important;
+  text-shadow: none !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.68rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.75rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li:nth-child(even) {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt {
+  display: block !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0.7rem 0.76rem !important;
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  color: var(--m-text) !important;
+  font-size: 0.74rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:link,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:visited {
+  color: var(--m-link) !important;
+  font-size: 0.91rem !important;
+  font-weight: 780 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:hover,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:focus {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+.stats-index ul.statistics.index span.words {
+  display: block !important;
+  margin-top: 0.16rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 560 !important;
+}
+
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dd {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0.65rem 0.75rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+}
+
+.stats-index ul.statistics.index dl.stats {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.69rem !important;
+  line-height: 1.3 !important;
+}
+
+.stats-index ul.statistics.index dl.stats dt,
+.stats-index ul.statistics.index dl.stats dd {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0.27rem 0.34rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+.stats-index ul.statistics.index dl.stats dt:nth-last-of-type(1),
+.stats-index ul.statistics.index dl.stats dd:nth-last-of-type(1) {
+  border-bottom: 0 !important;
+}
+
+.stats-index ul.statistics.index dl.stats dt {
+  color: var(--m-text-3) !important;
+  font-weight: 620 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+.stats-index ul.statistics.index dl.stats dd {
+  color: var(--m-text) !important;
+  font-weight: 760 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+/* ------------------------------------------------------------
+   INDIVIDUAL WORK / CHAPTER PAGE
+   ------------------------------------------------------------ */
+
+#main.chapters-show {
+  color: var(--m-text-2) !important;
+}
+
+#main.chapters-show > .work > ul.work.navigation.actions,
+#feedback > ul.actions {
+  box-sizing: border-box !important;
+  margin: 0 0 0.85rem !important;
+  padding: 0.5rem !important;
+  background: rgba(var(--m-card), 0.72) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 13px !important;
+  box-shadow: none !important;
+}
+
+#main.chapters-show .work > .wrapper {
+  box-sizing: border-box !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  background: rgba(var(--m-card), 0.82) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+}
+
+#main.chapters-show dl.work.meta {
+  display: grid !important;
+  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.75rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#main.chapters-show dl.work.meta > dt,
+#main.chapters-show dl.work.meta > dd {
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0.48rem 0.58rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+#main.chapters-show dl.work.meta > dt {
+  color: var(--m-text-3) !important;
+  font-size: 0.69rem !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+#main.chapters-show dl.work.meta > dd {
+  color: var(--m-text-2) !important;
+}
+
+#main.chapters-show dl.work.meta > dt:last-of-type,
+#main.chapters-show dl.work.meta > dd:last-of-type {
+  border-bottom: 0 !important;
+}
+
+#main.chapters-show dl.work.meta ul,
+#main.chapters-show dl.work.meta li {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#workskin {
+  box-sizing: border-box !important;
+  max-width: 54rem !important;
+  margin: 0 auto !important;
+  color: var(--m-text) !important;
+}
+
+#workskin > .preface.group,
+#workskin .chapter.preface.group,
+#workskin .afterword.preface.group {
+  box-sizing: border-box !important;
+  margin: 0 0 1rem !important;
+  padding: 1rem 1.1rem !important;
+  background: rgba(var(--m-card), 0.78) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#workskin > .preface.group > h2.title,
+#workskin > .preface.group > h3.byline,
+#workskin .chapter.preface.group > h3.title {
+  color: var(--m-text) !important;
+  text-shadow: none !important;
+}
+
+#workskin > .preface.group > h2.title {
+  font-size: clamp(1.5rem, 3vw, 2.15rem) !important;
+  letter-spacing: -0.035em !important;
+}
+
+#workskin .summary.module,
+#workskin .notes.module,
+#workskin .end.notes.module {
+  box-sizing: border-box !important;
+  margin: 0.8rem 0 0 !important;
+  padding: 0.75rem 0.82rem !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 12px !important;
+  color: var(--m-text-2) !important;
+}
+
+#workskin .summary.module h3.heading,
+#workskin .notes.module h3.heading,
+#workskin .end.notes.module h3.heading {
+  color: var(--m-text) !important;
+  font-size: 0.78rem !important;
+  font-weight: 740 !important;
+  text-shadow: none !important;
+}
+
+#workskin .userstuff,
+#workskin .userstuff p,
+#workskin .userstuff li,
+#workskin .userstuff blockquote {
+  color: var(--m-text) !important;
+}
+
+#workskin .userstuff a {
+  color: var(--m-link) !important;
+}
+
+#feedback {
+  box-sizing: border-box !important;
+  max-width: 54rem !important;
+  margin: 1.25rem auto 0 !important;
+  color: var(--m-text-2) !important;
+}
+
+#feedback > div,
+#feedback .wrapper,
+#feedback #kudos,
+#feedback #comments_placeholder,
+#feedback .comment,
+#feedback .notice {
+  box-sizing: border-box !important;
+  background: rgba(var(--m-card), 0.74) !important;
+  border-color: var(--m-line) !important;
+  color: var(--m-text-2) !important;
+}
+
+#feedback p.kudos,
+#feedback #kudos p,
+#feedback .kudos {
+  color: var(--m-text-2) !important;
+}
+
+/* ------------------------------------------------------------
+   DARK MODE REINFORCEMENT
+   ------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  #main.dashboard > ol.work.index,
+  #main.dashboard > ol.reading.index,
+  #main.dashboard > ol.bookmark.index,
+  #main.dashboard > ul.work.index,
+  #main.dashboard > ul.reading.index,
+  #main.dashboard > ul.bookmark.index,
+  #main.dashboard.filtered > ol.index,
+  #main.dashboard.filtered > ul.index,
+  #main.users-show .user.home > .listbox,
+  #main.users-show .user.home > .listbox > .index,
+  #main.users-show .user.home > .listbox > ol.index,
+  #main.users-show .user.home > .listbox > ul.index,
+  .stats-index dl.statistics.meta dt,
+  .stats-index dl.statistics.meta dd,
+  .stats-index .statistics.chart,
+  .stats-index > .actions.module,
+  .stats-index ul.statistics.index > li.fandom.listbox,
+  #bookmark-filters,
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group,
+  #main.chapters-show .work > .wrapper,
+  #main.chapters-show > .work > ul.work.navigation.actions,
+  #feedback > ul.actions,
+  #workskin > .preface.group,
+  #workskin .chapter.preface.group,
+  #workskin .afterword.preface.group,
+  #feedback > div,
+  #feedback .wrapper,
+  #feedback #kudos,
+  #feedback #comments_placeholder,
+  #feedback .comment,
+  #feedback .notice {
+    background-color: rgba(29, 29, 31, 0.96) !important;
+    color: #c7c7cc !important;
+  }
+
+  #main.users-show .user.home > .listbox > h3.heading,
+  .stats-index ul.statistics.index > li.fandom.listbox > h5.heading,
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt,
+  #workskin .summary.module,
+  #workskin .notes.module,
+  #workskin .end.notes.module {
+    background-color: rgba(44, 44, 46, 0.94) !important;
+  }
+
+  #main.users-show .listbox .index,
+  #main.users-show .listbox .index > li:nth-child(even),
+  #main.bookmarks-index > ol.bookmark.index,
+  .stats-index ul.statistics.index,
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index {
+    background-color: transparent !important;
+  }
+
+  #user-fandoms > ol.index > li,
+  #main.dashboard li.work.blurb blockquote.userstuff.summary,
+  #main.dashboard li.reading.blurb blockquote.userstuff.summary,
+  #main.dashboard li.bookmark.blurb blockquote.userstuff.summary,
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li,
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li:nth-child(even) {
+    background-color: rgba(44, 44, 46, 0.92) !important;
+  }
+}
+
+body:is(.reversi, .dark) #main.dashboard > ol.work.index,
+body:is(.reversi, .dark) #main.dashboard > ol.reading.index,
+body:is(.reversi, .dark) #main.dashboard > ol.bookmark.index,
+body:is(.reversi, .dark) #main.dashboard > ul.work.index,
+body:is(.reversi, .dark) #main.dashboard > ul.reading.index,
+body:is(.reversi, .dark) #main.dashboard > ul.bookmark.index,
+body:is(.reversi, .dark) #main.dashboard.filtered > ol.index,
+body:is(.reversi, .dark) #main.dashboard.filtered > ul.index,
+body:is(.reversi, .dark) #main.users-show .user.home > .listbox,
+body:is(.reversi, .dark) .stats-index dl.statistics.meta dt,
+body:is(.reversi, .dark) .stats-index dl.statistics.meta dd,
+body:is(.reversi, .dark) .stats-index .statistics.chart,
+body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox,
+body:is(.reversi, .dark) #bookmark-filters,
+body:is(.reversi, .dark) #main.chapters-show .work > .wrapper,
+body:is(.reversi, .dark) #workskin > .preface.group,
+body:is(.reversi, .dark) #workskin .chapter.preface.group,
+body:is(.reversi, .dark) #feedback > div,
+body:is(.reversi, .dark) #feedback .wrapper {
+  background-color: rgba(29, 29, 31, 0.96) !important;
+  color: #c7c7cc !important;
+}
+
+body:is(.reversi, .dark) #main.users-show .listbox .index,
+body:is(.reversi, .dark) #main.bookmarks-index > ol.bookmark.index,
+body:is(.reversi, .dark) .stats-index ul.statistics.index,
+body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index {
+  background-color: transparent !important;
+}
+
+body:is(.reversi, .dark) #main.dashboard li.work.blurb blockquote.userstuff.summary,
+body:is(.reversi, .dark) #main.dashboard li.reading.blurb blockquote.userstuff.summary,
+body:is(.reversi, .dark) #main.dashboard li.bookmark.blurb blockquote.userstuff.summary,
+body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li,
+body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li:nth-child(even) {
+  background-color: rgba(44, 44, 46, 0.92) !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 62rem) {
+  #dashboard {
+    padding-top: 0.42rem !important;
+  }
+
+  #bookmark-filters {
+    position: static !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  #main.bookmarks-index > ol.bookmark.index {
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  #dashboard {
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0 0 0.8rem !important;
+    padding: 0.52rem 0.35rem 0.35rem !important;
+  }
+
+  #dashboard .navigation,
+  .dashboard .navigation {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    padding: 0 !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    border-radius: 11px !important;
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #dashboard .navigation li,
+  .dashboard .navigation li {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    border-bottom: 0 !important;
+    border-right: 1px solid var(--m-line-soft) !important;
+  }
+
+  #dashboard .navigation a,
+  #dashboard .navigation .current,
+  .dashboard .navigation a,
+  .dashboard .navigation .current {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    min-height: 30px !important;
+    padding: 0.38rem 0.58rem !important;
+    white-space: nowrap !important;
+  }
+
+  .stats-index dl.statistics.meta {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+  }
+
+  .stats-index dl.statistics.meta dt:nth-of-type(even) {
+    margin-left: 0 !important;
+  }
+
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #main.chapters-show dl.work.meta {
+    grid-template-columns: 1fr !important;
+  }
+
+  #main.chapters-show dl.work.meta > dt {
+    padding-bottom: 0.12rem !important;
+    border-bottom: 0 !important;
+  }
+
+  #main.chapters-show dl.work.meta > dd {
+    padding-top: 0.12rem !important;
+  }
+
+  #workskin > .preface.group,
+  #workskin .chapter.preface.group,
+  #workskin .afterword.preface.group {
+    padding: 0.82rem !important;
+    border-radius: 13px !important;
+  }
+}

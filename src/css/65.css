@@ -1,0 +1,531 @@
+/*
+ * AO3 Advanced Marker — Module 65
+ */
+
+/* ============================================================
+   FILTER SIDEBAR V4 — FLAT ACCORDION LABELS
+
+   Replace the prior compact-filter module with this file.
+   This version also neutralizes AO3's JavaScript-inserted inner
+   .expander controls so accordion labels render as one compact
+   rectangular row instead of nested rounded buttons.
+   ============================================================ */
+
+/* ---------- Outer panel: remove inherited form padding ---------- */
+html body #outer #inner #main form#work-filters.filters,
+html body #outer #inner #main form#bookmark-filters.filters {
+  box-sizing: border-box !important;
+  width: 18.5rem !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+  overflow: hidden !important;
+}
+
+@media only screen and (min-width: 62.01rem) {
+  html body #outer #inner #main form#work-filters.filters,
+  html body #outer #inner #main form#bookmark-filters.filters {
+    max-height: calc(100vh - 1.5rem) !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: var(--m-line) transparent !important;
+  }
+}
+
+html body #outer #inner #main form#work-filters.filters > h3.landmark,
+html body #outer #inner #main form#bookmark-filters.filters > h3.landmark {
+  display: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters > fieldset,
+html body #outer #inner #main form#bookmark-filters.filters > fieldset {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters > fieldset > legend,
+html body #outer #inner #main form#bookmark-filters.filters > fieldset > legend {
+  position: sticky !important;
+  z-index: 4 !important;
+  top: 0 !important;
+  box-sizing: border-box !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.5rem !important;
+  background: rgba(var(--m-card), 0.97) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  border-radius: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+}
+
+/* ---------- Reset AO3 definition-list columns ---------- */
+html body #outer #inner #main form#work-filters.filters > fieldset > dl,
+html body #outer #inner #main form#bookmark-filters.filters > fieldset > dl {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.24rem 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt,
+html body #outer #inner #main form#work-filters.filters dd,
+html body #outer #inner #main form#bookmark-filters.filters dt,
+html body #outer #inner #main form#bookmark-filters.filters dd {
+  float: none !important;
+  clear: none !important;
+  box-sizing: border-box !important;
+  max-width: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.landmark,
+html body #outer #inner #main form#bookmark-filters.filters dt.landmark {
+  display: none !important;
+}
+
+/* ---------- Top submit and sort controls ---------- */
+html body #outer #inner #main form#work-filters.filters dd.submit,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit {
+  width: calc(100% - 0.5rem) !important;
+  margin: 0.2rem 0.25rem 0.35rem !important;
+  padding: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"],
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"] {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 1.78rem !important;
+  margin: 0 !important;
+  padding: 0.28rem 0.48rem !important;
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+  color: var(--m-link) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  text-shadow: none !important;
+  transform: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:hover,
+html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:focus,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:hover,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:focus {
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link-hover) !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.sort,
+html body #outer #inner #main form#work-filters.filters dt.search,
+html body #outer #inner #main form#work-filters.filters dt.language,
+html body #outer #inner #main form#work-filters.filters dt.options,
+html body #outer #inner #main form#bookmark-filters.filters dt.sort,
+html body #outer #inner #main form#bookmark-filters.filters dt.search,
+html body #outer #inner #main form#bookmark-filters.filters dt.language,
+html body #outer #inner #main form#bookmark-filters.filters dt.options {
+  width: calc(100% - 0.5rem) !important;
+  margin: 0.16rem 0.25rem 0.1rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.59rem !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.sort,
+html body #outer #inner #main form#work-filters.filters dd.search,
+html body #outer #inner #main form#work-filters.filters dd.language,
+html body #outer #inner #main form#work-filters.filters dd.options,
+html body #outer #inner #main form#bookmark-filters.filters dd.sort,
+html body #outer #inner #main form#bookmark-filters.filters dd.search,
+html body #outer #inner #main form#bookmark-filters.filters dd.language,
+html body #outer #inner #main form#bookmark-filters.filters dd.options {
+  width: calc(100% - 0.5rem) !important;
+  margin: 0 0.25rem 0.28rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters select,
+html body #outer #inner #main form#work-filters.filters input[type="text"],
+html body #outer #inner #main form#work-filters.filters input[type="number"],
+html body #outer #inner #main form#bookmark-filters.filters select,
+html body #outer #inner #main form#bookmark-filters.filters input[type="text"],
+html body #outer #inner #main form#bookmark-filters.filters input[type="number"] {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 1.72rem !important;
+  margin: 0 !important;
+  padding: 0.26rem 0.4rem !important;
+  border-radius: 5px !important;
+  font-size: 0.67rem !important;
+  line-height: 1.15 !important;
+}
+
+/* ---------- Full-bleed section headers ---------- */
+html body #outer #inner #main form#work-filters.filters dt.heading,
+html body #outer #inner #main form#bookmark-filters.filters dt.heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 1.55rem !important;
+  margin: 0.32rem 0 0.14rem !important;
+  padding: 0.27rem 0.48rem !important;
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.heading h4.heading,
+html body #outer #inner #main form#bookmark-filters.filters dt.heading h4.heading {
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.65rem !important;
+  font-weight: 750 !important;
+  line-height: 1.15 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.heading .help,
+html body #outer #inner #main form#bookmark-filters.filters dt.heading .help,
+html body #outer #inner #main form#work-filters.filters dt.heading h4.heading::before,
+html body #outer #inner #main form#bookmark-filters.filters dt.heading h4.heading::before {
+  border-radius: 3px !important;
+}
+
+/* ---------- Nested filter groups ---------- */
+html body #outer #inner #main form#work-filters.filters dd.include,
+html body #outer #inner #main form#work-filters.filters dd.exclude,
+html body #outer #inner #main form#work-filters.filters dd.more,
+html body #outer #inner #main form#bookmark-filters.filters dd.include,
+html body #outer #inner #main form#bookmark-filters.filters dd.exclude,
+html body #outer #inner #main form#bookmark-filters.filters dd.more {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0.25rem !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.include > dl,
+html body #outer #inner #main form#work-filters.filters dd.exclude > dl,
+html body #outer #inner #main form#work-filters.filters dd.more > dl,
+html body #outer #inner #main form#bookmark-filters.filters dd.include > dl,
+html body #outer #inner #main form#bookmark-filters.filters dd.exclude > dl,
+html body #outer #inner #main form#bookmark-filters.filters dd.more > dl {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.include > dl > dt,
+html body #outer #inner #main form#work-filters.filters dd.include > dl > dd,
+html body #outer #inner #main form#work-filters.filters dd.exclude > dl > dt,
+html body #outer #inner #main form#work-filters.filters dd.exclude > dl > dd,
+html body #outer #inner #main form#work-filters.filters dd.more > dl > dt,
+html body #outer #inner #main form#work-filters.filters dd.more > dl > dd,
+html body #outer #inner #main form#bookmark-filters.filters dd.include > dl > dt,
+html body #outer #inner #main form#bookmark-filters.filters dd.include > dl > dd,
+html body #outer #inner #main form#bookmark-filters.filters dd.exclude > dl > dt,
+html body #outer #inner #main form#bookmark-filters.filters dd.exclude > dl > dd,
+html body #outer #inner #main form#bookmark-filters.filters dd.more > dl > dt,
+html body #outer #inner #main form#bookmark-filters.filters dd.more > dl > dd {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* ---------- Accordion trigger and panel: identical width ---------- */
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle {
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 1.32rem !important;
+  margin: 0.08rem 0 0 !important;
+  padding: 0.16rem 1.15rem 0.16rem 0.34rem !important;
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.64rem !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+/* AO3 inserts an inner .expander button after JavaScript initializes.
+   Strip its generic button styling so the outer dt is the only visible box. */
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle .expander,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle button,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle a,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle .expander,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle button,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle a {
+  position: static !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  line-height: inherit !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transform: none !important;
+  cursor: pointer !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle .expander::before,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle .expander::after,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle button::before,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle button::after,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle .expander::before,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle .expander::after,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle button::before,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle button::after {
+  content: none !important;
+  display: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle:hover,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus-within,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:hover,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus-within {
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle::after,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle::after {
+  right: 0.4rem !important;
+  font-size: 0.64rem !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  max-height: 7.25rem !important;
+  margin: 0.04rem 0 0.12rem !important;
+  padding: 0.06rem !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--m-line) transparent !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable.hidden,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable.hidden {
+  display: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable > ul,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable > ul {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable li,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable li {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable label,
+html body #outer #inner #main form#work-filters.filters dd.options label,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable label,
+html body #outer #inner #main form#bookmark-filters.filters dd.options label {
+  display: flex !important;
+  align-items: flex-start !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  gap: 0.26rem !important;
+  margin: 0 !important;
+  padding: 0.2rem 0.26rem !important;
+  border-radius: 2px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.64rem !important;
+  font-weight: 450 !important;
+  line-height: 1.18 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.expandable label:hover,
+html body #outer #inner #main form#work-filters.filters dd.options label:hover,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable label:hover,
+html body #outer #inner #main form#bookmark-filters.filters dd.options label:hover {
+  background: var(--m-surface) !important;
+  color: var(--m-text) !important;
+}
+
+/* Two compact columns only inside short lists; outer widths never change. */
+html body #outer #inner #main form#work-filters.filters dd.expandable.rating > ul,
+html body #outer #inner #main form#work-filters.filters dd.expandable.category > ul,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable.rating > ul,
+html body #outer #inner #main form#bookmark-filters.filters dd.expandable.category > ul {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+}
+
+/* ---------- Checkbox/radio details ---------- */
+html body #outer #inner #main form#work-filters.filters .indicator::before,
+html body #outer #inner #main form#bookmark-filters.filters .indicator::before {
+  flex: 0 0 0.82rem !important;
+  width: 0.82rem !important;
+  height: 0.82rem !important;
+  margin-top: 0 !important;
+}
+
+html body #outer #inner #main form#work-filters.filters input[type="checkbox"] + .indicator::before,
+html body #outer #inner #main form#bookmark-filters.filters input[type="checkbox"] + .indicator::before {
+  border-radius: 2px !important;
+  font-size: 0.58rem !important;
+}
+
+html body #outer #inner #main form#work-filters.filters input[type="radio"] + .indicator::before,
+html body #outer #inner #main form#bookmark-filters.filters input[type="radio"] + .indicator::before {
+  border-radius: 50% !important;
+}
+
+/* Prevent the global autocomplete-card style inside the filters. */
+html body #outer #inner #main form#work-filters.filters dt.autocomplete,
+html body #outer #inner #main form#work-filters.filters dd.autocomplete,
+html body #outer #inner #main form#bookmark-filters.filters dt.autocomplete,
+html body #outer #inner #main form#bookmark-filters.filters dd.autocomplete {
+  position: static !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters p.footnote,
+html body #outer #inner #main form#bookmark-filters.filters p.footnote {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.1rem 0.25rem 0.3rem !important;
+}
+
+html body #outer #inner #main form#work-filters.filters p.footnote a,
+html body #outer #inner #main form#bookmark-filters.filters p.footnote a {
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  min-height: 1.52rem !important;
+  padding: 0.18rem 0.4rem !important;
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 5px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.62rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+/* ---------- Responsive ---------- */
+@media only screen and (max-width: 62rem) {
+  html body #outer #inner #main form#work-filters.filters,
+  html body #outer #inner #main form#bookmark-filters.filters {
+    width: 100% !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  html body #outer #inner #main form#work-filters.filters > fieldset > legend,
+  html body #outer #inner #main form#bookmark-filters.filters > fieldset > legend {
+    position: static !important;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  html body #outer #inner #main form#work-filters.filters dd.expandable.rating > ul,
+  html body #outer #inner #main form#work-filters.filters dd.expandable.category > ul,
+  html body #outer #inner #main form#bookmark-filters.filters dd.expandable.rating > ul,
+  html body #outer #inner #main form#bookmark-filters.filters dd.expandable.category > ul {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}

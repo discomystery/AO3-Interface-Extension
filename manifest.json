@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "AO3 Styles for AO3 Advanced Marker",
+  "version": "1.0.0",
+  "description": "Applies custom styling to AO3 beyond what is capable with site skins.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://archiveofourown.org/*",
+        "https://www.archiveofourown.org/*"
+      ],
+      "css": ["dist/styles.css"],
+      "run_at": "document_start"
+    }
+  ]
+}

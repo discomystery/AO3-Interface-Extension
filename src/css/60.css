@@ -1,0 +1,793 @@
+/*
+ * AO3 Advanced Marker — Module 60
+ */
+
+/* ============================================================
+   FINAL SOURCE-ORDER AND CONTRAST CORRECTIONS
+   ============================================================ */
+
+/* AO3's work metadata and preface headings have unusually specific native
+   color rules. Reinforce the theme at their actual text/link nodes. */
+#main.chapters-show dl.work.meta > dd,
+#main.chapters-show dl.work.meta > dd li,
+#main.chapters-show dl.work.meta > dd span,
+#main.chapters-show dl.work.meta > dd a,
+#main.chapters-show dl.work.meta > dd a:link,
+#main.chapters-show dl.work.meta > dd a:visited {
+  color: var(--m-text-2) !important;
+  text-shadow: none !important;
+}
+
+#main.chapters-show dl.work.meta > dd a,
+#main.chapters-show dl.work.meta > dd a:link,
+#main.chapters-show dl.work.meta > dd a:visited {
+  color: var(--m-link) !important;
+}
+
+#workskin > .preface.group > h2.title,
+#workskin > .preface.group > h2.title a,
+#workskin > .preface.group > h3.byline,
+#workskin > .preface.group > h3.byline a,
+#workskin .chapter.preface.group > h3.title,
+#workskin .chapter.preface.group > h3.title a,
+#workskin .afterword.preface.group > h3.title,
+#workskin .afterword.preface.group > h3.title a {
+  color: var(--m-text) !important;
+  text-shadow: none !important;
+}
+
+#workskin > .preface.group > h3.byline a,
+#workskin .chapter.preface.group > h3.title a,
+#workskin .afterword.preface.group > h3.title a {
+  color: var(--m-link) !important;
+}
+
+/* Preserve creator work-skin decisions inside the actual chapter text.
+   Theme the AO3 frame and metadata, but do not globally recolor authored
+   paragraphs, blockquotes or custom work-skin components. */
+#workskin .userstuff,
+#workskin .userstuff p,
+#workskin .userstuff li,
+#workskin .userstuff blockquote {
+  color: revert !important;
+}
+
+#workskin .userstuff a {
+  color: revert !important;
+}
+
+/* ============================================================
+   UNIFIED WORK INDEX RHYTHM + BOOKMARK PAGE REBUILD
+   ============================================================ */
+
+/* Every AO3 page that presents full work blurbs uses the same one-column
+   card grid and the same spacing as History. Page-specific wrappers may
+   still provide headings or filter columns, but they no longer change the
+   distance between individual work cards. */
+#main ol.work.index,
+#main ol.reading.index,
+#main ol.bookmark.index,
+#main ul.work.index,
+#main ul.reading.index,
+#main ul.bookmark.index,
+#main.users-show #user-works > ul.index,
+#main.users-show #user-bookmarks > ul.index,
+#main.users-show .work.listbox > ul.index,
+#main.users-show .bookmark.listbox > ul.index {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-auto-flow: row !important;
+  gap: 1rem !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main ol.work.index > li.blurb,
+#main ol.reading.index > li.blurb,
+#main ol.bookmark.index > li.blurb,
+#main ul.work.index > li.blurb,
+#main ul.reading.index > li.blurb,
+#main ul.bookmark.index > li.blurb,
+#main.users-show #user-works > ul.index > li.blurb,
+#main.users-show #user-bookmarks > ul.index > li.blurb,
+#main.users-show .work.listbox > ul.index > li.blurb,
+#main.users-show .bookmark.listbox > ul.index > li.blurb {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+/* Dashboard listboxes keep their section card and heading, while the list
+   inside receives the same breathing room as a normal History index. */
+#main.users-show .user.home > .work.listbox > ul.index,
+#main.users-show .user.home > .bookmark.listbox > ul.index,
+#main.users-show #user-works > ul.index,
+#main.users-show #user-bookmarks > ul.index {
+  padding: 0.75rem !important;
+}
+
+/* Filtered indexes reserve the right column without changing card spacing. */
+@media only screen and (min-width: 62.01rem) {
+  #main.filtered > ol.work.index,
+  #main.filtered > ol.reading.index,
+  #main.filtered > ol.bookmark.index,
+  #main.filtered > ul.work.index,
+  #main.filtered > ul.reading.index,
+  #main.filtered > ul.bookmark.index {
+    width: calc(100% - 20rem) !important;
+    padding-right: 1rem !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   BOOKMARK FILTER
+   ------------------------------------------------------------ */
+
+#bookmark-filters {
+  box-sizing: border-box !important;
+  width: 18.5rem !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.9) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+
+  -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
+  backdrop-filter: blur(18px) saturate(135%) !important;
+}
+
+@media only screen and (min-width: 62.01rem) {
+  #main.bookmarks-index {
+    position: relative !important;
+  }
+
+  /* AO3 emits this form after the complete bookmark list. Place it in the
+     open filter column without letting source order push it below page 1. */
+  #bookmark-filters {
+    position: absolute !important;
+    top: 8.5rem !important;
+    right: 0 !important;
+    float: none !important;
+    clear: none !important;
+  }
+}
+
+#bookmark-filters > fieldset {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#bookmark-filters > fieldset > legend {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.8rem 0.9rem !important;
+
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+
+  color: var(--m-text) !important;
+  font-size: 0.82rem !important;
+  font-weight: 720 !important;
+  letter-spacing: -0.01em !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+#bookmark-filters > fieldset > dl {
+  margin: 0 !important;
+  padding: 0.75rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#bookmark-filters dl,
+#bookmark-filters dt,
+#bookmark-filters dd {
+  box-sizing: border-box !important;
+}
+
+#bookmark-filters dd {
+  margin-left: 0 !important;
+}
+
+#bookmark-filters dt.sort,
+#bookmark-filters dt.search,
+#bookmark-filters dt.language,
+#bookmark-filters dt.options {
+  margin: 0.62rem 0 0.28rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+}
+
+#bookmark-filters dd.sort,
+#bookmark-filters dd.search,
+#bookmark-filters dd.language,
+#bookmark-filters dd.options {
+  margin: 0 0 0.55rem !important;
+}
+
+#bookmark-filters select,
+#bookmark-filters input[type="text"],
+#bookmark-filters input[type="number"] {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 2.2rem !important;
+  padding: 0.46rem 0.56rem !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 9px !important;
+  color: var(--m-text) !important;
+  font-size: 0.75rem !important;
+}
+
+#bookmark-filters dt.heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0.85rem -0.75rem 0.42rem !important;
+  padding: 0.56rem 0.75rem !important;
+  background: var(--m-chip) !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+#bookmark-filters dt.heading h4.heading {
+  margin: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.75rem !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+#bookmark-filters dt.include.heading h4.heading::before,
+#bookmark-filters dt.exclude.heading h4.heading::before {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  margin-right: 0.35rem !important;
+  border-radius: 50% !important;
+}
+
+#bookmark-filters dt.include.heading h4.heading::before {
+  content: "+" !important;
+  background: rgba(var(--m-read-rgb), 0.12) !important;
+  color: var(--m-read) !important;
+}
+
+#bookmark-filters dt.exclude.heading h4.heading::before {
+  content: "−" !important;
+  background: rgba(var(--m-dnr-rgb), 0.11) !important;
+  color: var(--m-dnr) !important;
+}
+
+#bookmark-filters dt.heading .help {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  margin: 0 !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+}
+
+#bookmark-filters dt.filter-toggle,
+#bookmark-filters .expander {
+  position: relative !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 2rem !important;
+  margin: 0.15rem 0 !important;
+  padding: 0.46rem 1.85rem 0.46rem 0.55rem !important;
+
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.73rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+#bookmark-filters dt.filter-toggle:hover,
+#bookmark-filters dt.filter-toggle:focus-within,
+#bookmark-filters .expander:hover,
+#bookmark-filters .expander:focus {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#bookmark-filters dt.filter-toggle::after {
+  content: "⌄" !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: 0.58rem !important;
+  transform: translateY(-52%) !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+
+#bookmark-filters dt.filter-toggle.collapsed::after,
+#bookmark-filters .collapsed > dt.filter-toggle::after {
+  content: "›" !important;
+}
+
+/* Keep a saved page with every group expanded usable. Live AO3 can still
+   collapse these sections, while open groups scroll inside a compact box. */
+#bookmark-filters dd.expandable {
+  max-height: 12rem !important;
+  margin: 0.1rem 0 0.38rem !important;
+  padding: 0.22rem !important;
+  overflow: auto !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 9px !important;
+  scrollbar-color: var(--m-line) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+#bookmark-filters dd.expandable ul,
+#bookmark-filters dd.options ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#bookmark-filters dd.expandable li,
+#bookmark-filters dd.options li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#bookmark-filters dd.expandable label,
+#bookmark-filters dd.options label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.42rem !important;
+  margin: 0 !important;
+  padding: 0.38rem 0.42rem !important;
+  border-radius: 7px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.71rem !important;
+  font-weight: 450 !important;
+  line-height: 1.35 !important;
+  cursor: pointer !important;
+}
+
+#bookmark-filters dd.expandable label:hover,
+#bookmark-filters dd.options label:hover {
+  background: var(--m-surface) !important;
+  color: var(--m-text) !important;
+}
+
+#bookmark-filters label > span:last-child {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+#bookmark-filters dl.range {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 0.4rem 0.5rem !important;
+  margin: 0 !important;
+  padding: 0.35rem !important;
+}
+
+#bookmark-filters dl.range dt,
+#bookmark-filters dl.range dd {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#bookmark-filters dd.submit {
+  margin: 0.7rem 0 0 !important;
+  padding: 0 !important;
+}
+
+#bookmark-filters dd.submit:first-of-type {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+#bookmark-filters p.footnote {
+  margin: 0 !important;
+  padding: 0 0.75rem 0.75rem !important;
+  text-align: center !important;
+}
+
+#bookmark-filters p.footnote a {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 1.65rem !important;
+  padding: 0.24rem 0.52rem !important;
+  background: transparent !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 7px !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.68rem !important;
+  text-decoration: none !important;
+}
+
+#bookmark-filters p.footnote a:hover,
+#bookmark-filters p.footnote a:focus {
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-line) !important;
+  color: var(--m-link) !important;
+}
+
+/* ------------------------------------------------------------
+   BOOKMARK CARDS
+   ------------------------------------------------------------ */
+
+/* Reserve separate upper-right slots for bookmark visibility/count and the
+   Advanced Marker date/check/star controls. */
+#main.bookmarks-index li.bookmark.blurb > .header.module {
+  padding-right: 13.7rem !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > p.status {
+  position: absolute !important;
+  z-index: 5 !important;
+  top: 0.92rem !important;
+  right: 9.55rem !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  width: 3.9rem !important;
+  height: 1.8rem !important;
+  margin: 0 !important;
+  padding: 0.12rem 0.2rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+  color: var(--m-text-3) !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > p.status > a,
+#main.bookmarks-index li.bookmark.blurb > p.status > span {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > p.status .count a {
+  color: var(--m-text-2) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+/* Bookmark ownership metadata is a card footer, not another work header.
+   Reset the generic .datetime grid and let all footer content share a clean
+   aligned row, with bookmarker notes receiving a full-width second row. */
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto auto !important;
+  grid-template-areas:
+    "byline saved actions"
+    "notes notes notes" !important;
+  align-items: center !important;
+  gap: 0.48rem 0.7rem !important;
+
+  box-sizing: border-box !important;
+  width: calc(100% + 2.2rem) !important;
+  min-width: 0 !important;
+  margin: 0.85rem -1.1rem -0.9rem !important;
+  padding: 0.65rem 1.1rem 0.7rem !important;
+  overflow: visible !important;
+
+  background: var(--m-surface) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 0 calc(var(--m-radius) - 1px) calc(var(--m-radius) - 1px) !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .byline {
+  grid-area: byline !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.69rem !important;
+  font-weight: 520 !important;
+  line-height: 1.35 !important;
+  overflow-wrap: anywhere !important;
+  text-shadow: none !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .byline a {
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .datetime {
+  grid-area: saved !important;
+  position: static !important;
+  inset: auto !important;
+  display: block !important;
+  justify-self: end !important;
+
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: var(--m-text-3) !important;
+  font-size: 0.66rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+  grid-area: notes !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0.08rem 0 0 !important;
+  padding: 0.58rem 0.68rem !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 9px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  line-height: 1.45 !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:first-child {
+  margin-top: 0 !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+  grid-area: actions !important;
+  justify-self: end !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: flex-end !important;
+  gap: 0.3rem !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  clear: none !important;
+}
+
+#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions > li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* The bookmark page repeats pagination below the filter form. Keep both
+   pagination bars visually identical to the compact History controls. */
+#main.bookmarks-index > ol.pagination.actions {
+  gap: 0.3rem !important;
+  margin: 0.65rem 0 0.9rem !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE LISTING RHYTHM
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 64rem) {
+  #main ol.work.index,
+  #main ol.reading.index,
+  #main ol.bookmark.index,
+  #main ul.work.index,
+  #main ul.reading.index,
+  #main ul.bookmark.index,
+  #main.users-show #user-works > ul.index,
+  #main.users-show #user-bookmarks > ul.index,
+  #main.users-show .work.listbox > ul.index,
+  #main.users-show .bookmark.listbox > ul.index {
+    gap: 0.85rem !important;
+  }
+}
+
+@media only screen and (max-width: 62rem) {
+  #main.filtered > ol.work.index,
+  #main.filtered > ol.reading.index,
+  #main.filtered > ol.bookmark.index,
+  #main.filtered > ul.work.index,
+  #main.filtered > ul.reading.index,
+  #main.filtered > ul.bookmark.index {
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+
+  #bookmark-filters {
+    position: static !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin-top: 1rem !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-areas:
+      "byline saved"
+      "actions actions"
+      "notes notes" !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  #main ol.work.index,
+  #main ol.reading.index,
+  #main ol.bookmark.index,
+  #main ul.work.index,
+  #main ul.reading.index,
+  #main ul.bookmark.index,
+  #main.users-show #user-works > ul.index,
+  #main.users-show #user-bookmarks > ul.index,
+  #main.users-show .work.listbox > ul.index,
+  #main.users-show .bookmark.listbox > ul.index {
+    gap: 0.75rem !important;
+  }
+
+  #main.users-show .user.home > .work.listbox > ul.index,
+  #main.users-show .user.home > .bookmark.listbox > ul.index,
+  #main.users-show #user-works > ul.index,
+  #main.users-show #user-bookmarks > ul.index {
+    padding: 0.55rem !important;
+  }
+
+  #bookmark-filters {
+    border-radius: 14px !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .header.module {
+    padding-right: 4.6rem !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > p.status {
+    top: 0.74rem !important;
+    right: 0.74rem !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+    width: calc(100% + 1.7rem) !important;
+    margin-right: -0.85rem !important;
+    margin-left: -0.85rem !important;
+    padding-right: 0.85rem !important;
+    padding-left: 0.85rem !important;
+    border-radius: 0 0 13px 13px !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+    justify-self: start !important;
+    justify-content: flex-start !important;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  #main ol.work.index,
+  #main ol.reading.index,
+  #main ol.bookmark.index,
+  #main ul.work.index,
+  #main ul.reading.index,
+  #main ul.bookmark.index,
+  #main.users-show #user-works > ul.index,
+  #main.users-show #user-bookmarks > ul.index,
+  #main.users-show .work.listbox > ul.index,
+  #main.users-show .bookmark.listbox > ul.index {
+    gap: 0.62rem !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "byline"
+      "saved"
+      "actions"
+      "notes" !important;
+  }
+
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .datetime,
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+    justify-self: start !important;
+    text-align: left !important;
+  }
+}
+
+/* Direct dark-mode protection for AO3 bookmark/footer and filter surfaces. */
+@media (prefers-color-scheme: dark) {
+  #bookmark-filters,
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+    background-color: rgba(29, 29, 31, 0.96) !important;
+  }
+
+  #bookmark-filters dd.expandable,
+  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+    background-color: rgba(44, 44, 46, 0.92) !important;
+  }
+}
+
+body:is(.reversi, .dark) #bookmark-filters,
+body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  background-color: rgba(29, 29, 31, 0.96) !important;
+}
+
+body:is(.reversi, .dark) #bookmark-filters dd.expandable,
+body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+  background-color: rgba(44, 44, 46, 0.92) !important;
+}
+
+
+/* Final wrapper reset: AO3 applies higher-specificity dashboard backgrounds
+   to several indexes. Work-list containers remain transparent so only the
+   individual cards provide visual weight, consistently on every page. */
+#main.dashboard > ol.work.index,
+#main.dashboard > ol.reading.index,
+#main.dashboard > ol.bookmark.index,
+#main.dashboard > ul.work.index,
+#main.dashboard > ul.reading.index,
+#main.dashboard > ul.bookmark.index,
+#main.dashboard.filtered > ol.work.index,
+#main.dashboard.filtered > ol.reading.index,
+#main.dashboard.filtered > ol.bookmark.index,
+#main.dashboard.filtered > ul.work.index,
+#main.dashboard.filtered > ul.reading.index,
+#main.dashboard.filtered > ul.bookmark.index,
+#main.dashboard.filtered > ol.index,
+#main.dashboard.filtered > ul.index {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}

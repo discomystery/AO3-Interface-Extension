@@ -1,0 +1,1040 @@
+/*
+ * AO3 Advanced Marker — Module 40
+ */
+
+/* ============================================================
+   ADDITIONAL AO3 PAGE COMPONENTS
+   History, Works filters, Inbox, Profile and Statistics
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   FILTER LAYOUT
+   ------------------------------------------------------------ */
+
+#main.filtered {
+  position: relative !important;
+}
+
+#main.filtered > ol.index,
+#main.filtered > ul.index {
+  box-sizing: border-box !important;
+  width: calc(100% - 20rem) !important;
+  padding-right: 1rem !important;
+}
+
+#work-filters,
+#inbox-filters {
+  box-sizing: border-box !important;
+  width: 18.5rem !important;
+  margin: 0 0 1rem !important;
+  padding: 0 !important;
+
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+  overflow: hidden !important;
+
+  -webkit-backdrop-filter: blur(18px) saturate(135%) !important;
+  backdrop-filter: blur(18px) saturate(135%) !important;
+}
+
+#work-filters {
+  position: sticky !important;
+  top: 0.75rem !important;
+  float: right !important;
+  clear: right !important;
+}
+
+#inbox-filters {
+  float: right !important;
+  clear: right !important;
+}
+
+#work-filters > fieldset,
+#inbox-filters > fieldset {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#work-filters > fieldset > legend,
+#inbox-filters > h3.heading,
+#inbox-filters > fieldset::before {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.8rem 0.9rem !important;
+
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+
+  color: var(--m-text) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+#work-filters > fieldset > dl,
+#inbox-filters > fieldset > dl {
+  margin: 0 !important;
+  padding: 0.75rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#work-filters dl,
+#work-filters dt,
+#work-filters dd,
+#inbox-filters dl,
+#inbox-filters dt,
+#inbox-filters dd {
+  box-sizing: border-box !important;
+}
+
+#work-filters dd,
+#inbox-filters dd {
+  margin-left: 0 !important;
+}
+
+/* Sort/select row and submit buttons */
+#work-filters dt.sort,
+#inbox-filters dt {
+  margin: 0 0 0.28rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.045em !important;
+  text-transform: uppercase !important;
+}
+
+#work-filters dd.sort,
+#inbox-filters dd {
+  margin-bottom: 0.7rem !important;
+}
+
+#work-filters select,
+#work-filters input[type="text"],
+#inbox-filters select,
+#inbox-filters input[type="text"] {
+  width: 100% !important;
+  min-height: 2.25rem !important;
+  padding: 0.48rem 0.58rem !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 9px !important;
+  color: var(--m-text) !important;
+  font-size: 0.76rem !important;
+}
+
+#work-filters dd.submit,
+#inbox-filters dd.submit {
+  margin: 0.7rem 0 0 !important;
+  padding: 0 !important;
+}
+
+#work-filters dd.submit:first-of-type {
+  margin-top: 0 !important;
+  margin-bottom: 0.75rem !important;
+}
+
+#work-filters dd.submit input,
+#inbox-filters dd.submit input {
+  width: 100% !important;
+  min-height: 2.2rem !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.65rem !important;
+  background: var(--m-link) !important;
+  border: 1px solid var(--m-link) !important;
+  border-radius: 9px !important;
+  color: #ffffff !important;
+  font-size: 0.74rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 3px 9px var(--m-focus-ring) !important;
+}
+
+#work-filters dd.submit input:hover,
+#work-filters dd.submit input:focus,
+#inbox-filters dd.submit input:hover,
+#inbox-filters dd.submit input:focus {
+  background: var(--m-link-hover) !important;
+  border-color: var(--m-link-hover) !important;
+  color: #ffffff !important;
+}
+
+/* Include / Exclude / More headings */
+#work-filters dt.heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  margin: 0.85rem -0.75rem 0.42rem !important;
+  padding: 0.56rem 0.75rem !important;
+  background: var(--m-chip) !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+#work-filters dt.heading h4.heading {
+  margin: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.75rem !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+#work-filters dt.include.heading h4.heading::before {
+  content: "+" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  margin-right: 0.35rem !important;
+  background: rgba(var(--m-read-rgb), 0.12) !important;
+  border-radius: 50% !important;
+  color: var(--m-read) !important;
+}
+
+#work-filters dt.exclude.heading h4.heading::before {
+  content: "−" !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+  margin-right: 0.35rem !important;
+  background: rgba(var(--m-dnr-rgb), 0.11) !important;
+  border-radius: 50% !important;
+  color: var(--m-dnr) !important;
+}
+
+#work-filters dt.heading .help {
+  display: inline-flex !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+}
+
+/* Collapsible filter section headings */
+#work-filters dt.filter-toggle,
+#work-filters .expander {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  min-height: 2rem !important;
+  margin: 0.15rem 0 !important;
+  padding: 0.46rem 1.85rem 0.46rem 0.55rem !important;
+
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.73rem !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  text-align: left !important;
+  cursor: pointer !important;
+}
+
+#work-filters dt.filter-toggle:hover,
+#work-filters dt.filter-toggle:focus-within,
+#work-filters .expander:hover,
+#work-filters .expander:focus {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#work-filters dt.filter-toggle::after {
+  content: "⌄" !important;
+  position: absolute !important;
+  top: 50% !important;
+  right: 0.58rem !important;
+  transform: translateY(-52%) !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+}
+
+#work-filters dt.filter-toggle.collapsed::after,
+#work-filters .collapsed > dt.filter-toggle::after {
+  content: "›" !important;
+}
+
+#work-filters dd.expandable {
+  max-height: 15rem !important;
+  margin: 0.1rem 0 0.38rem !important;
+  padding: 0.22rem !important;
+  overflow: auto !important;
+
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 9px !important;
+  scrollbar-color: var(--m-line) transparent !important;
+  scrollbar-width: thin !important;
+}
+
+#work-filters dd.expandable ul,
+#inbox-filters dd ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#work-filters dd.expandable li,
+#inbox-filters dd li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#work-filters dd.expandable label,
+#inbox-filters dd label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.42rem !important;
+  margin: 0 !important;
+  padding: 0.38rem 0.42rem !important;
+  border-radius: 7px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.71rem !important;
+  font-weight: 450 !important;
+  line-height: 1.35 !important;
+  cursor: pointer !important;
+}
+
+#work-filters dd.expandable label:hover,
+#inbox-filters dd label:hover {
+  background: var(--m-surface) !important;
+  color: var(--m-text) !important;
+}
+
+#work-filters label > span:last-child,
+#inbox-filters label > span:last-child {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+}
+
+/* Custom AO3 filter indicators */
+.filters .indicator::before {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  flex: 0 0 1rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1rem !important;
+  height: 1rem !important;
+  margin: 0.05rem 0 0 !important;
+  padding: 0 !important;
+
+  background: var(--m-surface-solid) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  color: transparent !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.04) !important;
+}
+
+.filters input[type="checkbox"] + .indicator::before {
+  content: "✓" !important;
+  border-radius: 4px !important;
+  font-size: 0.7rem !important;
+  font-weight: 900 !important;
+}
+
+.filters input[type="checkbox"]:checked + .indicator::before {
+  background: var(--m-link) !important;
+  border-color: var(--m-link) !important;
+  color: #ffffff !important;
+}
+
+.filters .exclude input[type="checkbox"] + .indicator::before {
+  content: "×" !important;
+}
+
+.filters .exclude input[type="checkbox"]:checked + .indicator::before {
+  background: var(--m-dnr) !important;
+  border-color: var(--m-dnr) !important;
+  color: #ffffff !important;
+}
+
+.filters input[type="radio"] + .indicator::before {
+  content: "" !important;
+  border-radius: 50% !important;
+}
+
+.filters input[type="radio"]:checked + .indicator::before {
+  background: var(--m-link) !important;
+  border-color: var(--m-link) !important;
+  box-shadow: inset 0 0 0 3px var(--m-surface-solid) !important;
+}
+
+.filters input:focus + .indicator::before {
+  outline: 0 !important;
+  box-shadow: 0 0 0 3px var(--m-focus-ring) !important;
+}
+
+.filters input:checked + .indicator + span {
+  color: var(--m-text) !important;
+  font-weight: 650 !important;
+}
+
+/* Filter ranges, text search and language controls */
+#work-filters dl.range {
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 0.4rem 0.5rem !important;
+  margin: 0 !important;
+  padding: 0.35rem !important;
+}
+
+#work-filters dl.range dt,
+#work-filters dl.range dd {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#work-filters dt.search,
+#work-filters dt.language {
+  margin: 0.65rem 0 0.28rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.035em !important;
+  text-transform: uppercase !important;
+}
+
+#work-filters dd.search,
+#work-filters dd.language {
+  margin: 0 0 0.55rem !important;
+}
+
+/* ------------------------------------------------------------
+   INBOX FILTER + COMMENT CARDS
+   ------------------------------------------------------------ */
+
+#inbox-form {
+  box-sizing: border-box !important;
+  float: left !important;
+  width: calc(100% - 20rem) !important;
+  margin: 0 !important;
+  padding: 0 1rem 0 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#inbox-filters > h3.landmark {
+  position: static !important;
+  clip: auto !important;
+  height: auto !important;
+  width: auto !important;
+  overflow: visible !important;
+}
+
+#inbox-filters dt {
+  margin-top: 0.25rem !important;
+}
+
+#inbox-filters dd {
+  padding: 0.2rem !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 9px !important;
+}
+
+#inbox-form > fieldset.actions {
+  position: sticky !important;
+  z-index: 5 !important;
+  top: 0.55rem !important;
+
+  display: block !important;
+  margin: 0 0 0.8rem !important;
+  padding: 0.55rem 0.65rem !important;
+  background: rgba(var(--m-card), 0.9) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 13px !important;
+  box-shadow: var(--m-shadow) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+  backdrop-filter: blur(16px) saturate(130%) !important;
+}
+
+#inbox-form > fieldset.actions legend {
+  display: none !important;
+}
+
+#inbox-form > fieldset.actions ul {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#inbox-form > fieldset.actions li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#inbox-form > fieldset.actions a,
+#inbox-form > fieldset.actions input[type="submit"] {
+  min-height: 1.85rem !important;
+  margin: 0 !important;
+  padding: 0.3rem 0.58rem !important;
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 7px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.69rem !important;
+  font-weight: 600 !important;
+}
+
+#inbox-form > fieldset.actions input[name="delete"] {
+  color: var(--m-dnr) !important;
+}
+
+#inbox-form > fieldset.comments {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#inbox-form > fieldset.comments > legend {
+  display: none !important;
+}
+
+#inbox-form ol.comment.index {
+  display: grid !important;
+  gap: 0.72rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#inbox-form li.comment.group {
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-height: 5.3rem !important;
+  margin: 0 !important;
+  padding: 0.82rem 0.9rem 0.72rem 4.7rem !important;
+
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+#inbox-form li.comment.unread {
+  border-color: rgba(0, 102, 204, 0.28) !important;
+  box-shadow:
+    inset 3px 0 0 var(--m-link),
+    var(--m-shadow) !important;
+}
+
+#inbox-form li.comment .icon {
+  position: absolute !important;
+  top: 0.82rem !important;
+  left: 0.9rem !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  margin: 0 !important;
+}
+
+#inbox-form li.comment .icon img {
+  width: 3rem !important;
+  height: 3rem !important;
+  object-fit: cover !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+#inbox-form li.comment h4.byline {
+  margin: 0 0 0.42rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+}
+
+#inbox-form li.comment h4.byline a:first-child {
+  color: var(--m-text) !important;
+  font-weight: 700 !important;
+}
+
+#inbox-form li.comment .posted.datetime {
+  display: inline-block !important;
+  margin-left: 0.35rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  white-space: nowrap !important;
+}
+
+#inbox-form li.comment blockquote.userstuff {
+  margin: 0.35rem 0 0.6rem !important;
+  padding: 0.62rem 0.72rem !important;
+  background: var(--m-surface) !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.8rem !important;
+  line-height: 1.5 !important;
+}
+
+#inbox-form li.comment blockquote.userstuff p:first-child {
+  margin-top: 0 !important;
+}
+
+#inbox-form li.comment blockquote.userstuff p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#inbox-form li.comment ul.actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.28rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#inbox-form li.comment ul.actions a,
+#inbox-form li.comment ul.actions label,
+#inbox-form li.comment ul.actions span.unread,
+#inbox-form li.comment ul.actions span.replied {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 1.55rem !important;
+  padding: 0.2rem 0.46rem !important;
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 6px !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.64rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+#inbox-form li.comment ul.actions span.unread {
+  background: var(--m-control-active) !important;
+  border-color: rgba(0, 102, 204, 0.24) !important;
+  color: var(--m-link) !important;
+}
+
+#inbox-form li.comment ul.actions span.replied {
+  background: rgba(var(--m-read-rgb), 0.1) !important;
+  border-color: rgba(var(--m-read-rgb), 0.22) !important;
+  color: var(--m-read) !important;
+}
+
+/* ------------------------------------------------------------
+   PROFILE PAGE
+   ------------------------------------------------------------ */
+
+.profile-show .user.home.profile > .primary.header.module {
+  position: relative !important;
+  box-sizing: border-box !important;
+  min-height: 8rem !important;
+  margin: 0 0 1rem !important;
+  padding: 1.15rem 1.15rem 1rem 8.4rem !important;
+
+  background: linear-gradient(
+    125deg,
+    rgba(0, 102, 204, 0.1),
+    rgba(var(--m-card), 0.94) 58%
+  ) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+.profile-show .user.home.profile > .primary.header.module h2.heading {
+  margin: 0 0 0.55rem !important;
+  color: var(--m-text) !important;
+  font-size: 1.65rem !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.035em !important;
+}
+
+.profile-show .user.home.profile > .primary.header.module p.icon {
+  position: absolute !important;
+  top: 1rem !important;
+  left: 1.1rem !important;
+  width: 6.15rem !important;
+  height: 6.15rem !important;
+  margin: 0 !important;
+}
+
+.profile-show .user.home.profile > .primary.header.module p.icon img {
+  width: 6.15rem !important;
+  height: 6.15rem !important;
+  object-fit: cover !important;
+  border: 3px solid rgba(var(--m-card), 0.88) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    0 0 0 1px var(--m-line),
+    0 8px 22px rgba(0, 0, 0, 0.12) !important;
+}
+
+.profile-show .user.home.profile > .primary.header.module ul.navigation.actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.profile-show .user.home.profile > .primary.header.module ul.navigation.actions li,
+.profile-show .user.home.profile > .primary.header.module form {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.profile-show .user.home.profile > h3.heading {
+  margin: 0 0 0.75rem !important;
+  color: var(--m-text-2) !important;
+  font-size: 1rem !important;
+  font-weight: 650 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.profile-show .user.home.profile > .wrapper,
+.profile-show .user.home.profile > .bio.module {
+  box-sizing: border-box !important;
+  margin: 0 0 1rem !important;
+  padding: 1rem !important;
+  background: rgba(var(--m-card), 0.86) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--m-shadow) !important;
+  color: var(--m-text-2) !important;
+}
+
+.profile-show .user.home.profile dl.meta {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr) !important;
+  gap: 0.45rem 0.8rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.profile-show .user.home.profile dl.meta dt,
+.profile-show .user.home.profile dl.meta dd {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.profile-show .user.home.profile dl.meta dt {
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
+  font-weight: 650 !important;
+}
+
+.profile-show .user.home.profile dl.meta dd {
+  color: var(--m-text) !important;
+  font-size: 0.76rem !important;
+}
+
+.profile-show .user.home.profile .bio.module > h3.heading {
+  margin: 0 0 0.7rem !important;
+  color: var(--m-text) !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+}
+
+.profile-show .user.home.profile .bio blockquote.userstuff {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.84rem !important;
+  line-height: 1.58 !important;
+}
+
+.profile-show .user.home.profile .bio blockquote.userstuff h6 {
+  margin: 1rem 0 0.35rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.69rem !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+}
+
+.profile-show .user.home.profile .bio blockquote.userstuff h6:first-child {
+  margin-top: 0 !important;
+}
+
+.profile-show .user.home.profile .bio blockquote.userstuff img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 12px !important;
+}
+
+.profile-show .user.home.profile > ul.navigation.actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"] {
+  color: var(--m-dnr) !important;
+}
+
+/* Statistics styling is consolidated in the authoritative page-polish
+   section below to avoid two competing card layouts. */
+
+/* ------------------------------------------------------------
+   OWN WORKS + GENERIC PAGE MODULE CLEANUP
+   ------------------------------------------------------------ */
+
+.works-index > .navigation.actions.module,
+.profile-show .user.home.profile > ul.navigation.actions,
+.stats-index > ul.navigation.actions,
+.stats-index > ol.year.actions {
+  box-sizing: border-box !important;
+}
+
+.works-index > .navigation.actions.module ul.user.navigation.actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.35rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE PAGE COMPONENTS
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 62rem) {
+  #main.filtered > ol.index,
+  #main.filtered > ul.index,
+  #inbox-form {
+    float: none !important;
+    width: 100% !important;
+    padding-right: 0 !important;
+  }
+
+  #work-filters,
+  #inbox-filters {
+    position: relative !important;
+    top: auto !important;
+    float: none !important;
+    clear: both !important;
+    width: 100% !important;
+    margin: 1rem 0 0 !important;
+  }
+
+  #work-filters > fieldset > dl {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0 0.75rem !important;
+  }
+
+  #work-filters > fieldset > dl > dt.landmark,
+  #work-filters > fieldset > dl > dd.submit,
+  #work-filters > fieldset > dl > dt.sort,
+  #work-filters > fieldset > dl > dd.sort,
+  #work-filters > fieldset > dl > dt.heading,
+  #work-filters > fieldset > dl > dd.group {
+    grid-column: 1 / -1 !important;
+  }
+
+  #inbox-form > fieldset.actions {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .stats-index dl.statistics.meta {
+    overflow-x: auto !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  #work-filters > fieldset > dl {
+    display: block !important;
+  }
+
+  #work-filters,
+  #inbox-filters {
+    border-radius: 14px !important;
+  }
+
+  #inbox-form li.comment.group {
+    padding: 0.75rem !important;
+  }
+
+  #inbox-form li.comment .icon {
+    position: static !important;
+    float: left !important;
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+    margin: 0 0.6rem 0.35rem 0 !important;
+  }
+
+  #inbox-form li.comment .icon img {
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+  }
+
+  #inbox-form li.comment h4.byline {
+    min-height: 2.5rem !important;
+  }
+
+  #inbox-form li.comment blockquote.userstuff,
+  #inbox-form li.comment ul.actions {
+    clear: both !important;
+  }
+
+  .profile-show .user.home.profile > .primary.header.module {
+    min-height: 0 !important;
+    padding: 0.9rem !important;
+    text-align: center !important;
+  }
+
+  .profile-show .user.home.profile > .primary.header.module p.icon {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 5rem !important;
+    height: 5rem !important;
+    margin: 0 auto 0.65rem !important;
+  }
+
+  .profile-show .user.home.profile > .primary.header.module p.icon img {
+    width: 5rem !important;
+    height: 5rem !important;
+    border-radius: 17px !important;
+  }
+
+  .profile-show .user.home.profile > .primary.header.module ul.navigation.actions,
+  .profile-show .user.home.profile > ul.navigation.actions {
+    justify-content: center !important;
+  }
+
+  .profile-show .user.home.profile dl.meta {
+    grid-template-columns: 1fr !important;
+    gap: 0.12rem !important;
+  }
+
+  .profile-show .user.home.profile dl.meta dd {
+    margin-bottom: 0.6rem !important;
+  }
+
+  .stats-index dl.statistics.meta {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    grid-template-rows: none !important;
+    grid-auto-flow: row !important;
+    gap: 0 !important;
+    overflow: visible !important;
+  }
+
+  .stats-index dl.statistics.meta dt,
+  .stats-index dl.statistics.meta dd {
+    padding: 0.45rem 0.35rem !important;
+    border-bottom: 1px solid var(--m-line-soft) !important;
+    text-align: left !important;
+  }
+
+  .stats-index dl.statistics.meta dd {
+    text-align: right !important;
+  }
+
+  .stats-index ul.statistics.index > li.fandom.listbox > ul.index {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .stats-index .statistics.chart {
+    min-height: 15rem !important;
+    padding: 0.35rem !important;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  #inbox-form > fieldset.actions ul,
+  .stats-index ol.year.actions,
+  .stats-index .actions.module ul.actions {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    padding-bottom: 0.15rem !important;
+  }
+
+  #inbox-form > fieldset.actions li,
+  .stats-index ol.year.actions li,
+  .stats-index .actions.module ul.actions li {
+    flex: 0 0 auto !important;
+  }
+}
+
+/* Dark-mode refinements for the newly themed components. */
+@media (prefers-color-scheme: dark) {
+  #inbox-form li.comment.unread {
+    border-color: rgba(41, 151, 255, 0.34) !important;
+  }
+
+  #inbox-form li.comment ul.actions span.unread {
+    border-color: rgba(41, 151, 255, 0.3) !important;
+  }
+
+  .profile-show .user.home.profile > .primary.header.module {
+    background: linear-gradient(
+      125deg,
+      rgba(41, 151, 255, 0.13),
+      rgba(var(--m-card), 0.94) 58%
+    ) !important;
+  }
+}
+
+body:is(.reversi, .dark) #inbox-form li.comment.unread {
+  border-color: rgba(41, 151, 255, 0.34) !important;
+}
+
+body:is(.reversi, .dark) #inbox-form li.comment ul.actions span.unread {
+  border-color: rgba(41, 151, 255, 0.3) !important;
+}
+
+body:is(.reversi, .dark) .profile-show .user.home.profile > .primary.header.module,
+body:is(.reversi, .dark).profile-show .user.home.profile > .primary.header.module {
+  background: linear-gradient(
+    125deg,
+    rgba(41, 151, 255, 0.13),
+    rgba(var(--m-card), 0.94) 58%
+  ) !important;
+}

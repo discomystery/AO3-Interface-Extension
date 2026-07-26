@@ -1,0 +1,1797 @@
+/*
+ * AO3 Advanced Marker — Module 30
+ */
+
+/* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+
+.blurb :is(a, button, input):focus-visible,
+.ao3-star:focus-visible {
+  outline: 3px solid rgba(var(--marker-rgb), 0.36) !important;
+  outline-offset: 2px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  li:is(.work, .reading, .bookmark).blurb,
+  .blurb :is(a, button, input),
+  .ao3-star {
+    transition: none !important;
+  }
+}
+/* ============================================================
+   COMPACT UTILITY CONTROLS + DROPDOWN STACKING FIX
+   ============================================================ */
+
+/* Marker Tools is a utility strip, so keep its actions visually lighter
+   and more compact than primary form controls. */
+.marker-data-sync-container {
+  gap: 0.42rem !important;
+  padding: 0.58rem 0.68rem !important;
+  border-radius: 12px !important;
+}
+
+.marker-data-sync-container .action {
+  min-height: 1.55rem !important;
+  padding: 0.2rem 0.48rem !important;
+
+  border-radius: 7px !important;
+
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  line-height: 1.1 !important;
+}
+
+.marker-data-sync-container .action:is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+}
+
+/* History / Marked for Later / Clear Entire History navigation.
+   Use compact rounded rectangles rather than large pills. */
+#main.readings-index > ul.navigation.actions,
+#main.readings-index > .navigation.actions {
+  gap: 0.3rem !important;
+  margin: 0.6rem 0 0.85rem !important;
+}
+
+#main.readings-index > ul.navigation.actions :is(a, .current, .disabled),
+#main.readings-index > .navigation.actions :is(a, .current, .disabled) {
+  min-height: 1.6rem !important;
+  padding: 0.22rem 0.52rem !important;
+
+  border-radius: 7px !important;
+
+  font-size: 0.7rem !important;
+  font-weight: 580 !important;
+  line-height: 1.1 !important;
+}
+
+/* Keep the active History tab understated and consistent with the cards. */
+#main.readings-index > ul.navigation.actions .current,
+#main.readings-index > .navigation.actions .current {
+  background: var(--m-control-active) !important;
+  border-color: rgba(0, 102, 204, 0.28) !important;
+  color: var(--m-link) !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #main.readings-index > ul.navigation.actions .current,
+  #main.readings-index > .navigation.actions .current {
+    border-color: rgba(41, 151, 255, 0.34) !important;
+  }
+}
+
+body:is(.reversi, .dark) #main.readings-index > ul.navigation.actions .current,
+body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
+  border-color: rgba(41, 151, 255, 0.34) !important;
+}
+
+/* Header dropdowns must sit above the dashboard/profile navigation and
+   every blurred card surface. */
+#header {
+  position: relative !important;
+  z-index: 10000 !important;
+  overflow: visible !important;
+  isolation: isolate !important;
+}
+
+#header nav,
+#header #greeting,
+#header .primary,
+#header .navigation,
+#header .dropdown {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+#header .dropdown {
+  z-index: 10001 !important;
+}
+
+#header .menu.dropdown-menu,
+#header .dropdown-menu,
+#header .dropdown > .menu {
+  position: absolute !important;
+  z-index: 11000 !important;
+  isolation: isolate !important;
+}
+
+/* Prevent lower page regions from creating a competing layer above menus. */
+#inner.wrapper,
+#dashboard,
+#main {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* Slightly tighter utility controls on phones while preserving touchability. */
+@media only screen and (max-width: 48rem) {
+  .marker-data-sync-container {
+    gap: 0.35rem !important;
+    padding: 0.52rem 0.58rem !important;
+  }
+
+  .marker-data-sync-container .action {
+    min-height: 1.65rem !important;
+    padding: 0.24rem 0.5rem !important;
+    font-size: 0.69rem !important;
+  }
+
+  #main.readings-index > ul.navigation.actions :is(a, .current, .disabled),
+  #main.readings-index > .navigation.actions :is(a, .current, .disabled) {
+    min-height: 1.7rem !important;
+    padding: 0.26rem 0.54rem !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+/* ============================================================
+   FINAL UI POLISH — COMPACT MARKER BAR, FOOTER COLORS,
+   ACCOUNT MENU + DASHBOARD
+   ============================================================ */
+
+/* Marker Tools: reconfigure as a true compact utility toolbar.
+   These selectors intentionally outrank the generic AO3 action rules. */
+#main .marker-data-sync-container {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 0.28rem 0.42rem !important;
+
+  width: fit-content !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
+  margin: 0.65rem 0 0.85rem !important;
+  padding: 0.4rem 0.5rem !important;
+
+  background: rgba(var(--m-card), 0.7) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.035) !important;
+}
+
+#main .marker-data-sync-container > span {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 18px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  color: var(--m-text-3) !important;
+  font-size: 0.64rem !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+#main .marker-data-sync-container > span:first-child {
+  color: var(--m-text-2) !important;
+  font-weight: 650 !important;
+}
+
+#main .marker-data-sync-container > span:nth-child(2) {
+  color: var(--m-read) !important;
+  font-weight: 650 !important;
+}
+
+#main .marker-data-sync-container > a.action,
+#main .marker-data-sync-container > a.action:link,
+#main .marker-data-sync-container > a.action:visited {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+
+  margin: 0 !important;
+  padding: 0 0.42rem !important;
+
+  background: var(--m-chip) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.61rem !important;
+  font-weight: 600 !important;
+  line-height: 18px !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#main .marker-data-sync-container > a.action:is(:hover, :focus) {
+  transform: none !important;
+  background: var(--m-control-hover) !important;
+  border-color: rgba(0, 102, 204, 0.28) !important;
+  color: var(--m-link) !important;
+  box-shadow: none !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+    border-color: rgba(41, 151, 255, 0.34) !important;
+  }
+}
+
+body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+  border-color: rgba(41, 151, 255, 0.34) !important;
+}
+
+/* Footer: neutralize AO3's inherited white text and dark module fills. */
+#footer,
+#footer .region,
+#footer .module,
+#footer .group,
+#footer .navigation,
+#footer ul,
+#footer ol,
+#footer li,
+#footer dl,
+#footer dt,
+#footer dd,
+#footer p,
+#footer span,
+#footer small,
+#footer address,
+#footer .heading,
+#footer h1,
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6 {
+  background: transparent !important;
+  background-image: none !important;
+  border-color: var(--m-line-soft) !important;
+  box-shadow: none !important;
+  color: var(--m-text-3) !important;
+  text-shadow: none !important;
+}
+
+#footer .heading,
+#footer h1,
+#footer h2,
+#footer h3,
+#footer h4,
+#footer h5,
+#footer h6,
+#footer strong,
+#footer b {
+  color: var(--m-text-2) !important;
+}
+
+#footer a,
+#footer a:link,
+#footer a:visited,
+#footer .actions a,
+#footer .navigation a {
+  background: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#footer a:is(:hover, :focus),
+#footer .actions a:is(:hover, :focus),
+#footer .navigation a:is(:hover, :focus) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+/* Account trigger: a compact glass pill instead of an unstyled text link. */
+#header #greeting .dropdown-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+
+  min-height: 30px !important;
+  padding: 0.28rem 0.62rem !important;
+
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+}
+
+#header #greeting .dropdown-toggle:is(:hover, :focus) {
+  background: var(--m-control-hover) !important;
+  border-color: rgba(0, 102, 204, 0.26) !important;
+  color: var(--m-link) !important;
+}
+
+/* Account dropdown: card-like, evenly spaced, with restrained icons. */
+#header #greeting .menu,
+#header #greeting .dropdown-menu {
+  min-width: 15rem !important;
+  margin-top: 0.42rem !important;
+  padding: 0.48rem !important;
+
+  background:
+    linear-gradient(145deg, rgba(var(--m-card), 0.98), rgba(var(--m-card), 0.9)) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.12),
+    0 24px 55px rgba(0, 0, 0, 0.13) !important;
+
+  color: var(--m-text-2) !important;
+  overflow: hidden !important;
+}
+
+#header #greeting .menu li,
+#header #greeting .dropdown-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#header #greeting .menu li + li,
+#header #greeting .dropdown-menu li + li {
+  margin-top: 0.12rem !important;
+}
+
+#header #greeting .menu a,
+#header #greeting .dropdown-menu a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.55rem !important;
+
+  min-height: 32px !important;
+  padding: 0.38rem 0.55rem !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.76rem !important;
+  font-weight: 520 !important;
+  line-height: 1.2 !important;
+}
+
+#header #greeting .menu a::before,
+#header #greeting .dropdown-menu a::before {
+  content: "○";
+  display: inline-flex !important;
+  flex: 0 0 1.05rem !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+
+  color: var(--m-text-3) !important;
+  font-size: 0.76rem !important;
+  line-height: 1 !important;
+}
+
+#header #greeting a[href*="/subscriptions"]::before { content: "◎"; }
+#header #greeting a[href*="/works"]::before { content: "✦"; }
+#header #greeting a[href*="/bookmarks"]::before { content: "◇"; }
+#header #greeting a[href*="/readings"]::before { content: "◷"; }
+#header #greeting a[href*="/preferences"]::before { content: "⚙"; }
+#header #greeting a[href*="/logout"]::before { content: "↪"; }
+
+#header #greeting .menu a:is(:hover, :focus),
+#header #greeting .dropdown-menu a:is(:hover, :focus) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+}
+
+#header #greeting .menu a:is(:hover, :focus)::before,
+#header #greeting .dropdown-menu a:is(:hover, :focus)::before {
+  color: var(--m-link) !important;
+}
+
+#header #greeting a[href*="/logout"] {
+  margin-top: 0.32rem !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 0 9px 9px !important;
+  color: var(--m-dnr) !important;
+}
+
+#header #greeting a[href*="/logout"]::before {
+  color: var(--m-dnr) !important;
+}
+
+/* Dashboard/profile navigation: match the same compact card language. */
+#dashboard {
+  padding: 0.5rem !important;
+  border-radius: 16px !important;
+}
+
+#dashboard .navigation,
+.dashboard .navigation {
+  display: grid !important;
+  gap: 0.12rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#dashboard .navigation li,
+.dashboard .navigation li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#dashboard .navigation a,
+#dashboard .navigation .current,
+.dashboard .navigation a,
+.dashboard .navigation .current {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 31px !important;
+  padding: 0.38rem 0.58rem !important;
+
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.76rem !important;
+  line-height: 1.2 !important;
+  text-decoration: none !important;
+}
+
+#dashboard .navigation a:is(:hover, :focus),
+.dashboard .navigation a:is(:hover, :focus) {
+  background: var(--m-chip) !important;
+  border-color: var(--m-line-soft) !important;
+  color: var(--m-link) !important;
+}
+
+#dashboard .navigation .current,
+.dashboard .navigation .current {
+  background: var(--m-control-active) !important;
+  border-color: rgba(0, 102, 204, 0.22) !important;
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  #header #greeting .dropdown-toggle:is(:hover, :focus),
+  #dashboard .navigation .current,
+  .dashboard .navigation .current {
+    border-color: rgba(41, 151, 255, 0.3) !important;
+  }
+}
+
+body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus),
+body:is(.reversi, .dark) #dashboard .navigation .current,
+body:is(.reversi, .dark) .dashboard .navigation .current {
+  border-color: rgba(41, 151, 255, 0.3) !important;
+}
+
+@media only screen and (max-width: 48rem) {
+  #main .marker-data-sync-container {
+    width: 100% !important;
+    gap: 0.3rem !important;
+    padding: 0.42rem 0.48rem !important;
+  }
+
+  #main .marker-data-sync-container > a.action,
+  #main .marker-data-sync-container > a.action:link,
+  #main .marker-data-sync-container > a.action:visited {
+    height: 22px !important;
+    min-height: 22px !important;
+    max-height: 22px !important;
+    padding-inline: 0.46rem !important;
+    font-size: 0.63rem !important;
+  }
+
+  #header #greeting .menu,
+  #header #greeting .dropdown-menu {
+    min-width: min(15rem, calc(100vw - 1.2rem)) !important;
+  }
+}
+
+/* ============================================================
+   FINAL HEADER + DASHBOARD NAVIGATION REFINEMENT
+   ============================================================ */
+
+/* Keep the user controls in one neat, consistent row. This covers the
+   logged-in Hi/Post/Log Out controls and the logged-out Log In control. */
+#header #greeting {
+  overflow: visible !important;
+}
+
+#header #greeting > ul.user.navigation.actions {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.3rem !important;
+
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+}
+
+#header #greeting > ul.user.navigation.actions > li {
+  position: relative !important;
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#header #greeting > ul.user.navigation.actions > li > a,
+#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle,
+#header #greeting a[href*="/users/login"],
+#header #greeting a[href*="/users/logout"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.3rem !important;
+
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 29px !important;
+  max-height: 29px !important;
+
+  margin: 0 !important;
+  padding: 0.3rem 0.62rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
+#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
+#header #greeting a[href*="/users/login"]:is(:hover, :focus),
+#header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: rgba(0, 102, 204, 0.28) !important;
+  color: var(--m-link) !important;
+}
+
+/* Log Out remains visually consistent with the other top controls instead
+   of inheriting the red treatment used inside the account dropdown. */
+#header #greeting > ul.user.navigation.actions > li > a[href*="/logout"] {
+  color: var(--m-text-2) !important;
+}
+
+/* Dropdowns remain vertical cards; only the top-level triggers are inline. */
+#header #greeting > ul.user.navigation.actions > li > .menu,
+#header #greeting > ul.user.navigation.actions > li > .dropdown-menu {
+  display: none;
+}
+
+#header #greeting > ul.user.navigation.actions > li:hover > .menu,
+#header #greeting > ul.user.navigation.actions > li:hover > .dropdown-menu,
+#header #greeting > ul.user.navigation.actions > li:focus-within > .menu,
+#header #greeting > ul.user.navigation.actions > li:focus-within > .dropdown-menu,
+#header #greeting > ul.user.navigation.actions > li.open > .menu,
+#header #greeting > ul.user.navigation.actions > li.open > .dropdown-menu {
+  display: block !important;
+}
+
+/* Desktop dashboard: a true vertical menu. Each label stays on one line,
+   fills the available sidebar width, and is separated by a quiet divider. */
+#dashboard {
+  box-sizing: border-box !important;
+  min-width: 12rem !important;
+}
+
+#dashboard .navigation,
+.dashboard .navigation {
+  display: block !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#dashboard .navigation li,
+.dashboard .navigation li {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+}
+
+#dashboard .navigation li:last-child,
+.dashboard .navigation li:last-child {
+  border-bottom: 0 !important;
+}
+
+#dashboard .navigation a,
+#dashboard .navigation .current,
+.dashboard .navigation a,
+.dashboard .navigation .current {
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 31px !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.55rem !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  text-decoration: none !important;
+}
+
+#dashboard .navigation a:is(:hover, :focus),
+.dashboard .navigation a:is(:hover, :focus) {
+  background: var(--m-chip) !important;
+  color: var(--m-link) !important;
+}
+
+#dashboard .navigation .current,
+.dashboard .navigation .current {
+  background: var(--m-control-active) !important;
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+}
+
+/* Empty AO3 flash containers should occupy no space and draw no card. */
+.flash:empty,
+.notice:empty,
+.caution:empty,
+.error:empty,
+.alert:empty,
+.comment_error:empty,
+.required.notice:empty {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Mobile dashboard: use the entire viewport width and become a single-row
+   scrolling strip. Items never wrap internally or onto a second row. */
+@media only screen and (max-width: 48rem) {
+  #dashboard {
+    float: none !important;
+    clear: both !important;
+    box-sizing: border-box !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0 0 0.8rem !important;
+    padding: 0.35rem !important;
+  }
+
+  #dashboard .navigation,
+  .dashboard .navigation {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 0 !important;
+
+    scrollbar-width: thin !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  #dashboard .navigation li,
+  .dashboard .navigation li {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+
+    border-bottom: 0 !important;
+    border-right: 1px solid var(--m-line-soft) !important;
+  }
+
+  #dashboard .navigation li:last-child,
+  .dashboard .navigation li:last-child {
+    border-right: 0 !important;
+  }
+
+  #dashboard .navigation a,
+  #dashboard .navigation .current,
+  .dashboard .navigation a,
+  .dashboard .navigation .current {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    min-height: 30px !important;
+    padding: 0.38rem 0.58rem !important;
+
+    border-radius: 6px !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions {
+    gap: 0.22rem !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    scrollbar-width: none !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions > li > a,
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle,
+  #header #greeting a[href*="/users/login"],
+  #header #greeting a[href*="/users/logout"] {
+    min-height: 28px !important;
+    max-height: 28px !important;
+    padding: 0.28rem 0.5rem !important;
+    font-size: 0.71rem !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+    border-color: rgba(41, 151, 255, 0.32) !important;
+  }
+}
+
+body:is(.reversi, .dark)
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
+body:is(.reversi, .dark)
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
+body:is(.reversi, .dark)
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
+body:is(.reversi, .dark)
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  border-color: rgba(41, 151, 255, 0.32) !important;
+}
+
+/* ============================================================
+   SEARCH, PROFILE AVATAR + DESKTOP HISTORY NAVIGATION
+   ============================================================ */
+
+/* Header search: one compact joined control rather than an input and
+   unrelated pill button. */
+#header li.search {
+  display: flex !important;
+  flex: 1 1 15rem !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+
+  width: auto !important;
+  min-width: 11rem !important;
+  max-width: 22rem !important;
+
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#header li.search form.search,
+#header li.search form.search fieldset,
+#header li.search form.search p {
+  display: flex !important;
+  flex: 1 1 auto !important;
+  align-items: stretch !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#header li.search form.search p {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+#header li.search #site_search,
+#header li.search input[type="text"],
+#header li.search input[type="search"] {
+  flex: 1 1 auto !important;
+
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+
+  margin: 0 !important;
+  padding: 0 0.7rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-right: 0 !important;
+  border-radius: 9px 0 0 9px !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.025) !important;
+
+  color: var(--m-text) !important;
+  font-size: 0.75rem !important;
+  font-weight: 450 !important;
+  line-height: 30px !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease !important;
+}
+
+#header li.search #site_search:is(:hover, :focus),
+#header li.search input[type="text"]:is(:hover, :focus),
+#header li.search input[type="search"]:is(:hover, :focus) {
+  background: var(--m-surface-solid) !important;
+  border-color: rgba(0, 102, 204, 0.42) !important;
+  box-shadow:
+    inset 0 1px 1px rgba(0, 0, 0, 0.025),
+    0 0 0 3px var(--m-focus-ring) !important;
+  outline: 0 !important;
+}
+
+#header li.search .submit.actions {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: stretch !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#header li.search .submit.actions input[type="submit"],
+#header li.search input.button[type="submit"],
+#header li.search button {
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 3.5rem !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  max-height: 30px !important;
+
+  margin: 0 !important;
+  padding: 0 0.68rem !important;
+
+  background: var(--m-control-active) !important;
+  background-image: none !important;
+  border: 1px solid rgba(0, 102, 204, 0.28) !important;
+  border-radius: 0 9px 9px 0 !important;
+  box-shadow: none !important;
+
+  color: var(--m-link) !important;
+  font-size: 0.7rem !important;
+  font-weight: 650 !important;
+  line-height: 28px !important;
+  text-align: center !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease !important;
+}
+
+#header li.search .submit.actions input[type="submit"]:is(:hover, :focus),
+#header li.search input.button[type="submit"]:is(:hover, :focus),
+#header li.search button:is(:hover, :focus) {
+  transform: none !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link-hover) !important;
+  outline: 0 !important;
+}
+
+#header li.search .tip {
+  z-index: 12000 !important;
+  top: calc(100% + 0.38rem) !important;
+  right: 0 !important;
+  left: auto !important;
+
+  max-width: min(24rem, calc(100vw - 1.5rem)) !important;
+  padding: 0.48rem 0.58rem !important;
+
+  background: rgba(var(--m-card), 0.98) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--m-shadow) !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.66rem !important;
+  line-height: 1.35 !important;
+  text-shadow: none !important;
+}
+
+/* User image: style it as an avatar control belonging to the same account
+   group as Hi/Post/Log Out. */
+#header #greeting > p.icon {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 34px !important;
+  height: 34px !important;
+
+  margin: 0 0 0 0.38rem !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#header #greeting > p.icon > a {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 34px !important;
+  height: 34px !important;
+  padding: 2px !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.09) !important;
+
+  overflow: hidden !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    box-shadow 140ms ease,
+    transform 140ms ease !important;
+}
+
+#header #greeting > p.icon > a:is(:hover, :focus) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: rgba(0, 102, 204, 0.42) !important;
+  box-shadow:
+    0 3px 9px rgba(0, 0, 0, 0.12),
+    0 0 0 3px var(--m-focus-ring) !important;
+  outline: 0 !important;
+}
+
+#header #greeting > p.icon img.icon,
+#header #greeting > p.icon img {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 28px !important;
+  min-width: 28px !important;
+  max-width: 28px !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  max-height: 28px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  object-fit: cover !important;
+  object-position: center !important;
+
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+
+/* History / Marked for Later / Clear Entire History: keep desktop in one
+   horizontal utility row, regardless of generic AO3 navigation list widths. */
+@media only screen and (min-width: 48.01rem) {
+  #main.readings-index > ul.navigation.actions,
+  #main.readings-index > .navigation.actions {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.3rem !important;
+
+    box-sizing: border-box !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    overflow: visible !important;
+  }
+
+  #main.readings-index > ul.navigation.actions > li,
+  #main.readings-index > .navigation.actions > li {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #main.readings-index > ul.navigation.actions > li > :is(a, .current, .disabled),
+  #main.readings-index > .navigation.actions > li > :is(a, .current, .disabled) {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+
+    white-space: nowrap !important;
+  }
+}
+
+/* Compact responsive search/avatar treatment. */
+@media only screen and (max-width: 48rem) {
+  #header li.search {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    margin: 0.38rem 0 0 !important;
+  }
+
+  #header li.search #site_search,
+  #header li.search input[type="text"],
+  #header li.search input[type="search"] {
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    font-size: 0.78rem !important;
+    line-height: 32px !important;
+  }
+
+  #header li.search .submit.actions input[type="submit"],
+  #header li.search input.button[type="submit"],
+  #header li.search button {
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    line-height: 30px !important;
+  }
+
+  #header #greeting > p.icon,
+  #header #greeting > p.icon > a {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  #header #greeting > p.icon img.icon,
+  #header #greeting > p.icon img {
+    width: 24px !important;
+    min-width: 24px !important;
+    max-width: 24px !important;
+    height: 24px !important;
+    min-height: 24px !important;
+    max-height: 24px !important;
+  }
+
+  #main.readings-index > ul.navigation.actions,
+  #main.readings-index > .navigation.actions {
+    flex-flow: row nowrap !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scrollbar-width: none !important;
+  }
+
+  #main.readings-index > ul.navigation.actions::-webkit-scrollbar,
+  #main.readings-index > .navigation.actions::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #main.readings-index > ul.navigation.actions > li,
+  #main.readings-index > .navigation.actions > li {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #header li.search #site_search:is(:hover, :focus),
+  #header li.search input[type="text"]:is(:hover, :focus),
+  #header li.search input[type="search"]:is(:hover, :focus),
+  #header #greeting > p.icon > a:is(:hover, :focus) {
+    border-color: rgba(41, 151, 255, 0.38) !important;
+  }
+
+  #header li.search .submit.actions input[type="submit"],
+  #header li.search input.button[type="submit"],
+  #header li.search button {
+    border-color: rgba(41, 151, 255, 0.30) !important;
+  }
+}
+
+body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus),
+body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus),
+body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus),
+body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus) {
+  border-color: rgba(41, 151, 255, 0.38) !important;
+}
+
+body:is(.reversi, .dark) #header li.search .submit.actions input[type="submit"],
+body:is(.reversi, .dark) #header li.search input.button[type="submit"],
+body:is(.reversi, .dark) #header li.search button {
+  border-color: rgba(41, 151, 255, 0.30) !important;
+}
+
+/* ============================================================
+   FINAL HEADER HEIGHT + NAVIGATION FLOW CORRECTIONS
+   ============================================================ */
+
+/* The History subnavigation is deliberately a one-row grid. Reset floats,
+   clears, and inherited widths on every level so AO3 cannot stack it. */
+#main.readings-index > ul.navigation.actions[role="navigation"] {
+  display: grid !important;
+  grid-auto-flow: column !important;
+  grid-auto-columns: max-content !important;
+  align-items: center !important;
+  justify-content: start !important;
+  gap: 0.3rem !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+
+  margin: 0.7rem 0 1rem !important;
+  padding: 0 !important;
+
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  scrollbar-width: thin !important;
+}
+
+#main.readings-index > ul.navigation.actions[role="navigation"] > li {
+  position: static !important;
+  display: block !important;
+  float: none !important;
+  clear: none !important;
+
+  box-sizing: border-box !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > a,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .current,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .disabled {
+  display: inline-flex !important;
+  width: max-content !important;
+  min-width: max-content !important;
+  max-width: none !important;
+  white-space: nowrap !important;
+}
+
+/* Fully constrain the search control, including every AO3 wrapper. The prior
+   version shortened the input but left fieldset/p wrappers free to retain
+   AO3's taller line box. */
+#header li.search,
+#header li.search form.search,
+#header li.search form.search > fieldset,
+#header li.search form.search > fieldset > p,
+#header li.search .submit.actions {
+  box-sizing: border-box !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  line-height: 1 !important;
+}
+
+#header li.search {
+  align-items: center !important;
+}
+
+#header li.search form.search,
+#header li.search form.search > fieldset,
+#header li.search form.search > fieldset > p {
+  align-items: center !important;
+}
+
+#header li.search #site_search,
+#header li.search input[type="text"],
+#header li.search input[type="search"] {
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  padding: 0 0.55rem !important;
+  border-radius: 7px 0 0 7px !important;
+  font-size: 0.7rem !important;
+  line-height: 22px !important;
+}
+
+#header li.search .submit.actions input[type="submit"],
+#header li.search input.button[type="submit"],
+#header li.search button {
+  min-width: 3rem !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  padding: 0 0.52rem !important;
+  border-radius: 0 7px 7px 0 !important;
+  font-size: 0.65rem !important;
+  line-height: 22px !important;
+}
+
+/* Lower Hi/Post menus so the card begins beneath the trigger rather than
+   touching or visually overlapping it. */
+#header #greeting > ul.user.navigation.actions > li > .menu,
+#header #greeting > ul.user.navigation.actions > li > .dropdown-menu {
+  position: absolute !important;
+  top: calc(100% + 0.62rem) !important;
+  inset-block-start: calc(100% + 0.62rem) !important;
+  bottom: auto !important;
+  margin-top: 0 !important;
+}
+
+/* Add breathing room above the dashboard once the layout begins to compress.
+   Desktop retains the tighter sidebar alignment. */
+@media only screen and (max-width: 62rem) {
+  #dashboard {
+    margin-top: 0.55rem !important;
+    padding-top: 0.5rem !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  #header li.search,
+  #header li.search form.search,
+  #header li.search form.search > fieldset,
+  #header li.search form.search > fieldset > p,
+  #header li.search .submit.actions {
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+  }
+
+  #header li.search #site_search,
+  #header li.search input[type="text"],
+  #header li.search input[type="search"] {
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    font-size: 0.72rem !important;
+    line-height: 24px !important;
+  }
+
+  #header li.search .submit.actions input[type="submit"],
+  #header li.search input.button[type="submit"],
+  #header li.search button {
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    line-height: 24px !important;
+  }
+
+  #dashboard {
+    margin-top: 0.65rem !important;
+    padding-top: 0.48rem !important;
+  }
+}
+
+/* ============================================================
+   DASHBOARD, SITE SEARCH SPACING + TYPOGRAPHY REFINEMENT
+   ============================================================ */
+
+/* Use the same system/SF stack everywhere AO3 might otherwise fall back to
+   Tahoma. Preserve monospace faces for code and preformatted text. */
+:root {
+  --m-font-ui:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Text",
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+html,
+body,
+body *:not(code):not(pre):not(kbd):not(samp) {
+  font-family: var(--m-font-ui) !important;
+}
+
+/* Reconfigure the dashboard as a quiet bordered surface rather than a
+   shadowed floating card. This avoids shadow clipping and stacking-context
+   conflicts while retaining the same visual language as the work cards. */
+#dashboard {
+  position: relative !important;
+  z-index: auto !important;
+  overflow: visible !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#dashboard .navigation,
+.dashboard .navigation {
+  position: relative !important;
+  z-index: auto !important;
+
+  background:
+    linear-gradient(
+      122deg,
+      rgba(var(--m-card), 0.78),
+      var(--m-surface)
+    ) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 13px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+}
+
+/* Preserve the clean dividers and let the panel itself provide the shape. */
+#dashboard .navigation li,
+.dashboard .navigation li {
+  background: transparent !important;
+}
+
+#dashboard .navigation a,
+#dashboard .navigation .current,
+.dashboard .navigation a,
+.dashboard .navigation .current {
+  border-radius: 0 !important;
+}
+
+#dashboard .navigation li:first-child > :is(a, .current),
+.dashboard .navigation li:first-child > :is(a, .current) {
+  border-radius: 12px 12px 0 0 !important;
+}
+
+#dashboard .navigation li:last-child > :is(a, .current),
+.dashboard .navigation li:last-child > :is(a, .current) {
+  border-radius: 0 0 12px 12px !important;
+}
+
+/* Give the primary navigation a predictable flex layout. The search remains
+   compact but receives a true gutter instead of colliding with About/Search. */
+#header nav[aria-label="Site"] {
+  position: relative !important;
+  z-index: 20 !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
+  overflow: visible !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions {
+  position: relative !important;
+  z-index: 20 !important;
+
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  gap: 0.24rem !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li {
+  float: none !important;
+  clear: none !important;
+  flex: 0 0 auto !important;
+  width: auto !important;
+  margin: 0 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown {
+  position: relative !important;
+  z-index: 30 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.search {
+  position: relative !important;
+  z-index: 10 !important;
+
+  flex: 0 1 19rem !important;
+  width: auto !important;
+  min-width: 13rem !important;
+  max-width: 20rem !important;
+
+  margin-left: auto !important;
+  padding-left: 0.7rem !important;
+  border-left: 1px solid var(--m-line-soft) !important;
+}
+
+/* At compact desktop/tablet widths, move the search to its own row. This
+   keeps the excellent short control while preventing it from pressing into
+   the four site-menu triggers. */
+@media only screen and (max-width: 72rem) {
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.search {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    margin: 0.42rem 0 0 !important;
+    padding-left: 0 !important;
+    border-left: 0 !important;
+  }
+
+  #header li.search form.search {
+    width: min(100%, 24rem) !important;
+    margin-left: auto !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  /* The horizontal dashboard panel has its own rounded endpoints. */
+  #dashboard .navigation,
+  .dashboard .navigation {
+    border-radius: 11px !important;
+  }
+
+  #dashboard .navigation li:first-child > :is(a, .current),
+  .dashboard .navigation li:first-child > :is(a, .current),
+  #dashboard .navigation li:last-child > :is(a, .current),
+  .dashboard .navigation li:last-child > :is(a, .current) {
+    border-radius: 0 !important;
+  }
+
+  #header nav[aria-label="Site"] {
+    margin-top: 0.58rem !important;
+  }
+
+  #header li.search form.search {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #dashboard .navigation,
+  .dashboard .navigation {
+    background:
+      linear-gradient(
+        122deg,
+        rgba(var(--m-card), 0.88),
+        var(--m-surface)
+      ) !important;
+    border-color: var(--m-line) !important;
+  }
+}
+
+body:is(.reversi, .dark) #dashboard .navigation,
+body:is(.reversi, .dark) .dashboard .navigation {
+  background:
+    linear-gradient(
+      122deg,
+      rgba(var(--m-card), 0.88),
+      var(--m-surface)
+    ) !important;
+  border-color: var(--m-line) !important;
+}
+
+
+/* ============================================================
+   FINAL HISTORY NAV CLIPPING FIX
+   ============================================================ */
+
+/* Give the compact History navigation its own vertical breathing room.
+   AO3's native navigation line box and the prior overflow rule could crop
+   the active span even though the row itself was correctly horizontal. */
+#main.readings-index > ul.navigation.actions[role="navigation"] {
+  align-content: center !important;
+  min-height: 2.15rem !important;
+  padding-block: 0.22rem !important;
+}
+
+#main.readings-index > ul.navigation.actions[role="navigation"] > li,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > a,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .current,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .disabled {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+}
+
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > a,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .current,
+#main.readings-index > ul.navigation.actions[role="navigation"] > li > .disabled {
+  box-sizing: border-box !important;
+  line-height: 1.25 !important;
+}
+
+/* Desktop does not need a scrolling viewport, so leave every edge visible. */
+@media only screen and (min-width: 48.01rem) {
+  #main.readings-index > ul.navigation.actions[role="navigation"] {
+    overflow: visible !important;
+  }
+}
+
+/* On narrow screens retain horizontal scrolling, but include enough internal
+   space that rounded borders and focus outlines are not cut off. */
+@media only screen and (max-width: 48rem) {
+  #main.readings-index > ul.navigation.actions[role="navigation"] {
+    min-height: 2.35rem !important;
+    padding: 0.28rem 0.18rem 0.38rem !important;
+    scroll-padding-inline: 0.18rem !important;
+  }
+}
+
+/* ============================================================
+   SEARCH TOOLTIP + STABLE PROFILE AVATAR
+   ============================================================ */
+
+/* AO3 normally parks the search tooltip far off-screen until the input has
+   focus. Earlier positioning rules brought it back on-screen permanently.
+   Keep its themed appearance, but restore a real hidden-by-default state. */
+#header li.search #site_search_tooltip,
+#header li.search [role="tooltip"].tip {
+  position: absolute !important;
+  z-index: 12000 !important;
+  top: calc(100% + 0.38rem) !important;
+  right: 0 !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  display: block !important;
+  max-width: min(24rem, calc(100vw - 1.5rem)) !important;
+
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: translateY(-0.22rem) !important;
+
+  transition:
+    opacity 120ms ease,
+    visibility 0s linear 120ms,
+    transform 120ms ease !important;
+}
+
+#header li.search #site_search:focus + #site_search_tooltip,
+#header li.search input[type="text"]:focus + [role="tooltip"],
+#header li.search input[type="search"]:focus + [role="tooltip"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: none !important;
+  transform: translateY(0) !important;
+  transition-delay: 0s !important;
+}
+
+/* Make the account controls and profile image one predictable flex row.
+   The avatar gets a fixed slot instead of relying on AO3's native floats. */
+#header #greeting {
+  display: flex !important;
+  flex-flow: row nowrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.52rem !important;
+
+  float: right !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  max-width: 100% !important;
+  margin-right: 0.375em !important;
+  overflow: visible !important;
+}
+
+#header #greeting > ul.user.navigation.actions {
+  order: 1 !important;
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+#header #greeting > p.icon {
+  order: 2 !important;
+  position: relative !important;
+  float: none !important;
+  clear: none !important;
+  flex: 0 0 32px !important;
+
+  box-sizing: border-box !important;
+  width: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+#header #greeting > p.icon > a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  box-sizing: border-box !important;
+  width: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  padding: 2px !important;
+}
+
+#header #greeting > p.icon img.icon,
+#header #greeting > p.icon img {
+  width: 26px !important;
+  min-width: 26px !important;
+  max-width: 26px !important;
+  height: 26px !important;
+  min-height: 26px !important;
+  max-height: 26px !important;
+}
+
+/* Compact layouts keep the avatar fixed at the edge while the account
+   controls consume the remaining width. Do not resize or reposition it at
+   each breakpoint. */
+@media only screen and (max-width: 62rem) {
+  #header #greeting {
+    gap: 0.42rem !important;
+  }
+}
+
+@media only screen and (max-width: 48rem) {
+  #header #greeting {
+    float: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding-inline: 0.2rem !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    overflow: visible !important;
+  }
+}
+
+@media only screen and (max-width: 30rem) {
+  #header #greeting {
+    gap: 0.3rem !important;
+    padding-inline: 0 !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions {
+    gap: 0.18rem !important;
+  }
+}
