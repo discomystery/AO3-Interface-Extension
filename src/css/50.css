@@ -37,6 +37,8 @@
 #main .actions button,
 #main .actions input[type="button"],
 #main .actions input[type="submit"],
+#main .actions .current,
+#main .actions [aria-current="page"],
 #main a.action,
 #main button.action,
 #main input.action {
