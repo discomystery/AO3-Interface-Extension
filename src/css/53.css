@@ -194,8 +194,10 @@
 
 #main.inbox-show #inbox-form > fieldset.actions a:hover,
 #main.inbox-show #inbox-form > fieldset.actions a:focus,
+#main.inbox-show #inbox-form > fieldset.actions a:active,
 #main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:hover,
-#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:focus {
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:focus,
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -207,7 +209,8 @@
 }
 
 #main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:hover,
-#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:focus {
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:focus,
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:active {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.42) !important;
   color: var(--m-dnr) !important;
@@ -371,7 +374,8 @@
 }
 
 #main.inbox-show #inbox-form li.comment h4.byline a:hover,
-#main.inbox-show #inbox-form li.comment h4.byline a:focus {
+#main.inbox-show #inbox-form li.comment h4.byline a:focus,
+#main.inbox-show #inbox-form li.comment h4.byline a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -436,7 +440,8 @@
 }
 
 #main.inbox-show #inbox-form li.comment blockquote.userstuff a:hover,
-#main.inbox-show #inbox-form li.comment blockquote.userstuff a:focus {
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:focus,
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:active {
   color: var(--m-link-hover) !important;
 }
 
@@ -501,6 +506,7 @@
 
 #main.inbox-show #inbox-form li.comment > ul.actions a:hover,
 #main.inbox-show #inbox-form li.comment > ul.actions a:focus,
+#main.inbox-show #inbox-form li.comment > ul.actions a:active,
 #main.inbox-show #inbox-form li.comment > ul.actions label:hover,
 #main.inbox-show #inbox-form li.comment > ul.actions label:focus-within {
   transform: none !important;
@@ -726,7 +732,8 @@
 }
 
 #main.inbox-show #inbox-filters dd.submit input[type="submit"]:hover,
-#main.inbox-show #inbox-filters dd.submit input[type="submit"]:focus {
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:focus,
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:active {
   transform: none !important;
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;

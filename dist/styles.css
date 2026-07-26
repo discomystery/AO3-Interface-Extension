@@ -452,7 +452,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   transition: color 140ms ease !important;
 }
 
-.blurb h4.heading > a:first-child:is(:hover, :focus) {
+.blurb h4.heading > a:first-child:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
 }
 
@@ -474,8 +474,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   color: var(--m-text-3) !important;
 }
 
-.blurb h4.heading a[rel="author"]:is(:hover, :focus),
-.blurb .header h5.fandoms a:is(:hover, :focus) {
+.blurb h4.heading a[rel="author"]:is(:hover, :focus, :active),
+.blurb .header h5.fandoms a:is(:hover, :focus, :active) {
   color: var(--m-link) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -610,21 +610,21 @@ li:is(.work, .reading, .bookmark).blurb:hover {
     color 120ms ease !important;
 }
 
-.blurb .marker-action-read:is(:hover, :focus) {
+.blurb .marker-action-read:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-read) !important;
   border-color: var(--m-read) !important;
   color: var(--m-on-accent) !important;
 }
 
-.blurb .marker-action-do-not-read:is(:hover, :focus) {
+.blurb .marker-action-do-not-read:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-dnr) !important;
   border-color: var(--m-dnr) !important;
   color: var(--m-on-accent) !important;
 }
 
-.blurb .marker-action-wtr:is(:hover, :focus) {
+.blurb .marker-action-wtr:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-wtr) !important;
   border-color: var(--m-wtr) !important;
@@ -871,7 +871,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   border-style: dashed !important;
 }
 
-.blurb ul.tags a.tag:is(:hover, :focus) {
+.blurb ul.tags a.tag:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-surface-solid) !important;
   border-color: rgba(var(--marker-rgb), 0.46) !important;
@@ -1033,8 +1033,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-shadow: none !important;
 }
 
-.blurb .user.module.group input[type="submit"]:is(:hover, :focus),
-.blurb .user.module.group .actions :is(a, button):is(:hover, :focus) {
+.blurb .user.module.group input[type="submit"]:is(:hover, :focus, :active),
+.blurb .user.module.group .actions :is(a, button):is(:hover, :focus, :active) {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.26) !important;
   color: var(--m-dnr) !important;
@@ -1148,7 +1148,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-shadow: none !important;
 }
 
-#header a:is(:hover, :focus),
+#header a:is(:hover, :focus, :active),
 #header .current {
   color: var(--m-link) !important;
 }
@@ -1163,9 +1163,9 @@ li:is(.work, .reading, .bookmark).blurb:hover {
     color 140ms ease !important;
 }
 
-#header .primary > li > a:is(:hover, :focus),
-#header #greeting > ul > li > a:is(:hover, :focus),
-#header #greeting .dropdown-toggle:is(:hover, :focus) {
+#header .primary > li > a:is(:hover, :focus, :active),
+#header #greeting > ul > li > a:is(:hover, :focus, :active),
+#header #greeting .dropdown-toggle:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -1198,8 +1198,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   border-radius: 8px !important;
 }
 
-#header .menu li a:is(:hover, :focus),
-#header .dropdown-menu li a:is(:hover, :focus) {
+#header .menu li a:is(:hover, :focus, :active),
+#header .dropdown-menu li a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -1234,8 +1234,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
     transform 140ms ease !important;
 }
 
-#header .search input[type="submit"]:is(:hover, :focus),
-#header .search button:is(:hover, :focus) {
+#header .search input[type="submit"]:is(:hover, :focus, :active),
+#header .search button:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -1259,9 +1259,9 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-shadow: none !important;
 }
 
-#dashboard a:is(:hover, :focus),
+#dashboard a:is(:hover, :focus, :active),
 #dashboard .current,
-.dashboard .navigation a:is(:hover, :focus),
+.dashboard .navigation a:is(:hover, :focus, :active),
 .dashboard .navigation .current {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
@@ -1287,6 +1287,10 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 #main > ul.navigation.actions li,
 #main > ol.navigation.actions li,
 .pagination.actions li {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  float: none !important;
+  width: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
@@ -1316,10 +1320,10 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-shadow: none !important;
 }
 
-#main > .navigation.actions a:is(:hover, :focus),
-#main > ul.navigation.actions a:is(:hover, :focus),
-#main > ol.navigation.actions a:is(:hover, :focus),
-.pagination.actions a:is(:hover, :focus) {
+#main > .navigation.actions a:is(:hover, :focus, :active),
+#main > ul.navigation.actions a:is(:hover, :focus, :active),
+#main > ol.navigation.actions a:is(:hover, :focus, :active),
+.pagination.actions a:is(:hover, :focus, :active) {
   background: var(--m-chip-strong) !important;
   border-color: var(--m-line) !important;
   color: var(--m-link) !important;
@@ -1440,8 +1444,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 }
 
 #main :is(.filters, .toggled form, .dynamic form, form:not(.ajax-remove))
-  :is(input[type="submit"], input[type="button"], button):is(:hover, :focus),
-.marker-data-sync-container .action:is(:hover, :focus) {
+  :is(input[type="submit"], input[type="button"], button):is(:hover, :focus, :active),
+.marker-data-sync-container .action:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -1475,7 +1479,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
     transform 140ms ease !important;
 }
 
-#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus) {
+#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -1620,7 +1624,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-decoration: none !important;
 }
 
-#bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus) {
+#bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus, :active) {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.3) !important;
   color: var(--m-dnr) !important;
@@ -1695,7 +1699,7 @@ p.character_counter span.value {
   text-shadow: none !important;
 }
 
-#footer a:is(:hover, :focus) {
+#footer a:is(:hover, :focus, :active) {
   color: var(--m-link) !important;
 }
 
@@ -2122,7 +2126,7 @@ body:is(.reversi, .dark) #header .logo {
   line-height: 1.1 !important;
 }
 
-.marker-data-sync-container .action:is(:hover, :focus) {
+.marker-data-sync-container .action:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
 }
 
@@ -2222,6 +2226,11 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
 
 /* Marker Tools: reconfigure as a true compact utility toolbar.
    These selectors intentionally outrank the generic AO3 action rules. */
+/* The companion extension injects this widget as a plain sibling right
+   after the page's first h2.heading. On pages where that heading lives
+   inside a CSS Grid (e.g. the profile/dashboard header module), it can
+   otherwise land as an unnamed grid item squeezed into a narrow column —
+   grid-column/justify-self are no-ops on any other, non-grid parent. */
 #main .marker-data-sync-container {
   display: flex !important;
   flex-flow: row wrap !important;
@@ -2229,6 +2238,9 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
   justify-content: flex-start !important;
   gap: 0.28rem 0.42rem !important;
 
+  grid-column: 1 / -1 !important;
+  justify-self: stretch !important;
+  box-sizing: border-box !important;
   width: fit-content !important;
   max-width: 100% !important;
   min-height: 0 !important;
@@ -2299,7 +2311,7 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
   text-shadow: none !important;
 }
 
-#main .marker-data-sync-container > a.action:is(:hover, :focus) {
+#main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.28) !important;
@@ -2308,12 +2320,12 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
 }
 
 @media (prefers-color-scheme: dark) {
-  #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+  #main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.34) !important;
   }
 }
 
-body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.34) !important;
 }
 
@@ -2374,9 +2386,9 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-shadow: none !important;
 }
 
-#footer a:is(:hover, :focus),
-#footer .actions a:is(:hover, :focus),
-#footer .navigation a:is(:hover, :focus) {
+#footer a:is(:hover, :focus, :active),
+#footer .actions a:is(:hover, :focus, :active),
+#footer .navigation a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -2402,7 +2414,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   font-weight: 600 !important;
 }
 
-#header #greeting .dropdown-toggle:is(:hover, :focus) {
+#header #greeting .dropdown-toggle:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.26) !important;
   color: var(--m-link) !important;
@@ -2482,14 +2494,14 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 #header #greeting a[href*="/preferences"]::before { content: "⚙"; }
 #header #greeting a[href*="/logout"]::before { content: "↪"; }
 
-#header #greeting .menu a:is(:hover, :focus),
-#header #greeting .dropdown-menu a:is(:hover, :focus) {
+#header #greeting .menu a:is(:hover, :focus, :active),
+#header #greeting .dropdown-menu a:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
 }
 
-#header #greeting .menu a:is(:hover, :focus)::before,
-#header #greeting .dropdown-menu a:is(:hover, :focus)::before {
+#header #greeting .menu a:is(:hover, :focus, :active)::before,
+#header #greeting .dropdown-menu a:is(:hover, :focus, :active)::before {
   color: var(--m-link) !important;
 }
 
@@ -2551,8 +2563,8 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus),
-.dashboard .navigation a:is(:hover, :focus) {
+#dashboard .navigation a:is(:hover, :focus, :active),
+.dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   border-color: var(--m-line-soft) !important;
   color: var(--m-link) !important;
@@ -2567,14 +2579,14 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 }
 
 @media (prefers-color-scheme: dark) {
-  #header #greeting .dropdown-toggle:is(:hover, :focus),
+  #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
   #dashboard .navigation .current,
   .dashboard .navigation .current {
     border-color: rgba(var(--m-link-rgb), 0.3) !important;
   }
 }
 
-body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus),
+body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
 body:is(.reversi, .dark) #dashboard .navigation .current,
 body:is(.reversi, .dark) .dashboard .navigation .current {
   border-color: rgba(var(--m-link-rgb), 0.3) !important;
@@ -2680,10 +2692,10 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     transform 140ms ease !important;
 }
 
-#header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
-#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
-#header #greeting a[href*="/users/login"]:is(:hover, :focus),
-#header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+#header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
+#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
+#header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
+#header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.28) !important;
@@ -2777,8 +2789,8 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus),
-.dashboard .navigation a:is(:hover, :focus) {
+#dashboard .navigation a:is(:hover, :focus, :active),
+.dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -2900,22 +2912,22 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
 }
 
 @media (prefers-color-scheme: dark) {
-  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
-  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
-  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
-  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.32) !important;
   }
 }
 
 body:is(.reversi, .dark)
-  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.32) !important;
 }
 
@@ -3002,9 +3014,9 @@ body:is(.reversi, .dark)
     box-shadow 140ms ease !important;
 }
 
-#header li.search #site_search:is(:hover, :focus),
-#header li.search input[type="text"]:is(:hover, :focus),
-#header li.search input[type="search"]:is(:hover, :focus) {
+#header li.search #site_search:is(:hover, :focus, :active),
+#header li.search input[type="text"]:is(:hover, :focus, :active),
+#header li.search input[type="search"]:is(:hover, :focus, :active) {
   background: var(--m-surface-solid) !important;
   border-color: rgba(var(--m-link-rgb), 0.42) !important;
   box-shadow:
@@ -3054,9 +3066,9 @@ body:is(.reversi, .dark)
     color 140ms ease !important;
 }
 
-#header li.search .submit.actions input[type="submit"]:is(:hover, :focus),
-#header li.search input.button[type="submit"]:is(:hover, :focus),
-#header li.search button:is(:hover, :focus) {
+#header li.search .submit.actions input[type="submit"]:is(:hover, :focus, :active),
+#header li.search input.button[type="submit"]:is(:hover, :focus, :active),
+#header li.search button:is(:hover, :focus, :active) {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -3124,7 +3136,7 @@ body:is(.reversi, .dark)
     transform 140ms ease !important;
 }
 
-#header #greeting > p.icon > a:is(:hover, :focus) {
+#header #greeting > p.icon > a:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.42) !important;
@@ -3270,10 +3282,10 @@ body:is(.reversi, .dark)
 }
 
 @media (prefers-color-scheme: dark) {
-  #header li.search #site_search:is(:hover, :focus),
-  #header li.search input[type="text"]:is(:hover, :focus),
-  #header li.search input[type="search"]:is(:hover, :focus),
-  #header #greeting > p.icon > a:is(:hover, :focus) {
+  #header li.search #site_search:is(:hover, :focus, :active),
+  #header li.search input[type="text"]:is(:hover, :focus, :active),
+  #header li.search input[type="search"]:is(:hover, :focus, :active),
+  #header #greeting > p.icon > a:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.38) !important;
   }
 
@@ -3284,10 +3296,10 @@ body:is(.reversi, .dark)
   }
 }
 
-body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus),
-body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus),
-body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus),
-body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus) {
+body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.38) !important;
 }
 
@@ -4035,8 +4047,10 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 #work-filters dd.submit input:hover,
 #work-filters dd.submit input:focus,
+#work-filters dd.submit input:active,
 #inbox-filters dd.submit input:hover,
-#inbox-filters dd.submit input:focus {
+#inbox-filters dd.submit input:focus,
+#inbox-filters dd.submit input:active {
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
   color: var(--m-on-accent) !important;
@@ -4128,7 +4142,8 @@ body:is(.reversi, .dark) .dashboard .navigation {
 #work-filters dt.filter-toggle:hover,
 #work-filters dt.filter-toggle:focus-within,
 #work-filters .expander:hover,
-#work-filters .expander:focus {
+#work-filters .expander:focus,
+#work-filters .expander:active {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
   outline: 0 !important;
@@ -4305,19 +4320,38 @@ body:is(.reversi, .dark) .dashboard .navigation {
    OWN WORKS + GENERIC PAGE MODULE CLEANUP
    ------------------------------------------------------------ */
 
-.works-index > .navigation.actions.module,
+#main > .navigation.actions.module,
 .profile-show .user.home.profile > ul.navigation.actions,
 .stats-index > ul.navigation.actions,
 .stats-index > ol.year.actions {
   box-sizing: border-box !important;
 }
 
-.works-index > .navigation.actions.module ul.user.navigation.actions {
+/* AO3 renders this "Navigation and Actions" pseud-switcher / gift-search
+   subnav on any listing page (Works, Bookmarks, Preferences, Series, …)
+   whenever it applies, not only Works — so it must not be page-scoped.
+   Match the same horizontal-pill treatment as the header's account menu. */
+#main > .navigation.actions.module ul.user.navigation.actions {
   display: flex !important;
   flex-wrap: wrap !important;
+  align-items: center !important;
   gap: 0.35rem !important;
+  box-sizing: border-box !important;
+  width: auto !important;
   margin: 0 !important;
   padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main > .navigation.actions.module ul.user.navigation.actions > li {
+  display: inline-flex !important;
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
 }
 
 /* ------------------------------------------------------------
@@ -4491,18 +4525,25 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 #main .actions a:hover,
 #main .actions a:focus,
+#main .actions a:active,
 #main .actions button:hover,
 #main .actions button:focus,
+#main .actions button:active,
 #main .actions input[type="button"]:hover,
 #main .actions input[type="button"]:focus,
+#main .actions input[type="button"]:active,
 #main .actions input[type="submit"]:hover,
 #main .actions input[type="submit"]:focus,
+#main .actions input[type="submit"]:active,
 #main a.action:hover,
 #main a.action:focus,
+#main a.action:active,
 #main button.action:hover,
 #main button.action:focus,
+#main button.action:active,
 #main input.action:hover,
-#main input.action:focus {
+#main input.action:focus,
+#main input.action:active {
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.3) !important;
   color: var(--m-link) !important;
@@ -4547,10 +4588,13 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 #work-filters dd.submit input:hover,
 #work-filters dd.submit input:focus,
+#work-filters dd.submit input:active,
 #bookmark-filters dd.submit input:hover,
 #bookmark-filters dd.submit input:focus,
+#bookmark-filters dd.submit input:active,
 #inbox-filters dd.submit input:hover,
-#inbox-filters dd.submit input:focus {
+#inbox-filters dd.submit input:focus,
+#inbox-filters dd.submit input:active {
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
   color: var(--m-on-accent) !important;
@@ -4642,8 +4686,10 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 #dashboard .navigation a:hover,
 #dashboard .navigation a:focus,
+#dashboard .navigation a:active,
 .dashboard .navigation a:hover,
-.dashboard .navigation a:focus {
+.dashboard .navigation a:focus,
+.dashboard .navigation a:active {
   background: var(--m-chip) !important;
   border: 0 !important;
   color: var(--m-link) !important;
@@ -5009,7 +5055,8 @@ body:is(.reversi, .dark) .dashboard .navigation {
 }
 
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:hover,
-.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:focus {
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:focus,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -5323,7 +5370,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
   text-decoration: none !important;
 }
 
-#feedback li.comment h4.byline a:is(:hover, :focus) {
+#feedback li.comment h4.byline a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -5364,7 +5411,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
   color: var(--m-link) !important;
 }
 
-#feedback li.comment blockquote.userstuff a:is(:hover, :focus) {
+#feedback li.comment blockquote.userstuff a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
 }
 
@@ -5397,7 +5444,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
   text-decoration: none !important;
 }
 
-#feedback li.comment > ul.actions a:is(:hover, :focus) {
+#feedback li.comment > ul.actions a:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
@@ -5830,16 +5877,22 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions a:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions a:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions a:active,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions button:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions button:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions button:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:hover,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:hover,
-#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:focus {
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -6131,7 +6184,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.profile-show .user.home.profile > ul.navigation.actions > li > a:hover,
-#main.profile-show .user.home.profile > ul.navigation.actions > li > a:focus {
+#main.profile-show .user.home.profile > ul.navigation.actions > li > a:focus,
+#main.profile-show .user.home.profile > ul.navigation.actions > li > a:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -6143,7 +6197,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:hover,
-#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:focus {
+#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:focus,
+#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:active {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.35) !important;
   color: var(--m-dnr) !important;
@@ -6451,8 +6506,10 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 
 #main.inbox-show #inbox-form > fieldset.actions a:hover,
 #main.inbox-show #inbox-form > fieldset.actions a:focus,
+#main.inbox-show #inbox-form > fieldset.actions a:active,
 #main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:hover,
-#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:focus {
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:focus,
+#main.inbox-show #inbox-form > fieldset.actions input[type="submit"]:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -6464,7 +6521,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:hover,
-#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:focus {
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:focus,
+#main.inbox-show #inbox-form > fieldset.actions input[name="delete"]:active {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.42) !important;
   color: var(--m-dnr) !important;
@@ -6628,7 +6686,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.inbox-show #inbox-form li.comment h4.byline a:hover,
-#main.inbox-show #inbox-form li.comment h4.byline a:focus {
+#main.inbox-show #inbox-form li.comment h4.byline a:focus,
+#main.inbox-show #inbox-form li.comment h4.byline a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -6693,7 +6752,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.inbox-show #inbox-form li.comment blockquote.userstuff a:hover,
-#main.inbox-show #inbox-form li.comment blockquote.userstuff a:focus {
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:focus,
+#main.inbox-show #inbox-form li.comment blockquote.userstuff a:active {
   color: var(--m-link-hover) !important;
 }
 
@@ -6758,6 +6818,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 
 #main.inbox-show #inbox-form li.comment > ul.actions a:hover,
 #main.inbox-show #inbox-form li.comment > ul.actions a:focus,
+#main.inbox-show #inbox-form li.comment > ul.actions a:active,
 #main.inbox-show #inbox-form li.comment > ul.actions label:hover,
 #main.inbox-show #inbox-form li.comment > ul.actions label:focus-within {
   transform: none !important;
@@ -6983,7 +7044,8 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 }
 
 #main.inbox-show #inbox-filters dd.submit input[type="submit"]:hover,
-#main.inbox-show #inbox-filters dd.submit input[type="submit"]:focus {
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:focus,
+#main.inbox-show #inbox-filters dd.submit input[type="submit"]:active {
   transform: none !important;
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
@@ -7305,6 +7367,7 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 #main.subscriptions-index a:visited,
 #main.subscriptions-index a:hover,
 #main.subscriptions-index a:focus,
+#main.subscriptions-index a:active,
 #main.subscriptions-index a:active {
   border-bottom: 0 !important;
   text-decoration: none !important;
@@ -7385,7 +7448,8 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 }
 
 #main.subscriptions-index > ul.navigation.actions > li > a:hover,
-#main.subscriptions-index > ul.navigation.actions > li > a:focus {
+#main.subscriptions-index > ul.navigation.actions > li > a:focus,
+#main.subscriptions-index > ul.navigation.actions > li > a:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -7412,7 +7476,8 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 }
 
 #main.subscriptions-index > ul.navigation.actions > li:last-child > a:hover,
-#main.subscriptions-index > ul.navigation.actions > li:last-child > a:focus {
+#main.subscriptions-index > ul.navigation.actions > li:last-child > a:focus,
+#main.subscriptions-index > ul.navigation.actions > li:last-child > a:active {
   background: rgba(var(--m-dnr-rgb), 0.12) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.48) !important;
   color: var(--m-dnr) !important;
@@ -7531,7 +7596,8 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 }
 
 #main.subscriptions-index dl.subscription.index > dt > a:hover,
-#main.subscriptions-index dl.subscription.index > dt > a:focus {
+#main.subscriptions-index dl.subscription.index > dt > a:focus,
+#main.subscriptions-index dl.subscription.index > dt > a:active {
   background: var(--m-control-hover) !important;
   box-shadow: 0 0 0 2px var(--m-control-hover) !important;
   color: var(--m-link-hover) !important;
@@ -7561,7 +7627,8 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 }
 
 #main.subscriptions-index dl.subscription.index > dt > a:first-child:hover,
-#main.subscriptions-index dl.subscription.index > dt > a:first-child:focus {
+#main.subscriptions-index dl.subscription.index > dt > a:first-child:focus,
+#main.subscriptions-index dl.subscription.index > dt > a:first-child:active {
   background: var(--m-control-hover) !important;
   box-shadow: 0 0 0 2px var(--m-control-hover) !important;
   color: var(--m-link-hover) !important;
@@ -7673,7 +7740,8 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
 }
 
 #main.subscriptions-index dl.subscription.index > dd input[type="submit"]:hover,
-#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:focus {
+#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:focus,
+#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:active {
   transform: none !important;
   background: rgba(var(--m-dnr-rgb), 0.11) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.48) !important;
@@ -7936,16 +8004,22 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
 
 #main.works-show > .work > ul.work.navigation.actions a:hover,
 #main.works-show > .work > ul.work.navigation.actions a:focus,
+#main.works-show > .work > ul.work.navigation.actions a:active,
 #main.works-show > .work > ul.work.navigation.actions button:hover,
 #main.works-show > .work > ul.work.navigation.actions button:focus,
+#main.works-show > .work > ul.work.navigation.actions button:active,
 #main.works-show > .work > ul.work.navigation.actions input[type="submit"]:hover,
 #main.works-show > .work > ul.work.navigation.actions input[type="submit"]:focus,
+#main.works-show > .work > ul.work.navigation.actions input[type="submit"]:active,
 #main.chapters-show > .work > ul.work.navigation.actions a:hover,
 #main.chapters-show > .work > ul.work.navigation.actions a:focus,
+#main.chapters-show > .work > ul.work.navigation.actions a:active,
 #main.chapters-show > .work > ul.work.navigation.actions button:hover,
 #main.chapters-show > .work > ul.work.navigation.actions button:focus,
+#main.chapters-show > .work > ul.work.navigation.actions button:active,
 #main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:hover,
-#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:focus {
+#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:focus,
+#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
@@ -8123,8 +8197,10 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
 
 #main.works-show dl.work.meta dd.tags a.tag:hover,
 #main.works-show dl.work.meta dd.tags a.tag:focus,
+#main.works-show dl.work.meta dd.tags a.tag:active,
 #main.chapters-show dl.work.meta dd.tags a.tag:hover,
-#main.chapters-show dl.work.meta dd.tags a.tag:focus {
+#main.chapters-show dl.work.meta dd.tags a.tag:focus,
+#main.chapters-show dl.work.meta dd.tags a.tag:active {
   background: var(--m-surface-solid) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
@@ -8140,8 +8216,10 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
 
 #main.works-show dl.work.meta dd a:hover,
 #main.works-show dl.work.meta dd a:focus,
+#main.works-show dl.work.meta dd a:active,
 #main.chapters-show dl.work.meta dd a:hover,
-#main.chapters-show dl.work.meta dd a:focus {
+#main.chapters-show dl.work.meta dd a:focus,
+#main.chapters-show dl.work.meta dd a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-underline-offset: 2px !important;
@@ -8471,8 +8549,8 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
   text-decoration: none !important;
 }
 
-#main.works-show #series.series.module a:is(:hover, :focus),
-#main.chapters-show #series.series.module a:is(:hover, :focus) {
+#main.works-show #series.series.module a:is(:hover, :focus, :active),
+#main.chapters-show #series.series.module a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -8536,20 +8614,28 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
 
 #main.works-show > .work > ul.work.navigation.actions a:hover,
 #main.works-show > .work > ul.work.navigation.actions a:focus,
+#main.works-show > .work > ul.work.navigation.actions a:active,
 #main.chapters-show > .work > ul.work.navigation.actions a:hover,
 #main.chapters-show > .work > ul.work.navigation.actions a:focus,
+#main.chapters-show > .work > ul.work.navigation.actions a:active,
 #main.works-show dl.work.meta a:hover,
 #main.works-show dl.work.meta a:focus,
+#main.works-show dl.work.meta a:active,
 #main.chapters-show dl.work.meta a:hover,
 #main.chapters-show dl.work.meta a:focus,
+#main.chapters-show dl.work.meta a:active,
 #main.works-show #workskin a:not([style]):hover,
 #main.works-show #workskin a:not([style]):focus,
+#main.works-show #workskin a:not([style]):active,
 #main.chapters-show #workskin a:not([style]):hover,
 #main.chapters-show #workskin a:not([style]):focus,
+#main.chapters-show #workskin a:not([style]):active,
 #main.works-show #feedback a:hover,
 #main.works-show #feedback a:focus,
+#main.works-show #feedback a:active,
 #main.chapters-show #feedback a:hover,
-#main.chapters-show #feedback a:focus {
+#main.chapters-show #feedback a:focus,
+#main.chapters-show #feedback a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -9049,7 +9135,8 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 #bookmark-filters dt.filter-toggle:hover,
 #bookmark-filters dt.filter-toggle:focus-within,
 #bookmark-filters .expander:hover,
-#bookmark-filters .expander:focus {
+#bookmark-filters .expander:focus,
+#bookmark-filters .expander:active {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
   outline: 0 !important;
@@ -9170,7 +9257,8 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 }
 
 #bookmark-filters p.footnote a:hover,
-#bookmark-filters p.footnote a:focus {
+#bookmark-filters p.footnote a:focus,
+#bookmark-filters p.footnote a:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-line) !important;
   color: var(--m-link) !important;
@@ -9655,8 +9743,10 @@ html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type
 
 html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:hover,
 html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:focus,
+html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:active,
 html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:hover,
-html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:focus {
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:focus,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link-hover) !important;
@@ -9872,9 +9962,11 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle but
 
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:hover,
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle:active,
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus-within,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:hover,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:active,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus-within {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;

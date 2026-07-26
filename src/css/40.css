@@ -164,8 +164,10 @@
 
 #work-filters dd.submit input:hover,
 #work-filters dd.submit input:focus,
+#work-filters dd.submit input:active,
 #inbox-filters dd.submit input:hover,
-#inbox-filters dd.submit input:focus {
+#inbox-filters dd.submit input:focus,
+#inbox-filters dd.submit input:active {
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
   color: var(--m-on-accent) !important;
@@ -257,7 +259,8 @@
 #work-filters dt.filter-toggle:hover,
 #work-filters dt.filter-toggle:focus-within,
 #work-filters .expander:hover,
-#work-filters .expander:focus {
+#work-filters .expander:focus,
+#work-filters .expander:active {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
   outline: 0 !important;
@@ -434,19 +437,38 @@
    OWN WORKS + GENERIC PAGE MODULE CLEANUP
    ------------------------------------------------------------ */
 
-.works-index > .navigation.actions.module,
+#main > .navigation.actions.module,
 .profile-show .user.home.profile > ul.navigation.actions,
 .stats-index > ul.navigation.actions,
 .stats-index > ol.year.actions {
   box-sizing: border-box !important;
 }
 
-.works-index > .navigation.actions.module ul.user.navigation.actions {
+/* AO3 renders this "Navigation and Actions" pseud-switcher / gift-search
+   subnav on any listing page (Works, Bookmarks, Preferences, Series, …)
+   whenever it applies, not only Works — so it must not be page-scoped.
+   Match the same horizontal-pill treatment as the header's account menu. */
+#main > .navigation.actions.module ul.user.navigation.actions {
   display: flex !important;
   flex-wrap: wrap !important;
+  align-items: center !important;
   gap: 0.35rem !important;
+  box-sizing: border-box !important;
+  width: auto !important;
   margin: 0 !important;
   padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main > .navigation.actions.module ul.user.navigation.actions > li {
+  display: inline-flex !important;
+  float: none !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
 }
 
 /* ------------------------------------------------------------

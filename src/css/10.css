@@ -223,7 +223,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   transition: color 140ms ease !important;
 }
 
-.blurb h4.heading > a:first-child:is(:hover, :focus) {
+.blurb h4.heading > a:first-child:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
 }
 
@@ -245,8 +245,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   color: var(--m-text-3) !important;
 }
 
-.blurb h4.heading a[rel="author"]:is(:hover, :focus),
-.blurb .header h5.fandoms a:is(:hover, :focus) {
+.blurb h4.heading a[rel="author"]:is(:hover, :focus, :active),
+.blurb .header h5.fandoms a:is(:hover, :focus, :active) {
   color: var(--m-link) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -381,21 +381,21 @@ li:is(.work, .reading, .bookmark).blurb:hover {
     color 120ms ease !important;
 }
 
-.blurb .marker-action-read:is(:hover, :focus) {
+.blurb .marker-action-read:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-read) !important;
   border-color: var(--m-read) !important;
   color: var(--m-on-accent) !important;
 }
 
-.blurb .marker-action-do-not-read:is(:hover, :focus) {
+.blurb .marker-action-do-not-read:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-dnr) !important;
   border-color: var(--m-dnr) !important;
   color: var(--m-on-accent) !important;
 }
 
-.blurb .marker-action-wtr:is(:hover, :focus) {
+.blurb .marker-action-wtr:is(:hover, :focus, :active) {
   transform: scale(1.08) !important;
   background: var(--m-wtr) !important;
   border-color: var(--m-wtr) !important;
@@ -642,7 +642,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   border-style: dashed !important;
 }
 
-.blurb ul.tags a.tag:is(:hover, :focus) {
+.blurb ul.tags a.tag:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-surface-solid) !important;
   border-color: rgba(var(--marker-rgb), 0.46) !important;
@@ -804,8 +804,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-shadow: none !important;
 }
 
-.blurb .user.module.group input[type="submit"]:is(:hover, :focus),
-.blurb .user.module.group .actions :is(a, button):is(:hover, :focus) {
+.blurb .user.module.group input[type="submit"]:is(:hover, :focus, :active),
+.blurb .user.module.group .actions :is(a, button):is(:hover, :focus, :active) {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.26) !important;
   color: var(--m-dnr) !important;

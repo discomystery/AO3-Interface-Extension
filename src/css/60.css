@@ -327,7 +327,8 @@
 #bookmark-filters dt.filter-toggle:hover,
 #bookmark-filters dt.filter-toggle:focus-within,
 #bookmark-filters .expander:hover,
-#bookmark-filters .expander:focus {
+#bookmark-filters .expander:focus,
+#bookmark-filters .expander:active {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
   outline: 0 !important;
@@ -448,7 +449,8 @@
 }
 
 #bookmark-filters p.footnote a:hover,
-#bookmark-filters p.footnote a:focus {
+#bookmark-filters p.footnote a:focus,
+#bookmark-filters p.footnote a:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-line) !important;
   color: var(--m-link) !important;

@@ -135,8 +135,10 @@ html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type
 
 html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:hover,
 html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:focus,
+html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"]:active,
 html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:hover,
-html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:focus {
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:focus,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type="submit"]:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link-hover) !important;
@@ -352,9 +354,11 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle but
 
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:hover,
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#work-filters.filters dt.filter-toggle:active,
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle:focus-within,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:hover,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus,
+html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:active,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:focus-within {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;

@@ -54,7 +54,7 @@
   text-shadow: none !important;
 }
 
-#header a:is(:hover, :focus),
+#header a:is(:hover, :focus, :active),
 #header .current {
   color: var(--m-link) !important;
 }
@@ -69,9 +69,9 @@
     color 140ms ease !important;
 }
 
-#header .primary > li > a:is(:hover, :focus),
-#header #greeting > ul > li > a:is(:hover, :focus),
-#header #greeting .dropdown-toggle:is(:hover, :focus) {
+#header .primary > li > a:is(:hover, :focus, :active),
+#header #greeting > ul > li > a:is(:hover, :focus, :active),
+#header #greeting .dropdown-toggle:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -104,8 +104,8 @@
   border-radius: 8px !important;
 }
 
-#header .menu li a:is(:hover, :focus),
-#header .dropdown-menu li a:is(:hover, :focus) {
+#header .menu li a:is(:hover, :focus, :active),
+#header .dropdown-menu li a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -140,8 +140,8 @@
     transform 140ms ease !important;
 }
 
-#header .search input[type="submit"]:is(:hover, :focus),
-#header .search button:is(:hover, :focus) {
+#header .search input[type="submit"]:is(:hover, :focus, :active),
+#header .search button:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -165,9 +165,9 @@
   text-shadow: none !important;
 }
 
-#dashboard a:is(:hover, :focus),
+#dashboard a:is(:hover, :focus, :active),
 #dashboard .current,
-.dashboard .navigation a:is(:hover, :focus),
+.dashboard .navigation a:is(:hover, :focus, :active),
 .dashboard .navigation .current {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
@@ -193,6 +193,10 @@
 #main > ul.navigation.actions li,
 #main > ol.navigation.actions li,
 .pagination.actions li {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  float: none !important;
+  width: auto !important;
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
@@ -222,10 +226,10 @@
   text-shadow: none !important;
 }
 
-#main > .navigation.actions a:is(:hover, :focus),
-#main > ul.navigation.actions a:is(:hover, :focus),
-#main > ol.navigation.actions a:is(:hover, :focus),
-.pagination.actions a:is(:hover, :focus) {
+#main > .navigation.actions a:is(:hover, :focus, :active),
+#main > ul.navigation.actions a:is(:hover, :focus, :active),
+#main > ol.navigation.actions a:is(:hover, :focus, :active),
+.pagination.actions a:is(:hover, :focus, :active) {
   background: var(--m-chip-strong) !important;
   border-color: var(--m-line) !important;
   color: var(--m-link) !important;
@@ -346,8 +350,8 @@
 }
 
 #main :is(.filters, .toggled form, .dynamic form, form:not(.ajax-remove))
-  :is(input[type="submit"], input[type="button"], button):is(:hover, :focus),
-.marker-data-sync-container .action:is(:hover, :focus) {
+  :is(input[type="submit"], input[type="button"], button):is(:hover, :focus, :active),
+.marker-data-sync-container .action:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -381,7 +385,7 @@
     transform 140ms ease !important;
 }
 
-#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus) {
+#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -526,7 +530,7 @@
   text-decoration: none !important;
 }
 
-#bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus) {
+#bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus, :active) {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.3) !important;
   color: var(--m-dnr) !important;
@@ -601,7 +605,7 @@ p.character_counter span.value {
   text-shadow: none !important;
 }
 
-#footer a:is(:hover, :focus) {
+#footer a:is(:hover, :focus, :active) {
   color: var(--m-link) !important;
 }
 

@@ -108,16 +108,22 @@
 
 #main.works-show > .work > ul.work.navigation.actions a:hover,
 #main.works-show > .work > ul.work.navigation.actions a:focus,
+#main.works-show > .work > ul.work.navigation.actions a:active,
 #main.works-show > .work > ul.work.navigation.actions button:hover,
 #main.works-show > .work > ul.work.navigation.actions button:focus,
+#main.works-show > .work > ul.work.navigation.actions button:active,
 #main.works-show > .work > ul.work.navigation.actions input[type="submit"]:hover,
 #main.works-show > .work > ul.work.navigation.actions input[type="submit"]:focus,
+#main.works-show > .work > ul.work.navigation.actions input[type="submit"]:active,
 #main.chapters-show > .work > ul.work.navigation.actions a:hover,
 #main.chapters-show > .work > ul.work.navigation.actions a:focus,
+#main.chapters-show > .work > ul.work.navigation.actions a:active,
 #main.chapters-show > .work > ul.work.navigation.actions button:hover,
 #main.chapters-show > .work > ul.work.navigation.actions button:focus,
+#main.chapters-show > .work > ul.work.navigation.actions button:active,
 #main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:hover,
-#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:focus {
+#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:focus,
+#main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
@@ -295,8 +301,10 @@
 
 #main.works-show dl.work.meta dd.tags a.tag:hover,
 #main.works-show dl.work.meta dd.tags a.tag:focus,
+#main.works-show dl.work.meta dd.tags a.tag:active,
 #main.chapters-show dl.work.meta dd.tags a.tag:hover,
-#main.chapters-show dl.work.meta dd.tags a.tag:focus {
+#main.chapters-show dl.work.meta dd.tags a.tag:focus,
+#main.chapters-show dl.work.meta dd.tags a.tag:active {
   background: var(--m-surface-solid) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
@@ -312,8 +320,10 @@
 
 #main.works-show dl.work.meta dd a:hover,
 #main.works-show dl.work.meta dd a:focus,
+#main.works-show dl.work.meta dd a:active,
 #main.chapters-show dl.work.meta dd a:hover,
-#main.chapters-show dl.work.meta dd a:focus {
+#main.chapters-show dl.work.meta dd a:focus,
+#main.chapters-show dl.work.meta dd a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-underline-offset: 2px !important;
@@ -643,8 +653,8 @@
   text-decoration: none !important;
 }
 
-#main.works-show #series.series.module a:is(:hover, :focus),
-#main.chapters-show #series.series.module a:is(:hover, :focus) {
+#main.works-show #series.series.module a:is(:hover, :focus, :active),
+#main.chapters-show #series.series.module a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -708,20 +718,28 @@
 
 #main.works-show > .work > ul.work.navigation.actions a:hover,
 #main.works-show > .work > ul.work.navigation.actions a:focus,
+#main.works-show > .work > ul.work.navigation.actions a:active,
 #main.chapters-show > .work > ul.work.navigation.actions a:hover,
 #main.chapters-show > .work > ul.work.navigation.actions a:focus,
+#main.chapters-show > .work > ul.work.navigation.actions a:active,
 #main.works-show dl.work.meta a:hover,
 #main.works-show dl.work.meta a:focus,
+#main.works-show dl.work.meta a:active,
 #main.chapters-show dl.work.meta a:hover,
 #main.chapters-show dl.work.meta a:focus,
+#main.chapters-show dl.work.meta a:active,
 #main.works-show #workskin a:not([style]):hover,
 #main.works-show #workskin a:not([style]):focus,
+#main.works-show #workskin a:not([style]):active,
 #main.chapters-show #workskin a:not([style]):hover,
 #main.chapters-show #workskin a:not([style]):focus,
+#main.chapters-show #workskin a:not([style]):active,
 #main.works-show #feedback a:hover,
 #main.works-show #feedback a:focus,
+#main.works-show #feedback a:active,
 #main.chapters-show #feedback a:hover,
-#main.chapters-show #feedback a:focus {
+#main.chapters-show #feedback a:focus,
+#main.chapters-show #feedback a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;

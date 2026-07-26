@@ -71,18 +71,25 @@
 
 #main .actions a:hover,
 #main .actions a:focus,
+#main .actions a:active,
 #main .actions button:hover,
 #main .actions button:focus,
+#main .actions button:active,
 #main .actions input[type="button"]:hover,
 #main .actions input[type="button"]:focus,
+#main .actions input[type="button"]:active,
 #main .actions input[type="submit"]:hover,
 #main .actions input[type="submit"]:focus,
+#main .actions input[type="submit"]:active,
 #main a.action:hover,
 #main a.action:focus,
+#main a.action:active,
 #main button.action:hover,
 #main button.action:focus,
+#main button.action:active,
 #main input.action:hover,
-#main input.action:focus {
+#main input.action:focus,
+#main input.action:active {
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.3) !important;
   color: var(--m-link) !important;
@@ -127,10 +134,13 @@
 
 #work-filters dd.submit input:hover,
 #work-filters dd.submit input:focus,
+#work-filters dd.submit input:active,
 #bookmark-filters dd.submit input:hover,
 #bookmark-filters dd.submit input:focus,
+#bookmark-filters dd.submit input:active,
 #inbox-filters dd.submit input:hover,
-#inbox-filters dd.submit input:focus {
+#inbox-filters dd.submit input:focus,
+#inbox-filters dd.submit input:active {
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
   color: var(--m-on-accent) !important;
@@ -222,8 +232,10 @@
 
 #dashboard .navigation a:hover,
 #dashboard .navigation a:focus,
+#dashboard .navigation a:active,
 .dashboard .navigation a:hover,
-.dashboard .navigation a:focus {
+.dashboard .navigation a:focus,
+.dashboard .navigation a:active {
   background: var(--m-chip) !important;
   border: 0 !important;
   color: var(--m-link) !important;
@@ -589,7 +601,8 @@
 }
 
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:hover,
-.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:focus {
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:focus,
+.stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:active {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -903,7 +916,7 @@
   text-decoration: none !important;
 }
 
-#feedback li.comment h4.byline a:is(:hover, :focus) {
+#feedback li.comment h4.byline a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
 }
@@ -944,7 +957,7 @@
   color: var(--m-link) !important;
 }
 
-#feedback li.comment blockquote.userstuff a:is(:hover, :focus) {
+#feedback li.comment blockquote.userstuff a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
 }
 
@@ -977,7 +990,7 @@
   text-decoration: none !important;
 }
 
-#feedback li.comment > ul.actions a:is(:hover, :focus) {
+#feedback li.comment > ul.actions a:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;

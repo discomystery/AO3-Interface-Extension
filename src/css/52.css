@@ -212,16 +212,22 @@
 
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions a:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions a:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions a:active,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions button:hover,
 #main.users-show .user.home > .primary.header.module > ul.navigation.actions button:focus,
+#main.users-show .user.home > .primary.header.module > ul.navigation.actions button:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:hover,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:hover,
-#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:focus {
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:focus,
+#main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -513,7 +519,8 @@
 }
 
 #main.profile-show .user.home.profile > ul.navigation.actions > li > a:hover,
-#main.profile-show .user.home.profile > ul.navigation.actions > li > a:focus {
+#main.profile-show .user.home.profile > ul.navigation.actions > li > a:focus,
+#main.profile-show .user.home.profile > ul.navigation.actions > li > a:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -525,7 +532,8 @@
 }
 
 #main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:hover,
-#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:focus {
+#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:focus,
+#main.profile-show .user.home.profile > ul.navigation.actions a[data-method="delete"]:active {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.35) !important;
   color: var(--m-dnr) !important;

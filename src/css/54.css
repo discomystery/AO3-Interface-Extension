@@ -70,6 +70,7 @@
 #main.subscriptions-index a:visited,
 #main.subscriptions-index a:hover,
 #main.subscriptions-index a:focus,
+#main.subscriptions-index a:active,
 #main.subscriptions-index a:active {
   border-bottom: 0 !important;
   text-decoration: none !important;
@@ -150,7 +151,8 @@
 }
 
 #main.subscriptions-index > ul.navigation.actions > li > a:hover,
-#main.subscriptions-index > ul.navigation.actions > li > a:focus {
+#main.subscriptions-index > ul.navigation.actions > li > a:focus,
+#main.subscriptions-index > ul.navigation.actions > li > a:active {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -177,7 +179,8 @@
 }
 
 #main.subscriptions-index > ul.navigation.actions > li:last-child > a:hover,
-#main.subscriptions-index > ul.navigation.actions > li:last-child > a:focus {
+#main.subscriptions-index > ul.navigation.actions > li:last-child > a:focus,
+#main.subscriptions-index > ul.navigation.actions > li:last-child > a:active {
   background: rgba(var(--m-dnr-rgb), 0.12) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.48) !important;
   color: var(--m-dnr) !important;
@@ -296,7 +299,8 @@
 }
 
 #main.subscriptions-index dl.subscription.index > dt > a:hover,
-#main.subscriptions-index dl.subscription.index > dt > a:focus {
+#main.subscriptions-index dl.subscription.index > dt > a:focus,
+#main.subscriptions-index dl.subscription.index > dt > a:active {
   background: var(--m-control-hover) !important;
   box-shadow: 0 0 0 2px var(--m-control-hover) !important;
   color: var(--m-link-hover) !important;
@@ -326,7 +330,8 @@
 }
 
 #main.subscriptions-index dl.subscription.index > dt > a:first-child:hover,
-#main.subscriptions-index dl.subscription.index > dt > a:first-child:focus {
+#main.subscriptions-index dl.subscription.index > dt > a:first-child:focus,
+#main.subscriptions-index dl.subscription.index > dt > a:first-child:active {
   background: var(--m-control-hover) !important;
   box-shadow: 0 0 0 2px var(--m-control-hover) !important;
   color: var(--m-link-hover) !important;
@@ -438,7 +443,8 @@
 }
 
 #main.subscriptions-index dl.subscription.index > dd input[type="submit"]:hover,
-#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:focus {
+#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:focus,
+#main.subscriptions-index dl.subscription.index > dd input[type="submit"]:active {
   transform: none !important;
   background: rgba(var(--m-dnr-rgb), 0.11) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.48) !important;

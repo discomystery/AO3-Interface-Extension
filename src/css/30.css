@@ -42,7 +42,7 @@
   line-height: 1.1 !important;
 }
 
-.marker-data-sync-container .action:is(:hover, :focus) {
+.marker-data-sync-container .action:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
 }
 
@@ -142,6 +142,11 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
 
 /* Marker Tools: reconfigure as a true compact utility toolbar.
    These selectors intentionally outrank the generic AO3 action rules. */
+/* The companion extension injects this widget as a plain sibling right
+   after the page's first h2.heading. On pages where that heading lives
+   inside a CSS Grid (e.g. the profile/dashboard header module), it can
+   otherwise land as an unnamed grid item squeezed into a narrow column —
+   grid-column/justify-self are no-ops on any other, non-grid parent. */
 #main .marker-data-sync-container {
   display: flex !important;
   flex-flow: row wrap !important;
@@ -149,6 +154,9 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
   justify-content: flex-start !important;
   gap: 0.28rem 0.42rem !important;
 
+  grid-column: 1 / -1 !important;
+  justify-self: stretch !important;
+  box-sizing: border-box !important;
   width: fit-content !important;
   max-width: 100% !important;
   min-height: 0 !important;
@@ -219,7 +227,7 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
   text-shadow: none !important;
 }
 
-#main .marker-data-sync-container > a.action:is(:hover, :focus) {
+#main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.28) !important;
@@ -228,12 +236,12 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
 }
 
 @media (prefers-color-scheme: dark) {
-  #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+  #main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.34) !important;
   }
 }
 
-body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus) {
+body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.34) !important;
 }
 
@@ -294,9 +302,9 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-shadow: none !important;
 }
 
-#footer a:is(:hover, :focus),
-#footer .actions a:is(:hover, :focus),
-#footer .navigation a:is(:hover, :focus) {
+#footer a:is(:hover, :focus, :active),
+#footer .actions a:is(:hover, :focus, :active),
+#footer .navigation a:is(:hover, :focus, :active) {
   color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
@@ -322,7 +330,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   font-weight: 600 !important;
 }
 
-#header #greeting .dropdown-toggle:is(:hover, :focus) {
+#header #greeting .dropdown-toggle:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.26) !important;
   color: var(--m-link) !important;
@@ -402,14 +410,14 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 #header #greeting a[href*="/preferences"]::before { content: "⚙"; }
 #header #greeting a[href*="/logout"]::before { content: "↪"; }
 
-#header #greeting .menu a:is(:hover, :focus),
-#header #greeting .dropdown-menu a:is(:hover, :focus) {
+#header #greeting .menu a:is(:hover, :focus, :active),
+#header #greeting .dropdown-menu a:is(:hover, :focus, :active) {
   background: var(--m-control-hover) !important;
   color: var(--m-link) !important;
 }
 
-#header #greeting .menu a:is(:hover, :focus)::before,
-#header #greeting .dropdown-menu a:is(:hover, :focus)::before {
+#header #greeting .menu a:is(:hover, :focus, :active)::before,
+#header #greeting .dropdown-menu a:is(:hover, :focus, :active)::before {
   color: var(--m-link) !important;
 }
 
@@ -471,8 +479,8 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus),
-.dashboard .navigation a:is(:hover, :focus) {
+#dashboard .navigation a:is(:hover, :focus, :active),
+.dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   border-color: var(--m-line-soft) !important;
   color: var(--m-link) !important;
@@ -487,14 +495,14 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 }
 
 @media (prefers-color-scheme: dark) {
-  #header #greeting .dropdown-toggle:is(:hover, :focus),
+  #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
   #dashboard .navigation .current,
   .dashboard .navigation .current {
     border-color: rgba(var(--m-link-rgb), 0.3) !important;
   }
 }
 
-body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus),
+body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
 body:is(.reversi, .dark) #dashboard .navigation .current,
 body:is(.reversi, .dark) .dashboard .navigation .current {
   border-color: rgba(var(--m-link-rgb), 0.3) !important;
@@ -600,10 +608,10 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     transform 140ms ease !important;
 }
 
-#header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
-#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
-#header #greeting a[href*="/users/login"]:is(:hover, :focus),
-#header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+#header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
+#header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
+#header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
+#header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.28) !important;
@@ -697,8 +705,8 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus),
-.dashboard .navigation a:is(:hover, :focus) {
+#dashboard .navigation a:is(:hover, :focus, :active),
+.dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -820,22 +828,22 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
 }
 
 @media (prefers-color-scheme: dark) {
-  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
-  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
-  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
-  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.32) !important;
   }
 }
 
 body:is(.reversi, .dark)
-  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus),
+  #header #greeting > ul.user.navigation.actions > li > a:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting a[href*="/users/login"]:is(:hover, :focus),
+  #header #greeting a[href*="/users/login"]:is(:hover, :focus, :active),
 body:is(.reversi, .dark)
-  #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
+  #header #greeting a[href*="/users/logout"]:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.32) !important;
 }
 
@@ -922,9 +930,9 @@ body:is(.reversi, .dark)
     box-shadow 140ms ease !important;
 }
 
-#header li.search #site_search:is(:hover, :focus),
-#header li.search input[type="text"]:is(:hover, :focus),
-#header li.search input[type="search"]:is(:hover, :focus) {
+#header li.search #site_search:is(:hover, :focus, :active),
+#header li.search input[type="text"]:is(:hover, :focus, :active),
+#header li.search input[type="search"]:is(:hover, :focus, :active) {
   background: var(--m-surface-solid) !important;
   border-color: rgba(var(--m-link-rgb), 0.42) !important;
   box-shadow:
@@ -974,9 +982,9 @@ body:is(.reversi, .dark)
     color 140ms ease !important;
 }
 
-#header li.search .submit.actions input[type="submit"]:is(:hover, :focus),
-#header li.search input.button[type="submit"]:is(:hover, :focus),
-#header li.search button:is(:hover, :focus) {
+#header li.search .submit.actions input[type="submit"]:is(:hover, :focus, :active),
+#header li.search input.button[type="submit"]:is(:hover, :focus, :active),
+#header li.search button:is(:hover, :focus, :active) {
   transform: none !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -1044,7 +1052,7 @@ body:is(.reversi, .dark)
     transform 140ms ease !important;
 }
 
-#header #greeting > p.icon > a:is(:hover, :focus) {
+#header #greeting > p.icon > a:is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: rgba(var(--m-link-rgb), 0.42) !important;
@@ -1190,10 +1198,10 @@ body:is(.reversi, .dark)
 }
 
 @media (prefers-color-scheme: dark) {
-  #header li.search #site_search:is(:hover, :focus),
-  #header li.search input[type="text"]:is(:hover, :focus),
-  #header li.search input[type="search"]:is(:hover, :focus),
-  #header #greeting > p.icon > a:is(:hover, :focus) {
+  #header li.search #site_search:is(:hover, :focus, :active),
+  #header li.search input[type="text"]:is(:hover, :focus, :active),
+  #header li.search input[type="search"]:is(:hover, :focus, :active),
+  #header #greeting > p.icon > a:is(:hover, :focus, :active) {
     border-color: rgba(var(--m-link-rgb), 0.38) !important;
   }
 
@@ -1204,10 +1212,10 @@ body:is(.reversi, .dark)
   }
 }
 
-body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus),
-body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus),
-body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus),
-body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus) {
+body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus, :active),
+body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus, :active) {
   border-color: rgba(var(--m-link-rgb), 0.38) !important;
 }
 
