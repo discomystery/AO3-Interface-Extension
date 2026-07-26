@@ -385,41 +385,41 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   transform: scale(1.08) !important;
   background: var(--m-read) !important;
   border-color: var(--m-read) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 .blurb .marker-action-do-not-read:is(:hover, :focus) {
   transform: scale(1.08) !important;
   background: var(--m-dnr) !important;
   border-color: var(--m-dnr) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 .blurb .marker-action-wtr:is(:hover, :focus) {
   transform: scale(1.08) !important;
   background: var(--m-wtr) !important;
   border-color: var(--m-wtr) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 .blurb .marker-action-read:is(.active, .marker-active),
 .blurb .marker-action-read[style*="40, 167, 69"] {
   background: var(--m-read) !important;
   border-color: var(--m-read) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 .blurb .marker-action-do-not-read:is(.active, .marker-active),
 .blurb .marker-action-do-not-read[style*="220, 53, 69"] {
   background: var(--m-dnr) !important;
   border-color: var(--m-dnr) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 .blurb .marker-action-wtr:is(.wtr-active, .active, .marker-active) {
   background: var(--m-wtr) !important;
   border-color: var(--m-wtr) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 
@@ -563,7 +563,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   border-radius: 999px !important;
   box-shadow: 0 3px 9px rgba(var(--marker-rgb), 0.18) !important;
 
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
   font-size: 0.66rem !important;
   font-weight: 750 !important;
   line-height: 1.15 !important;
@@ -828,7 +828,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 .wtr-count-badge {
   background: var(--m-wtr) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
   border-radius: 999px !important;
   box-shadow: 0 2px 7px rgba(var(--m-wtr-rgb), 0.28) !important;
 }

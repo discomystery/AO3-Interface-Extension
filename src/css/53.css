@@ -282,14 +282,14 @@
 }
 
 #main.inbox-show #inbox-form li.comment.group:hover {
-  border-color: rgba(0, 102, 204, 0.24) !important;
+  border-color: rgba(var(--m-link-rgb), 0.24) !important;
   box-shadow: var(--m-shadow) !important;
 }
 
 #main.inbox-show #inbox-form li.comment.unread {
   background:
-    linear-gradient(112deg, rgba(0, 102, 204, 0.09), rgba(var(--m-card), 0.9) 44%) !important;
-  border-color: rgba(0, 102, 204, 0.34) !important;
+    linear-gradient(112deg, rgba(var(--m-link-rgb), 0.09), rgba(var(--m-card), 0.9) 44%) !important;
+  border-color: rgba(var(--m-link-rgb), 0.34) !important;
   box-shadow:
     inset 3px 0 0 var(--m-link),
     var(--m-shadow-soft) !important;
@@ -522,7 +522,7 @@
 
 #main.inbox-show #inbox-form li.comment > ul.actions span.unread {
   background: var(--m-control-active) !important;
-  border-color: rgba(0, 102, 204, 0.32) !important;
+  border-color: rgba(var(--m-link-rgb), 0.32) !important;
   color: var(--m-link) !important;
   cursor: default !important;
 }
@@ -718,7 +718,7 @@
   border: 1px solid var(--m-link) !important;
   border-radius: 6px !important;
   box-shadow: none !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
   font-size: 0.72rem !important;
   font-weight: 700 !important;
   line-height: 1 !important;
@@ -730,7 +730,7 @@
   transform: none !important;
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
-  color: #ffffff !important;
+  color: var(--m-on-accent) !important;
 }
 
 /* ------------------------------------------------------------
@@ -764,25 +764,23 @@
 @media (prefers-color-scheme: dark) {
   #main.inbox-show #inbox-form li.comment.unread {
     background:
-      linear-gradient(112deg, rgba(41, 151, 255, 0.13), rgba(var(--m-card), 0.9) 48%) !important;
-    border-color: rgba(77, 163, 255, 0.38) !important;
+      linear-gradient(112deg, rgba(var(--m-link-rgb), 0.13), rgba(var(--m-card), 0.9) 48%) !important;
+    border-color: rgba(var(--m-link-hover-rgb), 0.38) !important;
   }
 
   #main.inbox-show #inbox-form li.comment.group:hover {
-    border-color: rgba(77, 163, 255, 0.32) !important;
+    border-color: rgba(var(--m-link-hover-rgb), 0.32) !important;
   }
 }
 
-body.reversi #main.inbox-show #inbox-form li.comment.unread,
-body.dark #main.inbox-show #inbox-form li.comment.unread {
+body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.unread {
   background:
-    linear-gradient(112deg, rgba(41, 151, 255, 0.13), rgba(var(--m-card), 0.9) 48%) !important;
-  border-color: rgba(77, 163, 255, 0.38) !important;
+    linear-gradient(112deg, rgba(var(--m-link-rgb), 0.13), rgba(var(--m-card), 0.9) 48%) !important;
+  border-color: rgba(var(--m-link-hover-rgb), 0.38) !important;
 }
 
-body.reversi #main.inbox-show #inbox-form li.comment.group:hover,
-body.dark #main.inbox-show #inbox-form li.comment.group:hover {
-  border-color: rgba(77, 163, 255, 0.32) !important;
+body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
+  border-color: rgba(var(--m-link-hover-rgb), 0.32) !important;
 }
 
 /* ------------------------------------------------------------

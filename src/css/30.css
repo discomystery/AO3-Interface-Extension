@@ -47,30 +47,19 @@
 }
 
 /* History / Marked for Later / Clear Entire History navigation.
-   Use compact rounded rectangles rather than large pills. */
+   Pagination sizing itself now matches the sitewide compact standard
+   (see 20.css); only the understated active-tab treatment remains here. */
 #main.readings-index > ul.navigation.actions,
 #main.readings-index > .navigation.actions {
   gap: 0.3rem !important;
   margin: 0.6rem 0 0.85rem !important;
 }
 
-#main.readings-index > ul.navigation.actions :is(a, .current, .disabled),
-#main.readings-index > .navigation.actions :is(a, .current, .disabled) {
-  min-height: 1.6rem !important;
-  padding: 0.22rem 0.52rem !important;
-
-  border-radius: 7px !important;
-
-  font-size: 0.7rem !important;
-  font-weight: 580 !important;
-  line-height: 1.1 !important;
-}
-
 /* Keep the active History tab understated and consistent with the cards. */
 #main.readings-index > ul.navigation.actions .current,
 #main.readings-index > .navigation.actions .current {
   background: var(--m-control-active) !important;
-  border-color: rgba(0, 102, 204, 0.28) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
   color: var(--m-link) !important;
   box-shadow: none !important;
 }
@@ -78,13 +67,13 @@
 @media (prefers-color-scheme: dark) {
   #main.readings-index > ul.navigation.actions .current,
   #main.readings-index > .navigation.actions .current {
-    border-color: rgba(41, 151, 255, 0.34) !important;
+    border-color: rgba(var(--m-link-rgb), 0.34) !important;
   }
 }
 
 body:is(.reversi, .dark) #main.readings-index > ul.navigation.actions .current,
 body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
-  border-color: rgba(41, 151, 255, 0.34) !important;
+  border-color: rgba(var(--m-link-rgb), 0.34) !important;
 }
 
 /* Header dropdowns must sit above the dashboard/profile navigation and
@@ -233,19 +222,19 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
 #main .marker-data-sync-container > a.action:is(:hover, :focus) {
   transform: none !important;
   background: var(--m-control-hover) !important;
-  border-color: rgba(0, 102, 204, 0.28) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
   color: var(--m-link) !important;
   box-shadow: none !important;
 }
 
 @media (prefers-color-scheme: dark) {
   #main .marker-data-sync-container > a.action:is(:hover, :focus) {
-    border-color: rgba(41, 151, 255, 0.34) !important;
+    border-color: rgba(var(--m-link-rgb), 0.34) !important;
   }
 }
 
 body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover, :focus) {
-  border-color: rgba(41, 151, 255, 0.34) !important;
+  border-color: rgba(var(--m-link-rgb), 0.34) !important;
 }
 
 /* Footer: neutralize AO3's inherited white text and dark module fills. */
@@ -335,7 +324,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 
 #header #greeting .dropdown-toggle:is(:hover, :focus) {
   background: var(--m-control-hover) !important;
-  border-color: rgba(0, 102, 204, 0.26) !important;
+  border-color: rgba(var(--m-link-rgb), 0.26) !important;
   color: var(--m-link) !important;
 }
 
@@ -492,7 +481,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 #dashboard .navigation .current,
 .dashboard .navigation .current {
   background: var(--m-control-active) !important;
-  border-color: rgba(0, 102, 204, 0.22) !important;
+  border-color: rgba(var(--m-link-rgb), 0.22) !important;
   color: var(--m-link) !important;
   font-weight: 650 !important;
 }
@@ -501,14 +490,14 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   #header #greeting .dropdown-toggle:is(:hover, :focus),
   #dashboard .navigation .current,
   .dashboard .navigation .current {
-    border-color: rgba(41, 151, 255, 0.3) !important;
+    border-color: rgba(var(--m-link-rgb), 0.3) !important;
   }
 }
 
 body:is(.reversi, .dark) #header #greeting .dropdown-toggle:is(:hover, :focus),
 body:is(.reversi, .dark) #dashboard .navigation .current,
 body:is(.reversi, .dark) .dashboard .navigation .current {
-  border-color: rgba(41, 151, 255, 0.3) !important;
+  border-color: rgba(var(--m-link-rgb), 0.3) !important;
 }
 
 @media only screen and (max-width: 48rem) {
@@ -617,7 +606,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
 #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
-  border-color: rgba(0, 102, 204, 0.28) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
   color: var(--m-link) !important;
 }
 
@@ -835,7 +824,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle:is(:hover, :focus),
   #header #greeting a[href*="/users/login"]:is(:hover, :focus),
   #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
-    border-color: rgba(41, 151, 255, 0.32) !important;
+    border-color: rgba(var(--m-link-rgb), 0.32) !important;
   }
 }
 
@@ -847,7 +836,7 @@ body:is(.reversi, .dark)
   #header #greeting a[href*="/users/login"]:is(:hover, :focus),
 body:is(.reversi, .dark)
   #header #greeting a[href*="/users/logout"]:is(:hover, :focus) {
-  border-color: rgba(41, 151, 255, 0.32) !important;
+  border-color: rgba(var(--m-link-rgb), 0.32) !important;
 }
 
 /* ============================================================
@@ -937,7 +926,7 @@ body:is(.reversi, .dark)
 #header li.search input[type="text"]:is(:hover, :focus),
 #header li.search input[type="search"]:is(:hover, :focus) {
   background: var(--m-surface-solid) !important;
-  border-color: rgba(0, 102, 204, 0.42) !important;
+  border-color: rgba(var(--m-link-rgb), 0.42) !important;
   box-shadow:
     inset 0 1px 1px rgba(0, 0, 0, 0.025),
     0 0 0 3px var(--m-focus-ring) !important;
@@ -968,7 +957,7 @@ body:is(.reversi, .dark)
 
   background: var(--m-control-active) !important;
   background-image: none !important;
-  border: 1px solid rgba(0, 102, 204, 0.28) !important;
+  border: 1px solid rgba(var(--m-link-rgb), 0.28) !important;
   border-radius: 0 9px 9px 0 !important;
   box-shadow: none !important;
 
@@ -1058,7 +1047,7 @@ body:is(.reversi, .dark)
 #header #greeting > p.icon > a:is(:hover, :focus) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
-  border-color: rgba(0, 102, 204, 0.42) !important;
+  border-color: rgba(var(--m-link-rgb), 0.42) !important;
   box-shadow:
     0 3px 9px rgba(0, 0, 0, 0.12),
     0 0 0 3px var(--m-focus-ring) !important;
@@ -1205,13 +1194,13 @@ body:is(.reversi, .dark)
   #header li.search input[type="text"]:is(:hover, :focus),
   #header li.search input[type="search"]:is(:hover, :focus),
   #header #greeting > p.icon > a:is(:hover, :focus) {
-    border-color: rgba(41, 151, 255, 0.38) !important;
+    border-color: rgba(var(--m-link-rgb), 0.38) !important;
   }
 
   #header li.search .submit.actions input[type="submit"],
   #header li.search input.button[type="submit"],
   #header li.search button {
-    border-color: rgba(41, 151, 255, 0.30) !important;
+    border-color: rgba(var(--m-link-rgb), 0.30) !important;
   }
 }
 
@@ -1219,13 +1208,13 @@ body:is(.reversi, .dark) #header li.search #site_search:is(:hover, :focus),
 body:is(.reversi, .dark) #header li.search input[type="text"]:is(:hover, :focus),
 body:is(.reversi, .dark) #header li.search input[type="search"]:is(:hover, :focus),
 body:is(.reversi, .dark) #header #greeting > p.icon > a:is(:hover, :focus) {
-  border-color: rgba(41, 151, 255, 0.38) !important;
+  border-color: rgba(var(--m-link-rgb), 0.38) !important;
 }
 
 body:is(.reversi, .dark) #header li.search .submit.actions input[type="submit"],
 body:is(.reversi, .dark) #header li.search input.button[type="submit"],
 body:is(.reversi, .dark) #header li.search button {
-  border-color: rgba(41, 151, 255, 0.30) !important;
+  border-color: rgba(var(--m-link-rgb), 0.30) !important;
 }
 
 /* ============================================================

@@ -549,7 +549,7 @@
    RESPONSIVE
    ------------------------------------------------------------ */
 
-@media only screen and (max-width: 42em) {
+@media only screen and (max-width: 42rem) {
   #main.users-show .user.home > .primary.header.module,
   #main.profile-show .user.home.profile > .primary.header.module {
     grid-template-columns: 3.5rem minmax(0, 1fr) !important;
@@ -625,7 +625,7 @@
   }
 }
 
-@media only screen and (max-width: 30em) {
+@media only screen and (max-width: 30rem) {
   #main.users-show .user.home > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > ul.navigation.actions > li {

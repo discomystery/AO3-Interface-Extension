@@ -453,7 +453,7 @@
 
 #main.subscriptions-index dl.subscription.index > dt:hover,
 #main.subscriptions-index dl.subscription.index > dt:hover + dd {
-  border-color: rgba(0, 102, 204, 0.24) !important;
+  border-color: rgba(var(--m-link-rgb), 0.24) !important;
   box-shadow: var(--m-shadow) !important;
 }
 
@@ -479,26 +479,19 @@
   }
 }
 
-body.reversi #main.subscriptions-index > ul.navigation.actions,
-body.dark #main.subscriptions-index > ul.navigation.actions,
-body.reversi #main.subscriptions-index dl.subscription.index > dt,
-body.dark #main.subscriptions-index dl.subscription.index > dt,
-body.reversi #main.subscriptions-index dl.subscription.index > dd,
-body.dark #main.subscriptions-index dl.subscription.index > dd {
+body:is(.reversi, .dark) #main.subscriptions-index > ul.navigation.actions,
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt,
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dd {
   background: rgba(var(--m-card), 0.9) !important;
 }
 
-body.reversi #main.subscriptions-index dl.subscription.index > dt > a,
-body.dark #main.subscriptions-index dl.subscription.index > dt > a,
-body.reversi #main.subscriptions-index dl.subscription.index > dt > a:visited,
-body.dark #main.subscriptions-index dl.subscription.index > dt > a:visited {
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > a,
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > a:visited {
   color: var(--m-link) !important;
 }
 
-body.reversi #main.subscriptions-index dl.subscription.index > dt > a:first-child,
-body.dark #main.subscriptions-index dl.subscription.index > dt > a:first-child,
-body.reversi #main.subscriptions-index dl.subscription.index > dt > a:first-child:visited,
-body.dark #main.subscriptions-index dl.subscription.index > dt > a:first-child:visited {
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > a:first-child,
+body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > a:first-child:visited {
   color: var(--m-text) !important;
 }
 
@@ -506,7 +499,7 @@ body.dark #main.subscriptions-index dl.subscription.index > dt > a:first-child:v
    RESPONSIVE
    ------------------------------------------------------------ */
 
-@media only screen and (max-width: 62em) {
+@media only screen and (max-width: 62rem) {
   #main.subscriptions-index dl.subscription.index {
     grid-template-columns: minmax(0, 1fr) minmax(12.5rem, 15rem) !important;
     row-gap: 0.78rem !important;
@@ -517,7 +510,7 @@ body.dark #main.subscriptions-index dl.subscription.index > dt > a:first-child:v
   }
 }
 
-@media only screen and (max-width: 42em) {
+@media only screen and (max-width: 42rem) {
   #main.subscriptions-index > ul.navigation.actions {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
@@ -580,7 +573,7 @@ body.dark #main.subscriptions-index dl.subscription.index > dt > a:first-child:v
   }
 }
 
-@media only screen and (max-width: 30em) {
+@media only screen and (max-width: 30rem) {
   #main.subscriptions-index > ul.navigation.actions {
     grid-template-columns: minmax(0, 1fr) !important;
   }

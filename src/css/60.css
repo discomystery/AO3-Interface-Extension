@@ -748,23 +748,23 @@
 @media (prefers-color-scheme: dark) {
   #bookmark-filters,
   #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
-    background-color: rgba(29, 29, 31, 0.96) !important;
+    background-color: rgba(var(--m-card), 0.96) !important;
   }
 
   #bookmark-filters dd.expandable,
   #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
-    background-color: rgba(44, 44, 46, 0.92) !important;
+    background-color: rgba(var(--m-surface-rgb), 0.92) !important;
   }
 }
 
 body:is(.reversi, .dark) #bookmark-filters,
 body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
-  background-color: rgba(29, 29, 31, 0.96) !important;
+  background-color: rgba(var(--m-card), 0.96) !important;
 }
 
 body:is(.reversi, .dark) #bookmark-filters dd.expandable,
 body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
-  background-color: rgba(44, 44, 46, 0.92) !important;
+  background-color: rgba(var(--m-surface-rgb), 0.92) !important;
 }
 
 

@@ -18,8 +18,6 @@
 #main.chapters-show {
   --m-work-page-width: 64rem;
   --m-work-reading-width: 54rem;
-  --m-work-link: #0066cc;
-  --m-work-link-hover: #004f9f;
 
   color: var(--m-text-2) !important;
 }
@@ -121,8 +119,8 @@
 #main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:hover,
 #main.chapters-show > .work > ul.work.navigation.actions input[type="submit"]:focus {
   background: var(--m-control-hover) !important;
-  border-color: var(--m-work-link) !important;
-  color: var(--m-work-link) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
   transform: none !important;
 }
 
@@ -300,14 +298,14 @@
 #main.chapters-show dl.work.meta dd.tags a.tag:hover,
 #main.chapters-show dl.work.meta dd.tags a.tag:focus {
   background: var(--m-surface-solid) !important;
-  border-color: var(--m-work-link) !important;
-  color: var(--m-work-link) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
 }
 
 /* Series and non-tag metadata use the same quiet link treatment. */
 #main.works-show dl.work.meta dd a,
 #main.chapters-show dl.work.meta dd a {
-  color: var(--m-work-link) !important;
+  color: var(--m-link) !important;
   text-decoration: none !important;
   text-shadow: none !important;
 }
@@ -316,7 +314,7 @@
 #main.works-show dl.work.meta dd a:focus,
 #main.chapters-show dl.work.meta dd a:hover,
 #main.chapters-show dl.work.meta dd a:focus {
-  color: var(--m-work-link-hover) !important;
+  color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-underline-offset: 2px !important;
 }
@@ -450,7 +448,7 @@
 
 #main.works-show #workskin > .preface.group > h3.byline a,
 #main.chapters-show #workskin > .preface.group > h3.byline a {
-  color: var(--m-work-link) !important;
+  color: var(--m-link) !important;
   font-weight: 650 !important;
 }
 
@@ -607,7 +605,9 @@
    ------------------------------------------------------------ */
 
 #main.works-show #workskin .afterword.preface.group,
-#main.chapters-show #workskin .afterword.preface.group {
+#main.chapters-show #workskin .afterword.preface.group,
+#main.works-show #series.series.module,
+#main.chapters-show #series.series.module {
   box-sizing: border-box !important;
   width: min(100%, var(--m-work-page-width)) !important;
   max-width: var(--m-work-page-width) !important;
@@ -618,6 +618,35 @@
   border-radius: 13px !important;
   box-shadow: var(--m-shadow-soft) !important;
   color: var(--m-text-2) !important;
+}
+
+#main.works-show #series.series.module > h3.heading,
+#main.chapters-show #series.series.module > h3.heading {
+  margin: 0 0 0.4rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.7rem !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.025em !important;
+  text-transform: uppercase !important;
+}
+
+#main.works-show #series.series.module ul,
+#main.chapters-show #series.series.module ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main.works-show #series.series.module a,
+#main.chapters-show #series.series.module a {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+}
+
+#main.works-show #series.series.module a:is(:hover, :focus),
+#main.chapters-show #series.series.module a:is(:hover, :focus) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
 }
 
 #main.works-show #feedback,
@@ -672,7 +701,7 @@
 #main.works-show #workskin #chapters .userstuff a:not([style]):visited,
 #main.chapters-show #workskin #chapters .userstuff a:not([style]):link,
 #main.chapters-show #workskin #chapters .userstuff a:not([style]):visited {
-  color: var(--m-work-link) !important;
+  color: var(--m-link) !important;
   text-decoration-color: currentColor !important;
   text-shadow: none !important;
 }
@@ -693,7 +722,7 @@
 #main.works-show #feedback a:focus,
 #main.chapters-show #feedback a:hover,
 #main.chapters-show #feedback a:focus {
-  color: var(--m-work-link-hover) !important;
+  color: var(--m-link-hover) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
   text-underline-offset: 3px !important;
@@ -710,12 +739,6 @@
    ------------------------------------------------------------ */
 
 @media (prefers-color-scheme: dark) {
-  #main.works-show,
-  #main.chapters-show {
-    --m-work-link: #4da3ff;
-    --m-work-link-hover: #8ac8ff;
-  }
-
   #main.works-show > .work > ul.work.navigation.actions,
   #main.chapters-show > .work > ul.work.navigation.actions,
   #main.works-show > .work > .wrapper,
@@ -728,55 +751,37 @@
   #main.chapters-show #feedback > ul.actions,
   #main.works-show #workskin #chapters,
   #main.chapters-show #workskin #chapters {
-    background-color: rgba(29, 29, 31, 0.96) !important;
-    color: #c7c7cc !important;
+    background-color: rgba(var(--m-card), 0.96) !important;
+    color: var(--m-text-2) !important;
   }
 
   #main.works-show #workskin > .preface.group .summary.module,
   #main.works-show #workskin > .preface.group .notes.module,
   #main.chapters-show #workskin > .preface.group .summary.module,
   #main.chapters-show #workskin > .preface.group .notes.module {
-    background-color: rgba(44, 44, 46, 0.92) !important;
+    background-color: rgba(var(--m-card), 0.92) !important;
   }
 }
 
-body.reversi #main.works-show,
-body.reversi #main.chapters-show,
-body.dark #main.works-show,
-body.dark #main.chapters-show {
-  --m-work-link: #4da3ff;
-  --m-work-link-hover: #8ac8ff;
+body:is(.reversi, .dark) #main.works-show > .work > ul.work.navigation.actions,
+body:is(.reversi, .dark) #main.chapters-show > .work > ul.work.navigation.actions,
+body:is(.reversi, .dark) #main.works-show > .work > .wrapper,
+body:is(.reversi, .dark) #main.chapters-show > .work > .wrapper,
+body:is(.reversi, .dark) #main.works-show #workskin > .preface.group,
+body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group,
+body:is(.reversi, .dark) #main.works-show #feedback > ul.actions,
+body:is(.reversi, .dark) #main.chapters-show #feedback > ul.actions,
+body:is(.reversi, .dark) #main.works-show #workskin #chapters,
+body:is(.reversi, .dark) #main.chapters-show #workskin #chapters {
+  background-color: rgba(var(--m-card), 0.96) !important;
+  color: var(--m-text-2) !important;
 }
 
-body.reversi #main.works-show > .work > ul.work.navigation.actions,
-body.reversi #main.chapters-show > .work > ul.work.navigation.actions,
-body.reversi #main.works-show > .work > .wrapper,
-body.reversi #main.chapters-show > .work > .wrapper,
-body.reversi #main.works-show #workskin > .preface.group,
-body.reversi #main.chapters-show #workskin > .preface.group,
-body.dark #main.works-show > .work > ul.work.navigation.actions,
-body.dark #main.chapters-show > .work > ul.work.navigation.actions,
-body.dark #main.works-show > .work > .wrapper,
-body.dark #main.chapters-show > .work > .wrapper,
-body.dark #main.works-show #workskin > .preface.group,
-body.dark #main.chapters-show #workskin > .preface.group,
-body.reversi #main.works-show #workskin #chapters,
-body.reversi #main.chapters-show #workskin #chapters,
-body.dark #main.works-show #workskin #chapters,
-body.dark #main.chapters-show #workskin #chapters {
-  background-color: rgba(29, 29, 31, 0.96) !important;
-  color: #c7c7cc !important;
-}
-
-body.reversi #main.works-show #workskin > .preface.group .summary.module,
-body.reversi #main.works-show #workskin > .preface.group .notes.module,
-body.reversi #main.chapters-show #workskin > .preface.group .summary.module,
-body.reversi #main.chapters-show #workskin > .preface.group .notes.module,
-body.dark #main.works-show #workskin > .preface.group .summary.module,
-body.dark #main.works-show #workskin > .preface.group .notes.module,
-body.dark #main.chapters-show #workskin > .preface.group .summary.module,
-body.dark #main.chapters-show #workskin > .preface.group .notes.module {
-  background-color: rgba(44, 44, 46, 0.92) !important;
+body:is(.reversi, .dark) #main.works-show #workskin > .preface.group .summary.module,
+body:is(.reversi, .dark) #main.works-show #workskin > .preface.group .notes.module,
+body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .summary.module,
+body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.module {
+  background-color: rgba(var(--m-card), 0.92) !important;
 }
 
 /* ------------------------------------------------------------
@@ -849,11 +854,6 @@ body.dark #main.chapters-show #workskin > .preface.group .notes.module {
     font-size: 1.1rem !important;
   }
 
-  #main.works-show #workskin #chapters,
-  #main.chapters-show #workskin #chapters {
-    padding: 1rem 0.9rem !important;
-    border-radius: 13px !important;
-  }
   #main.works-show #workskin > .preface.group .summary.module,
   #main.works-show #workskin > .preface.group .notes.module,
   #main.chapters-show #workskin > .preface.group .summary.module,
@@ -874,13 +874,6 @@ body.dark #main.chapters-show #workskin > .preface.group .notes.module {
     border-radius: 12px !important;
   }
 
-
-
-  #main.works-show #workskin #chapters,
-  #main.chapters-show #workskin #chapters {
-    padding: 0.88rem 0.72rem !important;
-    border-radius: 11px !important;
-  }
   #main.works-show dl.work.meta dd.tags a.tag,
   #main.chapters-show dl.work.meta dd.tags a.tag {
     padding: 0.2rem 0.4rem !important;

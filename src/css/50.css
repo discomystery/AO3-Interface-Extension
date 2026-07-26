@@ -84,7 +84,7 @@
 #main input.action:hover,
 #main input.action:focus {
   background: var(--m-control-hover) !important;
-  border-color: rgba(0, 102, 204, 0.3) !important;
+  border-color: rgba(var(--m-link-rgb), 0.3) !important;
   color: var(--m-link) !important;
 }
 
@@ -92,7 +92,7 @@
 #main .actions a.current,
 #main .actions [aria-current="page"] {
   background: var(--m-control-active) !important;
-  border-color: rgba(0, 102, 204, 0.3) !important;
+  border-color: rgba(var(--m-link-rgb), 0.3) !important;
   color: var(--m-link) !important;
   font-weight: 720 !important;
 }
@@ -122,7 +122,7 @@
   padding: 0.38rem 0.62rem !important;
   background: var(--m-link) !important;
   border-color: var(--m-link) !important;
-  color: #fff !important;
+  color: var(--m-on-accent) !important;
 }
 
 #work-filters dd.submit input:hover,
@@ -133,7 +133,7 @@
 #inbox-filters dd.submit input:focus {
   background: var(--m-link-hover) !important;
   border-color: var(--m-link-hover) !important;
-  color: #fff !important;
+  color: var(--m-on-accent) !important;
 }
 
 /* Restore the dashboard sidebar treatment used before the unified button
@@ -805,7 +805,6 @@
 #feedback .wrapper,
 #feedback #kudos,
 #feedback #comments_placeholder,
-#feedback .comment,
 #feedback .notice {
   box-sizing: border-box !important;
   background: rgba(var(--m-card), 0.74) !important;
@@ -817,6 +816,171 @@
 #feedback #kudos p,
 #feedback .kudos {
   color: var(--m-text-2) !important;
+}
+
+/* ------------------------------------------------------------
+   COMMENT THREADS
+   AO3 renders the same comment partial here (via #comments_placeholder)
+   as it does in the inbox, so give it the same card treatment.
+   ------------------------------------------------------------ */
+
+#feedback ol.comment.index {
+  display: grid !important;
+  gap: 0.72rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#feedback li.comment.group {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 3.25rem minmax(0, 1fr) !important;
+  grid-template-areas:
+    "avatar byline"
+    "avatar message"
+    "actions actions" !important;
+  column-gap: 0.85rem !important;
+  row-gap: 0 !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 15px !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#feedback li.comment.group:hover {
+  border-color: rgba(var(--m-link-rgb), 0.24) !important;
+  box-shadow: var(--m-shadow) !important;
+}
+
+#feedback li.comment .icon {
+  grid-area: avatar !important;
+  align-self: start !important;
+  box-sizing: border-box !important;
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  margin: 0.85rem 0 0 0.85rem !important;
+  padding: 0 !important;
+}
+
+#feedback li.comment .icon img {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 3.25rem !important;
+  height: 3.25rem !important;
+  object-fit: cover !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: var(--m-shadow-xs) !important;
+}
+
+#feedback li.comment h4.byline {
+  grid-area: byline !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0.82rem 0.9rem 0.42rem 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.79rem !important;
+  font-weight: 480 !important;
+  line-height: 1.45 !important;
+}
+
+#feedback li.comment h4.byline a:first-child {
+  color: var(--m-text) !important;
+  font-weight: 740 !important;
+}
+
+#feedback li.comment h4.byline a {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+}
+
+#feedback li.comment h4.byline a:is(:hover, :focus) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+#feedback li.comment .posted.datetime {
+  float: right !important;
+  margin: 0 0 0.2rem 0.6rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 560 !important;
+  white-space: nowrap !important;
+}
+
+#feedback li.comment blockquote.userstuff {
+  grid-area: message !important;
+  box-sizing: border-box !important;
+  margin: 0 0.9rem 0.8rem 0 !important;
+  padding: 0.7rem 0.82rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere !important;
+}
+
+#feedback li.comment blockquote.userstuff p:first-child {
+  margin-top: 0 !important;
+}
+
+#feedback li.comment blockquote.userstuff p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#feedback li.comment blockquote.userstuff a {
+  color: var(--m-link) !important;
+}
+
+#feedback li.comment blockquote.userstuff a:is(:hover, :focus) {
+  color: var(--m-link-hover) !important;
+}
+
+#feedback li.comment > ul.actions {
+  grid-area: actions !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.34rem !important;
+
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0.55rem 0.72rem !important;
+  background: var(--m-surface) !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+}
+
+#feedback li.comment > ul.actions a {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 1.8rem !important;
+  padding: 0.32rem 0.56rem !important;
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 6px !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.66rem !important;
+  font-weight: 620 !important;
+  text-decoration: none !important;
+}
+
+#feedback li.comment > ul.actions a:is(:hover, :focus) {
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
 }
 
 /* ------------------------------------------------------------
@@ -855,8 +1019,8 @@
   #feedback #comments_placeholder,
   #feedback .comment,
   #feedback .notice {
-    background-color: rgba(29, 29, 31, 0.96) !important;
-    color: #c7c7cc !important;
+    background-color: rgba(var(--m-card), 0.96) !important;
+    color: var(--m-text-2) !important;
   }
 
   #main.users-show .user.home > .listbox > h3.heading,
@@ -865,7 +1029,7 @@
   #workskin .summary.module,
   #workskin .notes.module,
   #workskin .end.notes.module {
-    background-color: rgba(44, 44, 46, 0.94) !important;
+    background-color: rgba(var(--m-surface-rgb), 0.94) !important;
   }
 
   #main.users-show .listbox .index,
@@ -882,7 +1046,7 @@
   #main.dashboard li.bookmark.blurb blockquote.userstuff.summary,
   .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li,
   .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li:nth-child(even) {
-    background-color: rgba(44, 44, 46, 0.92) !important;
+    background-color: rgba(var(--m-surface-rgb), 0.92) !important;
   }
 }
 
@@ -905,8 +1069,8 @@ body:is(.reversi, .dark) #workskin > .preface.group,
 body:is(.reversi, .dark) #workskin .chapter.preface.group,
 body:is(.reversi, .dark) #feedback > div,
 body:is(.reversi, .dark) #feedback .wrapper {
-  background-color: rgba(29, 29, 31, 0.96) !important;
-  color: #c7c7cc !important;
+  background-color: rgba(var(--m-card), 0.96) !important;
+  color: var(--m-text-2) !important;
 }
 
 body:is(.reversi, .dark) #main.users-show .listbox .index,
@@ -921,7 +1085,7 @@ body:is(.reversi, .dark) #main.dashboard li.reading.blurb blockquote.userstuff.s
 body:is(.reversi, .dark) #main.dashboard li.bookmark.blurb blockquote.userstuff.summary,
 body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li,
 body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li:nth-child(even) {
-  background-color: rgba(44, 44, 46, 0.92) !important;
+  background-color: rgba(var(--m-surface-rgb), 0.92) !important;
 }
 
 /* ------------------------------------------------------------

@@ -206,15 +206,18 @@
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  min-height: 2rem !important;
-  padding: 0.36rem 0.68rem !important;
+  min-height: 1.6rem !important;
+  padding: 0.22rem 0.52rem !important;
 
   background: var(--m-surface) !important;
   border: 1px solid var(--m-line-soft) !important;
-  border-radius: 999px !important;
+  border-radius: var(--m-radius-pill) !important;
   box-shadow: none !important;
 
   color: var(--m-text-2) !important;
+  font-size: 0.7rem !important;
+  font-weight: 580 !important;
+  line-height: 1.1 !important;
   text-decoration: none !important;
   text-shadow: none !important;
 }
@@ -477,6 +480,109 @@
 
   -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
   backdrop-filter: blur(20px) saturate(145%) !important;
+}
+
+/* Bookmark-this-work popup */
+#bookmark_form_placement {
+  margin: 0.75rem 0 !important;
+}
+
+#bookmark_form_placement .post.bookmark {
+  box-sizing: border-box !important;
+  padding: 0.9rem !important;
+
+  background: rgba(var(--m-card), 0.97) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 14px !important;
+  box-shadow: var(--m-shadow-hover) !important;
+  color: var(--m-text-2) !important;
+
+  -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+  backdrop-filter: blur(20px) saturate(145%) !important;
+}
+
+#bookmark_form_placement .post.bookmark > h3.heading {
+  margin: 0 0 0.65rem !important;
+  color: var(--m-text) !important;
+  font-size: 0.95rem !important;
+  font-weight: 750 !important;
+}
+
+#bookmark_form_placement p.close.actions {
+  text-align: right !important;
+}
+
+#bookmark_form_placement a.bookmark_form_placement_close {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 50% !important;
+  color: var(--m-text-2) !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+}
+
+#bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus) {
+  background: rgba(var(--m-dnr-rgb), 0.1) !important;
+  border-color: rgba(var(--m-dnr-rgb), 0.3) !important;
+  color: var(--m-dnr) !important;
+}
+
+#bookmark_form_placement h4.heading {
+  margin: 0.65rem 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.85rem !important;
+  font-weight: 650 !important;
+}
+
+#bookmark_form_placement fieldset fieldset {
+  margin: 0.65rem 0 0 !important;
+  padding: 0.75rem !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+}
+
+#bookmark_form_placement fieldset fieldset > legend {
+  padding: 0 0.2rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.7rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+#bookmark_form_placement dt {
+  margin: 0.6rem 0 0.2rem !important;
+  color: var(--m-text-2) !important;
+  font-weight: 600 !important;
+}
+
+#bookmark_form_placement dt:first-child {
+  margin-top: 0 !important;
+}
+
+#bookmark_form_placement p.footnote {
+  margin: 0 0 0.3rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
+}
+
+/* Character counters under comment / notes / tag textareas */
+p.character_counter {
+  margin: 0.3rem 0 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.7rem !important;
+}
+
+p.character_counter span.value {
+  color: var(--m-text-2) !important;
+  font-weight: 650 !important;
+  font-variant-numeric: tabular-nums !important;
 }
 
 /* Footer */
