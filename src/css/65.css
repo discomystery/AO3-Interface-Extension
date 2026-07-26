@@ -369,7 +369,8 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:foc
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle::after,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle::after {
   right: 0.4rem !important;
-  font-size: 0.64rem !important;
+  width: 0.64rem !important;
+  height: 0.64rem !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dd.expandable,
@@ -462,7 +463,6 @@ html body #outer #inner #main form#bookmark-filters.filters .indicator::before {
 html body #outer #inner #main form#work-filters.filters input[type="checkbox"] + .indicator::before,
 html body #outer #inner #main form#bookmark-filters.filters input[type="checkbox"] + .indicator::before {
   border-radius: 2px !important;
-  font-size: 0.58rem !important;
 }
 
 html body #outer #inner #main form#work-filters.filters input[type="radio"] + .indicator::before,
