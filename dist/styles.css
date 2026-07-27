@@ -4262,6 +4262,57 @@ body:is(.reversi, .dark) .dashboard .navigation {
   mask-size: 100%;
 }
 
+/* Include / Exclude / More Options section collapse toggle. The button
+   itself is inserted by src/js/collapsible-filters.js — AO3's markup has no
+   native hook for collapsing these (unlike the Ratings/Warnings sub-groups
+   below, which AO3 already makes collapsible). */
+#work-filters dt.heading .ao3am-filter-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+  cursor: pointer !important;
+}
+
+#work-filters dt.heading .ao3am-filter-toggle:is(:hover, :focus-visible) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#work-filters dt.heading .ao3am-filter-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  transition: transform 140ms ease;
+}
+
+#work-filters dt.heading .ao3am-filter-toggle[aria-expanded="false"]::before {
+  transform: rotate(-90deg);
+}
+
+#work-filters dt.heading.ao3am-filter-collapsed + dd {
+  display: none !important;
+}
+
 /* Collapsible filter section headings */
 #work-filters dt.filter-toggle,
 #work-filters .expander {
@@ -4349,7 +4400,6 @@ body:is(.reversi, .dark) .dashboard .navigation {
 #work-filters dd.expandable label,
 #inbox-filters dd label {
   display: flex !important;
-  align-items: flex-start !important;
   gap: 0.42rem !important;
   margin: 0 !important;
   padding: 0.38rem 0.42rem !important;
@@ -4359,6 +4409,14 @@ body:is(.reversi, .dark) .dashboard .navigation {
   font-weight: 450 !important;
   line-height: 1.35 !important;
   cursor: pointer !important;
+}
+
+#inbox-filters dd label {
+  align-items: flex-start !important;
+}
+
+#work-filters dd.expandable label {
+  align-items: center !important;
 }
 
 #work-filters dd.expandable label:hover,
@@ -4377,12 +4435,12 @@ body:is(.reversi, .dark) .dashboard .navigation {
 .filters .indicator::before {
   box-sizing: border-box !important;
   display: inline-flex !important;
-  flex: 0 0 1rem !important;
+  flex: 0 0 1.05rem !important;
   align-items: center !important;
   justify-content: center !important;
-  width: 1rem !important;
-  height: 1rem !important;
-  margin: 0.05rem 0 0 !important;
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+  margin: 0 !important;
   padding: 0 !important;
 
   background: var(--m-surface-solid) !important;
@@ -4416,6 +4474,9 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 .filters input[type="radio"] + .indicator::before {
   content: "" !important;
+  flex-basis: 1.12rem !important;
+  width: 1.12rem !important;
+  height: 1.12rem !important;
   border-radius: 50% !important;
 }
 
@@ -9365,6 +9426,57 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
   mask-size: 100%;
 }
 
+/* Include / Exclude / More Options section collapse toggle. The button
+   itself is inserted by src/js/collapsible-filters.js — AO3's markup has no
+   native hook for collapsing these (unlike the Ratings/Warnings sub-groups
+   below, which AO3 already makes collapsible). */
+#bookmark-filters dt.heading .ao3am-filter-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+  cursor: pointer !important;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle:is(:hover, :focus-visible) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  transition: transform 140ms ease;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle[aria-expanded="false"]::before {
+  transform: rotate(-90deg);
+}
+
+#bookmark-filters dt.heading.ao3am-filter-collapsed + dd {
+  display: none !important;
+}
+
 #bookmark-filters dt.filter-toggle,
 #bookmark-filters .expander {
   position: relative !important;
@@ -9453,7 +9565,7 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 #bookmark-filters dd.expandable label,
 #bookmark-filters dd.options label {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   gap: 0.42rem !important;
   margin: 0 !important;
   padding: 0.38rem 0.42rem !important;
@@ -10078,9 +10190,9 @@ html body #outer #inner #main form#bookmark-filters.filters dt.heading {
   justify-content: space-between !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  min-height: 1.55rem !important;
-  margin: 0.32rem 0 0.14rem !important;
-  padding: 0.27rem 0.48rem !important;
+  min-height: 1.7rem !important;
+  margin: 0.36rem 0 0.16rem !important;
+  padding: 0.34rem 0.55rem !important;
   background: var(--m-chip) !important;
   border: 0 !important;
   border-top: 1px solid var(--m-line-soft) !important;
@@ -10164,9 +10276,9 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle {
   box-sizing: border-box !important;
   width: 100% !important;
   min-width: 0 !important;
-  min-height: 1.32rem !important;
-  margin: 0.08rem 0 0 !important;
-  padding: 0.16rem 1.15rem 0.16rem 0.34rem !important;
+  min-height: 1.5rem !important;
+  margin: 0.14rem 0 0 !important;
+  padding: 0.22rem 1.2rem 0.22rem 0.42rem !important;
   background: var(--m-control) !important;
   background-image: none !important;
   border: 1px solid var(--m-line) !important;
@@ -10251,9 +10363,9 @@ html body #outer #inner #main form#bookmark-filters.filters dd.expandable {
   width: 100% !important;
   min-width: 0 !important;
   max-width: 100% !important;
-  max-height: 7.25rem !important;
-  margin: 0.04rem 0 0.12rem !important;
-  padding: 0.06rem !important;
+  max-height: 8rem !important;
+  margin: 0.08rem 0 0.2rem !important;
+  padding: 0.12rem !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: var(--m-chip) !important;
@@ -10292,17 +10404,17 @@ html body #outer #inner #main form#work-filters.filters dd.options label,
 html body #outer #inner #main form#bookmark-filters.filters dd.expandable label,
 html body #outer #inner #main form#bookmark-filters.filters dd.options label {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  gap: 0.26rem !important;
+  gap: 0.34rem !important;
   margin: 0 !important;
-  padding: 0.2rem 0.26rem !important;
-  border-radius: 2px !important;
+  padding: 0.28rem 0.32rem !important;
+  border-radius: 3px !important;
   color: var(--m-text-2) !important;
-  font-size: 0.64rem !important;
+  font-size: 0.66rem !important;
   font-weight: 450 !important;
-  line-height: 1.18 !important;
+  line-height: 1.25 !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dd.expandable label:hover,
@@ -10326,20 +10438,31 @@ html body #outer #inner #main form#bookmark-filters.filters dd.expandable.catego
 /* ---------- Checkbox/radio details ---------- */
 html body #outer #inner #main form#work-filters.filters .indicator::before,
 html body #outer #inner #main form#bookmark-filters.filters .indicator::before {
-  flex: 0 0 0.82rem !important;
-  width: 0.82rem !important;
-  height: 0.82rem !important;
+  flex: 0 0 0.88rem !important;
+  width: 0.88rem !important;
+  height: 0.88rem !important;
   margin-top: 0 !important;
 }
 
 html body #outer #inner #main form#work-filters.filters input[type="checkbox"] + .indicator::before,
 html body #outer #inner #main form#bookmark-filters.filters input[type="checkbox"] + .indicator::before {
-  border-radius: 2px !important;
+  border-radius: 3px !important;
 }
 
+/* Radios get a touch more diameter than checkboxes at the same nominal
+   size — a circle inscribed in the same box as a square reads visibly
+   smaller, so this compensates for that optical illusion. */
 html body #outer #inner #main form#work-filters.filters input[type="radio"] + .indicator::before,
 html body #outer #inner #main form#bookmark-filters.filters input[type="radio"] + .indicator::before {
+  flex-basis: 0.94rem !important;
+  width: 0.94rem !important;
+  height: 0.94rem !important;
   border-radius: 50% !important;
+}
+
+html body #outer #inner #main form#work-filters.filters input[type="radio"]:checked + .indicator::before,
+html body #outer #inner #main form#bookmark-filters.filters input[type="radio"]:checked + .indicator::before {
+  box-shadow: inset 0 0 0 2.5px var(--m-surface-solid) !important;
 }
 
 /* Prevent the global autocomplete-card style inside the filters. */

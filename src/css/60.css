@@ -327,6 +327,57 @@
   mask-size: 100%;
 }
 
+/* Include / Exclude / More Options section collapse toggle. The button
+   itself is inserted by src/js/collapsible-filters.js — AO3's markup has no
+   native hook for collapsing these (unlike the Ratings/Warnings sub-groups
+   below, which AO3 already makes collapsible). */
+#bookmark-filters dt.heading .ao3am-filter-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  width: 1.15rem !important;
+  height: 1.15rem !important;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+  cursor: pointer !important;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle:is(:hover, :focus-visible) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle::before {
+  content: "";
+  display: inline-block;
+  width: 0.68rem;
+  height: 0.68rem;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  transition: transform 140ms ease;
+}
+
+#bookmark-filters dt.heading .ao3am-filter-toggle[aria-expanded="false"]::before {
+  transform: rotate(-90deg);
+}
+
+#bookmark-filters dt.heading.ao3am-filter-collapsed + dd {
+  display: none !important;
+}
+
 #bookmark-filters dt.filter-toggle,
 #bookmark-filters .expander {
   position: relative !important;
@@ -415,7 +466,7 @@
 #bookmark-filters dd.expandable label,
 #bookmark-filters dd.options label {
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: center !important;
   gap: 0.42rem !important;
   margin: 0 !important;
   padding: 0.38rem 0.42rem !important;

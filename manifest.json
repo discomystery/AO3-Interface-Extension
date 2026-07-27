@@ -19,6 +19,14 @@
       ],
       "js": ["src/js/collapse-double-breaks.js"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/*",
+        "https://www.archiveofourown.org/*"
+      ],
+      "js": ["src/js/collapsible-filters.js"],
+      "run_at": "document_idle"
     }
   ]
 }
