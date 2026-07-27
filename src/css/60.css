@@ -538,7 +538,7 @@
 #bookmark-filters p.footnote a:active {
   background: var(--m-control-hover) !important;
   border-color: var(--m-line) !important;
-  color: var(--m-link) !important;
+  color: var(--m-dnr) !important;
 }
 
 /* ------------------------------------------------------------

@@ -82,7 +82,7 @@ html body #outer #inner #main form#bookmark-filters.filters > fieldset > dl {
   box-sizing: border-box !important;
   width: 100% !important;
   margin: 0 !important;
-  padding: 0.24rem 0 !important;
+  padding: 0 0 0.24rem !important;
   background: transparent !important;
   border: 0 !important;
 }
@@ -108,6 +108,13 @@ html body #outer #inner #main form#bookmark-filters.filters dd.submit {
   width: calc(100% - 0.5rem) !important;
   margin: 0.2rem 0.25rem 0.35rem !important;
   padding: 0 !important;
+}
+
+/* The first Submit/Sort-and-Filter row sits directly under the sticky
+   "Filter results:" bar — no extra gap needed above it. */
+html body #outer #inner #main form#work-filters.filters dd.submit:first-of-type,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:first-of-type {
+  margin-top: 0 !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dd.submit input[type="submit"],
@@ -142,6 +149,30 @@ html body #outer #inner #main form#bookmark-filters.filters dd.submit input[type
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link-hover) !important;
+}
+
+/* ---------- Bottom action area: primary submit + secondary clear link ---------- */
+html body #outer #inner #main form#work-filters.filters dd.submit:last-of-type,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:last-of-type {
+  margin: 0.5rem 0.25rem 0.2rem !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.submit:last-of-type input[type="submit"],
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:last-of-type input[type="submit"] {
+  background: var(--m-link) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-on-accent) !important;
+}
+
+html body #outer #inner #main form#work-filters.filters dd.submit:last-of-type input[type="submit"]:hover,
+html body #outer #inner #main form#work-filters.filters dd.submit:last-of-type input[type="submit"]:focus,
+html body #outer #inner #main form#work-filters.filters dd.submit:last-of-type input[type="submit"]:active,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:last-of-type input[type="submit"]:hover,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:last-of-type input[type="submit"]:focus,
+html body #outer #inner #main form#bookmark-filters.filters dd.submit:last-of-type input[type="submit"]:active {
+  background: var(--m-link-hover) !important;
+  border-color: var(--m-link-hover) !important;
+  color: var(--m-on-accent) !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dt.sort,
@@ -206,9 +237,9 @@ html body #outer #inner #main form#bookmark-filters.filters dt.heading {
   justify-content: space-between !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  min-height: 1.7rem !important;
-  margin: 0.36rem 0 0.16rem !important;
-  padding: 0.34rem 0.55rem !important;
+  min-height: 1.85rem !important;
+  margin: 0.4rem 0 0.18rem !important;
+  padding: 0.4rem 0.6rem !important;
   background: var(--m-chip) !important;
   border: 0 !important;
   border-top: 1px solid var(--m-line-soft) !important;
@@ -292,9 +323,9 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle {
   box-sizing: border-box !important;
   width: 100% !important;
   min-width: 0 !important;
-  min-height: 1.5rem !important;
-  margin: 0.14rem 0 0 !important;
-  padding: 0.22rem 1.2rem 0.22rem 0.42rem !important;
+  min-height: 1.65rem !important;
+  margin: 0.18rem 0 0 !important;
+  padding: 0.28rem 0.85rem 0.28rem 0.48rem !important;
   background: var(--m-control) !important;
   background-image: none !important;
   border: 1px solid var(--m-line) !important;
@@ -368,9 +399,9 @@ html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle:foc
 
 html body #outer #inner #main form#work-filters.filters dt.filter-toggle::after,
 html body #outer #inner #main form#bookmark-filters.filters dt.filter-toggle::after {
-  right: 0.4rem !important;
-  width: 0.64rem !important;
-  height: 0.64rem !important;
+  right: 0.26rem !important;
+  width: 0.6rem !important;
+  height: 0.6rem !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dd.expandable,
@@ -379,9 +410,9 @@ html body #outer #inner #main form#bookmark-filters.filters dd.expandable {
   width: 100% !important;
   min-width: 0 !important;
   max-width: 100% !important;
-  max-height: 8rem !important;
-  margin: 0.08rem 0 0.2rem !important;
-  padding: 0.12rem !important;
+  max-height: 8.5rem !important;
+  margin: 0.1rem 0 0.24rem !important;
+  padding: 0.16rem !important;
   overflow-x: hidden !important;
   overflow-y: auto !important;
   background: var(--m-chip) !important;
@@ -423,14 +454,14 @@ html body #outer #inner #main form#bookmark-filters.filters dd.options label {
   align-items: center !important;
   box-sizing: border-box !important;
   width: 100% !important;
-  gap: 0.34rem !important;
+  gap: 0.38rem !important;
   margin: 0 !important;
-  padding: 0.28rem 0.32rem !important;
+  padding: 0.34rem 0.38rem !important;
   border-radius: 3px !important;
   color: var(--m-text-2) !important;
   font-size: 0.66rem !important;
   font-weight: 450 !important;
-  line-height: 1.25 !important;
+  line-height: 1.3 !important;
 }
 
 html body #outer #inner #main form#work-filters.filters dd.expandable label:hover,
@@ -500,9 +531,11 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote {
   box-sizing: border-box !important;
   width: 100% !important;
   margin: 0 !important;
-  padding: 0.1rem 0.25rem 0.3rem !important;
+  padding: 0.06rem 0.25rem 0.3rem !important;
 }
 
+/* Secondary/ghost treatment — deliberately quieter than the primary
+   Sort-and-Filter button above it, since clearing filters is destructive. */
 html body #outer #inner #main form#work-filters.filters p.footnote a,
 html body #outer #inner #main form#bookmark-filters.filters p.footnote a {
   box-sizing: border-box !important;
@@ -510,15 +543,25 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a {
   align-items: center !important;
   justify-content: center !important;
   width: 100% !important;
-  min-height: 1.52rem !important;
-  padding: 0.18rem 0.4rem !important;
-  background: var(--m-control) !important;
-  border: 1px solid var(--m-line) !important;
+  min-height: 1.3rem !important;
+  padding: 0.14rem 0.4rem !important;
+  background: transparent !important;
+  border: 0 !important;
   border-radius: 5px !important;
-  color: var(--m-text-2) !important;
-  font-size: 0.62rem !important;
-  font-weight: 600 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.6rem !important;
+  font-weight: 550 !important;
   text-decoration: none !important;
+}
+
+html body #outer #inner #main form#work-filters.filters p.footnote a:hover,
+html body #outer #inner #main form#work-filters.filters p.footnote a:focus,
+html body #outer #inner #main form#bookmark-filters.filters p.footnote a:hover,
+html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
+  background: var(--m-control-hover) !important;
+  color: var(--m-dnr) !important;
+  outline: 0 !important;
+  text-decoration: underline !important;
 }
 
 /* ---------- Responsive ---------- */
