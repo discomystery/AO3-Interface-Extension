@@ -1021,7 +1021,7 @@
   .stats-index > .actions.module,
   .stats-index ul.statistics.index > li.fandom.listbox,
   #bookmark-filters,
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group,
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group,
   #main.chapters-show .work > .wrapper,
   #main.chapters-show > .work > ul.work.navigation.actions,
   #feedback > ul.actions,

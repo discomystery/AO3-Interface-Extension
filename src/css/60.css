@@ -606,8 +606,12 @@
 
 /* Bookmark ownership metadata is a card footer, not another work header.
    Reset the generic .datetime grid and let all footer content share a clean
-   aligned row, with bookmarker notes receiving a full-width second row. */
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+   aligned row, with bookmarker notes receiving a full-width second row.
+   The same bookmark blurb markup also appears in the Dashboard's "Recent
+   Bookmarks" widget (#user-bookmarks), which doesn't carry the
+   bookmarks-index class, so it needs its own arm of this selector or it
+   silently falls back to the unstyled generic .user.module.group rule. */
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) auto auto !important;
   grid-template-areas:
@@ -631,7 +635,7 @@
   color: var(--m-text-2) !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .byline {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .byline {
   grid-area: byline !important;
   min-width: 0 !important;
   margin: 0 !important;
@@ -644,12 +648,12 @@
   text-shadow: none !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .byline a {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .byline a {
   color: var(--m-link) !important;
   font-weight: 650 !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .datetime {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .datetime {
   grid-area: saved !important;
   position: static !important;
   inset: auto !important;
@@ -675,7 +679,7 @@
   white-space: nowrap !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
   grid-area: notes !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -689,15 +693,15 @@
   line-height: 1.45 !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:first-child {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:first-child {
   margin-top: 0 !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:last-child {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:last-child {
   margin-bottom: 0 !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
   grid-area: actions !important;
   justify-self: end !important;
   display: flex !important;
@@ -711,7 +715,7 @@
   clear: none !important;
 }
 
-#main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions > li {
+:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions > li {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -761,7 +765,7 @@
     margin-top: 1rem !important;
   }
 
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
     grid-template-columns: minmax(0, 1fr) auto !important;
     grid-template-areas:
       "byline saved"
@@ -804,7 +808,7 @@
     right: 0.74rem !important;
   }
 
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
     width: calc(100% + 1.7rem) !important;
     margin-right: -0.85rem !important;
     margin-left: -0.85rem !important;
@@ -813,7 +817,7 @@
     border-radius: 0 0 13px 13px !important;
   }
 
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
     justify-self: start !important;
     justify-content: flex-start !important;
   }
@@ -833,7 +837,7 @@
     gap: 0.62rem !important;
   }
 
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
     grid-template-columns: 1fr !important;
     grid-template-areas:
       "byline"
@@ -842,8 +846,8 @@
       "notes" !important;
   }
 
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > .datetime,
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > ul.actions {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .datetime,
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
     justify-self: start !important;
     text-align: left !important;
   }
@@ -852,23 +856,23 @@
 /* Direct dark-mode protection for AO3 bookmark/footer and filter surfaces. */
 @media (prefers-color-scheme: dark) {
   #bookmark-filters,
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
     background-color: rgba(var(--m-card), 0.96) !important;
   }
 
   #bookmark-filters dd.expandable,
-  #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
     background-color: rgba(var(--m-surface-rgb), 0.92) !important;
   }
 }
 
 body:is(.reversi, .dark) #bookmark-filters,
-body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group {
+body:is(.reversi, .dark) :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
   background-color: rgba(var(--m-card), 0.96) !important;
 }
 
 body:is(.reversi, .dark) #bookmark-filters dd.expandable,
-body:is(.reversi, .dark) #main.bookmarks-index li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+body:is(.reversi, .dark) :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
   background-color: rgba(var(--m-surface-rgb), 0.92) !important;
 }
 
