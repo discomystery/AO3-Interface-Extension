@@ -4681,6 +4681,191 @@ body:is(.reversi, .dark) .dashboard .navigation {
 }
 
 /* ============================================================
+   PREFERENCES PAGE
+
+   The generic form/fieldset card rule (20.css) already gives every
+   fieldset its own card look, so wrapping them ALL in a second card via
+   the outer <form> just doubles up — most visible on the trailing
+   Actions fieldset, which ends up as a lone button floating in a mostly
+   empty outer shell. Flatten the form into a plain column layout and
+   let each fieldset be the only visible card.
+   ============================================================ */
+
+#main.preferences-index form.edit_preference {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.9rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+#main.preferences-index form.edit_preference fieldset {
+  margin: 0 !important;
+}
+
+#main.preferences-index form.edit_preference h4.heading {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  margin: 0 0 0.65rem !important;
+  padding: 0 0 0.55rem !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  color: var(--m-text) !important;
+  font-size: 0.92rem !important;
+  font-weight: 750 !important;
+  letter-spacing: -0.005em !important;
+}
+
+/* Native markup nests a "?" text glyph two levels deep inside the help
+   link, wrapped in AO3's own light-blue circular badge (.symbol.question)
+   — same fix as the filter sidebar's help icons (40.css / 60.css). */
+#main.preferences-index .help {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 1.3rem !important;
+  height: 1.3rem !important;
+  margin: 0 !important;
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  color: var(--m-text-3) !important;
+  vertical-align: middle !important;
+}
+
+#main.preferences-index .help .symbol {
+  display: none !important;
+}
+
+#main.preferences-index .help::before {
+  content: "";
+  display: inline-block;
+  width: 0.74rem;
+  height: 0.74rem;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3m.08 4h.01'/%3E%3C/svg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+}
+
+/* Checkbox option rows (Privacy/Display/Comments/Collections/Misc). Bare
+   <input>+<label> pairs with no wrapper — AO3's markup gives no hook for
+   the fancy custom indicator used in the filter sidebars, so this just
+   sizes up the native control and treats each <li> as a settings row. */
+#main.preferences-index form.edit_preference ul {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.1rem !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main.preferences-index form.edit_preference ul > li {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.55rem !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.5rem !important;
+  border-radius: 8px !important;
+}
+
+#main.preferences-index form.edit_preference ul > li:hover {
+  background: var(--m-surface) !important;
+}
+
+#main.preferences-index form.edit_preference ul > li input[type="checkbox"] {
+  flex: 0 0 auto !important;
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+  margin: 0.15rem 0 0 !important;
+  accent-color: var(--m-link) !important;
+}
+
+/* flex: 0 (not 1) so a trailing help link — a few rows have one as a
+   sibling after the label, e.g. "Hide work skins" — sits right after the
+   text instead of being pushed to the far edge by a stretched label. */
+#main.preferences-index form.edit_preference ul > li label {
+  flex: 0 1 auto !important;
+  min-width: 0 !important;
+  color: var(--m-text-2) !important;
+  font-weight: 450 !important;
+  font-size: 0.76rem !important;
+  line-height: 1.4 !important;
+  cursor: pointer !important;
+}
+
+/* Site skin / time zone / title format block: a bare <dl> with no
+   layout rules of its own, so it inherits AO3's native float-based dt/dd
+   columns and renders badly misaligned (label floated one way, the
+   action link + giant <select> flowing separately below). Stack each
+   label above its control instead. */
+#main.preferences-index form.edit_preference fieldset > dl {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dt {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  float: none !important;
+  clear: none !important;
+  width: auto !important;
+  margin: 0 0 0.35rem !important;
+  padding: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dt label {
+  color: inherit !important;
+  font-weight: inherit !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dd {
+  float: none !important;
+  clear: none !important;
+  width: auto !important;
+  margin: 0 0 1.1rem !important;
+  padding: 0 !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dd:last-child {
+  margin-bottom: 0 !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dd span.actions {
+  display: block !important;
+  float: none !important;
+  margin: 0 0 0.4rem !important;
+  text-align: left !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dd span.actions a {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+}
+
+#main.preferences-index form.edit_preference fieldset > dl > dd span.actions a:hover {
+  text-decoration: underline !important;
+}
+
+/* ============================================================
    50.css
    ============================================================ */
 
