@@ -1698,10 +1698,16 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   background: rgba(var(--m-card), 0.24) !important;
 }
 
-/* Modal, autocomplete, and generic floating panels */
+/* Modal, autocomplete, and generic floating panels.
+   Deliberately excludes the bare ".autocomplete" class: AO3's JS wraps
+   live tag/collection inputs in "ul.autocomplete > li.input > input.text",
+   and that bare class also lands on the wrapper <ul> and the original
+   (now-hidden) <input>. Matching it here doubled up a translucent
+   backdrop-blur card behind the input's own card, which is not intended
+   here — only the actual suggestion popup ("autocomplete dropdown")
+   should get the floating-panel treatment. */
 .ui-dialog,
 .modal,
-.autocomplete,
 .autocomplete.dropdown,
 .tooltip,
 .tip {
@@ -1746,7 +1752,10 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   text-align: right !important;
 }
 
-#bookmark_form_placement a.bookmark_form_placement_close {
+/* AO3's own stylesheet sets a competing, higher-priority font-size on this
+   link, so font-size: 0 below (needed to hide the literal "×" text node in
+   favor of the ::before icon) needs the extra specificity to actually win. */
+html body #outer #inner #main #bookmark_form_placement a.bookmark_form_placement_close {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
