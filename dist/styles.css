@@ -1741,6 +1741,19 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   backdrop-filter: blur(20px) saturate(145%) !important;
 }
 
+/* AO3 flags the whole popup wrapper ".toggled" as its JS show/hide hook,
+   and the generic ".toggled form" card rule (below, in this same file)
+   was matching the <form> in here too — a second 14px-radius card sitting
+   a few pixels inset inside .post.bookmark's own 14px-radius card, so the
+   corners read as two concentric rounded rectangles. .post.bookmark is
+   already the one card; strip the card look back off the <form>. */
+#bookmark_form_placement .post.bookmark > form {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 #bookmark_form_placement .post.bookmark > h3.heading {
   margin: 0 0 0.65rem !important;
   color: var(--m-text) !important;
@@ -6075,7 +6088,13 @@ body:is(.reversi, .dark) .dashboard .navigation {
   box-shadow: var(--m-shadow) !important;
 }
 
-#feedback li.comment .icon {
+/* AO3 puts class="icon" on BOTH the wrapper div and the <img> inside it
+   (div.icon > a > img.icon). A bare ".icon" descendant selector matched
+   the img too, so it got this positioning margin a second time on top of
+   its own — shifting the avatar ~13px off-center inside its own div and
+   spilling it over the edge. Scope to the direct child so only the
+   wrapper div is targeted. */
+#feedback li.comment > .icon {
   grid-area: avatar !important;
   align-self: start !important;
   box-sizing: border-box !important;
@@ -6097,11 +6116,17 @@ body:is(.reversi, .dark) .dashboard .navigation {
   box-shadow: var(--m-shadow-xs) !important;
 }
 
+/* AO3's comment partial gives this h4 both "byline" and "heading" — the
+   bare "heading" class (unlike the ".landmark heading" combo AO3 hides
+   itself) carries AO3's plain gray title-bar background, full-bleed and
+   square-cornered, so it clashed with our card's own rounded corners
+   right at the top edge. */
 #feedback li.comment h4.byline {
   grid-area: byline !important;
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 0.82rem 0.9rem 0.42rem 0 !important;
+  background: transparent !important;
   color: var(--m-text-2) !important;
   font-size: 0.79rem !important;
   font-weight: 480 !important;
@@ -6196,6 +6221,29 @@ body:is(.reversi, .dark) .dashboard .navigation {
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
+}
+
+/* "Comment Actions" is a screen-reader-only landmark heading — AO3
+   already renders it invisibly, but as an unassigned grid item it was
+   still landing in a stray implicit cell. Take it out of the grid
+   entirely instead of relying on it collapsing to zero size. */
+#feedback li.comment > h5.landmark {
+  display: none !important;
+}
+
+/* Replies nest another ol/li.comment structure ("ol.thread") directly
+   inside the parent comment's own grid, one level per reply. With no
+   explicit column, it only lined up under the message column by
+   accident, riding on the h5 above happening to occupy the avatar
+   column first. Pin the column explicitly, and give sibling replies
+   their own spacing since ol.thread doesn't inherit ol.comment.index's
+   gap. */
+#feedback li.comment > ol.thread {
+  grid-column: 2 !important;
+  display: grid !important;
+  gap: 0.6rem !important;
+  margin: 0.6rem 0 0 !important;
+  padding: 0 !important;
 }
 
 /* ------------------------------------------------------------
@@ -7354,8 +7402,11 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
     var(--m-shadow-soft) !important;
 }
 
-/* Avatar */
-#main.inbox-show #inbox-form li.comment .icon {
+/* Avatar. AO3 puts class="icon" on both the wrapper div and the <img>
+   inside it, so a bare ".icon" descendant selector here also matched the
+   img and doubled up its margin on top of the div's own — scope to the
+   direct child so only the wrapper div is targeted. */
+#main.inbox-show #inbox-form li.comment > .icon {
   grid-area: avatar !important;
   position: static !important;
   inset: auto !important;
@@ -7955,7 +8006,7 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
     border-radius: 13px !important;
   }
 
-  #main.inbox-show #inbox-form li.comment .icon {
+  #main.inbox-show #inbox-form li.comment > .icon {
     width: 2.7rem !important;
     height: 2.7rem !important;
     margin: 0.72rem 0 0 0.72rem !important;
@@ -8013,7 +8064,7 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
     column-gap: 0.58rem !important;
   }
 
-  #main.inbox-show #inbox-form li.comment .icon {
+  #main.inbox-show #inbox-form li.comment > .icon {
     width: 2.35rem !important;
     height: 2.35rem !important;
     margin: 0.66rem 0 0 0.62rem !important;

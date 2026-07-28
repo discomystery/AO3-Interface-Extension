@@ -1004,7 +1004,13 @@
   box-shadow: var(--m-shadow) !important;
 }
 
-#feedback li.comment .icon {
+/* AO3 puts class="icon" on BOTH the wrapper div and the <img> inside it
+   (div.icon > a > img.icon). A bare ".icon" descendant selector matched
+   the img too, so it got this positioning margin a second time on top of
+   its own — shifting the avatar ~13px off-center inside its own div and
+   spilling it over the edge. Scope to the direct child so only the
+   wrapper div is targeted. */
+#feedback li.comment > .icon {
   grid-area: avatar !important;
   align-self: start !important;
   box-sizing: border-box !important;
@@ -1026,11 +1032,17 @@
   box-shadow: var(--m-shadow-xs) !important;
 }
 
+/* AO3's comment partial gives this h4 both "byline" and "heading" — the
+   bare "heading" class (unlike the ".landmark heading" combo AO3 hides
+   itself) carries AO3's plain gray title-bar background, full-bleed and
+   square-cornered, so it clashed with our card's own rounded corners
+   right at the top edge. */
 #feedback li.comment h4.byline {
   grid-area: byline !important;
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 0.82rem 0.9rem 0.42rem 0 !important;
+  background: transparent !important;
   color: var(--m-text-2) !important;
   font-size: 0.79rem !important;
   font-weight: 480 !important;
@@ -1125,6 +1137,29 @@
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
+}
+
+/* "Comment Actions" is a screen-reader-only landmark heading — AO3
+   already renders it invisibly, but as an unassigned grid item it was
+   still landing in a stray implicit cell. Take it out of the grid
+   entirely instead of relying on it collapsing to zero size. */
+#feedback li.comment > h5.landmark {
+  display: none !important;
+}
+
+/* Replies nest another ol/li.comment structure ("ol.thread") directly
+   inside the parent comment's own grid, one level per reply. With no
+   explicit column, it only lined up under the message column by
+   accident, riding on the h5 above happening to occupy the avatar
+   column first. Pin the column explicitly, and give sibling replies
+   their own spacing since ol.thread doesn't inherit ol.comment.index's
+   gap. */
+#feedback li.comment > ol.thread {
+  grid-column: 2 !important;
+  display: grid !important;
+  gap: 0.6rem !important;
+  margin: 0.6rem 0 0 !important;
+  padding: 0 !important;
 }
 
 /* ------------------------------------------------------------

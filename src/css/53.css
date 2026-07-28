@@ -298,8 +298,11 @@
     var(--m-shadow-soft) !important;
 }
 
-/* Avatar */
-#main.inbox-show #inbox-form li.comment .icon {
+/* Avatar. AO3 puts class="icon" on both the wrapper div and the <img>
+   inside it, so a bare ".icon" descendant selector here also matched the
+   img and doubled up its margin on top of the div's own — scope to the
+   direct child so only the wrapper div is targeted. */
+#main.inbox-show #inbox-form li.comment > .icon {
   grid-area: avatar !important;
   position: static !important;
   inset: auto !important;
@@ -899,7 +902,7 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
     border-radius: 13px !important;
   }
 
-  #main.inbox-show #inbox-form li.comment .icon {
+  #main.inbox-show #inbox-form li.comment > .icon {
     width: 2.7rem !important;
     height: 2.7rem !important;
     margin: 0.72rem 0 0 0.72rem !important;
@@ -957,7 +960,7 @@ body:is(.reversi, .dark) #main.inbox-show #inbox-form li.comment.group:hover {
     column-gap: 0.58rem !important;
   }
 
-  #main.inbox-show #inbox-form li.comment .icon {
+  #main.inbox-show #inbox-form li.comment > .icon {
     width: 2.35rem !important;
     height: 2.35rem !important;
     margin: 0.66rem 0 0 0.62rem !important;

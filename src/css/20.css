@@ -514,6 +514,19 @@
   backdrop-filter: blur(20px) saturate(145%) !important;
 }
 
+/* AO3 flags the whole popup wrapper ".toggled" as its JS show/hide hook,
+   and the generic ".toggled form" card rule (below, in this same file)
+   was matching the <form> in here too — a second 14px-radius card sitting
+   a few pixels inset inside .post.bookmark's own 14px-radius card, so the
+   corners read as two concentric rounded rectangles. .post.bookmark is
+   already the one card; strip the card look back off the <form>. */
+#bookmark_form_placement .post.bookmark > form {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 #bookmark_form_placement .post.bookmark > h3.heading {
   margin: 0 0 0.65rem !important;
   color: var(--m-text) !important;
