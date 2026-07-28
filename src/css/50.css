@@ -656,6 +656,10 @@
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a,
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:link,
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:visited {
+  /* AO3's native rule fakes underlines with border-bottom (solid for
+     unvisited, dashed for visited), not text-decoration — text-decoration:
+     none alone leaves that border-bottom in place. */
+  border: 0 !important;
   color: var(--m-link) !important;
   font-size: 0.91rem !important;
   font-weight: 780 !important;
@@ -665,6 +669,7 @@
 }
 
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:is(:hover, :focus, :active) {
+  border: 0 !important;
   color: var(--m-link-hover) !important;
 }
 
