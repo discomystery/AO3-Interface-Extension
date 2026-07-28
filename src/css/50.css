@@ -289,15 +289,52 @@
 }
 
 /* dl.stats floats right and ul.actions floats left (native AO3 layout) to
-   sit on the same visual row, but dl.stats carries its own top
-   margin+padding+divider (.blurb dl.stats, 10.css) that ul.actions has no
-   equivalent of, so the two float boxes start at different heights and
-   Edit/Edit Tags reads as sitting above the stats instead of beside them.
-   Give ul.actions a matching top offset so both rows start level. */
-#main.dashboard li.work.blurb > ul.actions,
-#main.dashboard li.reading.blurb > ul.actions,
-#main.dashboard li.bookmark.blurb > ul.actions {
-  margin-top: 1.38rem !important;
+   sit on the same visual row, but exactly how those two floats land
+   relative to each other depends on the surrounding content (summary
+   length, tag wrapping, etc.), so a fixed top-margin nudge on ul.actions
+   only lined them up in some contexts (e.g. the Dashboard's "Recent
+   works" widget) and not others (e.g. this same blurb card on the actual
+   Works listing page) — floats just aren't a reliable way to align two
+   independent boxes. Anchoring both to the same "bottom" of a positioned
+   card is: reserve room at the card's bottom edge and pin both there, so
+   they're always level regardless of what's above them, and the card
+   ends right after that row.
+
+   Guarded on :has(> ul.actions > li), not just :has(> ul.actions) — bookmark
+   blurbs DO have a bare ul.actions as a direct child, but AO3 always
+   renders it empty for bookmarks (their real Edit/Delete/Add to
+   Collection/Share actions live in a separate .own.user.module.group
+   footer below dl.stats instead), so matching on the empty ul alone
+   pulled dl.stats out of flow and shifted that footer above it. Requiring
+   an actual <li> inside restricts this to blurbs where ul.actions is the
+   real, populated actions row (work/reading blurbs). */
+#main.dashboard li.work.blurb:has(> ul.actions > li),
+#main.dashboard li.reading.blurb:has(> ul.actions > li),
+#main.dashboard li.bookmark.blurb:has(> ul.actions > li) {
+  padding-bottom: 3rem !important;
+}
+
+#main.dashboard li.work.blurb:has(> ul.actions > li) > dl.stats,
+#main.dashboard li.reading.blurb:has(> ul.actions > li) > dl.stats,
+#main.dashboard li.bookmark.blurb:has(> ul.actions > li) > dl.stats {
+  position: absolute !important;
+  float: none !important;
+  left: auto !important;
+  right: 1.1rem !important;
+  bottom: 0.9rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 0 !important;
+}
+
+#main.dashboard li.work.blurb > ul.actions:has(> li),
+#main.dashboard li.reading.blurb > ul.actions:has(> li),
+#main.dashboard li.bookmark.blurb > ul.actions:has(> li) {
+  position: absolute !important;
+  float: none !important;
+  left: 1.1rem !important;
+  bottom: 0.9rem !important;
+  margin: 0 !important;
 }
 
 #main.dashboard li.work.blurb blockquote.userstuff.summary,
