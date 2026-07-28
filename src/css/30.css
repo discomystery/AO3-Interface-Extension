@@ -1581,28 +1581,58 @@ body *:not(code):not(pre):not(kbd):not(samp) {
    got the persistent-pill trigger + gradient card treatment above. No
    per-item icons here, unlike the account menu: these submenus list
    fandom/media categories, tag types, etc. that don't map to a clean,
-   consistent icon set the way the account menu's fixed items do. */
+   consistent icon set the way the account menu's fixed items do.
+
+   The trigger below mirrors #header #greeting > ul.user.navigation.actions
+   > li > .dropdown-toggle (line ~616), NOT the plainer #header #greeting
+   .dropdown-toggle rule (line ~326) — that second, more specific rule is
+   the one that actually wins the cascade and renders "Hi, username!", so
+   copying values from the first one (as an earlier pass here did) produced
+   a trigger that didn't really match what's live: var(--m-chip) instead of
+   var(--m-control), var(--m-line-soft) instead of var(--m-line), a full
+   999px pill instead of an 8px rounded rect, and no hover lift. */
 #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a {
   display: inline-flex !important;
   align-items: center !important;
-  min-height: 30px !important;
-  padding: 0.28rem 0.62rem !important;
+  justify-content: center !important;
+  gap: 0.3rem !important;
 
-  background: var(--m-chip) !important;
-  border: 1px solid var(--m-line-soft) !important;
-  border-radius: 999px !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 29px !important;
+  max-height: 29px !important;
+
+  margin: 0 !important;
+  padding: 0.3rem 0.62rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
   box-shadow: none !important;
 
   color: var(--m-text-2) !important;
-  font-size: 0.78rem !important;
+  font-size: 0.75rem !important;
   font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
 }
 
 #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a:is(:hover, :focus, :active),
 #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown:hover > a,
 #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown.open > a {
+  transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
-  border-color: rgba(var(--m-link-rgb), 0.26) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
   color: var(--m-link) !important;
 }
 
