@@ -27,6 +27,14 @@
       ],
       "js": ["src/js/collapsible-filters.js"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/works/*",
+        "https://www.archiveofourown.org/works/*"
+      ],
+      "js": ["src/js/marker-reading-status-shelf.js"],
+      "run_at": "document_idle"
     }
   ]
 }
