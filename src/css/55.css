@@ -295,6 +295,12 @@
    seen and sized, exactly like the sibling <a>/<button> actions. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form {
+  /* The sibling a/button/input[submit] actions get box-sizing: border-box
+     from the generic rule above (55.css) — <form> isn't in that selector
+     list, so without this, min-height applied to the content box only
+     and padding+border stacked on top, making Subscribe visibly taller
+     than every other action beside it. */
+  box-sizing: border-box !important;
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -341,6 +347,10 @@
   cursor: pointer !important;
 }
 
+/* Bell is the unconditional default (not gated on :has(), unlike the
+   bell-off override below) so this always renders as a proper masked
+   icon — if the :has() state-detection below never matches (see its
+   comment), this is what's shown, not an unmasked solid block. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form::before,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form::before {
   content: "";
@@ -354,20 +364,16 @@
   mask-position: center !important;
   -webkit-mask-size: 100% !important;
   mask-size: 100% !important;
-}
-
-/* Bell / bell-off tracks the button's own current action text via
-   input[value=...]. Caveat: this only reads the HTML attribute, not a
-   live DOM property — if AO3's JS toggles the input's value via a plain
-   .value assignment rather than setAttribute, this selector won't catch
-   the swap and the icon will stay on "Subscribe" until the page
-   reloads. Worth confirming against the live site. */
-#main.works-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Subscribe"])::before,
-#main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Subscribe"])::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326'/%3E%3C/svg%3E");
 }
 
+/* Bell-off tracks the button's own current action text via
+   input[value=...]. Caveat: this only reads the HTML attribute, not a
+   live DOM property — if AO3's JS toggles the input's value via a plain
+   .value assignment rather than setAttribute, this selector won't catch
+   the swap and the icon will stay on the plain bell above until the
+   page reloads. Worth confirming against the live site. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Unsubscribe"])::before,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Unsubscribe"])::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742M2 2l20 20M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05'/%3E%3C/svg%3E");

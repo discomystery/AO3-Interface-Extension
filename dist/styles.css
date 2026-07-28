@@ -3813,6 +3813,117 @@ body *:not(code):not(pre):not(kbd):not(samp) {
   }
 }
 
+/* Site nav triggers + dropdowns (Fandoms/Browse/Search/About): match the
+   account menu's polish. These were still on the earlier, plainer
+   #header a / #header .menu treatment (20.css) — a hover-only background
+   on the trigger and a flat panel — while "Hi, username!"/"Post" already
+   got the persistent-pill trigger + gradient card treatment above. No
+   per-item icons here, unlike the account menu: these submenus list
+   fandom/media categories, tag types, etc. that don't map to a clean,
+   consistent icon set the way the account menu's fixed items do.
+
+   The trigger below mirrors #header #greeting > ul.user.navigation.actions
+   > li > .dropdown-toggle (line ~616), NOT the plainer #header #greeting
+   .dropdown-toggle rule (line ~326) — that second, more specific rule is
+   the one that actually wins the cascade and renders "Hi, username!", so
+   copying values from the first one (as an earlier pass here did) produced
+   a trigger that didn't really match what's live: var(--m-chip) instead of
+   var(--m-control), var(--m-line-soft) instead of var(--m-line), a full
+   999px pill instead of an 8px rounded rect, and no hover lift. */
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.3rem !important;
+
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 29px !important;
+  max-height: 29px !important;
+
+  margin: 0 !important;
+  padding: 0.3rem 0.62rem !important;
+
+  background: var(--m-control) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a:is(:hover, :focus, :active),
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown:hover > a,
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown.open > a {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
+  color: var(--m-link) !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu {
+  min-width: 13rem !important;
+  margin-top: 0.42rem !important;
+  padding: 0.48rem !important;
+
+  background:
+    linear-gradient(145deg, rgba(var(--m-card), 0.98), rgba(var(--m-card), 0.9)) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.12),
+    0 24px 55px rgba(0, 0, 0, 0.13) !important;
+
+  color: var(--m-text-2) !important;
+  overflow: hidden !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu li + li {
+  margin-top: 0.1rem !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu a {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 30px !important;
+  padding: 0.36rem 0.55rem !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 520 !important;
+  line-height: 1.25 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu a:is(:hover, :focus, :active) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+}
+
 @media only screen and (max-width: 48rem) {
   /* The horizontal dashboard panel has its own rounded endpoints. */
   #dashboard .navigation {
@@ -8796,6 +8907,12 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
    seen and sized, exactly like the sibling <a>/<button> actions. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form {
+  /* The sibling a/button/input[submit] actions get box-sizing: border-box
+     from the generic rule above (55.css) — <form> isn't in that selector
+     list, so without this, min-height applied to the content box only
+     and padding+border stacked on top, making Subscribe visibly taller
+     than every other action beside it. */
+  box-sizing: border-box !important;
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -8842,6 +8959,10 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
   cursor: pointer !important;
 }
 
+/* Bell is the unconditional default (not gated on :has(), unlike the
+   bell-off override below) so this always renders as a proper masked
+   icon — if the :has() state-detection below never matches (see its
+   comment), this is what's shown, not an unmasked solid block. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form::before,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form::before {
   content: "";
@@ -8855,20 +8976,16 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
   mask-position: center !important;
   -webkit-mask-size: 100% !important;
   mask-size: 100% !important;
-}
-
-/* Bell / bell-off tracks the button's own current action text via
-   input[value=...]. Caveat: this only reads the HTML attribute, not a
-   live DOM property — if AO3's JS toggles the input's value via a plain
-   .value assignment rather than setAttribute, this selector won't catch
-   the swap and the icon will stay on "Subscribe" until the page
-   reloads. Worth confirming against the live site. */
-#main.works-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Subscribe"])::before,
-#main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Subscribe"])::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0m-10.47-5.674A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326'/%3E%3C/svg%3E");
 }
 
+/* Bell-off tracks the button's own current action text via
+   input[value=...]. Caveat: this only reads the HTML attribute, not a
+   live DOM property — if AO3's JS toggles the input's value via a plain
+   .value assignment rather than setAttribute, this selector won't catch
+   the swap and the icon will stay on the plain bell above until the
+   page reloads. Worth confirming against the live site. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Unsubscribe"])::before,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form:has(input[value="Unsubscribe"])::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10.268 21a2 2 0 0 0 3.464 0M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742M2 2l20 20M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05'/%3E%3C/svg%3E");
