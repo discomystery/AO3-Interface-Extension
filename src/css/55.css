@@ -402,7 +402,7 @@
 #main.works-show dl.work.meta,
 #main.chapters-show dl.work.meta {
   display: grid !important;
-  grid-template-columns: minmax(7.5rem, 0.24fr) minmax(0, 1fr) !important;
+  grid-template-columns: minmax(9.5rem, 0.28fr) minmax(0, 1fr) !important;
   box-sizing: border-box !important;
   width: 100% !important;
   margin: 0 !important;
@@ -417,7 +417,9 @@
 #main.chapters-show dl.work.meta > dt,
 #main.chapters-show dl.work.meta > dd {
   box-sizing: border-box !important;
+  width: 100% !important;
   min-width: 0 !important;
+  float: none !important;
   margin: 0 !important;
   padding: 0.38rem 0.5rem !important;
   background: transparent !important;
@@ -540,6 +542,27 @@
   background: var(--m-surface-solid) !important;
   border-color: var(--m-link) !important;
   color: var(--m-link) !important;
+}
+
+/* "Archive Warning" itself links to the ToS/FAQ symbols key, inheriting
+   AO3's native border-bottom "underline". A pill highlight on hover reads
+   better on a bold uppercase label than a permanent underline does. */
+#main.works-show dl.work.meta dt.warning a,
+#main.chapters-show dl.work.meta dt.warning a {
+  padding: 0.1rem 0.22rem !important;
+  margin: -0.1rem -0.22rem !important;
+  border-bottom: 0 !important;
+  border-radius: 6px !important;
+  text-decoration: none !important;
+  transition: background-color 120ms ease !important;
+}
+
+#main.works-show dl.work.meta dt.warning a:hover,
+#main.works-show dl.work.meta dt.warning a:focus,
+#main.chapters-show dl.work.meta dt.warning a:hover,
+#main.chapters-show dl.work.meta dt.warning a:focus {
+  background-color: var(--m-control-hover) !important;
+  text-decoration: none !important;
 }
 
 /* Series and non-tag metadata use the same quiet link treatment. */

@@ -865,46 +865,9 @@
   box-shadow: var(--m-shadow-soft) !important;
 }
 
-#main.chapters-show dl.work.meta {
-  display: grid !important;
-  grid-template-columns: minmax(8rem, 0.28fr) minmax(0, 1fr) !important;
-  box-sizing: border-box !important;
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 0.75rem !important;
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-#main.chapters-show dl.work.meta > dt,
-#main.chapters-show dl.work.meta > dd {
-  box-sizing: border-box !important;
-  min-width: 0 !important;
-  margin: 0 !important;
-  padding: 0.48rem 0.58rem !important;
-  background: transparent !important;
-  border: 0 !important;
-  border-bottom: 1px solid var(--m-line-soft) !important;
-}
-
-#main.chapters-show dl.work.meta > dt {
-  color: var(--m-text-3) !important;
-  font-size: 0.69rem !important;
-  font-weight: 720 !important;
-  letter-spacing: 0.025em !important;
-  text-transform: uppercase !important;
-}
-
-#main.chapters-show dl.work.meta > dd {
-  color: var(--m-text-2) !important;
-}
-
-#main.chapters-show dl.work.meta > dt:last-of-type,
-#main.chapters-show dl.work.meta > dd:last-of-type {
-  border-bottom: 0 !important;
-}
-
+/* Column widths, dt/dd base styling, and the last-of-type border reset
+   for dl.work.meta are all defined once in 55.css (which also covers
+   works-show), so this scope only needs the ul/li margin reset. */
 #main.chapters-show dl.work.meta ul,
 #main.chapters-show dl.work.meta li {
   margin-top: 0 !important;
