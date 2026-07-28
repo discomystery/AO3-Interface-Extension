@@ -469,7 +469,9 @@
    so it has to be killed separately or it survives right through a hover
    pill and cuts across it. Nix that border and instead treat the icon and
    its number as one hoverable unit — same treatment as the blurb listing
-   stats (10.css). */
+   stats (10.css). The highlight lives on the whole dd (not just the <a>
+   inside it) so Chapters' "37/41" lights up as one piece too — the "/41"
+   part is plain text outside the link. */
 #main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters),
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters) {
   padding: 0.12rem 0.1rem !important;
@@ -480,42 +482,47 @@
 
 #main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters),
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) {
-  margin-left: -0.34rem !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem -0.12rem -0.34rem !important;
+  border-radius: 6px !important;
+  transition: background-color 120ms ease !important;
 }
 
 #main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a {
-  display: inline-block !important;
-  padding: 0.12rem 0.1rem !important;
-  margin: -0.12rem -0.1rem !important;
-  border: 0 !important;
-  border-radius: 6px !important;
   color: var(--m-link) !important;
   text-decoration: none !important;
-  transition: background-color 120ms ease, color 120ms ease !important;
+  border: 0 !important;
+  transition: color 120ms ease !important;
 }
 
-/* Gated on :has(+ dd a) throughout — on the work page itself, only
-   Bookmarks is normally a link (Comments/Kudos just point at sections
-   already on the same page), so the others shouldn't light up on hover
-   with nothing to go to. */
+/* Gated on :has(a) throughout — on the work page itself, only Bookmarks is
+   normally a link (Comments/Kudos just point at sections already on the
+   same page), so the others shouldn't light up on hover with nothing to
+   go to. */
 #main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover,
-#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a:hover),
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd:hover),
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover,
-#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a:hover) {
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd:hover) {
   background-color: var(--m-control-hover) !important;
 }
 
-#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd a:hover))::before,
-#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd a:hover))::before {
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd:hover))::before,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd:hover))::before {
   background-color: var(--m-link) !important;
 }
 
-#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a:hover,
-#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a,
-#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a:hover,
-#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a {
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters):has(a):hover,
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters):has(a):hover,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd {
   background-color: var(--m-control-hover) !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters):has(a):hover a,
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters):has(a):hover a,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a {
   color: var(--m-link-hover) !important;
 }
 

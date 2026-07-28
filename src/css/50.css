@@ -288,6 +288,18 @@
   color: var(--m-text-2) !important;
 }
 
+/* dl.stats floats right and ul.actions floats left (native AO3 layout) to
+   sit on the same visual row, but dl.stats carries its own top
+   margin+padding+divider (.blurb dl.stats, 10.css) that ul.actions has no
+   equivalent of, so the two float boxes start at different heights and
+   Edit/Edit Tags reads as sitting above the stats instead of beside them.
+   Give ul.actions a matching top offset so both rows start level. */
+#main.dashboard li.work.blurb > ul.actions,
+#main.dashboard li.reading.blurb > ul.actions,
+#main.dashboard li.bookmark.blurb > ul.actions {
+  margin-top: 1.38rem !important;
+}
+
 #main.dashboard li.work.blurb blockquote.userstuff.summary,
 #main.dashboard li.reading.blurb blockquote.userstuff.summary,
 #main.dashboard li.bookmark.blurb blockquote.userstuff.summary {
