@@ -1574,6 +1574,87 @@ body *:not(code):not(pre):not(kbd):not(samp) {
   }
 }
 
+/* Site nav triggers + dropdowns (Fandoms/Browse/Search/About): match the
+   account menu's polish. These were still on the earlier, plainer
+   #header a / #header .menu treatment (20.css) — a hover-only background
+   on the trigger and a flat panel — while "Hi, username!"/"Post" already
+   got the persistent-pill trigger + gradient card treatment above. No
+   per-item icons here, unlike the account menu: these submenus list
+   fandom/media categories, tag types, etc. that don't map to a clean,
+   consistent icon set the way the account menu's fixed items do. */
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 30px !important;
+  padding: 0.28rem 0.62rem !important;
+
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a:is(:hover, :focus, :active),
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown:hover > a,
+#header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown.open > a {
+  background: var(--m-control-hover) !important;
+  border-color: rgba(var(--m-link-rgb), 0.26) !important;
+  color: var(--m-link) !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu {
+  min-width: 13rem !important;
+  margin-top: 0.42rem !important;
+  padding: 0.48rem !important;
+
+  background:
+    linear-gradient(145deg, rgba(var(--m-card), 0.98), rgba(var(--m-card), 0.9)) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 16px !important;
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.12),
+    0 24px 55px rgba(0, 0, 0, 0.13) !important;
+
+  color: var(--m-text-2) !important;
+  overflow: hidden !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu li + li {
+  margin-top: 0.1rem !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu a {
+  display: flex !important;
+  align-items: center !important;
+  min-height: 30px !important;
+  padding: 0.36rem 0.55rem !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 9px !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 520 !important;
+  line-height: 1.25 !important;
+}
+
+#header nav[aria-label="Site"] > ul.primary.navigation.actions .menu a:is(:hover, :focus, :active) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+}
+
 @media only screen and (max-width: 48rem) {
   /* The horizontal dashboard panel has its own rounded endpoints. */
   #dashboard .navigation {
