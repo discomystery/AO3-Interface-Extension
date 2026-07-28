@@ -71,6 +71,16 @@
   cursor: pointer !important;
 }
 
+/* AO3 uses a plain .hidden class (display: none, not JS-removed) to keep
+   toggle-pair elements out of the flow until clicked/enabled — e.g. the
+   work page's "Cancel Bookmark" link starts hidden until "Bookmark" is
+   clicked, and Share/Download can start hidden pending JS init. The
+   display: inline-flex !important above was overriding that, so these
+   showed even when AO3 didn't intend them to. */
+#main .actions .hidden {
+  display: none !important;
+}
+
 #main .actions a:hover,
 #main .actions a:focus,
 #main .actions a:active,
@@ -647,6 +657,10 @@
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a,
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:link,
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:visited {
+  /* AO3's native rule fakes underlines with border-bottom (solid for
+     unvisited, dashed for visited), not text-decoration — text-decoration:
+     none alone leaves that border-bottom in place. */
+  border: 0 !important;
   color: var(--m-link) !important;
   font-size: 0.91rem !important;
   font-weight: 780 !important;
@@ -656,6 +670,7 @@
 }
 
 .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt a:is(:hover, :focus, :active) {
+  border: 0 !important;
   color: var(--m-link-hover) !important;
 }
 

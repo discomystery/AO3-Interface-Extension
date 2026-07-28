@@ -823,12 +823,13 @@
    WORK-PAGE LINK CONTRAST
    Neutralize AO3's inherited red/gray/visited colors within themed
    work-page UI. Inline-styled creator-work links are left alone.
+   Deliberately excludes ul.work.navigation.actions: that bar is a row
+   of uniform buttons (mixing <a>, <button>, <input type="submit">)
+   styled as a single group above — giving only the <a>-based ones
+   (Bookmark/Comments/Share) a link color here made them visibly blue
+   next to the grey Mark-for-Later/Subscribe buttons beside them.
    ------------------------------------------------------------ */
 
-#main.works-show > .work > ul.work.navigation.actions a:link,
-#main.works-show > .work > ul.work.navigation.actions a:visited,
-#main.chapters-show > .work > ul.work.navigation.actions a:link,
-#main.chapters-show > .work > ul.work.navigation.actions a:visited,
 #main.works-show dl.work.meta a:link,
 #main.works-show dl.work.meta a:visited,
 #main.chapters-show dl.work.meta a:link,
@@ -856,12 +857,6 @@
   text-shadow: none !important;
 }
 
-#main.works-show > .work > ul.work.navigation.actions a:hover,
-#main.works-show > .work > ul.work.navigation.actions a:focus,
-#main.works-show > .work > ul.work.navigation.actions a:active,
-#main.chapters-show > .work > ul.work.navigation.actions a:hover,
-#main.chapters-show > .work > ul.work.navigation.actions a:focus,
-#main.chapters-show > .work > ul.work.navigation.actions a:active,
 #main.works-show dl.work.meta a:hover,
 #main.works-show dl.work.meta a:focus,
 #main.works-show dl.work.meta a:active,
