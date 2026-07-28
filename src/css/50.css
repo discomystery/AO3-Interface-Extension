@@ -979,7 +979,7 @@
    down) stay tight against each other since they're one conversation. */
 #feedback ol.comment.index {
   display: grid !important;
-  gap: 1.1rem !important;
+  gap: 1.85rem !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -992,7 +992,7 @@
     "avatar byline"
     "avatar message"
     ".      actions" !important;
-  column-gap: 0.85rem !important;
+  column-gap: 1.2rem !important;
   row-gap: 0 !important;
 
   box-sizing: border-box !important;
@@ -1082,7 +1082,11 @@
   line-height: 1.45 !important;
 }
 
-#feedback li.comment h4.byline a:first-child {
+/* Same specificity fight as the actions row below: a broad, two-id
+   "#feedback a:link/a:visited" rule elsewhere was beating this and
+   turning the username the same blue as every other link instead of
+   the intended bolder, higher-contrast text color. */
+html body #outer #inner #main #feedback li.comment h4.byline a:first-child {
   color: var(--m-text) !important;
   font-weight: 740 !important;
 }
@@ -1155,19 +1159,41 @@
   border: 0 !important;
 }
 
-#feedback li.comment > ul.actions a {
+/* Actions that need a POST (e.g. "Freeze thread") render as a form
+   button rather than a plain link — take the wrapper form out of the box
+   model entirely so the button sits inline like the other actions do. */
+#feedback li.comment > ul.actions form {
+  display: contents !important;
+}
+
+/* A separate, broad "#feedback a:link/a:visited { color: var(--m-link) }"
+   rule elsewhere (aimed at prose links) has TWO id selectors in it
+   (#main, #feedback) and was beating this rule's single id on pure
+   specificity — Reply/Thread/Delete were rendering as plain blue links
+   instead of the intended muted gray-until-hover, and a <button> like
+   "Freeze thread" can never match ":link"/":visited" in the first place,
+   so it was left looking unstyled next to them. Boost specificity high
+   enough to reliably win for both, matching the project's established
+   pattern for overriding stubborn native/broad rules. */
+html body #outer #inner #main #feedback li.comment > ul.actions :is(a, button, input[type="submit"]) {
   display: inline !important;
+  margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
   border: 0 !important;
   border-radius: 0 !important;
+  box-shadow: none !important;
   color: var(--m-text-3) !important;
+  font-family: inherit !important;
   font-size: 0.72rem !important;
   font-weight: 620 !important;
+  line-height: inherit !important;
   text-decoration: none !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
 }
 
-#feedback li.comment > ul.actions a:is(:hover, :focus, :active) {
+html body #outer #inner #main #feedback li.comment > ul.actions :is(a, button, input[type="submit"]):is(:hover, :focus, :active) {
   background: transparent !important;
   color: var(--m-link) !important;
   text-decoration: underline !important;
