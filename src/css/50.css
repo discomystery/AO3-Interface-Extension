@@ -742,7 +742,10 @@
   display: inline-block !important;
   width: 0.8rem !important;
   height: 0.8rem !important;
-  vertical-align: -0.12em !important;
+  /* dt has font-size: 0 (to hide its text), which this pseudo-element
+     inherits — so this must be in rem, not em, or it silently computes
+     to zero and does nothing (see commit 874bd01). */
+  vertical-align: -0.12rem !important;
   background-color: var(--m-text-3) !important;
   -webkit-mask-repeat: no-repeat !important;
   mask-repeat: no-repeat !important;
