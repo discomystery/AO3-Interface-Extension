@@ -974,9 +974,12 @@
    single-conversation thread view.
    ------------------------------------------------------------ */
 
+/* Gap lives on the top-level list only — separate conversations get
+   real breathing room, while replies within ol.thread (gap: 0, further
+   down) stay tight against each other since they're one conversation. */
 #feedback ol.comment.index {
   display: grid !important;
-  gap: 0 !important;
+  gap: 1.1rem !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -1033,7 +1036,11 @@
    the img too, so it got this positioning margin a second time on top of
    its own — shifting the avatar ~13px off-center inside its own div and
    spilling it over the edge. Scope to the direct child so only the
-   wrapper div is targeted. */
+   wrapper div is targeted.
+   AO3 also gives this div its own native 5px gray border-bottom (square,
+   full width). The old boxed-card design clipped it via overflow:hidden
+   on the card without anyone noticing; the flat timeline has no card to
+   clip against, so it showed up as a stray gray bar under every avatar. */
 #feedback li.comment > .icon {
   grid-area: avatar !important;
   align-self: start !important;
@@ -1042,6 +1049,7 @@
   height: 3.25rem !important;
   margin: 0.85rem 0 0 0.85rem !important;
   padding: 0 !important;
+  border: 0 !important;
   z-index: 1 !important;
 }
 
@@ -1054,7 +1062,7 @@
   background: var(--m-surface-solid) !important;
   border: 1px solid var(--m-line) !important;
   border-radius: 50% !important;
-  box-shadow: none !important;
+  box-shadow: var(--m-shadow-xs) !important;
 }
 
 /* AO3's comment partial gives this h4 both "byline" and "heading" — the
