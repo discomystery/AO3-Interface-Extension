@@ -396,7 +396,10 @@
   display: inline-block !important;
   width: 0.82rem !important;
   height: 0.82rem !important;
-  vertical-align: -0.125em !important;
+  /* dt has font-size: 0 (to hide its text), which this pseudo-element
+     inherits — so this must be in rem, not em, or it silently computes
+     to zero and does nothing. */
+  vertical-align: -0.125rem !important;
   background-color: var(--m-text-3) !important;
   -webkit-mask-repeat: no-repeat !important;
   mask-repeat: no-repeat !important;
@@ -418,14 +421,20 @@
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M16 14v2.2l1.6 1M16 2v4m5 1.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h3.5M3 10h5m0-8v4'/%3E%3Ccircle cx='16' cy='16' r='6'/%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* These two icons' actual ink sits higher within their 24x24 viewBox than
+   the others (eye/heart/bookmark/message-circle/calendar are all roughly
+   centered), so the shared vertical-align reads as visibly too high next
+   to the number — nudge them down individually to compensate. */
 #main.works-show dl.work.meta dd.stats > dl.stats > dt.words::before,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt.words::before {
+  vertical-align: -0.26rem !important;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='7' cy='12' r='3'/%3E%3Cpath d='M10 9v6'/%3E%3Ccircle cx='17' cy='12' r='3'/%3E%3Cpath d='M14 7v8m8 2v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1'/%3E%3C/g%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='7' cy='12' r='3'/%3E%3Cpath d='M10 9v6'/%3E%3Ccircle cx='17' cy='12' r='3'/%3E%3Cpath d='M14 7v8m8 2v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 #main.works-show dl.work.meta dd.stats > dl.stats > dt.chapters::before,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt.chapters::before {
+  vertical-align: -0.22rem !important;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5h10m-10 7h10m-10 7h10M4 4h1v5M4 9h2m.5 11H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5h10m-10 7h10m-10 7h10M4 4h1v5M4 9h2m.5 11H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02'/%3E%3C/svg%3E");
 }
@@ -452,6 +461,51 @@
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt.hits::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M2.062 12.348a1 1 0 0 1 0-.696a10.75 10.75 0 0 1 19.876 0a1 1 0 0 1 0 .696a10.75 10.75 0 0 1-19.876 0'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/g%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M2.062 12.348a1 1 0 0 1 0-.696a10.75 10.75 0 0 1 19.876 0a1 1 0 0 1 0 .696a10.75 10.75 0 0 1-19.876 0'/%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Comments/Kudos/Bookmarks (and Chapters, when the current-chapter number
+   is itself a link) are the stats that lead somewhere. Nix the underline
+   and instead treat the icon and its number as one hoverable unit — same
+   treatment as the blurb listing stats (10.css). */
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters),
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters) {
+  border-radius: 5px !important;
+  transition: background-color 120ms ease !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a {
+  display: inline-block !important;
+  margin: -0.05rem -0.22rem !important;
+  padding: 0.05rem 0.22rem !important;
+  border-radius: 5px !important;
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+/* Gated on :has(+ dd a) throughout — on the work page itself, only
+   Bookmarks is normally a link (Comments/Kudos just point at sections
+   already on the same page), so the others shouldn't light up on hover
+   with nothing to go to. */
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover,
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a:hover),
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a:hover) {
+  background-color: var(--m-control-hover) !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd a:hover))::before,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd a:hover))::before {
+  background-color: var(--m-link) !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a:hover,
+#main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a:hover,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a {
+  background-color: var(--m-control-hover) !important;
+  color: var(--m-link-hover) !important;
 }
 
 /* ------------------------------------------------------------

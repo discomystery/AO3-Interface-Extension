@@ -746,7 +746,10 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   display: inline-block !important;
   width: 0.82rem !important;
   height: 0.82rem !important;
-  vertical-align: -0.125em !important;
+  /* dt has font-size: 0 (to hide its text), which this pseudo-element
+     inherits — so this must be in rem, not em, or it silently computes
+     to zero and does nothing. */
+  vertical-align: -0.125rem !important;
   background-color: var(--m-text-3) !important;
   -webkit-mask-repeat: no-repeat !important;
   mask-repeat: no-repeat !important;
@@ -756,12 +759,19 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   mask-size: 100% !important;
 }
 
+/* These two icons' actual ink sits higher within their 24x24 viewBox than
+   the others (eye/heart/bookmark/message-circle are all roughly centered),
+   so the shared vertical-align reads as visibly too high next to the
+   number — nudge them down individually to compensate (rem, for the same
+   reason as the shared rule above). */
 .blurb dl.stats dt.words::before {
+  vertical-align: -0.26rem !important;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='7' cy='12' r='3'/%3E%3Cpath d='M10 9v6'/%3E%3Ccircle cx='17' cy='12' r='3'/%3E%3Cpath d='M14 7v8m8 2v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1'/%3E%3C/g%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='7' cy='12' r='3'/%3E%3Cpath d='M10 9v6'/%3E%3Ccircle cx='17' cy='12' r='3'/%3E%3Cpath d='M14 7v8m8 2v1c0 .5-.5 1-1 1H3c-.5 0-1-.5-1-1v-1'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .blurb dl.stats dt.chapters::before {
+  vertical-align: -0.22rem !important;
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5h10m-10 7h10m-10 7h10M4 4h1v5M4 9h2m.5 11H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 5h10m-10 7h10m-10 7h10M4 4h1v5M4 9h2m.5 11H3.4c0-1 2.6-1.925 2.6-3.5a1.5 1.5 0 0 0-2.6-1.02'/%3E%3C/svg%3E");
 }
@@ -784,6 +794,45 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 .blurb dl.stats dt.comments::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092a10 10 0 1 0-4.777-4.719'/%3E%3C/svg%3E");
   mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092a10 10 0 1 0-4.777-4.719'/%3E%3C/svg%3E");
+}
+
+/* Comments/Kudos/Bookmarks (and Chapters, on a multi-chapter work, where
+   the current-chapter number is itself a link) are the stats that lead
+   somewhere. Nix the underline and instead treat the icon and its number
+   as one hoverable unit — hovering either one highlights both, via :has()
+   for the icon-follows-the-number direction since the icon comes first
+   in the DOM. */
+.blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters) {
+  border-radius: 5px !important;
+  transition: background-color 120ms ease !important;
+}
+
+.blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) a {
+  display: inline-block !important;
+  margin: -0.05rem -0.22rem !important;
+  padding: 0.05rem 0.22rem !important;
+  border-radius: 5px !important;
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  transition: background-color 120ms ease, color 120ms ease !important;
+}
+
+/* Gated on :has(+ dd a) throughout — Chapters only has a link on a
+   multi-chapter work, so a one-shot's "1/1" shouldn't light up on hover
+   with nothing to go to. */
+.blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover,
+.blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a:hover) {
+  background-color: var(--m-control-hover) !important;
+}
+
+.blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):is(:hover, :has(+ dd a:hover))::before {
+  background-color: var(--m-link) !important;
+}
+
+.blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) a:hover,
+.blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters):has(+ dd a):hover + dd a {
+  background-color: var(--m-control-hover) !important;
+  color: var(--m-link-hover) !important;
 }
 
 

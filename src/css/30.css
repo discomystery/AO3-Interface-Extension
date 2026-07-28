@@ -94,6 +94,17 @@ body:is(.reversi, .dark) #main.readings-index > .navigation.actions .current {
   overflow: visible !important;
 }
 
+/* #greeting has no z-index of its own (just position: relative), so its
+   z-index: 11000 dropdown menus were only winning against #greeting's OWN
+   children — not against the sibling <nav aria-label="Site"> row, which
+   has an explicit z-index: 20. A positioned element with no z-index
+   (auto) stacks below any sibling that has one, no matter how high a
+   z-index its own descendants declare, so the "Hi, username!"/"Post"
+   dropdowns were rendering partly behind the site nav's search box. */
+#header #greeting {
+  z-index: 10002 !important;
+}
+
 #header .dropdown {
   z-index: 10001 !important;
 }
