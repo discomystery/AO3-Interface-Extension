@@ -130,16 +130,77 @@
   transform: none !important;
 }
 
-/* Download and chapter-index menus remain floating menus, not page cards. */
+/* AO3's accordion arrow (native .collapsed:after / .expanded:after) is
+   just a leading space before the glyph — give it a proper gap instead. */
+#main.works-show > .work > ul.work.navigation.actions button.collapsed::after,
+#main.works-show > .work > ul.work.navigation.actions button.expanded::after,
+#main.chapters-show > .work > ul.work.navigation.actions button.collapsed::after,
+#main.chapters-show > .work > ul.work.navigation.actions button.expanded::after {
+  margin-left: 0.3rem !important;
+}
+
+/* Download's trigger is icon-only (below), which sets font-size: 0 on the
+   button — the arrow inherits that and renders invisible, but the margin
+   above still reserved space for it, showing up as a lopsided gap on the
+   right. Icon-only already implies "opens a menu"; drop the arrow instead
+   of fighting the inherited zero font-size to make it visible again. */
+#main.works-show > .work > ul.work.navigation.actions li.download > button::after,
+#main.chapters-show > .work > ul.work.navigation.actions li.download > button::after {
+  content: none !important;
+  margin-left: 0 !important;
+}
+
+/* Download and chapter-index menus remain floating menus, not page cards.
+   AO3's native .secondary only gives itself 0 0.375em (no vertical
+   padding at all) — give the card some breathing room on every side. */
 #main.works-show > .work > ul.work.navigation.actions ul.secondary,
 #main.works-show > .work > ul.work.navigation.actions ul.expandable,
 #main.chapters-show > .work > ul.work.navigation.actions ul.secondary,
 #main.chapters-show > .work > ul.work.navigation.actions ul.expandable {
+  padding: 0.55rem !important;
   background: rgba(var(--m-card), 0.97) !important;
   border: 1px solid var(--m-line) !important;
   border-radius: 10px !important;
   box-shadow: var(--m-shadow-hover) !important;
   color: var(--m-text-2) !important;
+}
+
+/* The chapter picker <select> isn't covered by the action-button rule
+   above (that only targets a/button/input[type=submit]), and AO3 doesn't
+   theme it natively either, so it was rendering as a bare OS control. */
+#main.works-show > .work > ul.work.navigation.actions #chapter_index select,
+#main.chapters-show > .work > ul.work.navigation.actions #chapter_index select {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  padding: 0.4rem 0.55rem !important;
+  background: var(--m-surface-solid) !important;
+  background-image: none !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+  color: var(--m-text) !important;
+  font-size: 0.72rem !important;
+  text-shadow: none !important;
+}
+
+#main.works-show > .work > ul.work.navigation.actions #chapter_index select:focus,
+#main.chapters-show > .work > ul.work.navigation.actions #chapter_index select:focus {
+  border-color: var(--m-link) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 3px var(--m-focus-ring) !important;
+}
+
+/* Only an <option>'s own background/color are stylable cross-browser —
+   the open options popup itself is OS-rendered and outside CSS's reach. */
+#main.works-show > .work > ul.work.navigation.actions #chapter_index select option,
+#main.chapters-show > .work > ul.work.navigation.actions #chapter_index select option {
+  background: var(--m-surface-solid) !important;
+  color: var(--m-text) !important;
+}
+
+#main.works-show > .work > ul.work.navigation.actions #chapter_index p,
+#main.chapters-show > .work > ul.work.navigation.actions #chapter_index p {
+  gap: 0.4rem !important;
 }
 
 /* ------------------------------------------------------------
@@ -225,9 +286,16 @@
 
 /* Subscribe is input[type=submit] natively — ::before doesn't render on
    form controls, so the <form> becomes the visible pill instead and the
-   input goes transparent/borderless inside it, sized to match. */
+   input goes transparent/borderless inside it, sized to match.
+   appearance: none alone wasn't enough to fully strip every browser's
+   own intrinsic min-size for a submit input, so instead of fighting
+   that, the input is taken out of flow entirely (position: absolute,
+   sized to 100% of the form) — its own content-based sizing becomes
+   irrelevant, and the form (icon + padding only) is what's actually
+   seen and sized, exactly like the sibling <a>/<button> actions. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form {
+  position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -253,12 +321,23 @@
 
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form input[type="submit"],
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form input[type="submit"] {
-  min-height: auto !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   padding: 0 !important;
+  margin: 0 !important;
   background: transparent !important;
   border: 0 !important;
+  border-radius: inherit !important;
   color: inherit !important;
   font-size: 0 !important;
+  line-height: 1 !important;
   cursor: pointer !important;
 }
 
