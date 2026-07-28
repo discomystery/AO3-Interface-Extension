@@ -963,14 +963,20 @@
 }
 
 /* ------------------------------------------------------------
-   COMMENT THREADS
+   COMMENT THREADS — Twitter-style timeline
    AO3 renders the same comment partial here (via #comments_placeholder)
-   as it does in the inbox, so give it the same card treatment.
+   as it does in the inbox. Rather than a stack of individual cards, this
+   reads as one continuous timeline: no per-comment box, a hairline
+   divider between rows, plain (unboxed) message text, minimal text-link
+   actions, and a connecting thread-line down the avatar column for
+   replies — the avatar column stays at a fixed x position at every
+   nesting depth (replies are NOT indented), exactly like Twitter's
+   single-conversation thread view.
    ------------------------------------------------------------ */
 
 #feedback ol.comment.index {
   display: grid !important;
-  gap: 0.72rem !important;
+  gap: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -982,7 +988,7 @@
   grid-template-areas:
     "avatar byline"
     "avatar message"
-    "actions actions" !important;
+    ".      actions" !important;
   column-gap: 0.85rem !important;
   row-gap: 0 !important;
 
@@ -990,18 +996,36 @@
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow: hidden !important;
 
-  background: rgba(var(--m-card), 0.88) !important;
-  border: 1px solid var(--m-line) !important;
-  border-radius: 15px !important;
-  box-shadow: var(--m-shadow-soft) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   color: var(--m-text-2) !important;
+  transition: background-color 140ms ease !important;
 }
 
 #feedback li.comment.group:hover {
-  border-color: rgba(var(--m-link-rgb), 0.24) !important;
-  box-shadow: var(--m-shadow) !important;
+  background: var(--m-chip) !important;
+}
+
+/* The connecting thread-line: drawn down the avatar column from the
+   bottom of THIS comment's own avatar to the bottom of its box, which
+   (since ol.thread is a normal-flow child) reaches into and through any
+   nested replies — lining up with each reply's own avatar in turn,
+   because replies share the same avatar-column x position, unindented. */
+/* Painted as a background rather than an absolutely positioned pseudo-
+   element: li's height is auto (content-driven, including the nested
+   thread), and an abspos box using top+bottom to derive its own height
+   out of an auto-height containing block resolves to a zero-height box.
+   A background's percentage sizing, by contrast, resolves against the
+   box's final post-layout size with no such circularity. */
+#feedback li.comment.group:has(> ol.thread) {
+  background-image: linear-gradient(var(--m-line), var(--m-line)) !important;
+  background-repeat: no-repeat !important;
+  background-position: calc(0.85rem + 3.25rem / 2 - 1px) calc(0.85rem + 3.25rem) !important;
+  background-size: 2px calc(100% - (0.85rem + 3.25rem)) !important;
 }
 
 /* AO3 puts class="icon" on BOTH the wrapper div and the <img> inside it
@@ -1018,6 +1042,7 @@
   height: 3.25rem !important;
   margin: 0.85rem 0 0 0.85rem !important;
   padding: 0 !important;
+  z-index: 1 !important;
 }
 
 #feedback li.comment .icon img {
@@ -1029,7 +1054,7 @@
   background: var(--m-surface-solid) !important;
   border: 1px solid var(--m-line) !important;
   border-radius: 50% !important;
-  box-shadow: var(--m-shadow-xs) !important;
+  box-shadow: none !important;
 }
 
 /* AO3's comment partial gives this h4 both "byline" and "heading" — the
@@ -1041,7 +1066,7 @@
   grid-area: byline !important;
   box-sizing: border-box !important;
   margin: 0 !important;
-  padding: 0.82rem 0.9rem 0.42rem 0 !important;
+  padding: 0.82rem 0.9rem 0.15rem 0 !important;
   background: transparent !important;
   color: var(--m-text-2) !important;
   font-size: 0.79rem !important;
@@ -1073,15 +1098,17 @@
   white-space: nowrap !important;
 }
 
+/* Plain message text — no message "bubble". Twitter doesn't box the
+   tweet body, it just sits directly under the header. */
 #feedback li.comment blockquote.userstuff {
   grid-area: message !important;
   box-sizing: border-box !important;
-  margin: 0 0.9rem 0.8rem 0 !important;
-  padding: 0.7rem 0.82rem !important;
+  margin: 0.15rem 0.9rem 0.5rem 0 !important;
+  padding: 0 !important;
 
-  background: var(--m-surface) !important;
-  border: 1px solid var(--m-line-soft) !important;
-  border-radius: 10px !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
   color: var(--m-text-2) !important;
   font-size: 0.82rem !important;
   line-height: 1.55 !important;
@@ -1104,39 +1131,38 @@
   color: var(--m-link-hover) !important;
 }
 
+/* Actions row: plain, minimal text links (no button chrome), aligned
+   under the message rather than spanning under the avatar too. */
 #feedback li.comment > ul.actions {
   grid-area: actions !important;
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
-  justify-content: flex-end !important;
-  gap: 0.34rem !important;
+  gap: 0.9rem !important;
 
   box-sizing: border-box !important;
   margin: 0 !important;
-  padding: 0.55rem 0.72rem !important;
-  background: var(--m-surface) !important;
-  border-top: 1px solid var(--m-line-soft) !important;
+  padding: 0 0.9rem 0.85rem 0 !important;
+  background: transparent !important;
+  border: 0 !important;
 }
 
 #feedback li.comment > ul.actions a {
-  display: inline-flex !important;
-  align-items: center !important;
-  min-height: 1.8rem !important;
-  padding: 0.32rem 0.56rem !important;
-  background: var(--m-control) !important;
-  border: 1px solid var(--m-line) !important;
-  border-radius: 6px !important;
-  color: var(--m-text-2) !important;
-  font-size: 0.66rem !important;
+  display: inline !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.72rem !important;
   font-weight: 620 !important;
   text-decoration: none !important;
 }
 
 #feedback li.comment > ul.actions a:is(:hover, :focus, :active) {
-  background: var(--m-control-hover) !important;
-  border-color: var(--m-link) !important;
+  background: transparent !important;
   color: var(--m-link) !important;
+  text-decoration: underline !important;
 }
 
 /* "Comment Actions" is a screen-reader-only landmark heading — AO3
@@ -1148,17 +1174,16 @@
 }
 
 /* Replies nest another ol/li.comment structure ("ol.thread") directly
-   inside the parent comment's own grid, one level per reply. With no
-   explicit column, it only lined up under the message column by
-   accident, riding on the h5 above happening to occupy the avatar
-   column first. Pin the column explicitly, and give sibling replies
-   their own spacing since ol.thread doesn't inherit ol.comment.index's
-   gap. */
+   inside the parent comment's own grid. Twitter's thread view doesn't
+   indent replies — each reply is a full-width row with its own avatar
+   at the SAME x position as its parent's, connected by the thread-line
+   above. Span both columns instead of confining it to the message
+   column. */
 #feedback li.comment > ol.thread {
-  grid-column: 2 !important;
+  grid-column: 1 / -1 !important;
   display: grid !important;
-  gap: 0.6rem !important;
-  margin: 0.6rem 0 0 !important;
+  gap: 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
 }
 
