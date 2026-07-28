@@ -1801,21 +1801,28 @@ html body #outer #inner #main #bookmark_form_placement a.bookmark_form_placement
   font-weight: 650 !important;
 }
 
-#bookmark_form_placement fieldset fieldset {
-  margin: 0.65rem 0 0 !important;
-  padding: 0.75rem !important;
-  background: var(--m-surface) !important;
-  border: 1px solid var(--m-line-soft) !important;
-  border-radius: 10px !important;
+/* AO3 nests fieldset > fieldset > fieldset here (.post.bookmark > the
+   "Bookmark" fieldset > "Write Comments" / "Choose Type and Post"), and
+   AO3 itself renders all three of those legends invisibly (0 opacity, 0
+   font-size — verified against AO3's own stylesheet, nothing to do with
+   our CSS). The generic #main fieldset card rule was still boxing every
+   one of those fieldsets independently, stacking rounded cards three
+   deep for no visible payoff. Flatten: .post.bookmark stays the one
+   visible card, every fieldset inside it is unboxed, and the two inner
+   groups get a plain hairline instead of their own nested card. */
+#bookmark_form_placement fieldset {
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
-#bookmark_form_placement fieldset fieldset > legend {
-  padding: 0 0.2rem !important;
-  color: var(--m-text-3) !important;
-  font-size: 0.7rem !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.03em !important;
-  text-transform: uppercase !important;
+#bookmark_form_placement fieldset fieldset {
+  margin: 1rem 0 0 !important;
+  padding: 0.85rem 0 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
 }
 
 #bookmark_form_placement dt {
@@ -1832,6 +1839,18 @@ html body #outer #inner #main #bookmark_form_placement a.bookmark_form_placement
   margin: 0 0 0.3rem !important;
   color: var(--m-text-3) !important;
   font-size: 0.72rem !important;
+}
+
+/* Post-a-comment box. AO3 wraps the comment form in a ".post.comment" div
+   with its own plain 1px #ddd border and square corners; the generic
+   #main fieldset rule then boxes the fieldset inside it again with a
+   rounded, translucent card. The result was a sharp-cornered outline
+   sitting flush around a rounded one. Let the fieldset be the only card. */
+#feedback .post.comment {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 /* Character counters under comment / notes / tag textareas */
