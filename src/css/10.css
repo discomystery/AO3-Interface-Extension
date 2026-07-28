@@ -798,20 +798,30 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 /* Comments/Kudos/Bookmarks (and Chapters, on a multi-chapter work, where
    the current-chapter number is itself a link) are the stats that lead
-   somewhere. Nix the underline and instead treat the icon and its number
-   as one hoverable unit — hovering either one highlights both, via :has()
-   for the icon-follows-the-number direction since the icon comes first
-   in the DOM. */
+   somewhere. AO3's native "underline" on these is actually a border-bottom,
+   not text-decoration, so it has to be killed separately or it survives
+   right through a hover pill and cuts across it. Nix that border and
+   instead treat the icon and its number as one hoverable unit — hovering
+   either one highlights both as a pair of pills sitting close enough to
+   read as one piece, via :has() for the icon-follows-the-number direction
+   since the icon comes first in the DOM. */
 .blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters) {
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border-radius: 6px !important;
   transition: background-color 120ms ease !important;
+}
+
+.blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) {
+  margin-left: -0.34rem !important;
 }
 
 .blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) a {
   display: inline-block !important;
-  margin: -0.05rem -0.22rem !important;
-  padding: 0.05rem 0.22rem !important;
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border: 0 !important;
+  border-radius: 6px !important;
   color: var(--m-link) !important;
   text-decoration: none !important;
   transition: background-color 120ms ease, color 120ms ease !important;

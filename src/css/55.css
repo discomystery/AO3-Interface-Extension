@@ -464,21 +464,32 @@
 }
 
 /* Comments/Kudos/Bookmarks (and Chapters, when the current-chapter number
-   is itself a link) are the stats that lead somewhere. Nix the underline
-   and instead treat the icon and its number as one hoverable unit — same
-   treatment as the blurb listing stats (10.css). */
+   is itself a link) are the stats that lead somewhere. AO3's native
+   "underline" on these is actually a border-bottom, not text-decoration,
+   so it has to be killed separately or it survives right through a hover
+   pill and cuts across it. Nix that border and instead treat the icon and
+   its number as one hoverable unit — same treatment as the blurb listing
+   stats (10.css). */
 #main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters),
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters) {
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border-radius: 6px !important;
   transition: background-color 120ms ease !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters),
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) {
+  margin-left: -0.34rem !important;
 }
 
 #main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a {
   display: inline-block !important;
-  margin: -0.05rem -0.22rem !important;
-  padding: 0.05rem 0.22rem !important;
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border: 0 !important;
+  border-radius: 6px !important;
   color: var(--m-link) !important;
   text-decoration: none !important;
   transition: background-color 120ms ease, color 120ms ease !important;

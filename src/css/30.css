@@ -489,8 +489,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   border-radius: 16px !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: grid !important;
   gap: 0.12rem !important;
   margin: 0 !important;
@@ -502,8 +501,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   box-shadow: none !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
@@ -511,9 +509,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   min-height: 31px !important;
@@ -530,15 +526,13 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation a:is(:hover, :focus, :active) {
+#dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   border-color: var(--m-line-soft) !important;
   color: var(--m-link) !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   border-color: rgba(var(--m-link-rgb), 0.22) !important;
   color: var(--m-link) !important;
@@ -547,8 +541,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 
 @media (prefers-color-scheme: dark) {
   #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
-  #dashboard .navigation .current,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     border-color: rgba(var(--m-link-rgb), 0.3) !important;
   }
 }
@@ -697,8 +690,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   min-width: 12rem !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: block !important;
   width: 100% !important;
   min-width: 0 !important;
@@ -711,8 +703,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   box-shadow: none !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
@@ -723,15 +714,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   border-bottom: 1px solid var(--m-line-soft) !important;
 }
 
-#dashboard .navigation li:last-child,
-.dashboard .navigation li:last-child {
+#dashboard .navigation li:last-child {
   border-bottom: 0 !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
@@ -756,14 +744,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation a:is(:hover, :focus, :active) {
+#dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   color: var(--m-link) !important;
   font-weight: 650 !important;
@@ -805,8 +791,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     padding: 0.35rem !important;
   }
 
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: stretch !important;
@@ -824,8 +809,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     -webkit-overflow-scrolling: touch !important;
   }
 
-  #dashboard .navigation li,
-  .dashboard .navigation li {
+  #dashboard .navigation li {
     display: inline-flex !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -834,15 +818,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     border-right: 1px solid var(--m-line-soft) !important;
   }
 
-  #dashboard .navigation li:last-child,
-  .dashboard .navigation li:last-child {
+  #dashboard .navigation li:last-child {
     border-right: 0 !important;
   }
 
   #dashboard .navigation a,
-  #dashboard .navigation .current,
-  .dashboard .navigation a,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     flex: 0 0 auto !important;
     width: auto !important;
     min-width: max-content !important;
@@ -1477,8 +1458,7 @@ body *:not(code):not(pre):not(kbd):not(samp) {
   box-shadow: none !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   position: relative !important;
   z-index: auto !important;
 
@@ -1496,25 +1476,20 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 }
 
 /* Preserve the clean dividers and let the panel itself provide the shape. */
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   background: transparent !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   border-radius: 0 !important;
 }
 
-#dashboard .navigation li:first-child > :is(a, .current),
-.dashboard .navigation li:first-child > :is(a, .current) {
+#dashboard .navigation li:first-child > :is(a, .current) {
   border-radius: 12px 12px 0 0 !important;
 }
 
-#dashboard .navigation li:last-child > :is(a, .current),
-.dashboard .navigation li:last-child > :is(a, .current) {
+#dashboard .navigation li:last-child > :is(a, .current) {
   border-radius: 0 0 12px 12px !important;
 }
 
@@ -1601,15 +1576,12 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 
 @media only screen and (max-width: 48rem) {
   /* The horizontal dashboard panel has its own rounded endpoints. */
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     border-radius: 11px !important;
   }
 
   #dashboard .navigation li:first-child > :is(a, .current),
-  .dashboard .navigation li:first-child > :is(a, .current),
-  #dashboard .navigation li:last-child > :is(a, .current),
-  .dashboard .navigation li:last-child > :is(a, .current) {
+  #dashboard .navigation li:last-child > :is(a, .current) {
     border-radius: 0 !important;
   }
 
@@ -1624,8 +1596,7 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 }
 
 @media (prefers-color-scheme: dark) {
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     background:
       linear-gradient(
         122deg,

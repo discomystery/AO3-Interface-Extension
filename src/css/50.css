@@ -160,8 +160,7 @@
   overflow: visible !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -181,8 +180,7 @@
   color: var(--m-text-2) !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   display: block !important;
   float: none !important;
   box-sizing: border-box !important;
@@ -194,15 +192,12 @@
   border-bottom: 1px solid var(--m-line-soft) !important;
 }
 
-#dashboard .navigation li:last-child,
-.dashboard .navigation li:last-child {
+#dashboard .navigation li:last-child {
   border-bottom: 0 !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -234,18 +229,14 @@
 
 #dashboard .navigation a:hover,
 #dashboard .navigation a:focus,
-#dashboard .navigation a:active,
-.dashboard .navigation a:hover,
-.dashboard .navigation a:focus,
-.dashboard .navigation a:active {
+#dashboard .navigation a:active {
   background: var(--m-chip) !important;
   border: 0 !important;
   color: var(--m-link) !important;
   box-shadow: none !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   border: 0 !important;
   color: var(--m-link) !important;
@@ -1248,8 +1239,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
     padding: 0.52rem 0.35rem 0.35rem !important;
   }
 
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: stretch !important;
@@ -1264,8 +1254,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
     -webkit-overflow-scrolling: touch !important;
   }
 
-  #dashboard .navigation li,
-  .dashboard .navigation li {
+  #dashboard .navigation li {
     display: inline-flex !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -1274,9 +1263,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
   }
 
   #dashboard .navigation a,
-  #dashboard .navigation .current,
-  .dashboard .navigation a,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     flex: 0 0 auto !important;
     width: auto !important;
     min-width: max-content !important;

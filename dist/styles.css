@@ -1027,20 +1027,30 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 /* Comments/Kudos/Bookmarks (and Chapters, on a multi-chapter work, where
    the current-chapter number is itself a link) are the stats that lead
-   somewhere. Nix the underline and instead treat the icon and its number
-   as one hoverable unit — hovering either one highlights both, via :has()
-   for the icon-follows-the-number direction since the icon comes first
-   in the DOM. */
+   somewhere. AO3's native "underline" on these is actually a border-bottom,
+   not text-decoration, so it has to be killed separately or it survives
+   right through a hover pill and cuts across it. Nix that border and
+   instead treat the icon and its number as one hoverable unit — hovering
+   either one highlights both as a pair of pills sitting close enough to
+   read as one piece, via :has() for the icon-follows-the-number direction
+   since the icon comes first in the DOM. */
 .blurb dl.stats dt:is(.comments, .kudos, .bookmarks, .chapters) {
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border-radius: 6px !important;
   transition: background-color 120ms ease !important;
+}
+
+.blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) {
+  margin-left: -0.34rem !important;
 }
 
 .blurb dl.stats dd:is(.comments, .kudos, .bookmarks, .chapters) a {
   display: inline-block !important;
-  margin: -0.05rem -0.22rem !important;
-  padding: 0.05rem 0.22rem !important;
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border: 0 !important;
+  border-radius: 6px !important;
   color: var(--m-link) !important;
   text-decoration: none !important;
   transition: background-color 120ms ease, color 120ms ease !important;
@@ -1360,9 +1370,15 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   color: var(--m-link-hover) !important;
 }
 
-/* Dashboard/sidebar */
-#dashboard,
-.dashboard .navigation {
+/* Dashboard/sidebar
+   ".dashboard .navigation" (as opposed to "#dashboard .navigation") never
+   actually matched the sidebar — #dashboard is a sibling of #main, not a
+   descendant, so a ".dashboard" ancestor (the class lives on #main) can
+   only reach descendants of #main. The one place it DID match: the
+   primary header module's own "ul.navigation.actions" subnav (also a
+   descendant of #main.dashboard), which isn't part of the sidebar at all
+   and was picking up sidebar-card styling and getting clipped by it. */
+#dashboard {
   background:
     linear-gradient(122deg, rgba(var(--m-card), 0.82), var(--m-surface)) !important;
   border: 1px solid var(--m-line-soft) !important;
@@ -1371,16 +1387,13 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   color: var(--m-text-2) !important;
 }
 
-#dashboard a,
-.dashboard .navigation a {
+#dashboard a {
   color: var(--m-text-2) !important;
   text-shadow: none !important;
 }
 
 #dashboard a:is(:hover, :focus, :active),
-#dashboard .current,
-.dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation .current {
+#dashboard .current {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
@@ -2710,8 +2723,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   border-radius: 16px !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: grid !important;
   gap: 0.12rem !important;
   margin: 0 !important;
@@ -2723,8 +2735,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   box-shadow: none !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   margin: 0 !important;
   padding: 0 !important;
   background: transparent !important;
@@ -2732,9 +2743,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   min-height: 31px !important;
@@ -2751,15 +2760,13 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation a:is(:hover, :focus, :active) {
+#dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   border-color: var(--m-line-soft) !important;
   color: var(--m-link) !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   border-color: rgba(var(--m-link-rgb), 0.22) !important;
   color: var(--m-link) !important;
@@ -2768,8 +2775,7 @@ body:is(.reversi, .dark) #main .marker-data-sync-container > a.action:is(:hover,
 
 @media (prefers-color-scheme: dark) {
   #header #greeting .dropdown-toggle:is(:hover, :focus, :active),
-  #dashboard .navigation .current,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     border-color: rgba(var(--m-link-rgb), 0.3) !important;
   }
 }
@@ -2918,8 +2924,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   min-width: 12rem !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: block !important;
   width: 100% !important;
   min-width: 0 !important;
@@ -2932,8 +2937,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   box-shadow: none !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   display: block !important;
   width: 100% !important;
   margin: 0 !important;
@@ -2944,15 +2948,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   border-bottom: 1px solid var(--m-line-soft) !important;
 }
 
-#dashboard .navigation li:last-child,
-.dashboard .navigation li:last-child {
+#dashboard .navigation li:last-child {
   border-bottom: 0 !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   box-sizing: border-box !important;
@@ -2977,14 +2978,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
   text-decoration: none !important;
 }
 
-#dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation a:is(:hover, :focus, :active) {
+#dashboard .navigation a:is(:hover, :focus, :active) {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   color: var(--m-link) !important;
   font-weight: 650 !important;
@@ -3026,8 +3025,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     padding: 0.35rem !important;
   }
 
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: stretch !important;
@@ -3045,8 +3043,7 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     -webkit-overflow-scrolling: touch !important;
   }
 
-  #dashboard .navigation li,
-  .dashboard .navigation li {
+  #dashboard .navigation li {
     display: inline-flex !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -3055,15 +3052,12 @@ body:is(.reversi, .dark) .dashboard .navigation .current {
     border-right: 1px solid var(--m-line-soft) !important;
   }
 
-  #dashboard .navigation li:last-child,
-  .dashboard .navigation li:last-child {
+  #dashboard .navigation li:last-child {
     border-right: 0 !important;
   }
 
   #dashboard .navigation a,
-  #dashboard .navigation .current,
-  .dashboard .navigation a,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     flex: 0 0 auto !important;
     width: auto !important;
     min-width: max-content !important;
@@ -3698,8 +3692,7 @@ body *:not(code):not(pre):not(kbd):not(samp) {
   box-shadow: none !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   position: relative !important;
   z-index: auto !important;
 
@@ -3717,25 +3710,20 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 }
 
 /* Preserve the clean dividers and let the panel itself provide the shape. */
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   background: transparent !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   border-radius: 0 !important;
 }
 
-#dashboard .navigation li:first-child > :is(a, .current),
-.dashboard .navigation li:first-child > :is(a, .current) {
+#dashboard .navigation li:first-child > :is(a, .current) {
   border-radius: 12px 12px 0 0 !important;
 }
 
-#dashboard .navigation li:last-child > :is(a, .current),
-.dashboard .navigation li:last-child > :is(a, .current) {
+#dashboard .navigation li:last-child > :is(a, .current) {
   border-radius: 0 0 12px 12px !important;
 }
 
@@ -3822,15 +3810,12 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 
 @media only screen and (max-width: 48rem) {
   /* The horizontal dashboard panel has its own rounded endpoints. */
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     border-radius: 11px !important;
   }
 
   #dashboard .navigation li:first-child > :is(a, .current),
-  .dashboard .navigation li:first-child > :is(a, .current),
-  #dashboard .navigation li:last-child > :is(a, .current),
-  .dashboard .navigation li:last-child > :is(a, .current) {
+  #dashboard .navigation li:last-child > :is(a, .current) {
     border-radius: 0 !important;
   }
 
@@ -3845,8 +3830,7 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 }
 
 @media (prefers-color-scheme: dark) {
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     background:
       linear-gradient(
         122deg,
@@ -5103,8 +5087,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
   overflow: visible !important;
 }
 
-#dashboard .navigation,
-.dashboard .navigation {
+#dashboard .navigation {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -5124,8 +5107,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
   color: var(--m-text-2) !important;
 }
 
-#dashboard .navigation li,
-.dashboard .navigation li {
+#dashboard .navigation li {
   display: block !important;
   float: none !important;
   box-sizing: border-box !important;
@@ -5137,15 +5119,12 @@ body:is(.reversi, .dark) .dashboard .navigation {
   border-bottom: 1px solid var(--m-line-soft) !important;
 }
 
-#dashboard .navigation li:last-child,
-.dashboard .navigation li:last-child {
+#dashboard .navigation li:last-child {
   border-bottom: 0 !important;
 }
 
 #dashboard .navigation a,
-#dashboard .navigation .current,
-.dashboard .navigation a,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -5177,18 +5156,14 @@ body:is(.reversi, .dark) .dashboard .navigation {
 
 #dashboard .navigation a:hover,
 #dashboard .navigation a:focus,
-#dashboard .navigation a:active,
-.dashboard .navigation a:hover,
-.dashboard .navigation a:focus,
-.dashboard .navigation a:active {
+#dashboard .navigation a:active {
   background: var(--m-chip) !important;
   border: 0 !important;
   color: var(--m-link) !important;
   box-shadow: none !important;
 }
 
-#dashboard .navigation .current,
-.dashboard .navigation .current {
+#dashboard .navigation .current {
   background: var(--m-control-active) !important;
   border: 0 !important;
   color: var(--m-link) !important;
@@ -6191,8 +6166,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
     padding: 0.52rem 0.35rem 0.35rem !important;
   }
 
-  #dashboard .navigation,
-  .dashboard .navigation {
+  #dashboard .navigation {
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: stretch !important;
@@ -6207,8 +6181,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
     -webkit-overflow-scrolling: touch !important;
   }
 
-  #dashboard .navigation li,
-  .dashboard .navigation li {
+  #dashboard .navigation li {
     display: inline-flex !important;
     flex: 0 0 auto !important;
     width: auto !important;
@@ -6217,9 +6190,7 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
   }
 
   #dashboard .navigation a,
-  #dashboard .navigation .current,
-  .dashboard .navigation a,
-  .dashboard .navigation .current {
+  #dashboard .navigation .current {
     flex: 0 0 auto !important;
     width: auto !important;
     min-width: max-content !important;
@@ -8962,21 +8933,32 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
 }
 
 /* Comments/Kudos/Bookmarks (and Chapters, when the current-chapter number
-   is itself a link) are the stats that lead somewhere. Nix the underline
-   and instead treat the icon and its number as one hoverable unit — same
-   treatment as the blurb listing stats (10.css). */
+   is itself a link) are the stats that lead somewhere. AO3's native
+   "underline" on these is actually a border-bottom, not text-decoration,
+   so it has to be killed separately or it survives right through a hover
+   pill and cuts across it. Nix that border and instead treat the icon and
+   its number as one hoverable unit — same treatment as the blurb listing
+   stats (10.css). */
 #main.works-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters),
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt:is(.comments, .kudos, .bookmarks, .chapters) {
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border-radius: 6px !important;
   transition: background-color 120ms ease !important;
+}
+
+#main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters),
+#main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) {
+  margin-left: -0.34rem !important;
 }
 
 #main.works-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dd:is(.comments, .kudos, .bookmarks, .chapters) a {
   display: inline-block !important;
-  margin: -0.05rem -0.22rem !important;
-  padding: 0.05rem 0.22rem !important;
-  border-radius: 5px !important;
+  padding: 0.12rem 0.1rem !important;
+  margin: -0.12rem -0.1rem !important;
+  border: 0 !important;
+  border-radius: 6px !important;
   color: var(--m-link) !important;
   text-decoration: none !important;
   transition: background-color 120ms ease, color 120ms ease !important;

@@ -148,9 +148,15 @@
   color: var(--m-link-hover) !important;
 }
 
-/* Dashboard/sidebar */
-#dashboard,
-.dashboard .navigation {
+/* Dashboard/sidebar
+   ".dashboard .navigation" (as opposed to "#dashboard .navigation") never
+   actually matched the sidebar — #dashboard is a sibling of #main, not a
+   descendant, so a ".dashboard" ancestor (the class lives on #main) can
+   only reach descendants of #main. The one place it DID match: the
+   primary header module's own "ul.navigation.actions" subnav (also a
+   descendant of #main.dashboard), which isn't part of the sidebar at all
+   and was picking up sidebar-card styling and getting clipped by it. */
+#dashboard {
   background:
     linear-gradient(122deg, rgba(var(--m-card), 0.82), var(--m-surface)) !important;
   border: 1px solid var(--m-line-soft) !important;
@@ -159,16 +165,13 @@
   color: var(--m-text-2) !important;
 }
 
-#dashboard a,
-.dashboard .navigation a {
+#dashboard a {
   color: var(--m-text-2) !important;
   text-shadow: none !important;
 }
 
 #dashboard a:is(:hover, :focus, :active),
-#dashboard .current,
-.dashboard .navigation a:is(:hover, :focus, :active),
-.dashboard .navigation .current {
+#dashboard .current {
   background: var(--m-chip) !important;
   color: var(--m-link) !important;
 }
