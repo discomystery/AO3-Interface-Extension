@@ -8779,6 +8779,12 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
    seen and sized, exactly like the sibling <a>/<button> actions. */
 #main.works-show > .work > ul.work.navigation.actions li.subscribe > form,
 #main.chapters-show > .work > ul.work.navigation.actions li.subscribe > form {
+  /* The sibling a/button/input[submit] actions get box-sizing: border-box
+     from the generic rule above (55.css) — <form> isn't in that selector
+     list, so without this, min-height applied to the content box only
+     and padding+border stacked on top, making Subscribe visibly taller
+     than every other action beside it. */
+  box-sizing: border-box !important;
   position: relative !important;
   display: inline-flex !important;
   align-items: center !important;
