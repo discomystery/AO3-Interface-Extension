@@ -10817,17 +10817,10 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 @media only screen and (max-width: 48rem) {
   #main.works-show > .work > ul.work.navigation.actions,
   #main.chapters-show > .work > ul.work.navigation.actions {
-    flex-wrap: nowrap !important;
+    flex-wrap: wrap !important;
     width: 100% !important;
     margin-bottom: 0.45rem !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    scrollbar-width: none !important;
-  }
-
-  #main.works-show > .work > ul.work.navigation.actions::-webkit-scrollbar,
-  #main.chapters-show > .work > ul.work.navigation.actions::-webkit-scrollbar {
-    display: none !important;
+    overflow: visible !important;
   }
 
   #main.works-show dl.work.meta,
