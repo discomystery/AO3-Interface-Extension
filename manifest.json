@@ -38,6 +38,14 @@
     },
     {
       "matches": [
+        "https://archiveofourown.org/works/*",
+        "https://www.archiveofourown.org/works/*"
+      ],
+      "js": ["src/js/work-meta-collapse.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
         "https://archiveofourown.org/*",
         "https://www.archiveofourown.org/*"
       ],
