@@ -13202,17 +13202,27 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
 
    This replaces that stack with a single icon row — hamburger for
    Fandoms/Browse/Search/About, a search-icon toggle for the quick search
-   box, icon-only Post/Log Out controls, and the avatar itself acting as
-   the "Hi, username!" trigger — plus a shared dropdown panel underneath
-   for whichever of hamburger/search is open.
+   box, an icon-only Post control, and the avatar itself acting as the
+   "Hi, username!" trigger — plus a shared dropdown panel underneath for
+   whichever of hamburger/search is open. Log Out moves into the account
+   dropdown instead of sitting in this row (mobile-header.js).
 
    mobile-header.js creates the toggle buttons and the .ao3am-label /
-   .ao3am-account-trigger / .ao3am-avatar-mobile hooks below; with that
-   script disabled these selectors simply never match, and the existing
-   desktop/tablet CSS in 20.css/30.css is unaffected. */
+   .ao3am-account-trigger / .ao3am-avatar-mobile / .ao3am-account-li /
+   .ao3am-post-li hooks below; with that script disabled these selectors
+   simply never match, and the existing desktop/tablet CSS in
+   20.css/30.css is unaffected. */
 
 #header .ao3am-nav-toggle,
 #header .ao3am-search-toggle {
+  display: none !important;
+}
+
+/* The avatar clone mobile-header.js inserts into the "Hi, username!"
+   trigger (so the account dropdown has a single tap target) is only
+   meant to be seen at the phone breakpoint — the native <p class="icon">
+   avatar stays the trigger everywhere above it. */
+#header .ao3am-avatar-mobile {
   display: none !important;
 }
 
@@ -13306,10 +13316,25 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/g%3E%3C/svg%3E") !important;
   }
 
-  /* ---- Greeting row: Hi/Post/Log Out/WTR condense to equal-size icons */
+  /* ---- Greeting row: Post/WTR/avatar condense to equal-size icons,
+     left-to-right as plus / bookmark / avatar (avatar stays rightmost).
+     Log Out moves into the account dropdown (mobile-header.js), so it's
+     not part of this row at all. */
 
   #header #greeting > ul.user.navigation.actions {
     gap: 0.2rem !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions > li.ao3am-post-li {
+    order: 1 !important;
+  }
+
+  #ao3-wtr-header-li {
+    order: 2 !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions > li.ao3am-account-li {
+    order: 3 !important;
   }
 
   #header #greeting > ul.user.navigation.actions > li > a,
@@ -13332,9 +13357,14 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     display: none !important;
   }
 
-  #header #greeting a.ao3am-account-trigger {
+  /* Out-specifies #header #greeting > ul.user.navigation.actions > li > a
+     (30.css), which would otherwise win the border-radius: 8px cascade
+     and leave this a rounded square instead of the circular chip the
+     native avatar (#header #greeting > p.icon > a) used. */
+  #header #greeting > ul.user.navigation.actions > li.ao3am-account-li > a.ao3am-account-trigger {
     border-radius: 50% !important;
     overflow: hidden !important;
+    box-shadow: var(--m-shadow-xs) !important;
   }
 
   #header .ao3am-avatar-mobile {
@@ -13347,8 +13377,7 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     border-radius: 50% !important;
   }
 
-  #header #greeting a[href$="/works/new"]::before,
-  #header #greeting > ul.user.navigation.actions > li > a[href*="/logout"]::before {
+  #header #greeting a[href$="/works/new"]::before {
     content: "" !important;
     display: block !important;
     width: 1.05rem !important;
@@ -13360,23 +13389,8 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     mask-position: center !important;
     -webkit-mask-size: 100% !important;
     mask-size: 100% !important;
-  }
-
-  #header #greeting a[href$="/works/new"]::before {
     -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
     mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
-  }
-
-  #header #greeting > ul.user.navigation.actions > li > a[href*="/logout"]::before {
-    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m16 17l5-5l-5-5m5 5H9m0 9H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3C/svg%3E") !important;
-    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m16 17l5-5l-5-5m5 5H9m0 9H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3C/svg%3E") !important;
-
-    /* 30.css's #header #greeting a[href*="/logout"]::before rule (written
-       for the icon inside the account dropdown menu) isn't scoped to
-       .menu, so it also matches this top-level icon once it has mask
-       content of its own. Match the neutral color the top-level Log Out
-       control already uses instead of the dropdown's red treatment. */
-    color: var(--m-text-2) !important;
   }
 
   /* Text labels stay in the accessibility tree (unlike display:none, which

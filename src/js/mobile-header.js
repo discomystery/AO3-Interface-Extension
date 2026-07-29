@@ -6,13 +6,13 @@
 //    panel
 //  - the account avatar doubling as the "Hi, username!" dropdown trigger,
 //    instead of two separate controls fighting for space
+//  - Log Out moved into that same account dropdown, off the icon row
 //
-// AO3's own site nav dropdowns (Fandoms/Browse/etc.) already open on tap
-// via their native `.open`-class handling — this script only adds the two
-// new panel toggles and the label/avatar rewiring layered on top of them.
-// Everything here is additive: on desktop widths 70.css keeps these
-// elements display:none, and the extra spans/clone this script inserts are
-// inert until that breakpoint applies.
+// It also enforces "only one thing open at a time" for the whole header:
+// opening any of the above, or any of AO3's own dropdowns (Fandoms/
+// Browse/Search/About, the account menu, the Post menu), closes whatever
+// else was already open first. Without this, e.g. opening the hamburger
+// panel and then tapping the avatar left both floating open at once.
 (function () {
   "use strict";
 
@@ -20,6 +20,8 @@
   const NAV_OPEN_CLASS = "ao3am-nav-open";
   const SEARCH_OPEN_CLASS = "ao3am-search-open";
   const LABEL_CLASS = "ao3am-label";
+  const OPENER_SELECTOR =
+    ".ao3am-nav-toggle, .ao3am-search-toggle, .dropdown > a, .dropdown > .dropdown-toggle";
 
   function buildToggle(className, label) {
     const button = document.createElement("button");
@@ -30,9 +32,58 @@
     return button;
   }
 
-  function closePanels(header, buttons) {
-    header.classList.remove(NAV_OPEN_CLASS, SEARCH_OPEN_CLASS);
-    buttons.forEach((button) => button.setAttribute("aria-expanded", "false"));
+  function syncToggleAria(header) {
+    const navToggle = header.querySelector(".ao3am-nav-toggle");
+    const searchToggle = header.querySelector(".ao3am-search-toggle");
+    if (navToggle) {
+      navToggle.setAttribute("aria-expanded", String(header.classList.contains(NAV_OPEN_CLASS)));
+    }
+    if (searchToggle) {
+      searchToggle.setAttribute(
+        "aria-expanded",
+        String(header.classList.contains(SEARCH_OPEN_CLASS))
+      );
+    }
+  }
+
+  // Closes every open panel/dropdown in the header except whatever
+  // `opener` belongs to (its own dropdown, or itself for the hamburger/
+  // search toggles). Passing no opener closes everything.
+  //
+  // The WTR queue widget (#ao3-wtr-header-li, added by the separate AO3
+  // Advanced Marker PRO extension if installed) manages its own open
+  // state — including its own outside-click handler — via an inline
+  // style alongside the "open" class, so forcibly clearing that class
+  // here would desync it from that inline style. It's excluded below.
+  function closeEverythingExcept(header, opener) {
+    const sitePanel = header.querySelector('nav[aria-label="Site"]');
+    const openerInSitePanel = Boolean(opener && sitePanel && sitePanel.contains(opener));
+
+    if (!openerInSitePanel) {
+      if (!opener || !opener.classList.contains("ao3am-nav-toggle")) {
+        header.classList.remove(NAV_OPEN_CLASS);
+      }
+      if (!opener || !opener.classList.contains("ao3am-search-toggle")) {
+        header.classList.remove(SEARCH_OPEN_CLASS);
+      }
+    }
+    syncToggleAria(header);
+
+    header.querySelectorAll(".dropdown.open").forEach((li) => {
+      if (li.id === "ao3-wtr-header-li") return;
+      if (!opener || !li.contains(opener)) li.classList.remove("open");
+    });
+
+    const active = document.activeElement;
+    if (
+      active &&
+      active !== document.body &&
+      header.contains(active) &&
+      (!opener || !active.contains(opener)) &&
+      (!opener || !opener.contains(active))
+    ) {
+      active.blur();
+    }
   }
 
   function initPanelToggles(header) {
@@ -43,16 +94,14 @@
 
     const navToggle = buildToggle("ao3am-nav-toggle", "Menu");
     const searchToggle = buildToggle("ao3am-search-toggle", "Search");
-    const buttons = [navToggle, searchToggle];
 
     header.insertBefore(navToggle, header.firstChild);
     header.appendChild(searchToggle);
 
     function setOpen(button, openClass) {
       const willOpen = !header.classList.contains(openClass);
-      closePanels(header, buttons);
       header.classList.toggle(openClass, willOpen);
-      button.setAttribute("aria-expanded", String(willOpen));
+      syncToggleAria(header);
       if (willOpen && button === searchToggle && searchField) {
         const input = searchField.querySelector(
           "#site_search, input[type='text'], input[type='search']"
@@ -73,12 +122,25 @@
       setOpen(searchToggle, SEARCH_OPEN_CLASS);
     });
 
+    // Capture phase, so this always runs before the click reaches its
+    // target — including before any stopPropagation() above — and before
+    // AO3's own dropdown click handling runs, so whichever control is
+    // being opened starts from a clean slate.
+    document.addEventListener(
+      "click",
+      (event) => {
+        const opener = event.target.closest(OPENER_SELECTOR);
+        if (opener && header.contains(opener)) closeEverythingExcept(header, opener);
+      },
+      true
+    );
+
     document.addEventListener("click", (event) => {
-      if (!header.contains(event.target)) closePanels(header, buttons);
+      if (!header.contains(event.target)) closeEverythingExcept(header, null);
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") closePanels(header, buttons);
+      if (event.key === "Escape") closeEverythingExcept(header, null);
     });
   }
 
@@ -112,6 +174,8 @@
 
     wrapLabel(trigger);
     trigger.classList.add("ao3am-account-trigger");
+    const accountLi = trigger.closest("li");
+    if (accountLi) accountLi.classList.add("ao3am-account-li");
 
     const avatarClone = avatarImg.cloneNode(true);
     avatarClone.className = "ao3am-avatar-mobile";
@@ -122,26 +186,54 @@
     trigger.insertBefore(avatarClone, trigger.firstChild);
   }
 
-  function initIconLabels(header) {
+  function initPostLabel(header) {
     const greeting = header.querySelector("#greeting");
     if (!greeting) return;
-
     const postLink = greeting.querySelector('ul.user.navigation.actions a[href$="/works/new"]');
-    const logoutLink = greeting.querySelector(
-      'ul.user.navigation.actions > li > a[href*="/logout"]'
-    );
-
     wrapLabel(postLink);
-    wrapLabel(logoutLink);
+    const postLi = postLink ? postLink.closest("li") : null;
+    if (postLi) postLi.classList.add("ao3am-post-li");
+  }
+
+  // Moves Log Out from its own top-level control into the account
+  // dropdown (as the last item, below My Preferences), matching the rest
+  // of that menu's icon+label rows — it already has a mask icon and a
+  // red "destructive action" treatment defined for that context in
+  // 30.css. Runs unconditionally (not just at mobile widths): it's a DOM
+  // move, not a media-query-gated style, so it applies everywhere.
+  function moveLogoutIntoAccountMenu(header) {
+    const greeting = header.querySelector("#greeting");
+    if (!greeting) return;
+    const actionsList = greeting.querySelector(":scope > ul.user.navigation.actions");
+    if (!actionsList) return;
+
+    let logoutLi = null;
+    actionsList.querySelectorAll(":scope > li").forEach((li) => {
+      if (logoutLi || li.classList.contains("dropdown")) return;
+      if (li.querySelector(":scope > a[href*='/logout']")) logoutLi = li;
+    });
+    if (!logoutLi) return;
+
+    const accountMenu = actionsList.querySelector(":scope > li.dropdown > ul.menu");
+    if (!accountMenu || accountMenu.querySelector("a[href*='/logout']")) return;
+
+    const logoutLink = logoutLi.querySelector("a");
+    if (!logoutLink) return;
+
+    const item = document.createElement("li");
+    item.appendChild(logoutLink);
+    accountMenu.appendChild(item);
+    logoutLi.remove();
   }
 
   function init() {
     const header = document.querySelector(HEADER_SELECTOR);
     if (!header) return;
 
+    moveLogoutIntoAccountMenu(header);
     initPanelToggles(header);
     initAccountTrigger(header);
-    initIconLabels(header);
+    initPostLabel(header);
   }
 
   if (document.readyState === "loading") {
