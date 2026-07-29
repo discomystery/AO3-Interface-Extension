@@ -734,6 +734,7 @@ p.character_counter span.value {
 
 /* Footer */
 #footer {
+  box-sizing: border-box !important;
   margin-top: 2rem !important;
   padding: 1.2rem clamp(0.8rem, 2vw, 1.5rem) !important;
   background: rgba(var(--m-card), 0.72) !important;
