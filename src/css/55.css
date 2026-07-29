@@ -1398,17 +1398,32 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     font-size: 0.67rem !important;
   }
 
-  /* 4 columns (icon, value, icon, value) packs two stats per row instead
-     of one — the dt/dd pairs stay together on the same row no matter how
-     many wrap, since the flat dt,dd,dt,dd,... sequence only ever breaks
-     cleanly on an even column count. Plain flex-wrap (used above 30rem)
-     wraps per element instead of per pair, which at this width was
-     splitting icons from their values across lines. */
+  /* One line, full stop — nowrap plus a horizontal scroll (swipe) instead
+     of letting the row wrap at all. A wrapping grid or flex-wrap here
+     inevitably reads as ragged (columns/rows sized to whichever stat
+     happens to land in them, so gaps land unevenly); a single scrollable
+     line reads as one clean strip instead, same as the work-navigation
+     actions bar above. */
   #main.works-show dl.work.meta dd.stats > dl.stats,
   #main.chapters-show dl.work.meta dd.stats > dl.stats {
-    display: grid !important;
-    grid-template-columns: repeat(4, max-content) !important;
-    column-gap: 0.4rem !important;
-    row-gap: 0.2rem !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: baseline !important;
+    gap: 0.2rem 0.5rem !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+
+  #main.works-show dl.work.meta dd.stats > dl.stats::-webkit-scrollbar,
+  #main.chapters-show dl.work.meta dd.stats > dl.stats::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #main.works-show dl.work.meta dd.stats > dl.stats > dt,
+  #main.chapters-show dl.work.meta dd.stats > dl.stats > dt,
+  #main.works-show dl.work.meta dd.stats > dl.stats > dd,
+  #main.chapters-show dl.work.meta dd.stats > dl.stats > dd {
+    flex: 0 0 auto !important;
   }
 }
