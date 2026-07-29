@@ -476,6 +476,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 .blurb h4.heading a[rel="author"]:is(:hover, :focus, :active),
 .blurb .header h5.fandoms a:is(:hover, :focus, :active) {
+  background: transparent !important;
   color: var(--m-link) !important;
   text-decoration: underline !important;
   text-decoration-thickness: 1px !important;
