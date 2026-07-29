@@ -1,0 +1,647 @@
+/*
+ * AO3 Advanced Marker — Module 51
+ */
+
+/* ============================================================
+   HOME PAGE LAYOUT
+   The logged-in splash page at "/" (title "Home"). Scoped to the
+   unique ".splash" wrapper so nothing else on the "system docs
+   index" template (About, FAQ, etc.) is affected.
+
+   - "Find your favorites", "News" and "Follow us" get quiet card
+     treatment, matching other standalone modules across the theme.
+   - "Is it later already?" and "Unread messages" already contain
+     their own cards (work blurbs / comment cards), so they stay
+     flat — no card-in-a-card, per the rest of the theme.
+   ============================================================ */
+
+#main .splash {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.35rem !important;
+  box-sizing: border-box !important;
+  max-width: 760px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+#main .splash > .module {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: var(--m-text) !important;
+}
+
+#main .splash > :is(.favorite, .latest.news, .social).module {
+  padding: 1.1rem 1.3rem 1.3rem !important;
+  background: rgba(var(--m-card), 0.86) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: var(--m-radius-md) !important;
+  box-shadow: var(--m-shadow-soft) !important;
+}
+
+/* ------------------------------------------------------------
+   SHARED MODULE HEADING
+   ------------------------------------------------------------ */
+
+#main .splash > .module > h3.heading {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  column-gap: 0.75rem !important;
+  row-gap: 0.2rem !important;
+
+  margin: 0 0 0.9rem !important;
+  padding: 0 0 0.7rem !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  color: var(--m-text) !important;
+  font-size: 1.05rem !important;
+  font-weight: 740 !important;
+  letter-spacing: -0.015em !important;
+  text-shadow: none !important;
+}
+
+#main .splash > .module > h3.heading .title {
+  color: inherit !important;
+  font: inherit !important;
+}
+
+#main .splash > .module > h3.heading .link {
+  font-weight: 620 !important;
+}
+
+#main .splash > .module > h3.heading .link a {
+  color: var(--m-link) !important;
+  font-size: 0.76rem !important;
+  font-weight: 620 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+}
+
+#main .splash > .module > h3.heading .link a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+#main .splash > .module > p.note {
+  margin: -0.55rem 0 0.9rem !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.79rem !important;
+  line-height: 1.5 !important;
+}
+
+#main .splash > .module > .flash:empty {
+  display: none !important;
+}
+
+/* ------------------------------------------------------------
+   FIND YOUR FAVORITES — fandom shortcut chips
+   ------------------------------------------------------------ */
+
+#main .splash .favorite.module ul {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  gap: 0.42rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main .splash .favorite.module li {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main .splash .favorite.module a.tag {
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0.34rem 0.68rem !important;
+
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: var(--m-radius-pill) !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 560 !important;
+  line-height: 1.3 !important;
+  text-decoration: none !important;
+
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease !important;
+}
+
+#main .splash .favorite.module a.tag:is(:hover, :focus, :active) {
+  transform: translateY(-1px) !important;
+  background: var(--m-surface-solid) !important;
+  border-color: rgba(var(--m-link-rgb), 0.4) !important;
+  color: var(--m-link) !important;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.07) !important;
+}
+
+/* ------------------------------------------------------------
+   NEWS — flat, divided list (no card-in-card)
+   ------------------------------------------------------------ */
+
+#main .splash .latest.news.module ul.news.index.group {
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main .splash .latest.news.module li.post.group {
+  margin: 0 !important;
+  padding: 1rem 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+}
+
+#main .splash .latest.news.module li.post.group:first-child {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+#main .splash .latest.news.module li.post.group:last-child {
+  padding-bottom: 0 !important;
+}
+
+#main .splash .latest.news.module .header.module {
+  margin: 0 0 0.4rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#main .splash .latest.news.module h4.heading {
+  margin: 0 0 0.3rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text) !important;
+  font-size: 0.98rem !important;
+  font-weight: 720 !important;
+  line-height: 1.35 !important;
+  text-shadow: none !important;
+}
+
+#main .splash .latest.news.module h4.heading a {
+  color: var(--m-text) !important;
+  text-decoration: none !important;
+}
+
+#main .splash .latest.news.module h4.heading a:is(:hover, :focus, :active) {
+  color: var(--m-link) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 2px !important;
+}
+
+#main .splash .latest.news.module p.meta {
+  margin: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.73rem !important;
+  font-weight: 540 !important;
+}
+
+#main .splash .latest.news.module p.meta .comments {
+  margin-left: 0.7rem !important;
+}
+
+#main .splash .latest.news.module p.meta a {
+  color: var(--m-text-3) !important;
+  text-decoration: none !important;
+}
+
+#main .splash .latest.news.module p.meta a:is(:hover, :focus, :active) {
+  color: var(--m-link) !important;
+  text-decoration: underline !important;
+}
+
+#main .splash .latest.news.module blockquote.userstuff {
+  margin: 0.65rem 0 0.55rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.86rem !important;
+  line-height: 1.6 !important;
+}
+
+#main .splash .latest.news.module blockquote.userstuff p {
+  margin: 0 !important;
+  color: inherit !important;
+}
+
+#main .splash .latest.news.module p.jump {
+  margin: 0 !important;
+}
+
+#main .splash .latest.news.module p.jump a {
+  color: var(--m-link) !important;
+  font-size: 0.78rem !important;
+  font-weight: 620 !important;
+  text-decoration: none !important;
+}
+
+#main .splash .latest.news.module p.jump a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+/* ------------------------------------------------------------
+   IS IT LATER ALREADY? — heading only; the work blurbs beneath
+   already get their own card styling globally.
+   ------------------------------------------------------------ */
+
+#main .splash .random.readings.module ol.reading.work.index.group {
+  margin-top: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   UNREAD MESSAGES — comment cards, matching the inbox card
+   pattern used elsewhere in the theme.
+   ------------------------------------------------------------ */
+
+#main .splash .latest.messages.module ul.abbreviated.comment.group {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0.85rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main .splash .latest.messages.module li.comment.group {
+  position: relative !important;
+  float: none !important;
+  clear: both !important;
+  display: grid !important;
+  grid-template-columns: 3rem minmax(0, 1fr) !important;
+  grid-template-areas:
+    "avatar byline"
+    "avatar message"
+    "actions actions" !important;
+  column-gap: 0.8rem !important;
+  row-gap: 0 !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.88) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: var(--m-radius-md) !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main .splash .latest.messages.module li.comment.group:hover {
+  border-color: rgba(var(--m-link-rgb), 0.24) !important;
+  box-shadow: var(--m-shadow) !important;
+}
+
+#main .splash .latest.messages.module li.comment.unread {
+  background:
+    linear-gradient(112deg, rgba(var(--m-link-rgb), 0.09), rgba(var(--m-card), 0.9) 44%) !important;
+  border-color: rgba(var(--m-link-rgb), 0.34) !important;
+  box-shadow:
+    inset 3px 0 0 var(--m-link),
+    var(--m-shadow-soft) !important;
+}
+
+#main .splash .latest.messages.module li.comment > .icon {
+  grid-area: avatar !important;
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+  align-self: start !important;
+  box-sizing: border-box !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  margin: 0.8rem 0 0 0.8rem !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+#main .splash .latest.messages.module li.comment .icon a {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+#main .splash .latest.messages.module li.comment .icon img {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 3rem !important;
+  height: 3rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: cover !important;
+  background: var(--m-surface-solid) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+#main .splash .latest.messages.module li.comment h4.heading.byline {
+  grid-area: byline !important;
+  position: static !important;
+  float: none !important;
+  clear: none !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0.78rem 0.9rem 0.4rem 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.79rem !important;
+  font-weight: 480 !important;
+  line-height: 1.45 !important;
+  text-align: left !important;
+  text-shadow: none !important;
+}
+
+#main .splash .latest.messages.module li.comment h4.heading.byline a,
+#main .splash .latest.messages.module li.comment h4.heading.byline a:visited {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+}
+
+#main .splash .latest.messages.module li.comment h4.heading.byline a:first-child {
+  color: var(--m-text) !important;
+  font-weight: 740 !important;
+}
+
+#main .splash .latest.messages.module li.comment h4.heading.byline a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px !important;
+  text-underline-offset: 3px !important;
+}
+
+#main .splash .latest.messages.module li.comment .posted.datetime {
+  position: static !important;
+  inset: auto !important;
+  float: right !important;
+  display: inline-block !important;
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 0 0.2rem 0.6rem !important;
+  padding: 0 !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 560 !important;
+  line-height: 1.5 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff {
+  grid-area: message !important;
+  float: none !important;
+  clear: none !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 0.9rem 0.8rem 0 !important;
+  padding: 0.7rem 0.82rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.82rem !important;
+  line-height: 1.55 !important;
+  overflow-wrap: anywhere !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff p {
+  color: inherit !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff p:first-child {
+  margin-top: 0 !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff p:last-child {
+  margin-bottom: 0 !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff a,
+#main .splash .latest.messages.module li.comment blockquote.userstuff a:visited {
+  color: var(--m-link) !important;
+}
+
+#main .splash .latest.messages.module li.comment blockquote.userstuff a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+}
+
+#main .splash .latest.messages.module li.comment > ul.actions {
+  grid-area: actions !important;
+  position: static !important;
+  inset: auto !important;
+  float: none !important;
+  clear: both !important;
+  display: flex !important;
+  flex-flow: row wrap !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 0.34rem !important;
+
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.55rem 0.72rem !important;
+  background: var(--m-surface) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#main .splash .latest.messages.module li.comment > ul.actions > li {
+  float: none !important;
+  display: block !important;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main .splash .latest.messages.module li.comment > ul.actions :is(a, input[type="submit"]) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  min-height: 1.8rem !important;
+  margin: 0 !important;
+  padding: 0.32rem 0.56rem !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.66rem !important;
+  font-weight: 620 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  cursor: pointer !important;
+}
+
+#main .splash .latest.messages.module li.comment > ul.actions :is(a, input[type="submit"]):is(:hover, :focus, :active) {
+  transform: none !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+#main .splash .latest.messages.module li.comment > ul.actions form {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+/* ------------------------------------------------------------
+   FOLLOW US — social share buttons
+   ------------------------------------------------------------ */
+
+#main .splash .social.module p.note {
+  margin: -0.5rem 0 1rem !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.83rem !important;
+  line-height: 1.55 !important;
+}
+
+#main .splash .social.module p.note a {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+}
+
+#main .splash .social.module p.note a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+#main .splash .social.module ul {
+  display: flex !important;
+  flex-flow: row wrap !important;
+  gap: 0.6rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main .splash .social.module ul li {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#main .splash .social.module .resp-sharing-button__link {
+  display: block !important;
+  text-decoration: none !important;
+}
+
+#main .splash .social.module .resp-sharing-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0.5rem 0.85rem !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  font-weight: 620 !important;
+  line-height: 1.3 !important;
+
+  transition:
+    transform 120ms ease,
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease !important;
+}
+
+#main .splash .social.module .resp-sharing-button__link:is(:hover, :focus, :active) .resp-sharing-button {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+#main .splash .social.module .resp-sharing-button__icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: none !important;
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+#main .splash .social.module .resp-sharing-button__icon svg {
+  width: 100% !important;
+  height: 100% !important;
+  fill: currentColor !important;
+}
+
+@media (max-width: 42em) {
+  #main .splash {
+    gap: 1rem !important;
+  }
+
+  #main .splash > :is(.favorite, .latest.news, .social).module {
+    padding: 1rem !important;
+  }
+
+  #main .splash .latest.messages.module li.comment.group {
+    grid-template-columns: 2.6rem minmax(0, 1fr) !important;
+  }
+
+  #main .splash .latest.messages.module li.comment > .icon,
+  #main .splash .latest.messages.module li.comment .icon img {
+    width: 2.6rem !important;
+    height: 2.6rem !important;
+  }
+}
