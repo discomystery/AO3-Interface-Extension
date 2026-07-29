@@ -405,6 +405,88 @@
   color: var(--m-text-2) !important;
 }
 
+/* ------------------------------------------------------------
+   WORK METADATA CARD — COLLAPSE TOGGLE
+   Button is inserted by src/js/work-meta-collapse.js (AO3's markup has no
+   native hook for this). It defaults to collapsed on phones / expanded on
+   desktop, and stats stay visible regardless — see dt.stats/dd.stats rules
+   below and the mobile "fixed stats bar" rules further down.
+   ------------------------------------------------------------ */
+
+#main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle,
+#main.chapters-show > .work > .wrapper > button.ao3am-work-meta-toggle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0.5rem 0.65rem !important;
+  background: rgba(142, 142, 147, 0.09) !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.67rem !important;
+  font-weight: 720 !important;
+  letter-spacing: 0.03em !important;
+  line-height: 1.4 !important;
+  text-align: left !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  text-transform: uppercase !important;
+  transition: background-color 140ms ease, color 140ms ease !important;
+  cursor: pointer !important;
+}
+
+#main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle::before,
+#main.chapters-show > .work > .wrapper > button.ao3am-work-meta-toggle::before {
+  content: "Work Details";
+}
+
+#main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle:is(:hover, :focus-visible),
+#main.chapters-show > .work > .wrapper > button.ao3am-work-meta-toggle:is(:hover, :focus-visible) {
+  background: var(--m-control-hover) !important;
+  color: var(--m-link) !important;
+  outline: 0 !important;
+}
+
+#main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle::after,
+#main.chapters-show > .work > .wrapper > button.ao3am-work-meta-toggle::after {
+  content: "";
+  flex: 0 0 auto !important;
+  display: inline-block !important;
+  width: 0.7rem !important;
+  height: 0.7rem !important;
+  background-color: currentColor !important;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E") !important;
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m6 9l6 6l6-6'/%3E%3C/svg%3E") !important;
+  -webkit-mask-repeat: no-repeat !important;
+  mask-repeat: no-repeat !important;
+  -webkit-mask-position: center !important;
+  mask-position: center !important;
+  -webkit-mask-size: 100% !important;
+  mask-size: 100% !important;
+  transition: transform 140ms ease !important;
+}
+
+#main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle[aria-expanded="false"]::after,
+#main.chapters-show > .work > .wrapper > button.ao3am-work-meta-toggle[aria-expanded="false"]::after {
+  transform: rotate(-90deg) !important;
+}
+
+/* Collapsed: hide every dt/dd pair except Stats, so the card shrinks down
+   to just the toggle plus the stats row. */
+#main.works-show > .work > .wrapper.ao3am-work-meta-collapsed dl.work.meta > dt:not(.stats),
+#main.works-show > .work > .wrapper.ao3am-work-meta-collapsed dl.work.meta > dd:not(.stats),
+#main.chapters-show > .work > .wrapper.ao3am-work-meta-collapsed dl.work.meta > dt:not(.stats),
+#main.chapters-show > .work > .wrapper.ao3am-work-meta-collapsed dl.work.meta > dd:not(.stats) {
+  display: none !important;
+}
+
 #main.works-show dl.work.meta,
 #main.chapters-show dl.work.meta {
   display: grid !important;
@@ -1299,5 +1381,77 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     display: grid !important;
     grid-template-columns: max-content 1fr !important;
     gap: 0.18rem 0.4rem !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   STATS — PINNED TO THE VIEWPORT ON PHONES
+   Below 48rem, dd.stats (the whole Published/Words/Chapters/Comments/
+   Kudos/Bookmarks/Hits row) leaves the meta card's document flow and
+   becomes a full-width bar fixed to the bottom of the screen. Since fixed
+   positioning takes it out of flow entirely, it renders independently of
+   the collapse toggle above — collapsing the card via
+   button.ao3am-work-meta-toggle never affects it. dt.stats (the "Stats:"
+   label itself) is redundant once the row is visually its own bar, so it's
+   hidden rather than left as an orphaned grid cell.
+
+   This block intentionally sits after both the 48rem and 30rem blocks
+   above (including the one that turns dl.stats into a label/value grid) so
+   its `!important` flex layout wins the cascade at every phone width.
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 48rem) {
+  #main.works-show dl.work.meta > dt.stats,
+  #main.chapters-show dl.work.meta > dt.stats {
+    display: none !important;
+  }
+
+  #main.works-show dl.work.meta > dd.stats,
+  #main.chapters-show dl.work.meta > dd.stats {
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 400 !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0.5rem 0.7rem calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
+    background: rgba(var(--m-card), 0.96) !important;
+    border: 0 !important;
+    border-top: 1px solid var(--m-line) !important;
+    box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.14) !important;
+  }
+
+  #main.works-show dl.work.meta > dd.stats > dl.stats,
+  #main.chapters-show dl.work.meta > dd.stats > dl.stats {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: baseline !important;
+    /* flex-start (not center) so an overflowing row starts fully visible
+       at scrollLeft: 0 — centering a scrollable flex row instead crops the
+       first item before the user scrolls at all. */
+    justify-content: flex-start !important;
+    gap: 0.2rem 0.55rem !important;
+    overflow-x: auto !important;
+    scrollbar-width: none !important;
+  }
+
+  #main.works-show dl.work.meta > dd.stats > dl.stats::-webkit-scrollbar,
+  #main.chapters-show dl.work.meta > dd.stats > dl.stats::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  #main.works-show dl.work.meta > dd.stats > dl.stats > dt,
+  #main.chapters-show dl.work.meta > dd.stats > dl.stats > dt,
+  #main.works-show dl.work.meta > dd.stats > dl.stats > dd,
+  #main.chapters-show dl.work.meta > dd.stats > dl.stats > dd {
+    flex: 0 0 auto !important;
+  }
+
+  /* Room at the bottom of the page so the fixed bar never covers the last
+     of the chapter, end notes, or the comment form. */
+  #main.works-show,
+  #main.chapters-show {
+    padding-bottom: calc(2.6rem + env(safe-area-inset-bottom, 0px)) !important;
+    box-sizing: border-box !important;
   }
 }
