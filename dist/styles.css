@@ -10035,8 +10035,10 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
    WORK METADATA CARD — COLLAPSE TOGGLE
    Button is inserted by src/js/work-meta-collapse.js (AO3's markup has no
    native hook for this). It defaults to collapsed on phones / expanded on
-   desktop, and stats stay visible regardless — see dt.stats/dd.stats rules
-   below and the mobile "fixed stats bar" rules further down.
+   desktop. Stats stay visible either way, because dl.work.meta's collapsed
+   rule below explicitly exempts dt.stats/dd.stats from the display: none —
+   and since AO3 already places Stats last in the dl, that pair reads as
+   sitting at the bottom of the card in both states.
    ------------------------------------------------------------ */
 
 #main.works-show > .work > .wrapper > button.ao3am-work-meta-toggle,
@@ -10048,7 +10050,7 @@ body:is(.reversi, .dark) #main.subscriptions-index dl.subscription.index > dt > 
   width: 100% !important;
   min-height: 0 !important;
   margin: 0 !important;
-  padding: 0.5rem 0.65rem !important;
+  padding: 0.85rem 1.1rem !important;
   background: rgba(142, 142, 147, 0.09) !important;
   background-image: none !important;
   border: 0 !important;
@@ -11007,78 +11009,6 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     display: grid !important;
     grid-template-columns: max-content 1fr !important;
     gap: 0.18rem 0.4rem !important;
-  }
-}
-
-/* ------------------------------------------------------------
-   STATS — PINNED TO THE VIEWPORT ON PHONES
-   Below 48rem, dd.stats (the whole Published/Words/Chapters/Comments/
-   Kudos/Bookmarks/Hits row) leaves the meta card's document flow and
-   becomes a full-width bar fixed to the bottom of the screen. Since fixed
-   positioning takes it out of flow entirely, it renders independently of
-   the collapse toggle above — collapsing the card via
-   button.ao3am-work-meta-toggle never affects it. dt.stats (the "Stats:"
-   label itself) is redundant once the row is visually its own bar, so it's
-   hidden rather than left as an orphaned grid cell.
-
-   This block intentionally sits after both the 48rem and 30rem blocks
-   above (including the one that turns dl.stats into a label/value grid) so
-   its `!important` flex layout wins the cascade at every phone width.
-   ------------------------------------------------------------ */
-
-@media only screen and (max-width: 48rem) {
-  #main.works-show dl.work.meta > dt.stats,
-  #main.chapters-show dl.work.meta > dt.stats {
-    display: none !important;
-  }
-
-  #main.works-show dl.work.meta > dd.stats,
-  #main.chapters-show dl.work.meta > dd.stats {
-    position: fixed !important;
-    inset: auto 0 0 0 !important;
-    z-index: 400 !important;
-    box-sizing: border-box !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0.5rem 0.7rem calc(0.5rem + env(safe-area-inset-bottom, 0px)) !important;
-    background: rgba(var(--m-card), 0.96) !important;
-    border: 0 !important;
-    border-top: 1px solid var(--m-line) !important;
-    box-shadow: 0 -6px 16px rgba(0, 0, 0, 0.14) !important;
-  }
-
-  #main.works-show dl.work.meta > dd.stats > dl.stats,
-  #main.chapters-show dl.work.meta > dd.stats > dl.stats {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: baseline !important;
-    /* flex-start (not center) so an overflowing row starts fully visible
-       at scrollLeft: 0 — centering a scrollable flex row instead crops the
-       first item before the user scrolls at all. */
-    justify-content: flex-start !important;
-    gap: 0.2rem 0.55rem !important;
-    overflow-x: auto !important;
-    scrollbar-width: none !important;
-  }
-
-  #main.works-show dl.work.meta > dd.stats > dl.stats::-webkit-scrollbar,
-  #main.chapters-show dl.work.meta > dd.stats > dl.stats::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  #main.works-show dl.work.meta > dd.stats > dl.stats > dt,
-  #main.chapters-show dl.work.meta > dd.stats > dl.stats > dt,
-  #main.works-show dl.work.meta > dd.stats > dl.stats > dd,
-  #main.chapters-show dl.work.meta > dd.stats > dl.stats > dd {
-    flex: 0 0 auto !important;
-  }
-
-  /* Room at the bottom of the page so the fixed bar never covers the last
-     of the chapter, end notes, or the comment form. */
-  #main.works-show,
-  #main.chapters-show {
-    padding-bottom: calc(2.6rem + env(safe-area-inset-bottom, 0px)) !important;
-    box-sizing: border-box !important;
   }
 }
 

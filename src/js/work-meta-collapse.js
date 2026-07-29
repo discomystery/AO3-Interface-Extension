@@ -7,9 +7,9 @@
 // across pages via localStorage.
 //
 // dt.stats/dd.stats (the "Stats:" row) is deliberately left out of the
-// collapse: 55.css keeps it visible whether the card is collapsed or not,
-// and additionally pins it to the bottom of the viewport on phones — this
-// script only needs to leave that pair alone.
+// collapse: 55.css keeps it visible — sitting at the bottom of the card,
+// since AO3 already places it last in the dl — whether the card is
+// collapsed or not. This script only needs to leave that pair alone.
 (function () {
   "use strict";
 
