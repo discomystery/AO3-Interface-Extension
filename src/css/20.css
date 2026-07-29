@@ -206,9 +206,64 @@
   border: 0 !important;
 }
 
+/* Subnav tabs (e.g. Work Search / People Search / Bookmark Search / Tag
+   Search) get the same solid control-button treatment as the header's
+   "Hi, username!" greeting menu, instead of the softer pagination pill. */
 #main > .navigation.actions :is(a, .current, .disabled),
 #main > ul.navigation.actions :is(a, .current, .disabled),
-#main > ol.navigation.actions :is(a, .current, .disabled),
+#main > ol.navigation.actions :is(a, .current, .disabled) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 29px !important;
+  padding: 0.3rem 0.62rem !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#main > .navigation.actions a:is(:hover, :focus, :active),
+#main > ul.navigation.actions a:is(:hover, :focus, :active),
+#main > ol.navigation.actions a:is(:hover, :focus, :active) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: rgba(var(--m-link-rgb), 0.28) !important;
+  color: var(--m-link) !important;
+}
+
+#main > .navigation.actions .current,
+#main > ul.navigation.actions .current,
+#main > ol.navigation.actions .current,
+.pagination.actions .current {
+  background: var(--m-control-active) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+  font-weight: 650 !important;
+  box-shadow: inset 0 0 0 1px var(--m-line-soft) !important;
+}
+
+#main > .navigation.actions .disabled,
+#main > ul.navigation.actions .disabled,
+#main > ol.navigation.actions .disabled {
+  opacity: 0.48 !important;
+}
+
+/* Pagination keeps its original compact pill look. */
 .pagination.actions :is(a, .current, .disabled, .gap) {
   display: inline-flex !important;
   align-items: center !important;
@@ -229,29 +284,12 @@
   text-shadow: none !important;
 }
 
-#main > .navigation.actions a:is(:hover, :focus, :active),
-#main > ul.navigation.actions a:is(:hover, :focus, :active),
-#main > ol.navigation.actions a:is(:hover, :focus, :active),
 .pagination.actions a:is(:hover, :focus, :active) {
   background: var(--m-chip-strong) !important;
   border-color: var(--m-line) !important;
   color: var(--m-link) !important;
 }
 
-#main > .navigation.actions .current,
-#main > ul.navigation.actions .current,
-#main > ol.navigation.actions .current,
-.pagination.actions .current {
-  background: var(--m-control-active) !important;
-  border-color: var(--m-link) !important;
-  color: var(--m-link) !important;
-  font-weight: 650 !important;
-  box-shadow: inset 0 0 0 1px var(--m-line-soft) !important;
-}
-
-#main > .navigation.actions .disabled,
-#main > ul.navigation.actions .disabled,
-#main > ol.navigation.actions .disabled,
 .pagination.actions .disabled {
   opacity: 0.48 !important;
 }
