@@ -1447,6 +1447,21 @@ li:is(.work, .reading, .bookmark).blurb:hover {
   color: var(--m-text-2) !important;
 }
 
+/* AO3's native #main.dashboard assumes the sidebar sits flush at the left
+   edge (its "14em" margin-left is sized to #dashboard's own native width).
+   Since #dashboard now has its own left margin above, #main needs to shift
+   over by the same amount or the two columns overlap: #main sits in a
+   stacking context above the float (see #main's z-index below) and paints
+   over the sidebar's right edge, cutting off its nav buttons.
+   Scoped to match AO3's own "62em" breakpoint (site_midsize.handheld),
+   below which the sidebar drops its float and stacks full-width above
+   #main — #main's margin-left must stay native (auto) there. */
+@media only screen and (min-width: 62.01em) {
+  #main.dashboard {
+    margin-left: calc(14em + 1.5rem) !important;
+  }
+}
+
 #dashboard a {
   color: var(--m-text-2) !important;
   text-shadow: none !important;
