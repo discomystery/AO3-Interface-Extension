@@ -1421,6 +1421,8 @@ li:is(.work, .reading, .bookmark).blurb:hover {
    descendant of #main.dashboard), which isn't part of the sidebar at all
    and was picking up sidebar-card styling and getting clipped by it. */
 #dashboard {
+  margin-left: 1.5rem !important;
+
   background:
     linear-gradient(122deg, rgba(var(--m-card), 0.82), var(--m-surface)) !important;
   border: 1px solid var(--m-line-soft) !important;
