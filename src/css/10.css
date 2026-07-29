@@ -939,6 +939,22 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 .blurb .user.module.group input[type="submit"]:is(:hover, :focus, :active),
 .blurb .user.module.group .actions :is(a, button):is(:hover, :focus, :active) {
+  background: rgba(var(--m-link-rgb), 0.1) !important;
+  border-color: rgba(var(--m-link-rgb), 0.26) !important;
+  color: var(--m-link) !important;
+}
+
+/* Destructive actions (e.g. "Delete from History") keep the danger color
+   sitewide, matching the a[data-method="delete"] carve-outs used for
+   every other .actions button — everything else in this group was
+   flipping to that same red on hover regardless of what it did. */
+.blurb .user.module.group input[value*="Delete"],
+.blurb .user.module.group .actions a[href*="confirm_delete"] {
+  color: var(--m-dnr) !important;
+}
+
+.blurb .user.module.group input[value*="Delete"]:is(:hover, :focus, :active),
+.blurb .user.module.group .actions a[href*="confirm_delete"]:is(:hover, :focus, :active) {
   background: rgba(var(--m-dnr-rgb), 0.1) !important;
   border-color: rgba(var(--m-dnr-rgb), 0.26) !important;
   color: var(--m-dnr) !important;
