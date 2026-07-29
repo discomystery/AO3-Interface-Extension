@@ -1,0 +1,307 @@
+/*
+ * AO3 Advanced Marker — Module 70
+ * Mobile header: condensed icon-based navigation
+ */
+
+/* Below the phone breakpoint (48rem / 768px) the desktop header — logo,
+   "Hi, username!" dropdown, Post dropdown, Log Out, avatar, and the full
+   four-item site nav + search box — doesn't fit on one row. Previously
+   this fell back to AO3's original two-row stack (order reset in 30.css),
+   which wraps unpredictably depending on username length and buries the
+   site nav under a horizontally-scrolling strip.
+
+   This replaces that stack with a single icon row — hamburger for
+   Fandoms/Browse/Search/About, a search-icon toggle for the quick search
+   box, icon-only Post/Log Out controls, and the avatar itself acting as
+   the "Hi, username!" trigger — plus a shared dropdown panel underneath
+   for whichever of hamburger/search is open.
+
+   mobile-header.js creates the toggle buttons and the .ao3am-label /
+   .ao3am-account-trigger / .ao3am-avatar-mobile hooks below; with that
+   script disabled these selectors simply never match, and the existing
+   desktop/tablet CSS in 20.css/30.css is unaffected. */
+
+#header .ao3am-nav-toggle,
+#header .ao3am-search-toggle {
+  display: none !important;
+}
+
+@media only screen and (max-width: 48rem) {
+  /* ---- Header row: icon strip, single line ------------------------- */
+
+  #header {
+    flex-flow: row nowrap !important;
+    gap: 0.35rem !important;
+  }
+
+  #header h1.heading {
+    order: -1 !important;
+  }
+
+  #header .ao3am-nav-toggle {
+    order: -2 !important;
+  }
+
+  #header .ao3am-search-toggle {
+    order: 1 !important;
+    margin-left: auto !important;
+  }
+
+  #header #greeting {
+    order: 2 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    padding-inline: 0 !important;
+  }
+
+  #header .ao3am-nav-toggle,
+  #header .ao3am-search-toggle {
+    display: inline-flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+    width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: var(--m-control) !important;
+    border: 1px solid var(--m-line) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    color: var(--m-text-2) !important;
+
+    transition:
+      background-color 140ms ease,
+      border-color 140ms ease,
+      color 140ms ease !important;
+  }
+
+  #header .ao3am-nav-toggle:is(:hover, :focus, :active),
+  #header .ao3am-search-toggle:is(:hover, :focus, :active),
+  #header.ao3am-nav-open .ao3am-nav-toggle,
+  #header.ao3am-search-open .ao3am-search-toggle {
+    background: var(--m-control-hover) !important;
+    border-color: rgba(var(--m-link-rgb), 0.32) !important;
+    color: var(--m-link) !important;
+  }
+
+  #header .ao3am-nav-toggle::before,
+  #header .ao3am-search-toggle::before {
+    content: "" !important;
+    display: block !important;
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+    background-color: currentColor !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 100% !important;
+    mask-size: 100% !important;
+  }
+
+  #header .ao3am-nav-toggle::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E") !important;
+  }
+
+  #header .ao3am-search-toggle::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/g%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/g%3E%3C/svg%3E") !important;
+  }
+
+  /* ---- Greeting row: Hi/Post/Log Out/WTR condense to equal-size icons */
+
+  #header #greeting > ul.user.navigation.actions {
+    gap: 0.2rem !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions > li > a,
+  #header #greeting > ul.user.navigation.actions > li > .dropdown-toggle {
+    box-sizing: border-box !important;
+    width: 30px !important;
+    min-width: 30px !important;
+    height: 30px !important;
+    min-height: 30px !important;
+    max-height: 30px !important;
+    gap: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* The account avatar (native <p class="icon">) is replaced by the clone
+     mobile-header.js inserts into the "Hi, username!" trigger itself, so
+     tapping the visible avatar opens the account dropdown directly instead
+     of navigating straight to the profile. */
+  #header #greeting > p.icon {
+    display: none !important;
+  }
+
+  #header #greeting a.ao3am-account-trigger {
+    border-radius: 50% !important;
+    overflow: hidden !important;
+  }
+
+  #header .ao3am-avatar-mobile {
+    display: block !important;
+    box-sizing: border-box !important;
+    width: 26px !important;
+    height: 26px !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    border-radius: 50% !important;
+  }
+
+  #header #greeting a[href$="/works/new"]::before,
+  #header #greeting > ul.user.navigation.actions > li > a[href*="/logout"]::before {
+    content: "" !important;
+    display: block !important;
+    width: 1.05rem !important;
+    height: 1.05rem !important;
+    background-color: currentColor !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 100% !important;
+    mask-size: 100% !important;
+  }
+
+  #header #greeting a[href$="/works/new"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
+  }
+
+  #header #greeting > ul.user.navigation.actions > li > a[href*="/logout"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m16 17l5-5l-5-5m5 5H9m0 9H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m16 17l5-5l-5-5m5 5H9m0 9H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4'/%3E%3C/svg%3E") !important;
+
+    /* 30.css's #header #greeting a[href*="/logout"]::before rule (written
+       for the icon inside the account dropdown menu) isn't scoped to
+       .menu, so it also matches this top-level icon once it has mask
+       content of its own. Match the neutral color the top-level Log Out
+       control already uses instead of the dropdown's red treatment. */
+    color: var(--m-text-2) !important;
+  }
+
+  /* Text labels stay in the accessibility tree (unlike display:none, which
+     would remove the "Hi, username!"/"Post"/"Log Out" accessible names
+     along with the visible text) but are clipped out of view. */
+  #header .ao3am-label {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  /* ---- WTR queue (AO3 Advanced Marker PRO header widget, if present):
+     move the count from beside the bookmark to overlapping its corner so
+     the icon reads as a single badge, matching the other icon buttons. */
+  #ao3-wtr-header-li > a {
+    gap: 0 !important;
+  }
+
+  #ao3-wtr-header-li .wtr-count-badge {
+    position: absolute !important;
+    top: -2px !important;
+    right: -2px !important;
+    min-width: 13px !important;
+    height: 13px !important;
+    padding: 0 3px !important;
+    font-size: 0.58rem !important;
+    line-height: 13px !important;
+    box-shadow: 0 0 0 2px var(--m-surface-solid) !important;
+  }
+
+  /* ---- Dropdown panel: hamburger nav and search share one flyout ---- */
+
+  #header nav[aria-label="Site"] {
+    position: absolute !important;
+    z-index: 10500 !important;
+    top: calc(100% + 0.5rem) !important;
+    right: 0.6rem !important;
+    left: 0.6rem !important;
+    margin-top: 0 !important;
+
+    display: none !important;
+    width: auto !important;
+    max-height: min(75vh, 32rem) !important;
+    overflow: auto !important;
+    box-sizing: border-box !important;
+    padding: 0.6rem !important;
+
+    background:
+      linear-gradient(145deg, rgba(var(--m-card), 0.98), rgba(var(--m-card), 0.9)) !important;
+    border: 1px solid var(--m-line) !important;
+    border-radius: 16px !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.12),
+      0 24px 55px rgba(0, 0, 0, 0.13) !important;
+
+    -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
+    backdrop-filter: blur(20px) saturate(145%) !important;
+  }
+
+  #header.ao3am-nav-open nav[aria-label="Site"],
+  #header.ao3am-search-open nav[aria-label="Site"] {
+    display: block !important;
+  }
+
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions {
+    display: flex !important;
+    flex-flow: column nowrap !important;
+    gap: 0.3rem !important;
+    width: 100% !important;
+  }
+
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown,
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.search {
+    display: none !important;
+    width: 100% !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+
+  #header.ao3am-nav-open nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown {
+    display: block !important;
+  }
+
+  #header.ao3am-search-open nav[aria-label="Site"] > ul.primary.navigation.actions > li.search {
+    display: flex !important;
+  }
+
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown > a {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Submenus expand inline within the panel instead of floating over it. */
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions .menu {
+    position: static !important;
+    width: auto !important;
+    margin: 0.3rem 0 0 0.5rem !important;
+    box-shadow: none !important;
+  }
+
+  #header li.search {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  #header li.search form.search {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+}

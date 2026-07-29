@@ -35,6 +35,14 @@
       ],
       "js": ["src/js/marker-reading-status-shelf.js"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/*",
+        "https://www.archiveofourown.org/*"
+      ],
+      "js": ["src/js/mobile-header.js"],
+      "run_at": "document_idle"
     }
   ]
 }
