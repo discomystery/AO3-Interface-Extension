@@ -190,6 +190,7 @@ p {
 #inner.wrapper {
   max-width: 1240px !important;
   margin-inline: auto !important;
+  margin-top: 1.75rem !important;
 }
 
 #main,
