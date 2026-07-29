@@ -994,17 +994,38 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 
 .wtr-dropdown-item {
   border-bottom: 1px solid var(--m-line-soft) !important;
+  transition: background 0.12s ease !important;
 }
 
-.wtr-dropdown-item:hover {
-  background: rgba(var(--m-wtr-rgb), 0.1) !important;
+.wtr-dropdown-item:hover,
+.wtr-dropdown-item:focus-within {
+  background: rgba(var(--m-wtr-rgb), 0.12) !important;
 }
 
 .wtr-item-title {
   color: var(--m-text) !important;
+  text-decoration: none !important;
+}
+
+/* Keyed off the whole row (not just the title anchor) so the title and
+   the author/date line always shift together on hover, instead of the
+   title looking like its own separate hover target. */
+.wtr-dropdown-item:hover .wtr-item-title,
+.wtr-dropdown-item:focus-within .wtr-item-title {
+  color: var(--m-wtr) !important;
+  text-decoration: none !important;
 }
 
 .wtr-item-author,
 .wtr-dropdown-empty {
   color: var(--m-text-3) !important;
+}
+
+.wtr-dropdown-item:hover .wtr-item-author,
+.wtr-dropdown-item:focus-within .wtr-item-author {
+  color: var(--m-text-2) !important;
+}
+
+.wtr-item-remove {
+  color: var(--m-dnr) !important;
 }
