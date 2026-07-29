@@ -32,6 +32,7 @@ const files = [
   "57.css",
   "60.css",
   "65.css",
+  "70.css",
 ];
 
 async function buildCSS() {
