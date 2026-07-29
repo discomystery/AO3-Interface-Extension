@@ -13772,11 +13772,20 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     margin-left: 0.7rem !important;
   }
 
-  /* With the nav no longer filling the row, its dropdowns (previously
-     safe opening left-aligned, since the nav sat right after the logo
-     with open space to its right) now sit close to the header's right
-     edge like the greeting cluster's — same fix, extend left instead. */
-  #header nav[aria-label="Site"] > ul.primary.navigation.actions .menu {
+  /* Only the first trigger (Fandoms) sits next to open space on its left
+     (the gap the rule above just opened up after the logo) — right-anchor
+     just that one so its menu extends into that gap. Browse/Search/About
+     are packed tight against each other with no gap on either side; giving
+     all four the same right-anchor treatment made each one's menu extend
+     leftward far enough to land on top of its earlier siblings' trigger
+     buttons (Search's menu covering Fandoms/Browse, About's covering all
+     three) — arguably worse than the original clipping, since a flyout
+     landing on a sibling *button* reads as broken in a way landing on the
+     inert search box/greeting cluster doesn't. Leaving them at their
+     default left alignment means they still extend into other content
+     (the search box, the greeting cluster) when opened, but no longer
+     stack directly on top of another dropdown trigger. */
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown:first-child > .menu {
     right: 0 !important;
     left: auto !important;
     max-width: min(18rem, calc(100vw - 1.2rem)) !important;
