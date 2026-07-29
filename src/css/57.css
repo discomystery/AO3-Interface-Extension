@@ -1,0 +1,352 @@
+/*
+ * AO3 Advanced Marker — Module 57
+ */
+
+/* ============================================================
+   FANDOM / MEDIA INDEX PAGES
+
+   Two related listing pages that ship with none of the app shell's card
+   styling applied:
+     - #main.media-index    /media           — "Fandoms" landing page,
+       one card per medium (Anime & Manga, Books & Literature, …) showing
+       its top five fandoms.
+     - #main.fandoms-index  /media/{medium}/fandoms — a single medium's
+       complete, alphabetised fandom list.
+
+   Both render the same raw shape: an <a class="tag"> followed by a bare
+   "(12345)" text node AO3 never wraps in an element. That count is styled
+   by coloring the containing <li> a muted tone and letting the tag link's
+   own (explicit) color stand out against it — there's no element to
+   target the count text with directly.
+
+   Place after 56-news-page-layout.css.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   SHARED PAGE HEADER
+   ------------------------------------------------------------ */
+
+#main.fandoms-index h2.heading a {
+  color: var(--m-link) !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition: color 140ms ease !important;
+}
+
+#main.fandoms-index h2.heading a:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+}
+
+#main.fandoms-index > p {
+  max-width: 46rem !important;
+  margin: 0 0 1.1rem !important;
+  color: var(--m-text-2) !important;
+  font-size: 0.85rem !important;
+}
+
+#main.fandoms-index > p kbd {
+  display: inline-block !important;
+  padding: 0.08rem 0.4rem !important;
+  background: var(--m-chip-strong) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: 6px !important;
+  box-shadow: 0 1px 0 var(--m-line) !important;
+  color: var(--m-text) !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace !important;
+  font-size: 0.78rem !important;
+}
+
+/* ------------------------------------------------------------
+   ALPHABET QUICK NAVIGATION
+   Individual letter links already pick up the site-wide pill-button
+   treatment from ".actions a" (20.css) — this only needs to lay out the
+   row itself as a sticky, wrapping strip of those pills.
+   ------------------------------------------------------------ */
+
+#main.fandoms-index ul.alphabet.actions {
+  position: sticky !important;
+  z-index: 5 !important;
+  top: 0.75rem !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0.32rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 0 1.4rem !important;
+  padding: 0.6rem !important;
+
+  background: rgba(var(--m-card), 0.86) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: var(--m-radius-md) !important;
+  box-shadow: var(--m-shadow-soft) !important;
+
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+}
+
+#main.fandoms-index ul.alphabet.actions > li {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+#main.fandoms-index ul.alphabet.actions a {
+  min-width: 1.9rem !important;
+  min-height: 1.9rem !important;
+  padding: 0.2rem 0.5rem !important;
+  font-size: 0.78rem !important;
+  font-weight: 650 !important;
+}
+
+/* ------------------------------------------------------------
+   LETTER SECTIONS (fandoms-index) + MEDIUM CARDS (media-index)
+   Both are a heading-plus-list "card", so they share one card frame.
+   ------------------------------------------------------------ */
+
+#main.media-index ul.media.fandom.index.group,
+#main.fandoms-index ol.alphabet.fandom.index.group {
+  display: grid !important;
+  gap: 1rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+#main.media-index ul.media.fandom.index.group {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
+  align-items: start !important;
+}
+
+#main.fandoms-index ol.alphabet.fandom.index.group {
+  grid-template-columns: minmax(0, 1fr) !important;
+}
+
+#main.media-index li.medium.listbox.group,
+#main.fandoms-index li.letter.listbox.group {
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+
+  background: rgba(var(--m-card), 0.84) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: var(--m-radius-md) !important;
+  box-shadow: var(--m-shadow-soft) !important;
+  color: var(--m-text-2) !important;
+}
+
+#main.media-index li.medium.listbox.group > h3.heading,
+#main.fandoms-index li.letter.listbox.group > h3.heading {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.5rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.78rem 0.95rem !important;
+
+  background: var(--m-chip-strong) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--m-line) !important;
+  color: var(--m-text) !important;
+  font-size: 1rem !important;
+  font-weight: 760 !important;
+  letter-spacing: -0.01em !important;
+  text-shadow: none !important;
+}
+
+#main.media-index li.medium.listbox.group > h3.heading a {
+  color: inherit !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition: color 140ms ease !important;
+}
+
+#main.media-index li.medium.listbox.group > h3.heading a:is(:hover, :focus, :active) {
+  color: var(--m-link) !important;
+}
+
+/* "↑" back-to-top control on each letter card. */
+#main.fandoms-index li.letter.listbox.group > h3.heading span.action.top {
+  flex: 0 0 auto !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > h3.heading span.action.top a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 1.6rem !important;
+  min-height: 1.6rem !important;
+  padding: 0 !important;
+
+  background: var(--m-control) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 999px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-2) !important;
+  font-size: 0.78rem !important;
+  text-decoration: none !important;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    color 140ms ease,
+    transform 140ms ease !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > h3.heading span.action.top a:is(:hover, :focus, :active) {
+  transform: translateY(-1px) !important;
+  background: var(--m-control-hover) !important;
+  border-color: var(--m-link) !important;
+  color: var(--m-link) !important;
+}
+
+/* ------------------------------------------------------------
+   MEDIUM CARD BODY (media-index) — ranked top-five list
+   ------------------------------------------------------------ */
+
+#main.media-index li.medium.listbox.group > ol.index.group {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 1 auto !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.35rem 0.95rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  list-style: none !important;
+}
+
+#main.media-index li.medium.listbox.group > ol.index.group > li {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: space-between !important;
+  gap: 0.75rem !important;
+  padding: 0.42rem 0 !important;
+  border-bottom: 1px solid var(--m-line-soft) !important;
+  color: var(--m-text-3) !important;
+  font-size: 0.7rem !important;
+}
+
+#main.media-index li.medium.listbox.group > ol.index.group > li:last-child {
+  border-bottom: 0 !important;
+}
+
+#main.media-index li.medium.listbox.group > ol.index.group > li > a.tag {
+  color: var(--m-link) !important;
+  font-size: 0.86rem !important;
+  font-weight: 620 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition: color 140ms ease !important;
+}
+
+#main.media-index li.medium.listbox.group > ol.index.group > li > a.tag:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+}
+
+#main.media-index li.medium.listbox.group > p.actions {
+  margin: 0 !important;
+  padding: 0.7rem 0.95rem !important;
+  background: var(--m-chip) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--m-line-soft) !important;
+  text-align: right !important;
+}
+
+#main.media-index li.medium.listbox.group > p.actions a {
+  font-size: 0.74rem !important;
+  font-weight: 650 !important;
+}
+
+/* ------------------------------------------------------------
+   LETTER CARD BODY (fandoms-index) — two-column tag list
+   Matches the fandom-breakdown grid on the Stats page (50.css). AO3's
+   own base skin gives ".alphabet .listbox li" a hard 45% width, a left
+   float and a 1.5em right margin, and gives ".listbox .index" a white
+   fill with an inset shadow — both need explicit resets, not just a
+   new display mode, or they linger underneath.
+   ------------------------------------------------------------ */
+
+#main.fandoms-index li.letter.listbox.group > ul.tags.index.group {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.55rem !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0.85rem !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  list-style: none !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li {
+  /* Deliberately not flex: the trailing "(count)" is a bare text node,
+     and a flex sibling can't merge onto the tag link's last wrapped
+     line — it would orphan onto its own row instead. Plain inline flow
+     lets the count trail the link text naturally, wrap or not. */
+  display: block !important;
+  float: none !important;
+  clear: none !important;
+  box-sizing: border-box !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0.42rem 0.6rem !important;
+
+  background: var(--m-surface) !important;
+  border: 1px solid var(--m-line-soft) !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+
+  color: var(--m-text-3) !important;
+  font-size: 0.68rem !important;
+
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li:is(:hover, :focus-within) {
+  background: var(--m-chip-strong) !important;
+  border-color: rgba(var(--m-link-rgb), 0.4) !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li > a.tag {
+  color: var(--m-link) !important;
+  font-size: 0.79rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  text-shadow: none !important;
+  transition: color 140ms ease !important;
+}
+
+#main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li > a.tag:is(:hover, :focus, :active) {
+  color: var(--m-link-hover) !important;
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media only screen and (max-width: 48rem) {
+  #main.media-index ul.media.fandom.index.group {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  #main.fandoms-index ul.alphabet.actions {
+    position: relative !important;
+    top: auto !important;
+  }
+}
