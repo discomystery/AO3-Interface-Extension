@@ -11466,6 +11466,7 @@ body:is(.reversi, .dark) #main.admin_posts-index .news.admin.home > .news.module
 }
 
 #main.media-index li.medium.listbox.group > ol.index.group > li > a.tag {
+  border-bottom: 0 !important;
   color: var(--m-link) !important;
   font-size: 0.86rem !important;
   font-weight: 620 !important;
@@ -11474,7 +11475,11 @@ body:is(.reversi, .dark) #main.admin_posts-index .news.admin.home > .news.module
   transition: color 140ms ease !important;
 }
 
+/* AO3's base skin gives a.tag a native "border-bottom: 1px dotted" (reads
+   as an underline) and a "background: #900; color: #fff" hover fill —
+   both need explicit resets or they show through under the theme. */
 #main.media-index li.medium.listbox.group > ol.index.group > li > a.tag:is(:hover, :focus, :active) {
+  background: transparent !important;
   color: var(--m-link-hover) !important;
 }
 
@@ -11548,6 +11553,7 @@ body:is(.reversi, .dark) #main.admin_posts-index .news.admin.home > .news.module
 }
 
 #main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li > a.tag {
+  border-bottom: 0 !important;
   color: var(--m-link) !important;
   font-size: 0.79rem !important;
   font-weight: 600 !important;
@@ -11556,7 +11562,11 @@ body:is(.reversi, .dark) #main.admin_posts-index .news.admin.home > .news.module
   transition: color 140ms ease !important;
 }
 
+/* Same native "border-bottom: 1px dotted" underline + "#900" hover-fill
+   reset as the media-index tag links above — otherwise AO3's red chip
+   fights the surrounding li's own hover treatment just above. */
 #main.fandoms-index li.letter.listbox.group > ul.tags.index.group > li > a.tag:is(:hover, :focus, :active) {
+  background: transparent !important;
   color: var(--m-link-hover) !important;
 }
 
