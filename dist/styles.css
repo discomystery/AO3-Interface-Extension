@@ -1243,7 +1243,7 @@ li:is(.work, .reading, .bookmark).blurb:hover {
 #header {
   box-sizing: border-box !important;
   margin: 0 !important;
-  padding: 0.55rem clamp(0.8rem, 2vw, 1.5rem) !important;
+  padding: 0.55rem clamp(0.8rem, 2vw, 1.5rem) 0.95rem !important;
 
   display: flex !important;
   flex-flow: row wrap !important;
@@ -2263,7 +2263,7 @@ body:is(.reversi, .dark) #header .logo {
   }
 
   #header {
-    padding: 0.55rem 0.58rem !important;
+    padding: 0.55rem 0.58rem 0.85rem !important;
   }
 
   #main > .navigation.actions,
