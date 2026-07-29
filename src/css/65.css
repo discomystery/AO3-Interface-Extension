@@ -560,7 +560,7 @@ html body #outer #inner #main form#work-filters.filters p.footnote a:focus,
 html body #outer #inner #main form#bookmark-filters.filters p.footnote a:hover,
 html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
   background: var(--m-control-hover) !important;
-  color: var(--m-dnr) !important;
+  color: var(--m-link) !important;
   outline: 0 !important;
   text-decoration: underline !important;
 }
