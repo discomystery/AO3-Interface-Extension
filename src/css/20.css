@@ -6,22 +6,11 @@
    NATIVE AO3 UI SHELL
    ============================================================ */
 
-/* Header and global navigation
-   Logo, site nav (dropdowns + search), and the account/greeting controls
-   are laid out as three flex items on one row via #header's own children
-   order (see 30.css) instead of AO3's native float(logo)/float(greeting)/
-   clear(site-nav) stack. Below the "Tablet / compact desktop" breakpoint
-   (see RESPONSIVE section) that order resets to source order, which
-   restores the original two-row stack. */
+/* Header and global navigation */
 #header {
   box-sizing: border-box !important;
   margin: 0 !important;
-  padding: 0.55rem clamp(0.8rem, 2vw, 1.5rem) !important;
-
-  display: flex !important;
-  flex-flow: row wrap !important;
-  align-items: center !important;
-  gap: 0.4rem 0.6rem !important;
+  padding: 0.7rem clamp(0.8rem, 2vw, 1.5rem) !important;
 
   background:
     linear-gradient(122deg, rgba(var(--m-card), 0.96), rgba(var(--m-card), 0.82)) !important;
@@ -33,11 +22,6 @@
 
   -webkit-backdrop-filter: blur(20px) saturate(145%) !important;
   backdrop-filter: blur(20px) saturate(145%) !important;
-}
-
-/* AO3's old float-clearing spacer; an empty flex item otherwise. */
-#header > .clear {
-  display: none !important;
 }
 
 #header .heading,
@@ -57,27 +41,7 @@
   margin: 0 !important;
 }
 
-#header h1.heading {
-  order: 1 !important;
-  flex: 0 0 auto !important;
-}
-
-#header h1.heading a {
-  display: flex !important;
-  align-items: center !important;
-}
-
-/* Keep only the AO3 icon; the "Archive of Our Own" text stays available
-   to assistive tech via the logo image's own alt text instead. */
-#header h1.heading a span {
-  display: none !important;
-}
-
 #header .logo {
-  display: block !important;
-  height: 28px !important;
-  width: auto !important;
-  max-width: none !important;
   opacity: 0.88 !important;
   filter: grayscale(1) contrast(1.05) !important;
 }

@@ -1311,20 +1311,16 @@ body:is(.reversi, .dark) #header li.search button {
 
 /* Fully constrain the search control, including every AO3 wrapper. The prior
    version shortened the input but left fieldset/p wrappers free to retain
-   AO3's taller line box. Height is pinned to 29px to match the site-nav
-   dropdown triggers and greeting/account buttons (see min-height: 29px on
-   #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown
-   > a and #header #greeting > ul.user.navigation.actions > li > a) so the
-   whole single-line header reads as one consistent row. */
+   AO3's taller line box. */
 #header li.search,
 #header li.search form.search,
 #header li.search form.search > fieldset,
 #header li.search form.search > fieldset > p,
 #header li.search .submit.actions {
   box-sizing: border-box !important;
-  height: 29px !important;
-  min-height: 29px !important;
-  max-height: 29px !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
 
   margin-top: 0 !important;
   margin-bottom: 0 !important;
@@ -1347,26 +1343,26 @@ body:is(.reversi, .dark) #header li.search button {
 #header li.search #site_search,
 #header li.search input[type="text"],
 #header li.search input[type="search"] {
-  height: 29px !important;
-  min-height: 29px !important;
-  max-height: 29px !important;
-  padding: 0 0.6rem !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  padding: 0 0.55rem !important;
   border-radius: 7px 0 0 7px !important;
-  font-size: 0.72rem !important;
-  line-height: 27px !important;
+  font-size: 0.7rem !important;
+  line-height: 22px !important;
 }
 
 #header li.search .submit.actions input[type="submit"],
 #header li.search input.button[type="submit"],
 #header li.search button {
   min-width: 3rem !important;
-  height: 29px !important;
-  min-height: 29px !important;
-  max-height: 29px !important;
-  padding: 0 0.56rem !important;
+  height: 24px !important;
+  min-height: 24px !important;
+  max-height: 24px !important;
+  padding: 0 0.52rem !important;
   border-radius: 0 7px 7px 0 !important;
-  font-size: 0.68rem !important;
-  line-height: 27px !important;
+  font-size: 0.65rem !important;
+  line-height: 22px !important;
 }
 
 /* Lower Hi/Post menus so the card begins beneath the trigger rather than
@@ -1395,28 +1391,28 @@ body:is(.reversi, .dark) #header li.search button {
   #header li.search form.search > fieldset,
   #header li.search form.search > fieldset > p,
   #header li.search .submit.actions {
-    height: 29px !important;
-    min-height: 29px !important;
-    max-height: 29px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
   }
 
   #header li.search #site_search,
   #header li.search input[type="text"],
   #header li.search input[type="search"] {
-    height: 29px !important;
-    min-height: 29px !important;
-    max-height: 29px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
     font-size: 0.72rem !important;
-    line-height: 27px !important;
+    line-height: 24px !important;
   }
 
   #header li.search .submit.actions input[type="submit"],
   #header li.search input.button[type="submit"],
   #header li.search button {
-    height: 29px !important;
-    min-height: 29px !important;
-    max-height: 29px !important;
-    line-height: 27px !important;
+    height: 26px !important;
+    min-height: 26px !important;
+    max-height: 26px !important;
+    line-height: 24px !important;
   }
 
   #dashboard {
@@ -1498,20 +1494,14 @@ body *:not(code):not(pre):not(kbd):not(samp) {
 }
 
 /* Give the primary navigation a predictable flex layout. The search remains
-   compact but receives a true gutter instead of colliding with About/Search.
-   On desktop this sits inline between the logo and the greeting (order: 2,
-   below), filling the row's remaining width; below the compact-desktop
-   breakpoint it drops back to its own full-width row (see RESPONSIVE). */
+   compact but receives a true gutter instead of colliding with About/Search. */
 #header nav[aria-label="Site"] {
   position: relative !important;
   z-index: 20 !important;
-  order: 2 !important;
-  clear: none !important;
-  flex: 1 1 0% !important;
+  clear: both !important;
   box-sizing: border-box !important;
-  width: auto !important;
-  min-width: 0 !important;
-  margin-top: 0 !important;
+  width: 100% !important;
+  margin-top: 0.5rem !important;
   overflow: visible !important;
 }
 
@@ -1829,9 +1819,7 @@ body:is(.reversi, .dark) .dashboard .navigation {
 }
 
 /* Make the account controls and profile image one predictable flex row.
-   The avatar gets a fixed slot instead of relying on AO3's native floats.
-   As a flex child of #header itself, this row is pinned to order: 3 so it
-   renders last (right-hand end) on the single-line desktop header. */
+   The avatar gets a fixed slot instead of relying on AO3's native floats. */
 #header #greeting {
   display: flex !important;
   flex-flow: row nowrap !important;
@@ -1839,13 +1827,11 @@ body:is(.reversi, .dark) .dashboard .navigation {
   justify-content: flex-end !important;
   gap: 0.52rem !important;
 
-  order: 3 !important;
-  flex: 0 0 auto !important;
-  float: none !important;
+  float: right !important;
   box-sizing: border-box !important;
   width: auto !important;
   max-width: 100% !important;
-  margin-right: 0 !important;
+  margin-right: 0.375em !important;
   overflow: visible !important;
 }
 
@@ -1899,28 +1885,6 @@ body:is(.reversi, .dark) .dashboard .navigation {
   height: 26px !important;
   min-height: 26px !important;
   max-height: 26px !important;
-}
-
-/* Below compact-desktop width there isn't room for logo + full site nav +
-   greeting on one row. Reset the desktop order (1/2/3, set above) back to
-   plain source order — heading, then greeting, then site nav — which puts
-   the logo and account controls on a shared first row and drops the site
-   nav (dropdowns + search) to its own full-width row beneath, matching
-   AO3's original two-row stack. This must stay below the order: 2/3 rules
-   above so it wins the cascade at this width, since @media alone doesn't
-   add specificity. */
-@media only screen and (max-width: 64rem) {
-  #header h1.heading,
-  #header nav[aria-label="Site"],
-  #header #greeting {
-    order: 0 !important;
-  }
-
-  #header nav[aria-label="Site"] {
-    flex: 1 1 100% !important;
-    width: 100% !important;
-    margin-top: 0.5rem !important;
-  }
 }
 
 /* Compact layouts keep the avatar fixed at the edge while the account
