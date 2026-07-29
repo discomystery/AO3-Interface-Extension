@@ -6565,27 +6565,39 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
    - "Find your favorites", "News" and "Follow us" get quiet card
      treatment, matching other standalone modules across the theme.
    - "Is it later already?" and "Unread messages" already contain
-     their own cards (work blurbs / comment cards), so they stay
-     flat — no card-in-a-card, per the rest of the theme.
+     their own cards (work blurbs / comment cards), so the modules
+     themselves stay flat — no card-in-a-card, per the rest of the
+     theme. Their headings get a filled "shelf" treatment instead,
+     so each still reads as attached to the list it introduces.
+   - Desktop restores AO3's native two-column pairing (favorite+news,
+     readings+messages, social alone on its own row), collapsing to
+     a single column once the viewport gets narrow.
    ============================================================ */
 
 #main .splash {
   display: flex !important;
-  flex-direction: column !important;
+  flex-flow: row wrap !important;
+  align-items: flex-start !important;
   gap: 1.35rem !important;
   box-sizing: border-box !important;
-  max-width: 760px !important;
+  max-width: 1100px !important;
   margin: 0 auto !important;
   padding: 0 !important;
 }
 
 #main .splash > .module {
   box-sizing: border-box !important;
-  width: 100% !important;
+  flex: 1 1 calc(50% - 0.675rem) !important;
+  max-width: calc(50% - 0.675rem) !important;
   min-width: 0 !important;
   margin: 0 !important;
   padding: 0 !important;
   color: var(--m-text) !important;
+}
+
+#main .splash > .social.module {
+  flex-basis: 100% !important;
+  max-width: 100% !important;
 }
 
 #main .splash > :is(.favorite, .latest.news, .social).module {
@@ -6654,6 +6666,38 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
 
 #main .splash > .module > .flash:empty {
   display: none !important;
+}
+
+/* Flat sections (readings, messages) hold their own cards already,
+   so their heading becomes a filled "shelf" label sitting right on
+   top of the list — enough weight and color to read as the list's
+   header rather than a stray line of text above it. */
+#main .splash > :is(.random.readings, .latest.messages).module > h3.heading {
+  margin: 0 0 0.65rem !important;
+  padding: 0.62rem 0.95rem !important;
+
+  background: var(--m-chip) !important;
+  border: 1px solid var(--m-line) !important;
+  border-radius: var(--m-radius-sm) !important;
+  color: var(--m-text) !important;
+  font-size: 1.08rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.02em !important;
+}
+
+#main .splash > :is(.random.readings, .latest.messages).module > h3.heading .title::before {
+  content: "" !important;
+  display: inline-block !important;
+  width: 0.5rem !important;
+  height: 0.5rem !important;
+  margin: 0 0.55rem 0.05rem 0 !important;
+  border-radius: 2px !important;
+  background: var(--m-link) !important;
+  vertical-align: middle !important;
+}
+
+#main .splash > :is(.random.readings, .latest.messages).module > p.note {
+  margin: 0 0 0.85rem !important;
 }
 
 /* ------------------------------------------------------------
@@ -7178,6 +7222,15 @@ body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > 
   width: 100% !important;
   height: 100% !important;
   fill: currentColor !important;
+}
+
+/* Two ~500px columns need real room for blurb cards and their tag
+   clouds; below this, stack everything into a single column. */
+@media (max-width: 64em) {
+  #main .splash > .module {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 @media (max-width: 42em) {
