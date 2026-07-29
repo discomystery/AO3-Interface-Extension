@@ -442,8 +442,12 @@
   accent-color: var(--m-link) !important;
 }
 
-/* Generic AO3 actions: match the translucent work-card controls. */
-#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)) {
+/* Generic AO3 actions: match the translucent work-card controls.
+   #modal is included alongside #main because AO3's native modal dialog
+   (Cite, image viewer, delete confirmations, its own "Close" link) is
+   appended outside #main, so it was falling back to the base skin's
+   a.tag/.action hover fill (background: #900; color: #fff). */
+:is(#main, #modal) :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)) {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -464,7 +468,7 @@
     transform 140ms ease !important;
 }
 
-#main :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus, :active) {
+:is(#main, #modal) :is(a.action, .actions a, .button):not(:where(.marker-action-read, .marker-action-do-not-read, .marker-action-wtr)):is(:hover, :focus, :active) {
   transform: translateY(-1px) !important;
   background: var(--m-control-hover) !important;
   border-color: var(--m-link) !important;
@@ -651,9 +655,9 @@ html body #outer #inner #main #bookmark_form_placement a.bookmark_form_placement
 }
 
 #bookmark_form_placement a.bookmark_form_placement_close:is(:hover, :focus, :active) {
-  background: rgba(var(--m-dnr-rgb), 0.1) !important;
-  border-color: rgba(var(--m-dnr-rgb), 0.3) !important;
-  color: var(--m-dnr) !important;
+  background: rgba(var(--m-link-rgb), 0.1) !important;
+  border-color: rgba(var(--m-link-rgb), 0.3) !important;
+  color: var(--m-link) !important;
 }
 
 #bookmark_form_placement h4.heading {
