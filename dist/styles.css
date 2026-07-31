@@ -13721,45 +13721,22 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
   }
 }
 
-/* Full desktop width (above the compact-desktop/tablet breakpoint, where
-   30.css's own order:0 reset takes over instead): 30.css gives the site
-   nav flex: 1 1 0%, so it grows to fill the row and its four triggers sit
-   immediately after the logo, with only the search box pushed to the
-   nav's own right edge via its own margin-left: auto. Everything past the
-   logo — the nav and the greeting cluster together — is anchored to the
-   header's right edge instead, leaving open space after the logo rather
-   than having the nav hug it. */
-@media only screen and (min-width: 64.01rem) {
-  #header nav[aria-label="Site"] {
-    flex: 0 0 auto !important;
-    width: auto !important;
-    margin-left: auto !important;
-  }
-
-  #header nav[aria-label="Site"] > ul.primary.navigation.actions {
-    width: auto !important;
-  }
-
-  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.search {
-    margin-left: 0.7rem !important;
-  }
-
-  /* Only the first trigger (Fandoms) sits next to open space on its left
-     (the gap the rule above just opened up after the logo) — right-anchor
-     just that one so its menu extends into that gap. Browse/Search/About
-     are packed tight against each other with no gap on either side; giving
-     all four the same right-anchor treatment made each one's menu extend
-     leftward far enough to land on top of its earlier siblings' trigger
-     buttons (Search's menu covering Fandoms/Browse, About's covering all
-     three) — arguably worse than the original clipping, since a flyout
-     landing on a sibling *button* reads as broken in a way landing on the
-     inert search box/greeting cluster doesn't. Leaving them at their
-     default left alignment means they still extend into other content
-     (the search box, the greeting cluster) when opened, but no longer
-     stack directly on top of another dropdown trigger. */
-  #header nav[aria-label="Site"] > ul.primary.navigation.actions > li.dropdown:first-child > .menu {
-    right: 0 !important;
-    left: auto !important;
-    max-width: min(18rem, calc(100vw - 1.2rem)) !important;
-  }
-}
+/* A prior pass here tried anchoring the site nav (and, with it, the
+   greeting cluster) to the header's right edge on full desktop widths,
+   shrink-wrapping the nav instead of letting it fill the row. That
+   shrink-wrapped nav — four triggers plus a ~19rem search box, all with
+   flex-shrink: 0 — routinely didn't fit next to the greeting cluster on
+   ordinary desktop widths (anything under roughly 1400px), so #header's
+   own flex-wrap: wrap kicked in and pushed the greeting cluster (or the
+   whole nav) onto its own line instead of the intended single row. It
+   also forced every one of the site nav's own dropdown menus to
+   right-anchor to their own trigger, which — since those triggers sit
+   flush against each other with no gap — made each menu land on top of
+   the trigger buttons before it.
+   Reverting to 30.css's plain behavior instead: nav keeps flex: 1 1 0%
+   and fills the row right after the logo, so the four triggers sit
+   immediately after the logo (left-anchored, opening their menus
+   left-aligned into the open space that fill creates) and the search box
+   rides margin-left: auto to the nav's own right edge, right next to the
+   greeting cluster — logo, nav, greeting all on one line at any width
+   that isn't already in the compact/mobile tiers below. */
