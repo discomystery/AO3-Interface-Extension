@@ -70,10 +70,10 @@
 #main ul.work.index,
 #main ul.reading.index,
 #main ul.bookmark.index,
-#main.users-show #user-works > ul.index,
-#main.users-show #user-bookmarks > ul.index,
-#main.users-show .work.listbox > ul.index,
-#main.users-show .bookmark.listbox > ul.index {
+#main:is(.users-show, .pseuds-show) #user-works > ul.index,
+#main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index,
+#main:is(.users-show, .pseuds-show) .work.listbox > ul.index,
+#main:is(.users-show, .pseuds-show) .bookmark.listbox > ul.index {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   grid-auto-flow: row !important;
@@ -98,10 +98,10 @@
 #main ul.work.index > li.blurb,
 #main ul.reading.index > li.blurb,
 #main ul.bookmark.index > li.blurb,
-#main.users-show #user-works > ul.index > li.blurb,
-#main.users-show #user-bookmarks > ul.index > li.blurb,
-#main.users-show .work.listbox > ul.index > li.blurb,
-#main.users-show .bookmark.listbox > ul.index > li.blurb {
+#main:is(.users-show, .pseuds-show) #user-works > ul.index > li.blurb,
+#main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index > li.blurb,
+#main:is(.users-show, .pseuds-show) .work.listbox > ul.index > li.blurb,
+#main:is(.users-show, .pseuds-show) .bookmark.listbox > ul.index > li.blurb {
   box-sizing: border-box !important;
   width: 100% !important;
   min-width: 0 !important;
@@ -110,10 +110,10 @@
 
 /* Dashboard listboxes keep their section card and heading, while the list
    inside receives the same breathing room as a normal History index. */
-#main.users-show .user.home > .work.listbox > ul.index,
-#main.users-show .user.home > .bookmark.listbox > ul.index,
-#main.users-show #user-works > ul.index,
-#main.users-show #user-bookmarks > ul.index {
+#main:is(.users-show, .pseuds-show) .user.home > .work.listbox > ul.index,
+#main:is(.users-show, .pseuds-show) .user.home > .bookmark.listbox > ul.index,
+#main:is(.users-show, .pseuds-show) #user-works > ul.index,
+#main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index {
   padding: 0.75rem !important;
 }
 
@@ -610,8 +610,11 @@
    The same bookmark blurb markup also appears in the Dashboard's "Recent
    Bookmarks" widget (#user-bookmarks), which doesn't carry the
    bookmarks-index class, so it needs its own arm of this selector or it
-   silently falls back to the unstyled generic .user.module.group rule. */
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+   silently falls back to the unstyled generic .user.module.group rule from
+   10.css's history footer. Matches plain .user.module.group rather than
+   .own.user.module.group so it also covers #main.pseuds-show — viewing
+   someone else's dashboard, where the bookmarks are never "own". */
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) auto auto !important;
   grid-template-areas:
@@ -635,7 +638,7 @@
   color: var(--m-text-2) !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .byline {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > .byline {
   grid-area: byline !important;
   min-width: 0 !important;
   margin: 0 !important;
@@ -648,12 +651,12 @@
   text-shadow: none !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .byline a {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > .byline a {
   color: var(--m-link) !important;
   font-weight: 650 !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .datetime {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > .datetime {
   grid-area: saved !important;
   position: static !important;
   inset: auto !important;
@@ -679,7 +682,7 @@
   white-space: nowrap !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > blockquote.userstuff.notes {
   grid-area: notes !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -693,15 +696,15 @@
   line-height: 1.45 !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:first-child {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > blockquote.userstuff.notes p:first-child {
   margin-top: 0 !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes p:last-child {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > blockquote.userstuff.notes p:last-child {
   margin-bottom: 0 !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > ul.actions {
   grid-area: actions !important;
   justify-self: end !important;
   display: flex !important;
@@ -715,7 +718,7 @@
   clear: none !important;
 }
 
-:is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions > li {
+:is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > ul.actions > li {
   margin: 0 !important;
   padding: 0 !important;
 }
@@ -738,10 +741,10 @@
   #main ul.work.index,
   #main ul.reading.index,
   #main ul.bookmark.index,
-  #main.users-show #user-works > ul.index,
-  #main.users-show #user-bookmarks > ul.index,
-  #main.users-show .work.listbox > ul.index,
-  #main.users-show .bookmark.listbox > ul.index {
+  #main:is(.users-show, .pseuds-show) #user-works > ul.index,
+  #main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index,
+  #main:is(.users-show, .pseuds-show) .work.listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) .bookmark.listbox > ul.index {
     gap: 0.85rem !important;
   }
 }
@@ -765,7 +768,7 @@
     margin-top: 1rem !important;
   }
 
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
     grid-template-columns: minmax(0, 1fr) auto !important;
     grid-template-areas:
       "byline saved"
@@ -781,17 +784,17 @@
   #main ul.work.index,
   #main ul.reading.index,
   #main ul.bookmark.index,
-  #main.users-show #user-works > ul.index,
-  #main.users-show #user-bookmarks > ul.index,
-  #main.users-show .work.listbox > ul.index,
-  #main.users-show .bookmark.listbox > ul.index {
+  #main:is(.users-show, .pseuds-show) #user-works > ul.index,
+  #main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index,
+  #main:is(.users-show, .pseuds-show) .work.listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) .bookmark.listbox > ul.index {
     gap: 0.75rem !important;
   }
 
-  #main.users-show .user.home > .work.listbox > ul.index,
-  #main.users-show .user.home > .bookmark.listbox > ul.index,
-  #main.users-show #user-works > ul.index,
-  #main.users-show #user-bookmarks > ul.index {
+  #main:is(.users-show, .pseuds-show) .user.home > .work.listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) .user.home > .bookmark.listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) #user-works > ul.index,
+  #main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index {
     padding: 0.55rem !important;
   }
 
@@ -808,7 +811,7 @@
     right: 0.74rem !important;
   }
 
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
     width: calc(100% + 1.7rem) !important;
     margin-right: -0.85rem !important;
     margin-left: -0.85rem !important;
@@ -817,7 +820,7 @@
     border-radius: 0 0 13px 13px !important;
   }
 
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > ul.actions {
     justify-self: start !important;
     justify-content: flex-start !important;
   }
@@ -830,14 +833,14 @@
   #main ul.work.index,
   #main ul.reading.index,
   #main ul.bookmark.index,
-  #main.users-show #user-works > ul.index,
-  #main.users-show #user-bookmarks > ul.index,
-  #main.users-show .work.listbox > ul.index,
-  #main.users-show .bookmark.listbox > ul.index {
+  #main:is(.users-show, .pseuds-show) #user-works > ul.index,
+  #main:is(.users-show, .pseuds-show) #user-bookmarks > ul.index,
+  #main:is(.users-show, .pseuds-show) .work.listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) .bookmark.listbox > ul.index {
     gap: 0.62rem !important;
   }
 
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
     grid-template-columns: 1fr !important;
     grid-template-areas:
       "byline"
@@ -846,8 +849,8 @@
       "notes" !important;
   }
 
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > .datetime,
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > ul.actions {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > .datetime,
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > ul.actions {
     justify-self: start !important;
     text-align: left !important;
   }
@@ -856,23 +859,23 @@
 /* Direct dark-mode protection for AO3 bookmark/footer and filter surfaces. */
 @media (prefers-color-scheme: dark) {
   #bookmark-filters,
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
     background-color: rgba(var(--m-card), 0.96) !important;
   }
 
   #bookmark-filters dd.expandable,
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > blockquote.userstuff.notes {
     background-color: rgba(var(--m-surface-rgb), 0.92) !important;
   }
 }
 
 body:is(.reversi, .dark) #bookmark-filters,
-body:is(.reversi, .dark) :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group {
+body:is(.reversi, .dark) :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {
   background-color: rgba(var(--m-card), 0.96) !important;
 }
 
 body:is(.reversi, .dark) #bookmark-filters dd.expandable,
-body:is(.reversi, .dark) :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group > blockquote.userstuff.notes {
+body:is(.reversi, .dark) :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group > blockquote.userstuff.notes {
   background-color: rgba(var(--m-surface-rgb), 0.92) !important;
 }
 

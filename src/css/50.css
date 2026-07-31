@@ -378,7 +378,7 @@
    DASHBOARD HOME SECTIONS
    ------------------------------------------------------------ */
 
-#main.users-show .user.home > .listbox {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox {
   box-sizing: border-box !important;
   margin: 0 0 1rem !important;
   padding: 0 !important;
@@ -390,7 +390,7 @@
   color: var(--m-text-2) !important;
 }
 
-#main.users-show .user.home > .listbox > h3.heading {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > h3.heading {
   margin: 0 !important;
   padding: 0.75rem 0.85rem !important;
   background: var(--m-chip-strong) !important;
@@ -402,9 +402,9 @@
   text-shadow: none !important;
 }
 
-#main.users-show .user.home > .listbox > .index,
-#main.users-show .user.home > .listbox > ol.index,
-#main.users-show .user.home > .listbox > ul.index {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > .index,
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ol.index,
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ul.index {
   box-sizing: border-box !important;
   width: 100% !important;
   margin: 0 !important;
@@ -435,17 +435,17 @@
   margin-right: 0 !important;
 }
 
-#main.users-show .user.home > .listbox > ul.actions {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ul.actions {
   margin: 0 !important;
   padding: 0 0.7rem 0.7rem !important;
   background: transparent !important;
 }
 
 /* Neutralize AO3's native white listbox/index surfaces. */
-#main.users-show .listbox,
-#main.users-show .listbox .index,
-#main.users-show .listbox .index > li,
-#main.users-show .listbox .index > li:nth-child(even) {
+#main:is(.users-show, .pseuds-show) .listbox,
+#main:is(.users-show, .pseuds-show) .listbox .index,
+#main:is(.users-show, .pseuds-show) .listbox .index > li,
+#main:is(.users-show, .pseuds-show) .listbox .index > li:nth-child(even) {
   color: var(--m-text-2) !important;
 }
 
@@ -1234,17 +1234,17 @@ html body #outer #inner #main #feedback li.comment > ul.actions :is(a, button, i
   #main.dashboard > ul.bookmark.index,
   #main.dashboard.filtered > ol.index,
   #main.dashboard.filtered > ul.index,
-  #main.users-show .user.home > .listbox,
-  #main.users-show .user.home > .listbox > .index,
-  #main.users-show .user.home > .listbox > ol.index,
-  #main.users-show .user.home > .listbox > ul.index,
+  #main:is(.users-show, .pseuds-show) .user.home > .listbox,
+  #main:is(.users-show, .pseuds-show) .user.home > .listbox > .index,
+  #main:is(.users-show, .pseuds-show) .user.home > .listbox > ol.index,
+  #main:is(.users-show, .pseuds-show) .user.home > .listbox > ul.index,
   .stats-index dl.statistics.meta dt,
   .stats-index dl.statistics.meta dd,
   .stats-index .statistics.chart,
   .stats-index > .actions.module,
   .stats-index ul.statistics.index > li.fandom.listbox,
   #bookmark-filters,
-  :is(#main.bookmarks-index, #main.users-show #user-bookmarks) li.bookmark.blurb > .own.user.module.group,
+  :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group,
   #main.chapters-show .work > .wrapper,
   #main.chapters-show > .work > ul.work.navigation.actions,
   #feedback > ul.actions,
@@ -1261,7 +1261,7 @@ html body #outer #inner #main #feedback li.comment > ul.actions :is(a, button, i
     color: var(--m-text-2) !important;
   }
 
-  #main.users-show .user.home > .listbox > h3.heading,
+  #main:is(.users-show, .pseuds-show) .user.home > .listbox > h3.heading,
   .stats-index ul.statistics.index > li.fandom.listbox > h5.heading,
   .stats-index ul.statistics.index > li.fandom.listbox > ul.index > li > dl > dt,
   #workskin .summary.module,
@@ -1270,8 +1270,8 @@ html body #outer #inner #main #feedback li.comment > ul.actions :is(a, button, i
     background-color: rgba(var(--m-surface-rgb), 0.94) !important;
   }
 
-  #main.users-show .listbox .index,
-  #main.users-show .listbox .index > li:nth-child(even),
+  #main:is(.users-show, .pseuds-show) .listbox .index,
+  #main:is(.users-show, .pseuds-show) .listbox .index > li:nth-child(even),
   #main.bookmarks-index > ol.bookmark.index,
   .stats-index ul.statistics.index,
   .stats-index ul.statistics.index > li.fandom.listbox > ul.index {
@@ -1296,7 +1296,7 @@ body:is(.reversi, .dark) #main.dashboard > ul.reading.index,
 body:is(.reversi, .dark) #main.dashboard > ul.bookmark.index,
 body:is(.reversi, .dark) #main.dashboard.filtered > ol.index,
 body:is(.reversi, .dark) #main.dashboard.filtered > ul.index,
-body:is(.reversi, .dark) #main.users-show .user.home > .listbox,
+body:is(.reversi, .dark) #main:is(.users-show, .pseuds-show) .user.home > .listbox,
 body:is(.reversi, .dark) .stats-index dl.statistics.meta dt,
 body:is(.reversi, .dark) .stats-index dl.statistics.meta dd,
 body:is(.reversi, .dark) .stats-index .statistics.chart,
@@ -1311,7 +1311,7 @@ body:is(.reversi, .dark) #feedback .wrapper {
   color: var(--m-text-2) !important;
 }
 
-body:is(.reversi, .dark) #main.users-show .listbox .index,
+body:is(.reversi, .dark) #main:is(.users-show, .pseuds-show) .listbox .index,
 body:is(.reversi, .dark) #main.bookmarks-index > ol.bookmark.index,
 body:is(.reversi, .dark) .stats-index ul.statistics.index,
 body:is(.reversi, .dark) .stats-index ul.statistics.index > li.fandom.listbox > ul.index {

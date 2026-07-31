@@ -19,7 +19,7 @@
    SHARED USER HEADER
    ------------------------------------------------------------ */
 
-#main.users-show .user.home > .primary.header.module,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module,
 #main.profile-show .user.home.profile > .primary.header.module {
   position: relative !important;
   display: grid !important;
@@ -47,7 +47,7 @@
   text-align: left !important;
 }
 
-#main.users-show .user.home > .primary.header.module > h2.heading,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > h2.heading,
 #main.profile-show .user.home.profile > .primary.header.module > h2.heading {
   grid-area: title !important;
   position: static !important;
@@ -74,7 +74,7 @@
   text-shadow: none !important;
 }
 
-#main.users-show .user.home > .primary.header.module > p.icon,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > p.icon,
 #main.profile-show .user.home.profile > .primary.header.module > p.icon {
   grid-area: avatar !important;
   position: static !important;
@@ -94,7 +94,7 @@
   box-shadow: none !important;
 }
 
-#main.users-show .user.home > .primary.header.module > p.icon a,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > p.icon a,
 #main.profile-show .user.home.profile > .primary.header.module > p.icon a {
   display: block !important;
   width: 100% !important;
@@ -104,7 +104,7 @@
   border: 0 !important;
 }
 
-#main.users-show .user.home > .primary.header.module > p.icon img.icon,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > p.icon img.icon,
 #main.profile-show .user.home.profile > .primary.header.module > p.icon img.icon {
   position: static !important;
   inset: auto !important;
@@ -124,7 +124,7 @@
 }
 
 /* Post New / Edit Works / Subscribe / Invitations */
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions {
   grid-area: menu !important;
   position: static !important;
@@ -150,7 +150,7 @@
   text-align: left !important;
 }
 
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions > li,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions > li,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions > li {
   position: static !important;
   float: none !important;
@@ -164,7 +164,7 @@
   border: 0 !important;
 }
 
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions form,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions form,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions form {
   display: flex !important;
   width: auto !important;
@@ -175,9 +175,9 @@
   box-shadow: none !important;
 }
 
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions a,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"],
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions button,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions a,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions input[type="submit"],
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions button,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"],
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button {
@@ -210,15 +210,15 @@
   white-space: nowrap !important;
 }
 
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions a:hover,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions a:focus,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions a:active,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions button:hover,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions button:focus,
-#main.users-show .user.home > .primary.header.module > ul.navigation.actions button:active,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions a:hover,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions a:focus,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions a:active,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:hover,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:focus,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions input[type="submit"]:active,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions button:hover,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions button:focus,
+#main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions button:active,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:hover,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:focus,
 #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a:active,
@@ -238,7 +238,7 @@
    DASHBOARD HOME CONTENT SECTIONS
    ------------------------------------------------------------ */
 
-#main.users-show .user.home > .listbox {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox {
   display: block !important;
   box-sizing: border-box !important;
   width: 100% !important;
@@ -246,7 +246,7 @@
   clear: right !important;
 }
 
-#main.users-show .user.home > .listbox > h3.heading {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > h3.heading {
   float: none !important;
   clear: both !important;
   display: block !important;
@@ -270,10 +270,10 @@
   text-shadow: none !important;
 }
 
-#main.users-show .user.home > .listbox > .index,
-#main.users-show .user.home > .listbox > ol.index,
-#main.users-show .user.home > .listbox > ul.index,
-#main.users-show .user.home > .listbox > ul.actions {
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > .index,
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ol.index,
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ul.index,
+#main:is(.users-show, .pseuds-show) .user.home > .listbox > ul.actions {
   float: none !important;
   clear: both !important;
   box-sizing: border-box !important;
@@ -282,8 +282,8 @@
 }
 
 /* Use the exact same list rhythm for user works and bookmarks. */
-#main.users-show #user-works > ul.index.group,
-#main.users-show #user-bookmarks > ol.index.group {
+#main:is(.users-show, .pseuds-show) #user-works > ul.index.group,
+#main:is(.users-show, .pseuds-show) #user-bookmarks > ol.index.group {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   align-items: stretch !important;
@@ -292,8 +292,8 @@
   margin: 0 !important;
 }
 
-#main.users-show #user-works > ul.index.group > li.work.blurb,
-#main.users-show #user-bookmarks > ol.index.group > li.bookmark.blurb {
+#main:is(.users-show, .pseuds-show) #user-works > ul.index.group > li.work.blurb,
+#main:is(.users-show, .pseuds-show) #user-bookmarks > ol.index.group > li.bookmark.blurb {
   float: none !important;
   clear: none !important;
   width: 100% !important;
@@ -558,7 +558,7 @@
    ------------------------------------------------------------ */
 
 @media only screen and (max-width: 42rem) {
-  #main.users-show .user.home > .primary.header.module,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module,
   #main.profile-show .user.home.profile > .primary.header.module {
     grid-template-columns: 3.5rem minmax(0, 1fr) !important;
     grid-template-areas:
@@ -570,41 +570,41 @@
     text-align: left !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > p.icon,
-  #main.users-show .user.home > .primary.header.module > p.icon img.icon,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > p.icon,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > p.icon img.icon,
   #main.profile-show .user.home.profile > .primary.header.module > p.icon,
   #main.profile-show .user.home.profile > .primary.header.module > p.icon img.icon {
     width: 3.5rem !important;
     height: 3.5rem !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > h2.heading,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > h2.heading,
   #main.profile-show .user.home.profile > .primary.header.module > h2.heading {
     padding-bottom: 0.38rem !important;
     font-size: 1.4rem !important;
     text-align: left !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions,
   #main.profile-show .user.home.profile > ul.navigation.actions {
     gap: 0.4rem !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions > li,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > ul.navigation.actions > li {
     flex: 1 1 calc(50% - 0.2rem) !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions > li > form,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions > li > form,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions > li > form {
     width: 100% !important;
   }
 
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions a,
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions input[type="submit"],
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions button,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions a,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions input[type="submit"],
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions button,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions a,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions input[type="submit"],
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions button,
@@ -622,8 +622,8 @@
     margin-bottom: 0.58rem !important;
   }
 
-  #main.users-show #user-works > ul.index.group,
-  #main.users-show #user-bookmarks > ol.index.group {
+  #main:is(.users-show, .pseuds-show) #user-works > ul.index.group,
+  #main:is(.users-show, .pseuds-show) #user-bookmarks > ol.index.group {
     row-gap: 0.78rem !important;
   }
 
@@ -634,7 +634,7 @@
 }
 
 @media only screen and (max-width: 30rem) {
-  #main.users-show .user.home > .primary.header.module > ul.navigation.actions > li,
+  #main:is(.users-show, .pseuds-show) .user.home > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > .primary.header.module > ul.navigation.actions > li,
   #main.profile-show .user.home.profile > ul.navigation.actions > li {
     flex-basis: 100% !important;
