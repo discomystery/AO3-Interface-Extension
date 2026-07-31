@@ -1358,10 +1358,20 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 
 
 
+  /* Below phone width, the card's own padding+border was compounding
+     with #inner.wrapper's page gutter to eat a meaningful chunk of an
+     already-narrow viewport. Drop the card chrome entirely here so the
+     prose runs out to the page gutter instead of a second, inner one. */
   #main.works-show #workskin #chapters,
-  #main.chapters-show #workskin #chapters {
-    padding: 1rem 0.9rem !important;
-    border-radius: 13px !important;
+  #main.chapters-show #workskin #chapters,
+  body:is(.reversi, .dark) #main.works-show #workskin #chapters,
+  body:is(.reversi, .dark) #main.chapters-show #workskin #chapters {
+    padding: 0 !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
   }
 
   #main.chapters-show #workskin .chapter.preface.group {
@@ -1381,12 +1391,6 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
 }
 
 @media only screen and (max-width: 30rem) {
-  #main.works-show #workskin #chapters,
-  #main.chapters-show #workskin #chapters {
-    padding: 0.88rem 0.72rem !important;
-    border-radius: 11px !important;
-  }
-
   #main.works-show > .work > .wrapper,
   #main.chapters-show > .work > .wrapper {
     border-radius: 12px !important;
