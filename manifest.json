@@ -3,6 +3,12 @@
   "name": "AO3 Styles for AO3 Advanced Marker",
   "version": "1.0.0",
   "description": "Applies custom styling to AO3 beyond what is capable with site skins.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://raw.githubusercontent.com/*"],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
   "content_scripts": [
     {
       "matches": [
@@ -50,6 +56,14 @@
         "https://www.archiveofourown.org/*"
       ],
       "js": ["src/js/mobile-header.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/*",
+        "https://www.archiveofourown.org/*"
+      ],
+      "js": ["src/js/live-css-loader.js"],
       "run_at": "document_idle"
     }
   ]

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings – AO3 Styles</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>AO3 Styles Settings</h1>
+      <p class="subtitle">for AO3 Advanced Marker</p>
+    </header>
+
+    <section class="card">
+      <div class="card-title">
+        <h2>Live CSS from GitHub</h2>
+        <label class="switch">
+          <input type="checkbox" id="liveCssEnabled">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <p class="help">
+        When on, every AO3 page fetches <code>dist/styles.css</code> fresh from the
+        <code>main</code> branch on GitHub and layers it over the bundled copy — so
+        you see your latest pushed CSS on this device without recopying any files.
+        Turn it off when you're not actively testing.
+      </p>
+      <p class="help note">
+        This only refreshes CSS. Content-script (JS) changes still require
+        re-copying the extension files onto the device.
+      </p>
+
+      <label class="field-label" for="repoUrl">Raw CSS URL</label>
+      <input type="text" id="repoUrl" class="text-input" spellcheck="false" autocapitalize="off">
+      <p class="help small">Change this only if you're testing a fork or a different branch.</p>
+
+      <div id="statusLine" class="status-line" aria-live="polite"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-title">
+        <h2>About</h2>
+      </div>
+      <dl class="about-list">
+        <dt>Bundled version</dt>
+        <dd id="bundledVersion">–</dd>
+      </dl>
+    </section>
+  </main>
+
+  <script src="options.js"></script>
+</body>
+</html>
