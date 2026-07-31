@@ -5359,8 +5359,16 @@ body:is(.reversi, .dark) .dashboard .navigation {
    work page's "Cancel Bookmark" link starts hidden until "Bookmark" is
    clicked, and Share/Download can start hidden pending JS init. The
    display: inline-flex !important above was overriding that, so these
-   showed even when AO3 didn't intend them to. */
-#main .actions .hidden {
+   showed even when AO3 didn't intend them to.
+   The :link/:visited variants above are (1,2,1) — one point higher than
+   plain .hidden's (1,2,0) because the pseudo-class counts as a class on
+   top of the `a` type — so an unvisited hidden link (e.g. "Cancel
+   Bookmark", which starts as a fresh <a href> with no visited history)
+   still matched a:link and stayed visible. Add matching :link/:visited
+   variants so .hidden always outranks every form the base rule takes. */
+#main .actions .hidden,
+#main .actions .hidden:link,
+#main .actions .hidden:visited {
   display: none !important;
 }
 
