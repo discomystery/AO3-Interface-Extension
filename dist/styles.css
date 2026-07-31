@@ -11010,18 +11010,22 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     font-size: 0.67rem !important;
   }
 
-  /* One line, full stop — nowrap plus a horizontal scroll (swipe) instead
-     of letting the row wrap at all. A wrapping grid or flex-wrap here
-     inevitably reads as ragged (columns/rows sized to whichever stat
-     happens to land in them, so gaps land unevenly); a single scrollable
-     line reads as one clean strip instead, same as the work-navigation
-     actions bar above. */
+  /* Two fixed lines instead of an organic wrap: Published/Updated (dates)
+     on their own line, everything else (Words/Chapters/Comments/Kudos/
+     Bookmarks/Hits) on the line below. A CSS grid with only grid-row set
+     per stat — never grid-column — gets this for free: the auto-placement
+     algorithm packs each row's items starting at column 1 in DOM order, so
+     explicit column tracks aren't needed at all. "Updated:" only exists
+     on works AO3 has actually updated, so this is written by class, not
+     nth-child position, to hold up when that row is absent.
+     overflow-x is a safety net for narrow phones/long numbers — six stats
+     comfortably fit one line at phone widths, so it rarely engages. */
   #main.works-show dl.work.meta dd.stats > dl.stats,
   #main.chapters-show dl.work.meta dd.stats > dl.stats {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: baseline !important;
-    gap: 0.2rem 0.5rem !important;
+    display: grid !important;
+    grid-auto-columns: max-content !important;
+    column-gap: 0.4rem !important;
+    row-gap: 0.2rem !important;
     width: 100% !important;
     overflow-x: auto !important;
     scrollbar-width: none !important;
@@ -11032,11 +11036,14 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     display: none !important;
   }
 
-  #main.works-show dl.work.meta dd.stats > dl.stats > dt,
-  #main.chapters-show dl.work.meta dd.stats > dl.stats > dt,
-  #main.works-show dl.work.meta dd.stats > dl.stats > dd,
-  #main.chapters-show dl.work.meta dd.stats > dl.stats > dd {
-    flex: 0 0 auto !important;
+  #main.works-show dl.work.meta dd.stats > dl.stats > :is(dt.published, dd.published, dt.status, dd.status),
+  #main.chapters-show dl.work.meta dd.stats > dl.stats > :is(dt.published, dd.published, dt.status, dd.status) {
+    grid-row: 1 !important;
+  }
+
+  #main.works-show dl.work.meta dd.stats > dl.stats > :is(dt.words, dd.words, dt.chapters, dd.chapters, dt.comments, dd.comments, dt.kudos, dd.kudos, dt.bookmarks, dd.bookmarks, dt.hits, dd.hits),
+  #main.chapters-show dl.work.meta dd.stats > dl.stats > :is(dt.words, dd.words, dt.chapters, dd.chapters, dt.comments, dd.comments, dt.kudos, dd.kudos, dt.bookmarks, dd.bookmarks, dt.hits, dd.hits) {
+    grid-row: 2 !important;
   }
 }
 
