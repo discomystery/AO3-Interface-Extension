@@ -715,6 +715,14 @@
   font-size: 0.68rem !important;
 }
 
+/* work-meta-collapse.js always inserts this line-break marker (used to
+   force a wrap in the two-line phone layout below), but it should stay
+   completely inert above that breakpoint. */
+#main.works-show dl.work.meta dd.stats > dl.stats > .ao3am-stats-line-break,
+#main.chapters-show dl.work.meta dd.stats > dl.stats > .ao3am-stats-line-break {
+  display: none !important;
+}
+
 #main.works-show dl.work.meta dd.stats > dl.stats > dt,
 #main.works-show dl.work.meta dd.stats > dl.stats > dd,
 #main.chapters-show dl.work.meta dd.stats > dl.stats > dt,
@@ -1402,39 +1410,34 @@ body:is(.reversi, .dark) #main.chapters-show #workskin > .preface.group .notes.m
     font-size: 0.67rem !important;
   }
 
-  /* Two fixed lines instead of an organic wrap: Published/Updated (dates)
-     on their own line, everything else (Words/Chapters/Comments/Kudos/
-     Bookmarks/Hits) on the line below. A CSS grid with only grid-row set
-     per stat — never grid-column — gets this for free: the auto-placement
-     algorithm packs each row's items starting at column 1 in DOM order, so
-     explicit column tracks aren't needed at all. "Updated:" only exists
-     on works AO3 has actually updated, so this is written by class, not
-     nth-child position, to hold up when that row is absent.
-     overflow-x is a safety net for narrow phones/long numbers — six stats
-     comfortably fit one line at phone widths, so it rarely engages. */
+  /* Two fixed lines: Published/Updated (dates) on their own line,
+     everything else (Words/Chapters/Comments/Kudos/Bookmarks/Hits) on the
+     line below. A two-row CSS grid (tried first) turned out wrong here —
+     grid tracks are shared by every row, so Words'/Chapters' short values
+     inherited column widths sized for the much wider dates, leaving big
+     ragged gaps in line two. Flexbox doesn't share sizing across wrapped
+     lines at all, so it's the right tool: work-meta-collapse.js inserts an
+     empty span.ao3am-stats-line-break right before dt.words, and giving
+     that span flex-basis: 100% forces the wrap exactly there (the classic
+     "flex line break" technique) while every other item keeps its own
+     natural width. Six stats comfortably fit one line at phone widths; on
+     anything narrower, flex-wrap just adds a third line rather than
+     overflowing. */
   #main.works-show dl.work.meta dd.stats > dl.stats,
   #main.chapters-show dl.work.meta dd.stats > dl.stats {
-    display: grid !important;
-    grid-auto-columns: max-content !important;
-    column-gap: 0.4rem !important;
-    row-gap: 0.2rem !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    scrollbar-width: none !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: baseline !important;
+    gap: 0.2rem 0.5rem !important;
   }
 
-  #main.works-show dl.work.meta dd.stats > dl.stats::-webkit-scrollbar,
-  #main.chapters-show dl.work.meta dd.stats > dl.stats::-webkit-scrollbar {
-    display: none !important;
-  }
-
-  #main.works-show dl.work.meta dd.stats > dl.stats > :is(dt.published, dd.published, dt.status, dd.status),
-  #main.chapters-show dl.work.meta dd.stats > dl.stats > :is(dt.published, dd.published, dt.status, dd.status) {
-    grid-row: 1 !important;
-  }
-
-  #main.works-show dl.work.meta dd.stats > dl.stats > :is(dt.words, dd.words, dt.chapters, dd.chapters, dt.comments, dd.comments, dt.kudos, dd.kudos, dt.bookmarks, dd.bookmarks, dt.hits, dd.hits),
-  #main.chapters-show dl.work.meta dd.stats > dl.stats > :is(dt.words, dd.words, dt.chapters, dd.chapters, dt.comments, dd.comments, dt.kudos, dd.kudos, dt.bookmarks, dd.bookmarks, dt.hits, dd.hits) {
-    grid-row: 2 !important;
+  #main.works-show dl.work.meta dd.stats > dl.stats > .ao3am-stats-line-break,
+  #main.chapters-show dl.work.meta dd.stats > dl.stats > .ao3am-stats-line-break {
+    display: block !important;
+    flex-basis: 100% !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }

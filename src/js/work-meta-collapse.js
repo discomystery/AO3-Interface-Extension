@@ -10,6 +10,15 @@
 // collapse: 55.css keeps it visible — sitting at the bottom of the card,
 // since AO3 already places it last in the dl — whether the card is
 // collapsed or not. This script only needs to leave that pair alone.
+//
+// It also inserts one empty marker span into the nested dl.stats, right
+// before dt.words. On phones, 55.css gives that span flex-basis: 100% to
+// force a flex-wrap line break exactly there — the classic technique for
+// splitting a flex row into fixed groups (Published/Updated on line one,
+// everything else on line two) without disturbing how each line sizes its
+// own items. There's no way to express "wrap here" for a specific pair of
+// siblings in CSS alone without a real element to hang it on, and AO3's
+// markup doesn't give us one.
 (function () {
   "use strict";
 
@@ -17,6 +26,7 @@
     "#main.works-show > .work > .wrapper, #main.chapters-show > .work > .wrapper";
   const TOGGLE_CLASS = "ao3am-work-meta-toggle";
   const COLLAPSED_CLASS = "ao3am-work-meta-collapsed";
+  const LINE_BREAK_CLASS = "ao3am-stats-line-break";
   const STORAGE_KEY = "ao3am:work-meta-collapsed";
   const MOBILE_QUERY = "(max-width: 48rem)";
 
@@ -41,9 +51,28 @@
     button.setAttribute("aria-expanded", String(!collapsed));
   }
 
+  function insertStatsLineBreak(meta) {
+    const stats = meta.querySelector(":scope > dd.stats > dl.stats");
+    if (!stats || stats.querySelector("." + LINE_BREAK_CLASS)) return;
+
+    // Words is always the first stat after the (optional) Published/Updated
+    // dates, so break there regardless of whether Updated is present.
+    const words = stats.querySelector(":scope > dt.words");
+    if (!words) return;
+
+    const marker = document.createElement("span");
+    marker.className = LINE_BREAK_CLASS;
+    marker.setAttribute("aria-hidden", "true");
+    stats.insertBefore(marker, words);
+  }
+
   function processWrapper(wrapper, mql) {
     const meta = wrapper.querySelector(":scope > dl.work.meta");
-    if (!meta || wrapper.querySelector("." + TOGGLE_CLASS)) return;
+    if (!meta) return;
+
+    insertStatsLineBreak(meta);
+
+    if (wrapper.querySelector("." + TOGGLE_CLASS)) return;
 
     const button = document.createElement("button");
     button.type = "button";
