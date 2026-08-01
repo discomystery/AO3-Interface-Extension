@@ -13585,8 +13585,13 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
      Log Out moves into the account dropdown (mobile-header.js), so it's
      not part of this row at all. */
 
+  /* Matches #header's own 0.35rem gap (above) so the search toggle sits
+     the same distance from the Post icon as the Post/WTR/avatar icons sit
+     from each other — previously this was 0.2rem while the header's own
+     gap was 0.35rem, so the search-to-Post gap read as visibly wider than
+     the gaps within the greeting cluster. */
   #header #greeting > ul.user.navigation.actions {
-    gap: 0.2rem !important;
+    gap: 0.35rem !important;
   }
 
   #header #greeting > ul.user.navigation.actions > li.ao3am-post-li {
@@ -13753,12 +13758,37 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
     justify-content: flex-start !important;
   }
 
-  /* Submenus expand inline within the panel instead of floating over it. */
+  /* Submenus expand inline within the panel instead of floating over it.
+     The desktop treatment they inherit from 30.css is a full floating
+     card — gradient background, border, 16px corners, drop shadow — meant
+     to sit over the page on its own. Nested inside a panel that's already
+     that same card, it read as a second, full-size card stacked directly
+     under each trigger rather than a sub-list, with roomy button-sized
+     rows that made a 5-item submenu taller than the whole rest of the
+     panel. Stripping the card chrome and tightening the rows turns it
+     into a plain indented list, set off from its trigger by a hairline
+     rule instead of a duplicate card. */
   #header nav[aria-label="Site"] > ul.primary.navigation.actions .menu {
     position: static !important;
     width: auto !important;
-    margin: 0.3rem 0 0 0.5rem !important;
+    margin: 0.15rem 0 0.35rem 0.55rem !important;
+    padding: 0 0 0 0.55rem !important;
+
+    background: transparent !important;
+    border: 0 !important;
+    border-left: 2px solid var(--m-line) !important;
+    border-radius: 0 !important;
     box-shadow: none !important;
+  }
+
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions .menu li + li {
+    margin-top: 0 !important;
+  }
+
+  #header nav[aria-label="Site"] > ul.primary.navigation.actions .menu a {
+    min-height: 26px !important;
+    padding: 0.22rem 0.5rem !important;
+    font-size: 0.72rem !important;
   }
 
   #header li.search {
@@ -13771,6 +13801,19 @@ html body #outer #inner #main form#bookmark-filters.filters p.footnote a:focus {
   #header li.search form.search {
     width: 100% !important;
     margin: 0 !important;
+  }
+
+  /* Mobile browsers (iOS Safari, and Chrome on Android in some configs)
+     auto-zoom the viewport when a focused text input's computed font-size
+     is under 16px — this input was 0.72rem (~11.5px), so opening the
+     search panel and tapping in triggered an unwanted zoom on every open.
+     16px is the documented threshold; overriding just the font-size here
+     (not the box's height/line-height) keeps the compact control while
+     clearing it. */
+  #header li.search #site_search,
+  #header li.search input[type="text"],
+  #header li.search input[type="search"] {
+    font-size: 16px !important;
   }
 }
 
