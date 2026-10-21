@@ -760,12 +760,13 @@
     padding-right: 0 !important;
   }
 
-  #bookmark-filters {
-    position: static !important;
-    float: none !important;
-    clear: both !important;
-    width: 100% !important;
-    margin-top: 1rem !important;
+  /* Same "AO3 emits this after the full listing" problem as #work-filters
+     (40.css), and the same fix: hidden by default, surfaced as a fixed
+     bottom sheet through the floating "Filters" button (mobile-filters.js;
+     the shared overlay/backdrop/sheet rules live in 40.css alongside
+     #work-filters's). */
+  #bookmark-filters.filters {
+    display: none !important;
   }
 
   :is(#main.bookmarks-index, #main:is(.users-show, .pseuds-show) #user-bookmarks) li.bookmark.blurb > .user.module.group {

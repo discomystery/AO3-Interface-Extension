@@ -591,6 +591,19 @@
    RESPONSIVE PAGE COMPONENTS
    ------------------------------------------------------------ */
 
+/* mobile-filters.js inserts these unconditionally (it has no way to know
+   the viewport width will stay above the breakpoint below), so without a
+   default they'd fall back to plain browser button rendering above that
+   breakpoint — an unstyled "Filters" button loose in the document flow
+   next to the sticky sidebar that already shows the real form. Hidden
+   here; the max-width: 62rem block below is the only place that shows
+   them again. */
+.ao3am-filters-fab,
+.ao3am-filters-close,
+.ao3am-filters-backdrop {
+  display: none !important;
+}
+
 @media only screen and (max-width: 62rem) {
   #main.filtered > ol.index,
   #main.filtered > ul.index {
@@ -599,13 +612,37 @@
     padding-right: 0 !important;
   }
 
-  #work-filters {
-    position: relative !important;
-    top: auto !important;
-    float: none !important;
-    clear: both !important;
+  /* Below this width the sticky sidebar (above) can no longer sit beside
+     the list. AO3 emits this form AFTER the entire listing in the
+     document, so simply letting it fall back to its natural flow position
+     — as a previous version of this rule did, with clear: both; margin-
+     top: 1rem — left it stacked at the very bottom of the page, under
+     every work blurb on every page of results. It's hidden by default
+     here and surfaced on demand as a fixed bottom sheet, via the floating
+     "Filters" button mobile-filters.js adds — reachable from anywhere on
+     the page without scrolling. */
+  #work-filters.filters {
+    display: none !important;
+  }
+
+  body.ao3am-filters-open #work-filters.filters {
+    display: block !important;
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 10550 !important;
+
+    box-sizing: border-box !important;
     width: 100% !important;
-    margin: 1rem 0 0 !important;
+    max-width: none !important;
+    max-height: min(82vh, 42rem) !important;
+    margin: 0 !important;
+
+    border-width: 1px 0 0 !important;
+    border-radius: 20px 20px 0 0 !important;
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.22) !important;
+
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 
   #work-filters > fieldset > dl {
@@ -625,6 +662,157 @@
 
   .stats-index dl.statistics.meta {
     overflow-x: auto !important;
+  }
+
+  /* ---- Floating "Filters" trigger, backdrop, and in-sheet close button
+     (mobile-filters.js). Shared between #work-filters and #bookmark-
+     filters — both get the exact same overlay treatment. ---- */
+
+  .ao3am-filters-fab {
+    position: fixed !important;
+    right: 1rem !important;
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    z-index: 10500 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+
+    box-sizing: border-box !important;
+    padding: 0.62rem 1.05rem !important;
+    border: 1px solid var(--m-link) !important;
+    border-radius: 999px !important;
+
+    background: var(--m-link) !important;
+    color: var(--m-on-accent) !important;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    text-shadow: none !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.24) !important;
+
+    transition:
+      background-color 140ms ease,
+      transform 140ms ease !important;
+  }
+
+  .ao3am-filters-fab:is(:hover, :focus-visible, :active) {
+    background: var(--m-link-hover) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  body.ao3am-filters-open .ao3am-filters-fab {
+    display: none !important;
+  }
+
+  .ao3am-filters-fab::before {
+    content: "" !important;
+    display: block !important;
+    flex: 0 0 auto !important;
+    width: 1rem !important;
+    height: 1rem !important;
+    background-color: currentColor !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 100% !important;
+    mask-size: 100% !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 5h16l-6 8v5l-4 2v-7z'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 5h16l-6 8v5l-4 2v-7z'/%3E%3C/svg%3E") !important;
+  }
+
+  .ao3am-filters-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 10540 !important;
+
+    background: rgba(0, 0, 0, 0.45) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: opacity 160ms ease !important;
+  }
+
+  body.ao3am-filters-open .ao3am-filters-backdrop {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Locks the listing behind the sheet so a scroll/drag inside the sheet
+     doesn't chain into the page scrolling underneath it. */
+  body.ao3am-filters-open {
+    overflow: hidden !important;
+  }
+
+  /* Absolutely positioned against the sheet (its nearest positioned
+     ancestor is #work-filters/#bookmark-filters itself, both fixed above)
+     rather than inline as the form's first child — an in-flow circle
+     pushed left by margin-left: auto still took up its own row above the
+     "Filters" legend bar, straddling the sheet's rounded top corner
+     instead of sitting inside it. Floating it in the corner keeps the
+     legend bar intact underneath. */
+  .ao3am-filters-close {
+    position: absolute !important;
+    top: 0.55rem !important;
+    right: 0.55rem !important;
+    z-index: 2 !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+    width: 1.9rem !important;
+    height: 1.9rem !important;
+    padding: 0 !important;
+
+    background: var(--m-control) !important;
+    border: 1px solid var(--m-line) !important;
+    border-radius: 50% !important;
+    color: var(--m-text-2) !important;
+    box-shadow: var(--m-shadow-xs) !important;
+  }
+
+  .ao3am-filters-close:is(:hover, :focus-visible, :active) {
+    background: var(--m-control-hover) !important;
+    color: var(--m-link) !important;
+  }
+
+  .ao3am-filters-close::before {
+    content: "" !important;
+    display: block !important;
+    width: 0.85rem !important;
+    height: 0.85rem !important;
+    background-color: currentColor !important;
+    -webkit-mask-repeat: no-repeat !important;
+    mask-repeat: no-repeat !important;
+    -webkit-mask-position: center !important;
+    mask-position: center !important;
+    -webkit-mask-size: 100% !important;
+    mask-size: 100% !important;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.4' d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") !important;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.4' d='M6 6l12 12M18 6 6 18'/%3E%3C/svg%3E") !important;
+  }
+
+  body.ao3am-filters-open #bookmark-filters.filters {
+    display: block !important;
+    position: fixed !important;
+    inset: auto 0 0 0 !important;
+    z-index: 10550 !important;
+
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: none !important;
+    max-height: min(82vh, 42rem) !important;
+    margin: 0 !important;
+
+    border-width: 1px 0 0 !important;
+    border-radius: 20px 20px 0 0 !important;
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.22) !important;
+
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
   }
 }
 

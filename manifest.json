@@ -63,6 +63,14 @@
         "https://archiveofourown.org/*",
         "https://www.archiveofourown.org/*"
       ],
+      "js": ["src/js/mobile-filters.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://archiveofourown.org/*",
+        "https://www.archiveofourown.org/*"
+      ],
       "js": ["src/js/live-css-loader.js"],
       "run_at": "document_idle"
     }
